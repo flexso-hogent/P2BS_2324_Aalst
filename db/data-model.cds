@@ -18,6 +18,7 @@ entity Sessions {
         description : localized String;
         speaker     : String;
         location    : String;
+        eventID     : String;
 
 }
 
