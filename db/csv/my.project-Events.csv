@@ -1,3 +1,3 @@
-ID;Title
-101;Test
+ID;Title;eventid;date;description;
+101;Test;1;2013-01-01;Test event;
 
