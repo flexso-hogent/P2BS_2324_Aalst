@@ -7,7 +7,10 @@ sap.ui.define(
     "use strict";
 
     return Controller.extend("flexso.controller.App", {
-      onInit: function () {},
+      onInit: function () {
+        this.getOwnerComponent().getRouter().initialize();
+        this.getOwnerComponent().getRouter().navTo("Login");
+      },
     });
   }
 );

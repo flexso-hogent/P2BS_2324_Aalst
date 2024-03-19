@@ -1,0 +1,86 @@
+<mvc:View
+    controllerName="flexso.controller.Login"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="loginPage"
+        title="Login"
+        class="loginPage"
+    >
+        <content>
+            <VBox
+                id="_IDGenVBox1"
+                class="loginBox"
+            >
+                <l:VerticalLayout
+                    id="_IDGenVerticalLayout1"
+                    class="loginLayout"
+                >
+                    <!-- Title -->
+                    <Title
+                        id="_IDGenTitle1"
+                        text="Login"
+                        level="H2"
+                        class="loginTitle"
+                    />
+
+                    <!-- Email Label -->
+                    <Label
+                        id="_IDGenLabel1"
+                        text="Email:"
+                        class="loginLabel"
+                    />
+                    <!-- Username Input -->
+                    <Input
+                        id="usernameInput"
+                        placeholder="Enter your email address"
+                        width="100%"
+                        class="loginInput"
+                    />
+
+                    <!-- Password Label -->
+                    <Label
+                        id="_IDGenLabel2"
+                        text="Password:"
+                        class="loginLabel"
+                    />
+                    <!-- Password Input -->
+                    <Input
+                        id="passwordInput"
+                        type="Password"
+                        placeholder="Enter your password"
+                        width="100%"
+                        class="loginInput"
+                    />
+
+                    <!-- Stay Logged In Checkbox -->
+                    <CheckBox
+                        text="Stay Logged In"
+                        id="stayLoggedInCheckbox"
+                        selected="false"
+                        class="stayLoggedInCheckbox"
+                    />
+
+                    <!-- Login Button -->
+                    <Button
+                        id="_IDGenButton1"
+                        text="Login"
+                        press="onLoginPress"
+                        width="100%"
+                        class="loginButton"
+                    />
+
+                    <!-- Forgot Password Link -->
+                    <Link
+                        id="forgotPasswordLink"
+                        text="Forgot Password?"
+                        press="onForgotPasswordPress"
+                        class="forgotPasswordLink"
+                    />
+                </l:VerticalLayout>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

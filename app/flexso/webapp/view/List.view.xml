@@ -1,19 +1,26 @@
 <mvc:View
     controllerName="flexso.controller.List"
     xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
 >
-    <List
-        id="_IDGenList1"
-        items="{/items}"
-        selectionChange="onListItemPress"
+    <Page
+        id="page"
+        title="{i18n>title}"
     >
-        <items>
-            <StandardListItem
-                id="_IDGenStandardListItem1"
-                title="{title}"
-                description="{description}"
-            />
-        </items>
-    </List>
+        <List
+            id="list"
+            items="{/Products}"
+            mode="SingleSelectMaster"
+        >
+            <items>
+                <StandardListItem
+                    id="_IDGenStandardListItem1"
+                    title="{Name}"
+                    description="{ProductId}"
+                />
+            </items>
+        </List>
+    </Page>
 </mvc:View>

@@ -109,7 +109,6 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "flexso.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -118,25 +117,48 @@
         {
           "name": "RouteApp",
           "pattern": "",
-          "target": [
-            "List"
-          ]
-        }, {
+          "target": ["Login"]
+        },
+        {
+          "name": "login",
+          "pattern": "login",
+          "target": ["Login"]
+        },
+        {
           "name": "detail",
-          "pattern": "",
+          "pattern": "detail/{id}",
           "target": ["Detail"]
+        },
+        {
+          "name": "list",
+          "pattern": "list",
+          "target": ["List"]
         }
       ],
       "targets": {
-        "TargetApp": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "App",
-          "viewName": "App"
+        "App": {
+          "viewName": "flexso.view.App",
+          "viewId": "app",
+          "viewLevel": 1
+        },
+        "Login": {
+          "viewName": "flexso.view.Login",
+          "viewId": "login",
+          "viewLevel": 2
+        },
+        "Detail": {
+          "viewName": "flexso.view.Detail",
+          "viewId": "detail",
+          "viewLevel": 3
+        },
+        "List": {
+          "viewName": "flexso.view.List",
+          "viewId": "list",
+          "viewLevel": 3
         }
       }
     },
+
     "rootView": {
       "viewName": "flexso.view.App",
       "type": "XML",
