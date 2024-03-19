@@ -1,0 +1,18 @@
+<mvc:View
+    controllerName="flexso.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <VBox id="_IDGenVBox1">
+        <ObjectHeader
+            id="_IDGenObjectHeader1"
+            title="{title}"
+        />
+        <ObjectAttribute
+            id="_IDGenObjectAttribute1"
+            title="Description"
+            text="{description}"
+        />
+        <!-- Add more detail fields here -->
+    </VBox>
+</mvc:View>

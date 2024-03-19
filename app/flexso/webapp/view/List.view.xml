@@ -1,0 +1,19 @@
+<mvc:View
+    controllerName="flexso.controller.List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <List
+        id="_IDGenList1"
+        items="{/items}"
+        selectionChange="onListItemPress"
+    >
+        <items>
+            <StandardListItem
+                id="_IDGenStandardListItem1"
+                title="{title}"
+                description="{description}"
+            />
+        </items>
+    </List>
+</mvc:View>

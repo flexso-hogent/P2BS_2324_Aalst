@@ -26,9 +26,11 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.6",
     "sqlite3": "^5.1.7"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-flexso": "cds watch --open flexso/webapp/index.html?sap-ui-xx-viewCache=false"
   }
 }
