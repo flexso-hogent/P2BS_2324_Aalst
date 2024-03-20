@@ -56,7 +56,21 @@ sap.ui.define(
       },
 
       onForgotPasswordPress: function () {
-        MessageToast.show("Forgot password pressed");
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("detail");
+      },
+      onSwitchToEnglish: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "en";
+        sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onSwitchToDutch: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "nl";
+        sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
       },
     });
   }
