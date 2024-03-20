@@ -22,6 +22,11 @@
                     text="Nederlands"
                     press="onSwitchToDutch"
                 />
+                <Button
+                    id="_IDGenProfileButton"
+                    icon="{imageModel>/profileImagePath}"
+                    press="onProfileButtonClick"
+                />
             </Toolbar>
         </headerContent>
 

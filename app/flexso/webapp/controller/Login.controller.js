@@ -14,9 +14,16 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
+
+        var oProfileImagePath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/profile.jpg"
+        );
         var oImageModel = new JSONModel({
           path: oRootPath,
+          profileImagePath: oProfileImagePath,
         });
+
         this.getView().setModel(oImageModel, "imageModel");
 
         //Stay logged in button
@@ -70,6 +77,10 @@ sap.ui.define(
         oResourceModel.sLocale = "nl";
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
+      },
+      onProfileButtonClick: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("profile");
       },
     });
   }
