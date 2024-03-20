@@ -18,31 +18,31 @@
                     <Label id="emailLabel" text="Email" class="registerLabel" />
 
                     <!-- Email Input-->
-                    <Input id="emailInput" type="Email" placeholder="Enter email" class="registerInput" />
+                    <Input id="emailInput" type="Email" placeholder="Enter email" class="registerInput" required="true"/>
 
                     <!--Company Label-->
                     <Label id="companyLabel" text="Company" class="registerLabel" />
 
                     <!--Company Input-->
-                    <Input id="companyInput" type="Text" placeholder="Enter company" class="registerInput" />
+                    <Input id="companyInput" type="Text" placeholder="Enter company" class="registerInput" required="true"/>
 
                     <!--Role label-->
                     <Label id="roleLabel" text="Role" class="registerLabel" />
 
                     <!--Role Input-->
-                    <Input id="roleInput" type="Text" placeholder="Enter role" class="registerInput" />
+                    <Input id="roleInput" type="Text" placeholder="Enter role" class="registerInput" required="true"/>
 
                     <!--Password Label-->
                     <Label id="passwordLabel" text="Password" class="registerLabel" />
 
                     <!--Password Input-->
-                    <Input id="passwordInput" type="Password" placeholder="Enter password" class="registerInput" />
+                    <Input id="passwordInput" type="Password" placeholder="Enter password" class="registerInput" required="true"/>
 
                     <!--Confirm Password label-->
                     <Label id="confirmPasswordLabel" text="Confirm Password" class="registerLabel" />
 
                     <!--Confirm Password Input-->
-                    <Input id="confirmPasswordInput" type="Password" placeholder="Confirm password" class="registerInput" />
+                    <Input id="confirmPasswordInput" type="Password" placeholder="Confirm password" class="registerInput" required="true"/>
 
                     <!--Register Button-->
                     <Button id="registerButton" text="Register" width="100%" press="onRegister" class="registerButton" />

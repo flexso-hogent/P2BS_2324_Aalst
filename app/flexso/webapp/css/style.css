@@ -46,3 +46,7 @@
 .registerLayout {
   margin: 0 auto;
 }
+
+.registerButton {
+  margin-bottom: 15px;
+}
