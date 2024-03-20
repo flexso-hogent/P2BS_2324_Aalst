@@ -6,7 +6,7 @@
 >
     <Page
         id="loginPage"
-        title="Login"
+        title="Flexso"
         class="loginPage"
     >
         <content>
