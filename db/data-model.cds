@@ -5,6 +5,7 @@ entity Events {
         title       : localized String;
         eventID     : String;
         date        : Date;
+        location    : String;
         description : localized String;
 
 }
@@ -17,6 +18,7 @@ entity Sessions {
         room        : String;
         description : localized String;
         speaker     : String;
+        availableSeats : Integer;
         location    : String;
         eventID     : String;
 
@@ -27,10 +29,8 @@ entity Users {
         name        : String;
         email       : String;
         password    : String;
+        company     : String;
         role        : String;
-        location    : String;
-        description : localized String;
-
 }
 
 entity EventLocation {
@@ -58,7 +58,7 @@ entity Rating {
         rating      : Integer;
         comment     : localized String;
         sessionID   : String;
-        userID      : String;
+        userID      : Integer;
 
 }
 
