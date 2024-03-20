@@ -125,6 +125,11 @@
           "target": ["Login"]
         },
         {
+          "name": "register",
+          "pattern": "register",
+          "target": ["Register"]
+        },
+        {
           "name": "detail",
           "pattern": "detail",
           "target": ["Detail"]
@@ -144,6 +149,11 @@
         "Login": {
           "viewName": "flexso.view.Login",
           "viewId": "login",
+          "viewLevel": 2
+        },
+        "Register": {
+          "viewName": "flexso.view.Register",
+          "viewId": "register",
           "viewLevel": 2
         },
         "Detail": {
