@@ -4,9 +4,8 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
-    "sap/ui/core/routing/History",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent, History) {
+  function (Controller, JSONModel, MessageToast, UIComponent) {
     "use strict";
 
     return Controller.extend("flexso.controller.Login", {
@@ -56,7 +55,7 @@ sap.ui.define(
       },
 
       onForgotPasswordPress: function () {
-        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("wachtwoordVergeten");
       },
       onSwitchToEnglish: function () {
