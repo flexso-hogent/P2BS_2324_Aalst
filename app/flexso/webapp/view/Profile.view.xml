@@ -141,6 +141,13 @@
                             class="userInfoText"
                         />
                         <!-- Add more user information as needed -->
+                        <Button
+                            id="feedbackButton"
+                            text="{i18n>feedbackButton}"
+                            press="onFeedbackPress"
+                            width="100%"
+                            class="feedbackButton"
+                        />
                     </VBox>
                 </HBox>
             </VBox>

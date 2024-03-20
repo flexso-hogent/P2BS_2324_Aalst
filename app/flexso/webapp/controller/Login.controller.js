@@ -45,7 +45,7 @@ sap.ui.define(
           setTimeout(
             function () {
               var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("list");
+              oRouter.navTo("profile");
             }.bind(this),
             1000
           );

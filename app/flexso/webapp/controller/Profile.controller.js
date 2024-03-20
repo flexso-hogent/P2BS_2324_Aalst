@@ -61,6 +61,10 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("login");
       },
+
+      onFeedbackPress: function () {
+        MessageToast.show("Inprogress");
+      },
     });
   }
 );
