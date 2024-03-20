@@ -39,7 +39,7 @@ sap.ui.define(
           setTimeout(
             function () {
               var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("detail");
+              oRouter.navTo("wachtwoordVergeten");
             }.bind(this),
             1000
           );
@@ -57,7 +57,7 @@ sap.ui.define(
 
       onForgotPasswordPress: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("detail");
+        oRouter.navTo("wachtwoordVergeten");
       },
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");

@@ -3,7 +3,7 @@ sap.ui.define(
   function (Controller, MessageToast) {
     "use strict";
 
-    return Controller.extend("flexso.controller.Detail", {
+    return Controller.extend("flexso.controller.wachtwoordVergeten", {
       onInit: function () {},
 
       onSendPasswordResetEmail: function () {

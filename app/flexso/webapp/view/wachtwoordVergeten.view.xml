@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="flexso.controller.Detail"
+    controllerName="flexso.controller.wachtwoordVergeten"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"

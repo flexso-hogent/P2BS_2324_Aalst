@@ -130,9 +130,9 @@
           "target": ["Register"]
         },
         {
-          "name": "detail",
-          "pattern": "detail",
-          "target": ["Detail"]
+          "name": "wachtwoordVergeten",
+          "pattern": "wachtwoordVergeten",
+          "target": ["wachtwoordVergeten"]
         },
         {
           "name": "list",
@@ -156,9 +156,9 @@
           "viewId": "register",
           "viewLevel": 2
         },
-        "Detail": {
-          "viewName": "flexso.view.Detail",
-          "viewId": "detail",
+        "wachtwoordVergeten": {
+          "viewName": "flexso.view.wachtwoordVergeten",
+          "viewId": "wachtwoordVergeten",
           "viewLevel": 3
         },
         "List": {
