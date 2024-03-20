@@ -14,12 +14,12 @@
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
                     id="_IDGenButton3"
-                    text="English"
+                    text="{i18n>EN}"
                     press="onSwitchToEnglish"
                 />
                 <Button
                     id="_IDGenButton4"
-                    text="Nederlands"
+                    text="{i18n>NL}"
                     press="onSwitchToDutch"
                 />
                 <Button

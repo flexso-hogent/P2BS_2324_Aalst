@@ -138,6 +138,11 @@
           "name": "list",
           "pattern": "list",
           "target": ["List"]
+        },
+        {
+          "name": "profile",
+          "pattern": "profile",
+          "target": ["Profile"]
         }
       ],
       "targets": {
@@ -164,6 +169,11 @@
         "List": {
           "viewName": "flexso.view.List",
           "viewId": "list",
+          "viewLevel": 3
+        },
+        "Profile": {
+          "viewName": "flexso.view.Profile",
+          "viewId": "profile",
           "viewLevel": 3
         }
       }
