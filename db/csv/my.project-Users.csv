@@ -1,2 +1,11 @@
 ID;name;email;password;role;location;description;
+1;Admin;Admin@gmail.com;Admin;admin;Admin;Admin;
 2;John Doe;John@gmail.com;1234;user;Aalst;description;
+3;Jane Smith;jane@example.com;password123;user;Brussels;A brief description of Jane Smith;
+4;Michael Johnson;michael@example.com;mikepass;admin;Ghent;Administrator with extensive experience;
+5;Emily Brown;emily@example.com;emily123;user;Antwerp;Passionate about technology and innovation;
+6;Daniel Lee;daniel@example.com;pass456;user;Liege;Experienced in project management;
+7;Sarah Wilson;sarah@example.com;sarahpass;user;Namur;Dedicated to customer satisfaction;
+8;Kevin Martinez;kevin@example.com;kevinpass;user;Charleroi;Skilled in software development;
+9;Jessica Taylor;jessica@example.com;jessica123;user;Leuven;Enthusiastic about data analysis;
+10;David Garcia;david@example.com;davidpass;user;Mons;Proficient in graphic design;

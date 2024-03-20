@@ -1,0 +1,6 @@
+ID,rating,comment,sessionID,userID
+1,5,"Great session!","session_001","user_001"
+2,4,"Informative talk.","session_002","user_002"
+3,3,"Could have been better.","session_003","user_003"
+4,5,"Excellent presentation!","session_001","user_004"
+5,2,"Disappointing.","session_002","user_005"

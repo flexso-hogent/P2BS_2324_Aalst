@@ -32,3 +32,34 @@ entity Users {
         description : localized String;
 
 }
+
+entity EventLocation {
+    key ID          : Integer;
+        name        : String;
+        description : localized String;
+
+}
+
+entity SessionsLocation {
+    key ID          : Integer;
+        name        : String;
+        description : localized String;
+
+}
+
+entity SessionSpeaker {
+    key ID          : Integer;
+        name        : String;
+        description : localized String;
+
+}
+entity Rating {
+    key ID          : Integer;
+        rating      : Integer;
+        comment     : localized String;
+        sessionID   : String;
+        userID      : String;
+
+}
+
+
