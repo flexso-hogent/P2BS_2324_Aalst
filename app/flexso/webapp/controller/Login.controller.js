@@ -4,8 +4,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/ui/core/routing/History",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, History) {
     "use strict";
 
     return Controller.extend("flexso.controller.Login", {
@@ -18,23 +19,40 @@ sap.ui.define(
           path: oRootPath,
         });
         this.getView().setModel(oImageModel, "imageModel");
+
+        //Stay logged in button
+        var stayLoggedIn = localStorage.getItem("stayLoggedIn");
+        if (stayLoggedIn && stayLoggedIn === "true") {
+          this.getView().byId("stayLoggedInCheckbox").setSelected(true);
+        }
       },
 
       onLoginPress: function () {
         var username = this.getView().byId("usernameInput").getValue();
         var password = this.getView().byId("passwordInput").getValue();
+        var stayLoggedIn = this.getView()
+          .byId("stayLoggedInCheckbox")
+          .getSelected();
 
         if (username === "admin" && password === "admin") {
           MessageToast.show("Login successful");
+          setTimeout(
+            function () {
+              var oRouter = UIComponent.getRouterFor(this);
+              oRouter.navTo("detail");
+            }.bind(this),
+            1000
+          );
 
-          var oRouter = UIComponent.getRouterFor(this);
-          oRouter.navTo("List");
+          localStorage.setItem("stayLoggedIn", stayLoggedIn);
         } else {
           MessageToast.show("Invalid credentials. Please try again.");
         }
       },
+
       onRegisterPress: function () {
-        MessageToast.show("Register pressed");
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("register");
       },
 
       onForgotPasswordPress: function () {
