@@ -9,7 +9,7 @@ sap.ui.define(
     return Controller.extend("flexso.controller.App", {
       onInit: function () {
         this.getOwnerComponent().getRouter().initialize();
-        this.getOwnerComponent().getRouter().navTo("Login");
+        this.getOwnerComponent().getRouter().navTo("List");
       },
     });
   }

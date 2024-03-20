@@ -126,7 +126,7 @@
         },
         {
           "name": "detail",
-          "pattern": "detail/{id}",
+          "pattern": "detail",
           "target": ["Detail"]
         },
         {
