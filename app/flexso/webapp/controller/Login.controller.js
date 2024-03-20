@@ -45,7 +45,7 @@ sap.ui.define(
           setTimeout(
             function () {
               var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("wachtwoordVergeten");
+              oRouter.navTo("list");
             }.bind(this),
             1000
           );
