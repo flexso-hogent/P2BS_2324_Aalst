@@ -33,6 +33,10 @@ sap.ui.define(
           MessageToast.show("Invalid credentials. Please try again.");
         }
       },
+      onRegisterPress: function () {
+        MessageToast.show("Register pressed");
+      },
+
       onForgotPasswordPress: function () {
         MessageToast.show("Forgot password pressed");
       },

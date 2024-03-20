@@ -86,6 +86,14 @@
                         press="onForgotPasswordPress"
                         class="forgotPasswordLink"
                     />
+
+                    <Button
+                        id="_IDGenButton2"
+                        text="Dont have an account? Register here!"
+                        press="onRegisterPress"
+                        width="100%"
+                        class="registerButton"
+                    />
                 </l:VerticalLayout>
             </VBox>
         </content>
