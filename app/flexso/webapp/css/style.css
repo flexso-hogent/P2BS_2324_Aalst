@@ -29,3 +29,20 @@
 .forgotPasswordLink:hover {
   text-decoration: underline;
 }
+
+.registerPage {
+  background-color: #f4f4f4;
+}
+
+.registerBox {
+  margin-top: 100px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.registerLayout {
+  margin: 0 auto;
+}
