@@ -4,9 +4,8 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
-    "sap/ui/core/routing/History",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent, History) {
+  function (Controller, JSONModel, MessageToast, UIComponent) {
     "use strict";
 
     return Controller.extend("flexso.controller.Login", {
@@ -39,7 +38,7 @@ sap.ui.define(
           setTimeout(
             function () {
               var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("detail");
+              oRouter.navTo("wachtwoordVergeten");
             }.bind(this),
             1000
           );
@@ -56,7 +55,21 @@ sap.ui.define(
       },
 
       onForgotPasswordPress: function () {
-        MessageToast.show("Forgot password pressed");
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("wachtwoordVergeten");
+      },
+      onSwitchToEnglish: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "en";
+        sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onSwitchToDutch: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "nl";
+        sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
       },
     });
   }
