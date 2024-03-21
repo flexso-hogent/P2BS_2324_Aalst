@@ -63,7 +63,8 @@ sap.ui.define(
       },
 
       onFeedbackPress: function () {
-        MessageToast.show("Inprogress");
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("feedback");
       },
     });
   }
