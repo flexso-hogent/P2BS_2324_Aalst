@@ -1,8 +1,25 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flexso.controller.Overview">
-    <Page id="overviewPage" title="Overview">
-        <List id="eventList" items="{eventModel>/}">
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="flexso.controller.Overview"
+>
+    <Page
+        id="overviewPage"
+        title="Overview"
+    >
+        <List
+            id="eventList"
+            items="{
+                path: 'eventModel>/'
+            }"
+        >
             <items>
-                <StandardListItem id="_IDGenStandardListItem1" title="{eventModel>eventName}" info="{eventModel>eventDate}" description=" {eventModel>description} "> </StandardListItem>
+                <StandardListItem
+                    id="_IDGenStandardListItem1"
+                    title="{eventModel>title}"
+                    info="{eventModel>date}"
+                    description="{eventModel>description}"
+                />
             </items>
         </List>
     </Page>

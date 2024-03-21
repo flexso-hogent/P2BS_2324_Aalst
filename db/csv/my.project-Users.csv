@@ -1,5 +1,5 @@
 ID;name;email;password;company;role;
-1;Admin;Admin@gmail.com;Admin;FlexsoAdmin;
+1;Admin;Admin@gmail.com;Admin;FlexsoAdmin;admin;
 2;John Doe;John@gmail.com;1234;Flexso;user;
 3;Jane Smith;jane@example.com;password123;Delaware;user;
 4;Michael Johnson;michael@example.com;mikepass;Delaware;admin;

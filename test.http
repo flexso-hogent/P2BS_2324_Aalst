@@ -33,4 +33,7 @@ Content-Type: application/json;IEEE754Compatible=true
 
 {"book_ID": 201, "amount": 5}
 
+###
+GET http://localhost:4004/odata/v4/catalog/Events
+
 
