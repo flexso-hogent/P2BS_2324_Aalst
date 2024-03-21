@@ -150,9 +150,15 @@
           "target": ["Home"]
         },
         {
+          "name": "overview",
+          "pattern": "overview",
+          "target": ["Overview"]
+        },
+        {
           "name": "feedback",
           "pattern": "feedback",
-          "target": ["Feedback"]}
+          "target": ["Feedback"]
+        }
       ],
       "targets": {
         "App": {
@@ -190,14 +196,18 @@
           "viewId": "home",
           "viewLevel": 3
         },
-        "Feedback":{
+        "Overview": {
+          "viewName": "flexso.view.Overview",
+          "viewId": "overview",
+          "viewLevel": 3
+        },
+        "Feedback": {
           "viewName": "flexso.view.feedback",
           "viewId": "feedback",
           "viewLevel": 3
         }
       }
     },
-
     "rootView": {
       "viewName": "flexso.view.App",
       "type": "XML",
