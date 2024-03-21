@@ -80,7 +80,7 @@ sap.ui.define(
                 setTimeout(
                     function () {
                       var oRouter = UIComponent.getRouterFor(this);
-                      oRouter.navTo("profile");
+                      oRouter.navTo("home");
                     }.bind(this),
                     1000
                   );
