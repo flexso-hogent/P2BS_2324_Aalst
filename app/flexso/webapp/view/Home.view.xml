@@ -67,6 +67,13 @@
                     text="Give feedback on past sessions"
                     press="onFeedbackPress"
                 />
+                
+                <!-- New button for navigating to overview.event -->
+                <Button
+                    id="_IDGenButton6"
+                    text="Go to Overview Event"
+                    press="onGoToOverviewEventPress"
+                />
             </VBox>
         </content>
     </Page>
