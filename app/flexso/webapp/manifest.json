@@ -143,6 +143,11 @@
           "name": "profile",
           "pattern": "profile",
           "target": ["Profile"]
+        },
+        {
+          "name": "home",
+          "pattern": "home",
+          "target": ["Home"]
         }
       ],
       "targets": {
@@ -174,6 +179,11 @@
         "Profile": {
           "viewName": "flexso.view.Profile",
           "viewId": "profile",
+          "viewLevel": 3
+        },
+        "Home": {
+          "viewName": "flexso.view.Home",
+          "viewId": "home",
           "viewLevel": 3
         }
       }

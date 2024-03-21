@@ -22,11 +22,11 @@
                     text="{i18n>NL}"
                     press="onSwitchToDutch"
                 />
-                <Button
+                <!-- <Button
                     id="_IDGenProfileButton"
                     icon="{imageModel>/profileImagePath}"
                     press="onProfileButtonClick"
-                />
+                /> -->
             </Toolbar>
         </headerContent>
 
@@ -63,6 +63,7 @@
                     <!-- Username Input -->
                     <Input
                         id="usernameInput"
+                        value="admin@gmail.com"
                         placeholder="{i18n>emailPlaceholder}"
                         width="100%"
                         class="loginInput"
@@ -78,6 +79,7 @@
                     <Input
                         id="passwordInput"
                         type="Password"
+                        value="Bab1234!"
                         placeholder="{i18n>passwordPlaceholder}"
                         width="100%"
                         class="loginInput"

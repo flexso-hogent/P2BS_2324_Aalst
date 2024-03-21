@@ -40,12 +40,12 @@ sap.ui.define(
           .byId("stayLoggedInCheckbox")
           .getSelected();
 
-        if (username === "admin" && password === "admin") {
+        if (username === "admin@gmail.com" && password === "Bab1234!") {
           MessageToast.show("Login successful");
           setTimeout(
             function () {
               var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("profile");
+              oRouter.navTo("home");
             }.bind(this),
             1000
           );
@@ -78,10 +78,10 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
-      onProfileButtonClick: function () {
-        var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("profile");
-      },
+      // onProfileButtonClick: function () {
+      //   var oRouter = UIComponent.getRouterFor(this);
+      //   oRouter.navTo("profile");
+      // },
     });
   }
 );
