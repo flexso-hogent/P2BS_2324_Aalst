@@ -53,15 +53,12 @@ sap.ui.define(
             var oRatingIndicator = this.getView().byId("feedbackRating");
             var oTextArea = this.getView().byId("reviewTextArea");
             
-            if (sessie === ""){
-                MessageToast.show("Gelieve een sessie in te geven");
-            }
-
-            if (oRatingIndicator.getValue() === 0){
-                MessageToast.show("Gelieve een rating in te geven");
-            }
-
-            if (oRatingIndicator.getValue() <= 2){
+            if (sessie === "") {
+              MessageToast.show("Gelieve een sessie in te geven");
+            } else if(oRatingIndicator.getValue() === 0) {
+              MessageToast.show("Gelieve een rating in te geven");
+            } else {
+              if (oRatingIndicator.getValue() <= 2){
                 if (oTextArea.getValue() === ""){
                     MessageToast.show("Gelieve een review in te geven");
                 } else {
@@ -69,13 +66,12 @@ sap.ui.define(
                     setTimeout(
                         function () {
                           var oRouter = UIComponent.getRouterFor(this);
-                          oRouter.navTo("profile");
+                          oRouter.navTo("home");
                         }.bind(this),
                         1000
                       );
                 }
-            }
-            if (oRatingIndicator.getValue() > 2){
+              } else {
                 MessageToast.show("Bedankt voor uw feedback!");
                 setTimeout(
                     function () {
@@ -84,6 +80,7 @@ sap.ui.define(
                     }.bind(this),
                     1000
                   );
+              }
             }
           }
         
