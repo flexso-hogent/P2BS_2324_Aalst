@@ -3,15 +3,27 @@ sap.ui.define(
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
-    "jquery.sap.global", // Import jQuery
+    "jquery.sap.global",
+    "sap/ui/core/UIComponent",
   ],
-  function (Controller, JSONModel, MessageToast, jQuery) {
+  function (Controller, JSONModel, MessageToast, jQuery, UIComponent) {
     "use strict";
 
     return Controller.extend("flexso.controller.Overview", {
       onInit: function () {
         this.loadData();
+
+        var oProfileImagePath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/profile.jpg"
+        );
+        var oImageModel = new JSONModel({
+          profileImagePath: oProfileImagePath,
+        });
+
+        this.getView().setModel(oImageModel, "imageModel");
       },
+
       loadData: function () {
         var that = this;
         jQuery.ajax({
@@ -26,6 +38,14 @@ sap.ui.define(
             MessageToast.show("Error fetching data: " + error);
           },
         });
+      },
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
+      },
+      onProfileButtonClick: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("profile");
       },
     });
   }

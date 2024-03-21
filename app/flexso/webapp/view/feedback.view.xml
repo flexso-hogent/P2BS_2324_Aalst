@@ -25,7 +25,7 @@
                 />
                 <Button
                     id="_IDGenBackHomeButton"
-                    text="{i18n>back}"
+                    text="{i18n>backToHomeButton}"
                     press="onBackToHome"
                 />
             </Toolbar>
@@ -55,30 +55,46 @@
                         class="feedbackTitle"
                     />
                     <!--Sessie zoeken-->
-                    <Label id="sessieZoekenLabel" text="{i18n>sessieZoekenLabel}" class="feedbackLabel" />
+                    <Label
+                        id="sessieZoekenLabel"
+                        text="{i18n>sessieZoekenLabel}"
+                        class="feedbackLabel"
+                    />
 
                     <!--Sessie input-->
-                    <Input 
-                        id="sessieZoekenInput" 
-                        type="Text" 
-                        placeholder="{i18n>sessieZoekenPlaceholder}" 
-                        class="feedbackInput" 
-                        required="true" 
+                    <Input
+                        id="sessieZoekenInput"
+                        type="Text"
+                        placeholder="{i18n>sessieZoekenPlaceholder}"
+                        class="feedbackInput"
+                        required="true"
                     />
 
                     <!--Feedback-->
-                    <Label id="feedbackLabel" text="{i18n>feedbackLabel}" class="feedbackLabel" />
+                    <Label
+                        id="feedbackLabel"
+                        text="{i18n>feedbackLabel}"
+                        class="feedbackLabel"
+                    />
 
-                    <RatingIndicator id="feedbackRating" maxValue="5" tooltip="Feedback"/>
+                    <RatingIndicator
+                        id="feedbackRating"
+                        maxValue="5"
+                        tooltip="Feedback"
+                    />
 
                     <!--Review-->
-                    <Label id="reviewLabel" text="{i18n>reviewLabel}" class="feedbackLabel" />
+                    <Label
+                        id="reviewLabel"
+                        text="{i18n>reviewLabel}"
+                        class="feedbackLabel"
+                    />
 
                     <TextArea
                         id="reviewTextArea"
                         rows="4"
                         width="100%"
-                        placeholder="{i18n>feedbackPlaceholder}" 
+                        placeholder="{i18n>feedbackPlaceholder}"
                     />
 
                     <!--Register Button-->

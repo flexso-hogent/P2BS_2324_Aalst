@@ -7,6 +7,21 @@
         id="overviewPage"
         title="Overview"
     >
+        <headerContent>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Button
+                    id="_IDGenBackHomeButton"
+                    text="{i18n>backToHomeButton}"
+                    press="onBackToHome"
+                />
+                <Button
+                    id="_IDGenProfileButton"
+                    icon="{imageModel>/profileImagePath}"
+                    press="onProfileButtonClick"
+                />
+            </Toolbar>
+        </headerContent>
         <List
             id="eventList"
             items="{
