@@ -59,7 +59,7 @@ sap.ui.define(
       },
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("login");
+        oRouter.navTo("home");
       },
 
       onFeedbackPress: function () {
