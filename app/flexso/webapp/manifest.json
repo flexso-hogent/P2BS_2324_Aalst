@@ -153,6 +153,11 @@
           "name": "overview",
           "pattern": "overview",
           "target": ["Overview"]
+        },
+        {
+          "name": "feedback",
+          "pattern": "feedback",
+          "target": ["Feedback"]
         }
       ],
       "targets": {
@@ -194,6 +199,11 @@
         "Overview": {
           "viewName": "flexso.view.Overview",
           "viewId": "overview",
+          "viewLevel": 3
+        },
+        "Feedback": {
+          "viewName": "flexso.view.feedback",
+          "viewId": "feedback",
           "viewLevel": 3
         }
       }
