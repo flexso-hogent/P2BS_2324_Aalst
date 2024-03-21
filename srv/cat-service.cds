@@ -1,11 +1,14 @@
 using my.project as my from '../db/data-model';
 
 service CatalogService {
-    entity Events @readonly   as projection on my.Events;
-    entity Sessions @readonly as projection on my.Sessions;
-    entity Users @readonly    as projection on my.Users;
-    entity Rating @readonly   as projection on my.Rating;
-    entity SessionsLocation @readonly as projection on my.SessionsLocation;
-    entity SessionSpeaker @readonly as projection on my.SessionSpeaker;
-    entity EventLocation @readonly as projection on my.EventLocation;
+    entity Sessions @readonly     as projection on my.Sessions;
+    entity Users @readonly        as projection on my.Users;
+    entity Rating @readonly       as projection on my.Rating;
+    entity Admin @readonly        as projection on my.Admin;
+    entity Registration @readonly as projection on my.Registration;
+    entity Events @readonly       as projection on my.Events;
+    entity Session @readonly      as projection on my.Session;
+    entity Scores @readonly       as projection on my.Scores;
+    entity Feedback @readonly     as projection on my.Feedback;
+    entity Scoreboard @readonly   as projection on my.Scoreboard;
 }
