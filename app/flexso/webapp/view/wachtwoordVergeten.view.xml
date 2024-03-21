@@ -46,6 +46,8 @@
                     columnsM="1"
                     width="100%"
                 >
+                    <Text id="forgotPassword" text="{i18n>forgotPassword}" />
+                    <Text id="forgotPasswordText" text="{i18n>forgotPasswordText}" />
                     <Label
                         id="_IDGenLabel1"
                         text="{i18n>Email}"
