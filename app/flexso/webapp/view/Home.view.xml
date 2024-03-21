@@ -10,6 +10,7 @@
     <Page
         id="_IDGenPage1"
         title="{i18n>home}"
+        enableScrolling="false"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -40,22 +41,32 @@
                 justifyContent="Center"
                 class="sapUiSmallMarginBegin sapUiSmallMarginTop"
             >
-                <!-- Title -->
+                <!-- Title with Cool Animation -->
                 <Title
                     id="_IDGenTitle1"
                     text="{i18n>titleHomePage}"
-                    class="sapUiSmallMarginBegin sapUiSmallMarginTop"
+                    class="coolTitleAnimation"
                 />
 
-                <!-- Information Content -->
+                <!-- Information Content with Fade-in Animation -->
                 <Text
                     id="_IDGenText1"
                     text="{i18n>homePageText}"
                     textAlign="Center"
-                    class="sapUiSmallMarginBegin sapUiSmallMarginTop"
+                    class="fadeIn"
                 />
 
                 <!-- Add any additional content here as needed -->
+            </VBox>
+            <VBox
+                id="_IDGenVBox2"
+                class="centerContainer"
+            >
+                <Button
+                    id="_IDGenButton5"
+                    text="Give feedback on past sessions"
+                    press="onFeedbackPress"
+                />
             </VBox>
         </content>
     </Page>
