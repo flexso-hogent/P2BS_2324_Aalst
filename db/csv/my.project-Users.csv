@@ -1,11 +1,11 @@
-ID;name;email;password;company;role;
-1;Admin;Admin@gmail.com;Admin;FlexsoAdmin;admin;
-2;John Doe;John@gmail.com;1234;Flexso;user;
-3;Jane Smith;jane@example.com;password123;Delaware;user;
-4;Michael Johnson;michael@example.com;mikepass;Delaware;admin;
-5;Emily Brown;emily@example.com;emily123;Google;user;
-6;Daniel Lee;daniel@example.com;pass456;Delaware;user;
-7;Sarah Wilson;sarah@example.com;sarahpass;Flexso;user;
-8;Kevin Martinez;kevin@example.com;kevinpass;Apple;user;
-9;Jessica Taylor;jessica@example.com;jessica123;Amazon;user;
-10;David Garcia;david@example.com;davidpass;Amazon;user;
+userID;name;email;password;company;role
+1;John Doe;johndoe@example.com;password123;Acme Corporation;Attendee
+2;Jane Smith;janesmith@example.com;securepassword456;Tech Innovations LLC;Attendee
+3;Chris Johnson;chrisjohnson@example.com;letmein789;Data Solutions Inc.;Speaker
+4;Emily Davis;emilydavis@example.com;password123;Startup X;Attendee
+5;Michael Brown;michaelbrown@example.com;abc123;Digital Innovations;Speaker
+6;Sarah Wilson;sarahwilson@example.com;password456;Tech Enterprises;Attendee
+7;David Martinez;davidmartinez@example.com;qwerty;Software Solutions Ltd.;Attendee
+8;Jennifer Lee;jenniferlee@example.com;pass123;Tech Startup Y;Speaker
+9;Robert Taylor;roberttaylor@example.com;password789;Innovative Technologies;Attendee
+10;Amanda Rodriguez;amandarodriguez@example.com;secret;Web Solutions Inc.;Attendee

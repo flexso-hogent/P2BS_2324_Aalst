@@ -1,0 +1,4 @@
+ScoreID,Username,Score,ScoreDate,SessionID
+"score1","user1@example.com",4,"2024-04-10 10:30:00","s1"
+"score2","user2@example.com",5,"2024-04-10 11:45:00","s1"
+"score3","user3@example.com",3,"2024-04-10 13:00:00","s1"

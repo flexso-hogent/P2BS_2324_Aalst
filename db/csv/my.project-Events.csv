@@ -1,11 +1,11 @@
-ID;Title;eventid;date;location;description;
-101;Test;1;2013-01-01;Aalst;Test event;
-102;Conference;2;2014-05-20;Ghent;Annual conference on technology advancements;
-103;Workshop;3;2015-09-10;Antwerp;Hands-on workshop for beginners;
-104;Seminar;4;2016-11-15;Liege;Expert-led seminar on industry trends;
-105;Exhibition;5;2017-07-05;Aalst;International exhibition showcasing innovative products;
-106;Symposium;6;2018-03-25;Ghent;Symposium discussing cutting-edge research topics;
-107;Webinar;7;2019-09-30;online;Online webinar series featuring guest speakers;
-108;Hackathon;8;2020-06-12;Aalst;Hackathon for developing solutions to societal challenges;
-109;Summit;9;2021-10-18;Antwerp;Leadership summit addressing global issues;
-110;Product Launch;10;2022-04-22;Ghent;Launch event for new product line;
+EventID;Name;Date;Time;Active;QRCode;Exportable;MetaTags;AdministratorName
+e1;Tech Expo;2024-04-10;09:00:00;true;qr_code_tech_expo;true;technology, expo;admin@example.com
+e2;Annual Conference;2024-05-15;10:00:00;true;qr_code_conference;true;conference, annual;admin2@example.com
+e3;Workshop Series;2024-06-20;13:00:00;true;qr_code_workshop;true;workshop, series;admin3@example.com
+e4;Seminar on AI;2024-07-25;11:30:00;true;qr_code_ai_seminar;true;seminar, AI;admin@example.com
+e5;Startup Summit;2024-08-30;10:00:00;true;qr_code_startup_summit;true;startup, summit;admin2@example.com
+e6;Web Development Bootcamp;2024-09-15;14:00:00;true;qr_code_bootcamp;true;web development, bootcamp;admin3@example.com
+e7;Blockchain Conference;2024-10-20;09:30:00;true;qr_code_blockchain_conference;true;blockchain, conference;admin@example.com
+e8;Data Science Workshop;2024-11-05;12:00:00;true;qr_code_data_science_workshop;true;data science, workshop;admin2@example.com
+e9;Entrepreneurship Summit;2024-12-10;10:00:00;true;qr_code_entrepreneurship_summit;true;entrepreneurship, summit;admin3@example.com
+e10;Product Launch Event;2025-01-15;11:00:00;true;qr_code_product_launch;true;product launch;admin@example.com

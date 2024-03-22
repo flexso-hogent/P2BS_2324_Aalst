@@ -1,6 +1,11 @@
 ID,rating,comment,sessionID,userID
-1,5,"Great session!","session_001","user_001"
-2,4,"Informative talk.","session_002","user_002"
-3,3,"Could have been better.","session_003","user_003"
-4,5,"Excellent presentation!","session_001","user_004"
-5,2,"Disappointing.","session_002","user_005"
+rating1,4,"Great session!",1,11
+rating2,5,"Excellent presentation!",1,12
+rating3,3,"Good content, could improve delivery.",1,13
+rating4,5,"Awesome event!",2,14
+rating5,4,"Enjoyed the workshops.",2,15
+rating6,2,"Not very engaging.",2,16
+rating7,4,"Informative seminar.",4,17
+rating8,5,"Valuable insights provided.",4,18
+rating9,4,"Well-organized event.",4,19
+rating10,5,"Inspiring summit!",9, event.ID
