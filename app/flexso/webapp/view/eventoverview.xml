@@ -1,0 +1,98 @@
+<mvc:View
+    controllerName="flexso.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+>
+    <Page
+        id="EventPage"
+        title="{i18n>home}"
+        enableScrolling="false"
+    >
+        <headerContent>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Button
+                    id="_IDGenButton3"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                />
+                <Button
+                    id="_IDGenButton4"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                />
+
+                <Button
+                    id="_IDGenProfileButton"
+                    icon="{imageModel>/profileImagePath}"
+                    press="onProfileButtonClick"
+                />
+            </Toolbar>
+        </headerContent>
+
+        <content>
+            <VBox
+                id="_IDGenVBox1"
+                alignItems="Center"
+                justifyContent="Center"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop"
+            >
+            <!-- title overview Events-->
+                <Title
+                    id="_IDGenTitle1"
+                    text="{i18n>titleHomePage}"
+                    class="coolTitleAnimation"
+                />
+                <!-- button create event -->
+                <Button
+                    id="_IDGenButton1"
+                    text="{i18n>createEvent}"
+                    press="onCreateEvent"
+                />
+                <!-- searchfield-->
+                <SearchField
+                    id="_IDGenSearchField1"
+                    placeholder="{i18n>searchField}"
+                    search="onSearch"
+                />
+                <!-- filter-->
+                <Select
+                    id="_IDGenSelect1"
+                    items="{/filters}"
+                    change="onFilterChange"
+                    selectedKey="{/selectedFilter}"
+                >
+                    <core:Item key="{key}" text="{text}" />
+                </Select>
+                <!-- event -->
+                <List
+                    id="_IDGenList1"
+                    items="{/events}"
+                    noDataText="{i18n>noDataText}"
+                >
+                    <items>
+                        <StandardListItem
+                            title="{title}"
+                            description="{description}"
+                            press="onEventPress"
+                        />
+                    </items>
+                </List>                
+            </VBox>
+            
+        </content>
+    </Page>
+</mvc:View>
+
+
+
+
+
+
+
+
+
