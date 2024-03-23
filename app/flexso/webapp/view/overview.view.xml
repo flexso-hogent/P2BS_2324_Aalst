@@ -5,7 +5,7 @@
 >
     <Page
         id="overviewPage"
-        title="Overview"
+        title="{i18n>overview}"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
