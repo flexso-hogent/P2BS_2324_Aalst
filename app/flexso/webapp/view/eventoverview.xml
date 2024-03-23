@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="flexso.controller.Home"
+    controllerName="flexso.controller.Event"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
@@ -25,7 +25,6 @@
                     text="{i18n>NL}"
                     press="onSwitchToDutch"
                 />
-
                 <Button
                     id="_IDGenProfileButton"
                     icon="{imageModel>/profileImagePath}"
@@ -41,25 +40,21 @@
                 justifyContent="Center"
                 class="sapUiSmallMarginBegin sapUiSmallMarginTop"
             >
-            <!-- title overview Events-->
                 <Title
                     id="_IDGenTitle1"
                     text="{i18n>titleHomePage}"
                     class="coolTitleAnimation"
                 />
-                <!-- button create event -->
                 <Button
                     id="_IDGenButton1"
                     text="{i18n>createEvent}"
                     press="onCreateEvent"
                 />
-                <!-- searchfield-->
                 <SearchField
                     id="_IDGenSearchField1"
                     placeholder="{i18n>searchField}"
                     search="onSearch"
                 />
-                <!-- filter-->
                 <Select
                     id="_IDGenSelect1"
                     items="{/filters}"
@@ -68,31 +63,20 @@
                 >
                     <core:Item key="{key}" text="{text}" />
                 </Select>
-                <!-- event -->
                 <List
-                    id="_IDGenList1"
-                    items="{/events}"
+                    id="eventList"
+                    items="{eventsModel>/events}"
                     noDataText="{i18n>noDataText}"
                 >
                     <items>
                         <StandardListItem
-                            title="{title}"
-                            description="{description}"
+                            title="{eventsModel>title}"
+                            description="{eventsModel>description}"
                             press="onEventPress"
                         />
                     </items>
                 </List>                
             </VBox>
-            
         </content>
     </Page>
 </mvc:View>
-
-
-
-
-
-
-
-
-
