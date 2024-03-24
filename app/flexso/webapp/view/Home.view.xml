@@ -64,14 +64,14 @@
             >
                 <Button
                     id="_IDGenButton5"
-                    text="Give feedback on past sessions"
+                    text="{i18n>feedbackButton}"
                     press="onFeedbackPress"
                 />
                 
                 <!-- New button for navigating to overview.event -->
                 <Button
                     id="_IDGenButton6"
-                    text="Go to Overview Event"
+                    text="{i18n>overviewEventButton}"
                     press="onGoToOverviewEventPress"
                 />
             </VBox>

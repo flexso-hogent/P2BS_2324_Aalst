@@ -1,5 +1,12 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flexso.controller.Overview">
-    <Page id="overviewPage" title="Overview">
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="flexso.controller.Overview"
+>
+    <Page
+        id="overviewPage"
+        title="{i18n>overview}"
+    >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
@@ -10,7 +17,6 @@
         <List id="eventList" items="{eventModel>/}">
             <items>
                 <StandardListItem id="_IDGenStandardListItem1" title="{eventModel>Name}" info="{eventModel>Date}" description="{eventModel>Description}" />
-                
             </items>
         </List>
     </Page>
