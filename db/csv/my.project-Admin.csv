@@ -1,0 +1,4 @@
+email,adminName,password,role,company
+admin@example.com,"Admin User","password123","Admin","XYZ Company"
+admin2@example.com,"Super Admin","admin@123","SuperAdmin","ABC Corporation"
+admin3@example.com,"John Doe","securepassword","Admin","123 Inc."

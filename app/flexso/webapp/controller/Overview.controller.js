@@ -12,16 +12,6 @@ sap.ui.define(
     return Controller.extend("flexso.controller.Overview", {
       onInit: function () {
         this.loadData();
-
-        var oProfileImagePath = jQuery.sap.getModulePath(
-          "flexso",
-          "/images/profile.jpg"
-        );
-        var oImageModel = new JSONModel({
-          profileImagePath: oProfileImagePath,
-        });
-
-        this.getView().setModel(oImageModel, "imageModel");
       },
 
       loadData: function () {
@@ -30,8 +20,15 @@ sap.ui.define(
           url: "http://localhost:4004/odata/v4/catalog/Events",
           dataType: "json",
           success: function (data) {
-            var events = data.value;
-            var eventModel = new JSONModel(events);
+            var filteredEvents = data.value.map(function (event) {
+              return {
+                Name: event.Name,
+                Date: event.Date,
+                Description: event.location, // Location als Description toegevoegd
+              };
+            });
+
+            var eventModel = new JSONModel(filteredEvents);
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
@@ -39,10 +36,12 @@ sap.ui.define(
           },
         });
       },
+
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
+
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
