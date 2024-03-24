@@ -1,40 +1,16 @@
-<mvc:View
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    controllerName="flexso.controller.Overview"
->
-    <Page
-        id="overviewPage"
-        title="Overview"
-    >
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flexso.controller.Overview">
+    <Page id="overviewPage" title="Overview">
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="_IDGenBackHomeButton"
-                    text="{i18n>backToHomeButton}"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenProfileButton"
-                    icon="{imageModel>/profileImagePath}"
-                    press="onProfileButtonClick"
-                />
+                <Button id="_IDGenBackHomeButton" text="{i18n>backToHomeButton}" press="onBackToHome" />
+                <Button id="_IDGenProfileButton" icon="{imageModel>/profileImagePath}" press="onProfileButtonClick" />
             </Toolbar>
         </headerContent>
-        <List
-            id="eventList"
-            items="{
-                path: 'eventModel>/'
-            }"
-        >
+        <List id="eventList" items="{eventModel>/}">
             <items>
-                <StandardListItem
-                    id="_IDGenStandardListItem1"
-                    title="{eventModel>title}"
-                    info="{eventModel>date}"
-                    description="{eventModel>description}"
-                />
+                <StandardListItem id="_IDGenStandardListItem1" title="{eventModel>Name}" info="{eventModel>Date}" description="{eventModel>Description}" />
+                
             </items>
         </List>
     </Page>

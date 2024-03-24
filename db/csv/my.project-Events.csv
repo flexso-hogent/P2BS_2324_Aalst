@@ -1,11 +1,12 @@
-EventID;Name;Date;Time;Active;QRCode;Exportable;MetaTags;AdministratorName
-e1;Tech Expo;2024-04-10;09:00:00;true;qr_code_tech_expo;true;technology, expo;admin@example.com
-e2;Annual Conference;2024-05-15;10:00:00;true;qr_code_conference;true;conference, annual;admin2@example.com
-e3;Workshop Series;2024-06-20;13:00:00;true;qr_code_workshop;true;workshop, series;admin3@example.com
-e4;Seminar on AI;2024-07-25;11:30:00;true;qr_code_ai_seminar;true;seminar, AI;admin@example.com
-e5;Startup Summit;2024-08-30;10:00:00;true;qr_code_startup_summit;true;startup, summit;admin2@example.com
-e6;Web Development Bootcamp;2024-09-15;14:00:00;true;qr_code_bootcamp;true;web development, bootcamp;admin3@example.com
-e7;Blockchain Conference;2024-10-20;09:30:00;true;qr_code_blockchain_conference;true;blockchain, conference;admin@example.com
-e8;Data Science Workshop;2024-11-05;12:00:00;true;qr_code_data_science_workshop;true;data science, workshop;admin2@example.com
-e9;Entrepreneurship Summit;2024-12-10;10:00:00;true;qr_code_entrepreneurship_summit;true;entrepreneurship, summit;admin3@example.com
-e10;Product Launch Event;2025-01-15;11:00:00;true;qr_code_product_launch;true;product launch;admin@example.com
+EventID;Name;Date;Time;Active;QRCode;Location;MetaTags;AdministratorName
+e1;Tech Expo;2024-04-10;09:00:00;true;qr_code_tech_expo;België;technology, expo;admin@example.com
+e2;Annual Conference;2024-05-15;10:00:00;true;qr_code_conference;België;conference, annual;admin2@example.com
+e3;Workshop Series;2024-06-20;13:00:00;true;qr_code_workshop;België;workshop, series;admin3@example.com
+e4;Seminar on AI;2024-07-25;11:30:00;true;qr_code_ai_seminar;België;seminar, AI;admin@example.com
+e5;Startup Summit;2024-08-30;10:00:00;true;qr_code_startup_summit;België;startup, summit;admin2@example.com
+e6;Web Development Bootcamp;2024-09-15;14:00:00;true;qr_code_bootcamp;België;web development, bootcamp;admin3@example.com
+e7;Blockchain Conference;2024-10-20;09:30:00;true;qr_code_blockchain_conference;België;blockchain, conference;admin@example.com
+e8;Data Science Workshop;2024-11-05;12:00:00;true;qr_code_data_science_workshop;België;data science, workshop;admin2@example.com
+e9;Entrepreneurship Summit;2024-12-10;10:00:00;true;qr_code_entrepreneurship_summit;België;entrepreneurship, summit;admin3@example.com
+e10;Product Launch Event;2025-01-15;11:00:00;true;qr_code_product_launch;België;product launch;admin@example.com
+

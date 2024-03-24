@@ -51,7 +51,7 @@ entity Events {
         Time              : Time;
         Active            : Boolean;
         QRCode            : String;
-        Exportable        : Boolean;
+        location          : String;
         MetaTags          : String;
         AdministratorName : String; //Association to Admin;
 }
