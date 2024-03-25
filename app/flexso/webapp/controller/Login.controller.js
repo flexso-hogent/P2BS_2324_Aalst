@@ -4,8 +4,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/ui/model/odata/v2/ODataModel",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel) {
     "use strict";
 
     return Controller.extend("flexso.controller.Login", {
@@ -14,7 +15,6 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -40,20 +40,28 @@ sap.ui.define(
           .byId("stayLoggedInCheckbox")
           .getSelected();
 
-        // Assuming you are using jQuery.ajax for making AJAX requests
-        jQuery.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Users",
-          method: "GET",
-          data: { $filter: "email eq '" + username + "'" }, // Filter users by email
-          success: function (response) {
-            if (response && response.value && response.value.length > 0) {
-              // User exists, check password
-              var user = response.value[0];
+        var oDataModel = new ODataModel(
+          "http://localhost:4004/odata/v2/catalog/",
+          {
+            json: true,
+          }
+        );
+
+        oDataModel.read("/Users", {
+          filters: [
+            new sap.ui.model.Filter(
+              "email",
+              sap.ui.model.FilterOperator.EQ,
+              username
+            ),
+          ],
+          success: function (data) {
+            if (data.results && data.results.length > 0) {
+              var user = data.results[0];
               if (user.password === password) {
                 MessageToast.show("Login successful");
                 localStorage.setItem("stayLoggedIn", stayLoggedIn);
 
-                // Navigate to home page
                 setTimeout(
                   function () {
                     var oRouter = UIComponent.getRouterFor(this);
@@ -67,15 +75,15 @@ sap.ui.define(
                 );
               }
             } else {
-              // User does not exist
               MessageToast.show(
                 "User or password is wrong. Please register first."
               );
             }
-          }.bind(this), // Bind the outer 'this' context to access UIComponent
+          }.bind(this),
           error: function (error) {
-            // Handle error while checking user existence
-            MessageToast.show("Error checking user existence: " + error);
+            MessageToast.show(
+              "Error checking user existence: " + error.responseText
+            );
           },
         });
       },
@@ -102,10 +110,6 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
-      // onProfileButtonClick: function () {
-      //   var oRouter = UIComponent.getRouterFor(this);
-      //   oRouter.navTo("profile");
-      // },
     });
   }
 );

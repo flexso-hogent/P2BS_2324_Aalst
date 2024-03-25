@@ -44,4 +44,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4004/odata/v4/catalog/Users
+###
+DELETE http://localhost:4004/odata/v4/catalog/Users(xx)
+
 
