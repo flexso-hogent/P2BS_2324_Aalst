@@ -4,8 +4,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/ui/model/odata/v2/ODataModel",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel) {
     "use strict";
 
     return Controller.extend("flexso.controller.Register", {
@@ -14,7 +15,6 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -28,7 +28,6 @@ sap.ui.define(
       },
       onRegister: function () {
         var that = this;
-
         var email = this.getView().byId("emailInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
         var role = this.getView().byId("roleInput").getValue();
@@ -61,13 +60,24 @@ sap.ui.define(
           return;
         }
 
-        jQuery.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Users",
-          method: "GET",
-          data: { $filter: "email eq '" + email + "'" },
-          success: function (response) {
-            if (response && response.value && response.value.length > 0) {
-              MessageToast.show("Registratie gefaald! Probeer opnieuw.");
+        var oDataModel = new ODataModel(
+          "http://localhost:4004/odata/v2/catalog/",
+          {
+            json: true,
+          }
+        );
+
+        oDataModel.read("/Users", {
+          filters: [
+            new sap.ui.model.Filter(
+              "email",
+              sap.ui.model.FilterOperator.EQ,
+              email
+            ),
+          ],
+          success: function (data) {
+            if (data.results && data.results.length > 0) {
+              MessageToast.show("Registration failed! Please try again.");
             } else {
               var requestData = {
                 name: email,
@@ -77,11 +87,7 @@ sap.ui.define(
                 password: password,
               };
 
-              jQuery.ajax({
-                url: "http://localhost:4004/odata/v4/catalog/Users",
-                method: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(requestData),
+              oDataModel.create("/Users", requestData, {
                 success: function () {
                   MessageToast.show("Registration successful!");
                   setTimeout(function () {
@@ -90,14 +96,17 @@ sap.ui.define(
                   }, 1000);
                 },
                 error: function (error) {
-                  MessageToast.show("Registration failed: " + error);
+                  MessageToast.show(
+                    "Registration failed: " + error.responseText
+                  );
                 },
               });
             }
           },
           error: function (xhr, status, error) {
-            // Handle error while checking user existence
-            MessageToast.show("Error checking user existence: " + error);
+            MessageToast.show(
+              "Error checking user existence: " + error.responseText
+            );
           },
         });
       },
