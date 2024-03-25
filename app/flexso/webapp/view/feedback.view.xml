@@ -62,13 +62,11 @@
                     />
 
                     <!--Sessie input-->
-                    <Input
-                        id="sessieZoekenInput"
-                        type="Text"
-                        placeholder="{i18n>sessieZoekenPlaceholder}"
-                        class="feedbackInput"
-                        required="true"
+                    <SearchField id="_IDGenSearchField1"
+                        liveChange=".onSearch"
+                        width="100%" 
                     />
+
 
                     <!--Feedback-->
                     <Label
