@@ -40,20 +40,44 @@ sap.ui.define(
           .byId("stayLoggedInCheckbox")
           .getSelected();
 
-        if (username === "admin@gmail.com" && password === "Bab1234!") {
-          MessageToast.show("Login successful");
-          setTimeout(
-            function () {
-              var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("home");
-            }.bind(this),
-            1000
-          );
+        // Assuming you are using jQuery.ajax for making AJAX requests
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Users",
+          method: "GET",
+          data: { $filter: "email eq '" + username + "'" }, // Filter users by email
+          success: function (response) {
+            if (response && response.value && response.value.length > 0) {
+              // User exists, check password
+              var user = response.value[0];
+              if (user.password === password) {
+                MessageToast.show("Login successful");
+                localStorage.setItem("stayLoggedIn", stayLoggedIn);
 
-          localStorage.setItem("stayLoggedIn", stayLoggedIn);
-        } else {
-          MessageToast.show("Invalid credentials. Please try again.");
-        }
+                // Navigate to home page
+                setTimeout(
+                  function () {
+                    var oRouter = UIComponent.getRouterFor(this);
+                    oRouter.navTo("profile");
+                  }.bind(this),
+                  1000
+                );
+              } else {
+                MessageToast.show(
+                  "User or password is wrong. Please try again."
+                );
+              }
+            } else {
+              // User does not exist
+              MessageToast.show(
+                "User or password is wrong. Please register first."
+              );
+            }
+          }.bind(this), // Bind the outer 'this' context to access UIComponent
+          error: function (error) {
+            // Handle error while checking user existence
+            MessageToast.show("Error checking user existence: " + error);
+          },
+        });
       },
 
       onRegisterPress: function () {
