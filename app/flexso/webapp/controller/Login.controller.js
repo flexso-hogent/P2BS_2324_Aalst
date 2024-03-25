@@ -62,11 +62,15 @@ sap.ui.define(
                   1000
                 );
               } else {
-                MessageToast.show("Invalid credentials. Please try again.");
+                MessageToast.show(
+                  "User or password is wrong. Please try again."
+                );
               }
             } else {
               // User does not exist
-              MessageToast.show("User does not exist. Please register first.");
+              MessageToast.show(
+                "User or password is wrong. Please register first."
+              );
             }
           }.bind(this), // Bind the outer 'this' context to access UIComponent
           error: function (error) {
