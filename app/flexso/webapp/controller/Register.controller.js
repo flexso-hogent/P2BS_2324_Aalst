@@ -67,7 +67,7 @@ sap.ui.define(
           data: { $filter: "email eq '" + email + "'" },
           success: function (response) {
             if (response && response.value && response.value.length > 0) {
-              MessageToast.show("User with this email already exists!");
+              MessageToast.show("Registratie gefaald! Probeer opnieuw.");
             } else {
               var requestData = {
                 name: email,
