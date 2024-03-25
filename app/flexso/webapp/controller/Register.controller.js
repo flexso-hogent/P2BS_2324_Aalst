@@ -86,7 +86,7 @@ sap.ui.define(
                   MessageToast.show("Registration successful!");
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(that);
-                    oRouter.navTo("profile");
+                    oRouter.navTo("login");
                   }, 1000);
                 },
                 error: function (error) {
