@@ -158,6 +158,11 @@
           "name": "feedback",
           "pattern": "feedback",
           "target": ["Feedback"]
+        },
+        {
+          "name": "eventoverview",
+          "pattern": "eventoverview",
+          "target": ["EventOverview"]
         }
       ],
       "targets": {
@@ -204,6 +209,11 @@
         "Feedback": {
           "viewName": "flexso.view.feedback",
           "viewId": "feedback",
+          "viewLevel": 3
+        },
+        "eventoverview": {
+          "viewName": "flexso.view.eventoverview",
+          "viewId": "eventoverview",
           "viewLevel": 3
         }
       }
