@@ -26,12 +26,12 @@ entity Events {
 }
 
 entity Feedback {
-    key FeedbackID      : UUID;
-<<<<<<< HEAD
-        Username        : String; // Association to Session
-        FeedbackMessage : String;
-        FeedbackDate    : DateTime;
-        SessionID       : UUID; // Association to Session
+    key FeedbackID   : UUID;
+        Username     : String; // Association to Session
+        SessionTitle : String; // Association to Session
+        Rating       : Integer;
+        Review       : String;
+        FeedbackDate : DateTime;
 }
 
 entity Rating {
@@ -49,13 +49,12 @@ entity Registration {
         sessionID        : UUID; // Association to Session;
         userID           : UUID; // Association to Users;
         eventID          : UUID; // Association to Events;
-=======
-        Username        : String; //Association to Session
-        SessionTitle    : String; //Association to Session
-        Rating          : Integer;
-        Review          : String;
-        FeedbackDate    : DateTime;
->>>>>>> searchbarFeedback
+        Username         : String; //Association to Session
+        SessionTitle     : String; //Association to Session
+        Rating           : Integer;
+        Review           : String;
+        FeedbackDate     : DateTime;
+
 }
 
 entity Scoreboard {

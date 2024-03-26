@@ -31,8 +31,9 @@ sap.ui.define(
           success: function (data) {
             var filteredEvents = data.value.map(function (event) {
               return {
-                Name: event.Name,
-                Date: event.Date,
+                Name: event.name,
+                SDate: event.startDate,
+                EDate: event.endDate,
                 Description: event.location, // Location als Description toegevoegd
               };
             });
