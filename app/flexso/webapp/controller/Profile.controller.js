@@ -75,15 +75,56 @@ sap.ui.define(
           beginButton: new sap.m.Button({
             text: "Yes",
             press: function () {
-              // Update user information in local storage
-              localStorage.setItem("email", updatedEmail);
-              localStorage.setItem("company", updatedCompany);
-              localStorage.setItem("role", updatedRole);
+              // Construct the updated user data
+              var updatedUserData = {
+                email: updatedEmail,
+                company: updatedCompany,
+                role: updatedRole,
+                // Add other fields if needed
+              };
 
-              MessageToast.show("Profile updated successfully");
+              // Get the user ID associated with the updated email
+              var userId;
+              $.ajax({
+                url: "http://localhost:4004/odata/v4/catalog/Users",
+                type: "GET",
+                data: { $filter: "email eq '" + updatedEmail + "'" },
+                async: false, // Ensure synchronous execution
+                success: function (data) {
+                  if (data.value.length > 0) {
+                    userId = data.value[0].userID;
+                  } else {
+                    MessageToast.show(
+                      "User not found with the provided email address"
+                    );
+                    return;
+                  }
+                },
+                error: function (xhr, status, error) {
+                  MessageToast.show("Failed to retrieve user data: " + error);
+                  return;
+                },
+              });
 
-              // Refresh the user data in the view
-              that.loadUserData();
+              // Construct the URL to update the user
+              var updateUserUrl =
+                "http://localhost:4004/odata/v4/catalog/Users(" + userId + ")";
+
+              // Send a PATCH request to update the user
+              $.ajax({
+                url: updateUserUrl,
+                type: "PATCH",
+                contentType: "application/json",
+                data: JSON.stringify(updatedUserData),
+                success: function () {
+                  MessageToast.show("Profile updated successfully");
+                  // Refresh the user data in the view
+                  that.loadUserData();
+                },
+                error: function (xhr, status, error) {
+                  MessageToast.show("Failed to update profile: " + error);
+                },
+              });
 
               dialog.close();
             },
