@@ -77,9 +77,10 @@ entity Scores {
 entity Feedback {
     key FeedbackID      : UUID;
         Username        : String; //Association to Session
-        FeedbackMessage : String;
+        SessionTitle    : String; //Association to Session
+        Rating          : Integer;
+        Review          : String;
         FeedbackDate    : DateTime;
-        SessionID       : UUID; //Association to Session
 }
 
 entity Scoreboard {
