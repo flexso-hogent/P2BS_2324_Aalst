@@ -29,7 +29,7 @@
                 />
                 <Button
                     id="_IDGenProfileButton"
-                    icon="{imageModel>/profileImagePath}"
+                    icon="sap-icon://person-placeholder"
                     press="onProfileButtonClick"
                 />
             </Toolbar>
@@ -73,32 +73,50 @@
                                 class="profileImage"
                             />
 
-                            <!-- Name Label -->
-                            <Label
-                                id="_IDGenLabel1"
-                                text="{i18n>nameLabel}"
-                                class="profileLabel"
-                            />
-                            <!-- Name Input -->
-                            <Input
-                                id="nameInput"
-                                placeholder="{i18n>namePlaceholder}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
                             <!-- Email Label -->
                             <Label
                                 id="_IDGenLabel2"
                                 text="{i18n>emailLabel}"
                                 class="profileLabel"
                             />
-                            <!-- Email Input -->
+
                             <Input
                                 id="emailInput"
                                 placeholder="{i18n>emailPlaceholder}"
+                                value="{= ${userInfo>/email} || ''}"
                                 width="100%"
                                 class="profileInput"
+                                editable="false"
+                            />
+
+                            <!-- Company Label -->
+                            <Label
+                                id="_IDGenLabel3"
+                                text="{i18n>companylabel}"
+                                class="profileLabel"
+                            />
+                            <!-- Company Input -->
+                            <Input
+                                id="companyInput"
+                                placeholder="{i18n>companyPlaceholder}"
+                                value="{userInfo>/company}"
+                                width="100%"
+                                class="profileInput"
+                            />
+
+                            <!-- Role Label -->
+                            <Label
+                                id="_IDGenLabel4"
+                                text="{i18n>rolelabel}"
+                                class="roleLabel"
+                            />
+                            <!-- Role Input -->
+                            <Input
+                                id="roleInput"
+                                placeholder="{i18n>rolePlaceholder}"
+                                value="{userInfo>/role}"
+                                width="100%"
+                                class="roleInput"
                             />
 
                             <!-- Update Profile Button -->
@@ -108,6 +126,12 @@
                                 press="onUpdateProfilePress"
                                 width="100%"
                                 class="updateProfileButton"
+                            />
+                            <Button
+                                id="_IDGenButton2"
+                                text="{i18n>loguit}"
+                                press="onLogoutPress"
+                                width="100%"
                             />
                         </l:VerticalLayout>
                     </VBox>
@@ -121,32 +145,27 @@
                         width="50%"
                     >
                         <Label
-                            id="_IDGenLabel3"
+                            id="userInfoTitle"
                             text="{i18n>userInfoTitle}"
                             class="userInfoTitle"
                         />
+
                         <Text
-                            id="_IDGenText1"
-                            text="{i18n>userInfoText1}"
+                            id="emailText"
+                            text="{i18n>emailLabel} {userInfo>/email}"
                             class="userInfoText"
                         />
+
                         <Text
-                            id="_IDGenText2"
-                            text="{i18n>userInfoText2}"
+                            id="companyText"
+                            text="{i18n>companylabel}: {userInfo>/company}"
                             class="userInfoText"
                         />
+
                         <Text
-                            id="_IDGenText3"
-                            text="{i18n>userInfoText3}"
+                            id="roleText"
+                            text="{i18n>rolelabel}: {userInfo>/role}"
                             class="userInfoText"
-                        />
-                        <!-- Add more user information as needed -->
-                        <Button
-                            id="feedbackButton"
-                            text="{i18n>feedbackButton}"
-                            press="onFeedbackPress"
-                            width="100%"
-                            class="feedbackButton"
                         />
                     </VBox>
                 </HBox>

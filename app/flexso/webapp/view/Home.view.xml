@@ -28,7 +28,7 @@
 
                 <Button
                     id="_IDGenProfileButton"
-                    icon="{imageModel>/profileImagePath}"
+                    icon="sap-icon://person-placeholder"
                     press="onProfileButtonClick"
                 />
             </Toolbar>
@@ -58,23 +58,54 @@
 
                 <!-- Add any additional content here as needed -->
             </VBox>
-            <VBox
-                id="_IDGenVBox2"
-                class="centerContainer"
+
+            <!-- Spacer to push the buttons further down -->
+            <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+
+            <!-- FlexBox for Buttons -->
+            <FlexBox
+                id="_IDGenFlexBox"
+                justifyContent="Center"
+                wrap="Wrap"
+                alignItems="Center"
+                class="sapUiSmallMargin sapUiContentPadding"
             >
+                <!-- Feedback Button -->
                 <Button
                     id="_IDGenButton5"
                     text="{i18n>feedbackButton}"
                     press="onFeedbackPress"
+                    class="sapUiSmallMarginEnd"
                 />
-                
-                <!-- New button for navigating to overview.event -->
+                <!-- Overview Event Button -->
                 <Button
                     id="_IDGenButton6"
                     text="{i18n>overviewEventButton}"
                     press="onGoToOverviewEventPress"
+                    class="sapUiSmallMarginEnd"
                 />
-            </VBox>
+                <Button
+                    id="_IDGenButton7"
+                    text="{i18n>createEventButton}"
+                    press=""
+                    class="sapUiSmallMarginEnd"
+                />
+                <Button
+                    id="_IDGenButton8"
+                    text="{i18n>createSessionButton}"
+                    press=""
+                    class="sapUiSmallMarginEnd"
+                />
+
+                <!-- Add more buttons here as needed -->
+            </FlexBox>
+
+            <Title
+                id="_IDGenTitle2"
+                text="{i18n>myEventTitle}"
+                level="H2"
+                class="sapUiSmallMarginBegin"
+            />
         </content>
     </Page>
 </mvc:View>
