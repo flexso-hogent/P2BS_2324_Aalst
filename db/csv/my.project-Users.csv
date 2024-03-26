@@ -1,11 +1,11 @@
-userID;name;email;password;company;role
-1;John Doe;johndoe@example.com;password123;Acme Corporation;Attendee
-2;Jane Smith;janesmith@example.com;securepassword456;Tech Innovations LLC;Attendee
-3;Chris Johnson;chrisjohnson@example.com;letmein789;Data Solutions Inc.;Speaker
-4;Emily Davis;emilydavis@example.com;password123;Startup X;Attendee
-5;Michael Brown;michaelbrown@example.com;abc123;Digital Innovations;Speaker
-6;Sarah Wilson;sarahwilson@example.com;password456;Tech Enterprises;Attendee
-7;David Martinez;davidmartinez@example.com;qwerty;Software Solutions Ltd.;Attendee
-8;Jennifer Lee;jenniferlee@example.com;pass123;Tech Startup Y;Speaker
-9;Robert Taylor;roberttaylor@example.com;password789;Innovative Technologies;Attendee
-10;Amanda Rodriguez;amandarodriguez@example.com;secret;Web Solutions Inc.;Attendee
+userID;name;email;password;company;role;bdate;street;hnumber;city;country;zip;phone;gender
+userID1;Sophie Dupont;sophiedupont@example.com;securepass123;BelgiumTech;Attendee;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Female
+userID2;Lucas Dubois;lucasdubois@example.com;strongpassword456;InnovativeSolutions;Attendee;1985-09-20;Avenue des Fleurs;12;Antwerp;Belgium;2000;3245678901;Male
+userID3;Camille Leroy;camilleleroy@example.com;letmein789;DataWorks;Speaker;1978-12-10;Place du Marché;8;Ghent;Belgium;9000;3223456789;Female
+userID4;Thomas Lambert;thomaslambert@example.com;password123;TechStart;Attendee;1982-04-30;Chaussée de Charleroi;35;Liège;Belgium;4000;3210987654;Male
+userID5;Emma Moreau;emmoreau@example.com;abc123;DigitalTech;Speaker;1989-07-25;Rue des Arts;17;Bruges;Belgium;8000;3287654321;Female
+userID6;Louis Martin;louismartin@example.com;password456;TechSolutions;Attendee;1995-02-18;Rue des Bouchers;7;Namur;Belgium;5000;3298765432;Male
+userID7;Charlotte Simon;charlottesimon@example.com;qwerty;SoftwareGenius;Attendee;1980-11-05;Rue Royale;21;Mons;Belgium;7000;3276543210;Female
+userID8;Hugo Laurent;hugolaurent@example.com;pass123;TechRevolution;Speaker;1975-08-12;Rue des Halles;14;Charleroi;Belgium;6000;3265432109;Male
+userID9;Zoé De Smet;zoe_desmet@example.com;password789;TechInnovate;Attendee;1987-03-22;Avenue Louise;9;Leuven;Belgium;3000;3254321098;Female
+userID10;Léo Dubois;leodubois@example.com;secret;WebCreators;Attendee;1993-06-08;Place de l'Université;4;Brussels;Belgium;1000;3232109876;Male
