@@ -1,4 +1,11 @@
-email,adminName,password,role,company
-admin@example.com,"Admin User","password123","Admin","XYZ Company"
-admin2@example.com,"Super Admin","admin@123","SuperAdmin","ABC Corporation"
-admin3@example.com,"John Doe","securepassword","Admin","123 Inc."
+email;adminName;password;role;company;bdate;street;hnumber;city;country;zip;phone;gender
+admin1@example.com;Admin One;adminpassword123;Administrator;Tech Solutions;1980-08-15;Rue de la Liberté;10;Brussels;Belgium;1000;3212345678;Male
+admin2@example.com;Admin Two;secureadmin456;Manager;Innovative Tech;1975-11-20;Avenue des Fleurs;5;Antwerp;Belgium;2000;3245678901;Female
+admin3@example.com;Admin Three;letmein789;Supervisor;DataWorks;1982-03-10;Place du Marché;3;Ghent;Belgium;9000;3223456789;Male
+admin4@example.com;Admin Four;password123;Coordinator;TechStart;1978-06-30;Chaussée de Charleroi;15;Liège;Belgium;4000;3210987654;Female
+admin5@example.com;Admin Five;abc123;Director;DigitalTech;1989-05-25;Rue des Arts;8;Bruges;Belgium;8000;3287654321;Male
+admin6@example.com;Admin Six;password456;Manager;TechSolutions;1995-02-18;Rue des Bouchers;2;Namur;Belgium;5000;3298765432;Female
+admin7@example.com;Admin Seven;qwerty;Administrator;SoftwareGenius;1980-11-05;Rue Royale;6;Mons;Belgium;7000;3276543210;Male
+admin8@example.com;Admin Eight;pass123;Supervisor;TechRevolution;1975-08-12;Rue des Halles;12;Charleroi;Belgium;6000;3265432109;Female
+admin9@example.com;Admin Nine;password789;Manager;TechInnovate;1987-03-22;Avenue Louise;7;Leuven;Belgium;3000;3254321098;Male
+admin10@example.com;Admin Ten;secret;Administrator;WebCreators;1993-06-08;Place de l'Université;4;Brussels;Belgium;1000;3232109876;Female

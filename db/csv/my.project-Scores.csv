@@ -1,4 +1,11 @@
-ScoreID,Username,Score,ScoreDate,SessionID
-"score1","user1@example.com",4,"2024-04-10 10:30:00","s1"
-"score2","user2@example.com",5,"2024-04-10 11:45:00","s1"
-"score3","user3@example.com",3,"2024-04-10 13:00:00","s1"
+scoreID;userID;score;scoreDate;sessionID;eventID
+scoreID1;1;85;2024-09-16T10:30:00Z;sessionID1;eventID1
+scoreID2;2;90;2024-11-11T14:45:00Z;sessionID2;eventID2
+scoreID3;3;78;2024-10-06T13:20:00Z;sessionID3;eventID3
+scoreID4;4;92;2024-12-08T09:00:00Z;sessionID4;eventID4
+scoreID5;5;88;2024-11-21T11:10:00Z;sessionID5;eventID5
+scoreID6;6;70;2024-10-26T15:55:00Z;sessionID6;eventID6
+scoreID7;7;84;2024-09-29T12:40:00Z;sessionID7;eventID7
+scoreID8;8;95;2024-12-16T08:20:00Z;sessionID8;eventID8
+scoreID9;9;79;2024-11-06T09:30:00Z;sessionID9;eventID9
+scoreID10;10;91;2024-10-16T13:15:00Z;sessionID10;eventID10

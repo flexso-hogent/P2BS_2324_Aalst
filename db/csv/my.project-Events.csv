@@ -1,11 +1,11 @@
-EventID;Name;Date;Time;Active;QRCode;Exportable;MetaTags;AdministratorName
-e1;Tech Expo;2024-04-10;09:00:00;true;qr_code_tech_expo;true;technology, expo;admin@example.com
-e2;Annual Conference;2024-05-15;10:00:00;true;qr_code_conference;true;conference, annual;admin2@example.com
-e3;Workshop Series;2024-06-20;13:00:00;true;qr_code_workshop;true;workshop, series;admin3@example.com
-e4;Seminar on AI;2024-07-25;11:30:00;true;qr_code_ai_seminar;true;seminar, AI;admin@example.com
-e5;Startup Summit;2024-08-30;10:00:00;true;qr_code_startup_summit;true;startup, summit;admin2@example.com
-e6;Web Development Bootcamp;2024-09-15;14:00:00;true;qr_code_bootcamp;true;web development, bootcamp;admin3@example.com
-e7;Blockchain Conference;2024-10-20;09:30:00;true;qr_code_blockchain_conference;true;blockchain, conference;admin@example.com
-e8;Data Science Workshop;2024-11-05;12:00:00;true;qr_code_data_science_workshop;true;data science, workshop;admin2@example.com
-e9;Entrepreneurship Summit;2024-12-10;10:00:00;true;qr_code_entrepreneurship_summit;true;entrepreneurship, summit;admin3@example.com
-e10;Product Launch Event;2025-01-15;11:00:00;true;qr_code_product_launch;true;product launch;admin@example.com
+eventID;name;startDate;endDate;location;description
+eventID1;Tech Summit 2024;2024-09-15;2024-09-17;Brussels Expo;Annual technology summit showcasing the latest innovations and trends in the industry.
+eventID2;Data Science Conference;2024-11-10;2024-11-12;Antwerp Convention Center;A gathering of data science professionals and enthusiasts to explore cutting-edge techniques and applications.
+eventID3;Startup Weekend;2024-10-05;2024-10-07;Liege Creative Hub;An event fostering entrepreneurship and innovation, where participants pitch ideas, form teams, and launch startups in just 54 hours.
+eventID4;Digital Marketing Summit;2024-12-08;2024-12-09;Bruges Conference Center;Bringing together marketing professionals to discuss the latest strategies and tools in digital marketing.
+eventID5;AI & Robotics Expo;2024-11-20;2024-11-22;Namur Exhibition Hall;An exhibition showcasing advancements in artificial intelligence and robotics, featuring demonstrations and expert talks.
+eventID6;Blockchain Summit;2024-10-25;2024-10-26;Mons Technology Park;Exploring the potential of blockchain technology across various industries through keynote speeches, panel discussions, and workshops.
+eventID7;Cybersecurity Conference;2024-09-28;2024-09-30;Charleroi Cyber Center;Addressing the latest challenges and trends in cybersecurity with industry experts and thought leaders.
+eventID8;Healthcare Innovation Forum;2024-12-15;2024-12-17;Leuven Medical Center;A forum dedicated to exploring innovative technologies and practices transforming the healthcare industry.
+eventID9;Fintech Expo;2024-11-05;2024-11-07;Brussels Financial District;Showcasing the latest advancements and disruptions in financial technology, with a focus on fintech startups and innovations.
+eventID10;Sustainability Summit;2024-10-15;2024-10-16;Leuven Sustainability Center;Bringing together experts
