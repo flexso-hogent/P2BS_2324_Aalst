@@ -28,7 +28,7 @@
 
                 <Button
                     id="_IDGenProfileButton"
-                    icon="{imageModel>/profileImagePath}"
+                    icon="sap-icon://person-placeholder"
                     press="onProfileButtonClick"
                 />
             </Toolbar>
@@ -58,23 +58,48 @@
 
                 <!-- Add any additional content here as needed -->
             </VBox>
-            <VBox
-                id="_IDGenVBox2"
-                class="centerContainer"
+
+            <!-- Spacer to push the grid further down -->
+            <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+
+            <!-- Grid for all possibilities -->
+            <l:Grid
+                id="_IDGenGrid"
+                class="sapUiSmallMargin sapUiContentPadding"
+                defaultSpan="XL3 L3 M3 S6"
             >
+                <!-- Feedback Button -->
                 <Button
                     id="_IDGenButton5"
                     text="{i18n>feedbackButton}"
                     press="onFeedbackPress"
                 />
-                
-                <!-- New button for navigating to overview.event -->
+
+                <!-- Overview Event Button -->
                 <Button
                     id="_IDGenButton6"
                     text="{i18n>overviewEventButton}"
                     press="onGoToOverviewEventPress"
                 />
-            </VBox>
+                <Button
+                    id="_IDGenButton7"
+                    text="{i18n>createEventButton}"
+                    press=""
+                />
+                <Button
+                    id="_IDGenButton8"
+                    text="{i18n>createSessionButton}"
+                    press=""
+                />
+
+                <!-- Add more buttons here as needed -->
+            </l:Grid>
+            <Title
+                id="_IDGenTitle2"
+                text="{i18n>myEventTitle}"
+                level="H2"
+                class="sapUiSmallMarginBegin"
+            />
         </content>
     </Page>
 </mvc:View>

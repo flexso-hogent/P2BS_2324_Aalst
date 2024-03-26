@@ -19,31 +19,89 @@ sap.ui.define(
           "flexso",
           "/images/profile.jpg"
         );
+
         var oImageModel = new JSONModel({
           path: oRootPath,
           profileImagePath: oProfileImagePath,
         });
 
         this.getView().setModel(oImageModel, "imageModel");
+
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.attachRoutePatternMatched(this.onRoutePatternMatched, this);
+      },
+
+      onRoutePatternMatched: function (oEvent) {
+        var sRouteName = oEvent.getParameter("name");
+        if (sRouteName === "profile") {
+          this.loadUserData();
+        }
+      },
+
+      loadUserData: function () {
+        var that = this;
+
+        // Retrieve logged-in user's email from local storage
+        var loggedInUserEmail = localStorage.getItem("email");
+
+        if (!loggedInUserEmail) {
+          MessageToast.show("Logged-in user email not found.");
+          return;
+        }
+
+        var oUserDataModel = new JSONModel({
+          email: localStorage.getItem("email"),
+          company: localStorage.getItem("company"),
+          role: localStorage.getItem("role"),
+          userID: localStorage.getItem("userID"),
+        });
+
+        that.getView().setModel(oUserDataModel, "userInfo");
       },
 
       onUpdateProfilePress: function () {
-        var updatedName = this.getView().byId("nameInput").getValue();
+        var that = this;
         var updatedEmail = this.getView().byId("emailInput").getValue();
+        var updatedCompany = this.getView().byId("companyInput").getValue();
+        var updatedRole = this.getView().byId("roleInput").getValue();
 
-        if (!updatedName || updatedName.trim() === "") {
-          MessageToast.show("Please enter a valid name");
-          return;
-        }
+        // Confirmation dialog
+        var dialog = new sap.m.Dialog({
+          title: "Confirm",
+          type: "Message",
+          content: new sap.m.Text({
+            text: "Are you sure you want to update your profile?",
+          }),
+          beginButton: new sap.m.Button({
+            text: "Yes",
+            press: function () {
+              // Update user information in local storage
+              localStorage.setItem("email", updatedEmail);
+              localStorage.setItem("company", updatedCompany);
+              localStorage.setItem("role", updatedRole);
 
-        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(updatedEmail)) {
-          MessageToast.show("Please enter a valid email address");
-          return;
-        }
+              MessageToast.show("Profile updated successfully");
 
-        MessageToast.show("Profile updated successfully");
+              // Refresh the user data in the view
+              that.loadUserData();
+
+              dialog.close();
+            },
+          }),
+          endButton: new sap.m.Button({
+            text: "No",
+            press: function () {
+              dialog.close();
+            },
+          }),
+          afterClose: function () {
+            dialog.destroy();
+          },
+        });
+
+        dialog.open();
       },
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
@@ -65,6 +123,19 @@ sap.ui.define(
       onFeedbackPress: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("feedback");
+      },
+      onLogoutPress: function () {
+        var that = this;
+        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              localStorage.clear();
+              var oRouter = UIComponent.getRouterFor(that);
+              oRouter.navTo("login");
+            }
+          },
+        });
       },
     });
   }
