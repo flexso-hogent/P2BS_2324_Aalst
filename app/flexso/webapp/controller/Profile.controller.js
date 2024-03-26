@@ -49,14 +49,39 @@ sap.ui.define(
           return;
         }
 
-        var oUserDataModel = new JSONModel({
-          email: localStorage.getItem("email"),
-          company: localStorage.getItem("company"),
-          role: localStorage.getItem("role"),
-          userID: localStorage.getItem("userID"),
-        });
+        // Construct the URL to fetch user data based on email
+        var userDataUrl =
+          "http://localhost:4004/odata/v4/catalog/Users?$filter=email eq '" +
+          loggedInUserEmail +
+          "'";
 
-        that.getView().setModel(oUserDataModel, "userInfo");
+        // Fetch user data using AJAX
+        $.ajax({
+          url: userDataUrl,
+          type: "GET",
+          success: function (data) {
+            if (data.value.length > 0) {
+              // Extract user data from the response
+              var userData = data.value[0];
+
+              // Create a JSON model with user data
+              var oUserDataModel = new sap.ui.model.json.JSONModel({
+                email: userData.email,
+                company: userData.company,
+                role: userData.role,
+                userID: userData.userID, // If needed
+              });
+
+              // Set the user data model to the view
+              that.getView().setModel(oUserDataModel, "userInfo");
+            } else {
+              MessageToast.show("User data not found.");
+            }
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show("Failed to fetch user data: " + error);
+          },
+        });
       },
 
       onUpdateProfilePress: function () {
@@ -118,7 +143,7 @@ sap.ui.define(
                 data: JSON.stringify(updatedUserData),
                 success: function () {
                   MessageToast.show("Profile updated successfully");
-                  // Refresh the user data in the view
+                  // Load user data after the update is performed
                   that.loadUserData();
                 },
                 error: function (xhr, status, error) {
