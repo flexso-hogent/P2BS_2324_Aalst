@@ -1,6 +1,6 @@
-RegistrationID,RegistrationDate,SessionID,eventID
-"registrationID1","2024-04-10T10:00:00","sessionID1,eventID2"
-"registrationID2","2024-05-15T09:30:00","sessionID2,eventID1"
-"registrationID3","2024-06-20T10:45:00","sessionID3, eventID3"
-"registrationID4","2024-07-25T11:20:00","sessionID4, eventID4"
-"registrationID5","2024-08-30T09:00:00","sessionID5, eventID5"
+registrationID,registrationDate,sessionID,eventID
+"registrationID1","2024-04-10T10:00:00","sessionID1","eventID2"
+"registrationID2","2024-05-15T09:30:00","sessionID2","eventID1"
+"registrationID3","2024-06-20T10:45:00","sessionID3","eventID3"
+"registrationID4","2024-07-25T11:20:00","sessionID4","eventID4"
+"registrationID5","2024-08-30T09:00:00","sessionID5","eventID5"

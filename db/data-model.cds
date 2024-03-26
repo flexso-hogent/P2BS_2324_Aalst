@@ -34,11 +34,11 @@ entity Feedback {
 }
 
 entity Rating {
-    key ratingID  : String;
+    key ratingID  : UUID;
         rating    : Integer;
         comment   : String; // localized String;
-        sessionID : String; // Association to Sessions;
-        eventID   : String; // Association to Events;
+        sessionID : UUID; // Association to Sessions;
+        eventID   : UUID; // Association to Events;
         userID    : UUID; // Association to Users;
 }
 
@@ -61,7 +61,7 @@ entity Scoreboard {
 
 entity Scores {
     key ScoreID   : UUID;
-        userID    : String; // Association to Users
+        userID    : UUID; // Association to Users
         Score     : Integer;
         ScoreDate : DateTime;
         SessionID : UUID; // Association to Session
@@ -69,21 +69,21 @@ entity Scores {
 }
 
 entity Sessions {
-    key sessionID     : UUID;
-        title         : String;
-        startDatedate : Date;
-        endDate       : Date;
-        startTime     : Time;
-        endTime       : Time;
-        room          : String;
-        description   : String;
-        speaker       : String;
-        totalSeats    : Integer;
-        eventID       : UUID; // Association to Events;
+    key sessionID   : UUID;
+        title       : String;
+        startDate   : Date;
+        endDate     : Date;
+        startTime   : Time;
+        endTime     : Time;
+        room        : String;
+        description : String;
+        speaker     : String;
+        totalSeats  : Integer;
+        eventID     : UUID; // Association to Events;
 }
 
 entity Users {
-    key userID   : Integer;
+    key userID   : UUID; // Changed to UUID
         name     : String;
         email    : String;
         password : String;
@@ -95,6 +95,6 @@ entity Users {
         city     : String;
         country  : String;
         zip      : String;
-        phone    : Integer;
+        phone    : String; // Changed to String
         gender   : String;
 }
