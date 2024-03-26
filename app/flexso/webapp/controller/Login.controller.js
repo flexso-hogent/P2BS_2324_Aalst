@@ -60,12 +60,18 @@ sap.ui.define(
               var user = data.results[0];
               if (user.password === password) {
                 MessageToast.show("Login successful");
+
+                // Store user information in local storage
+                localStorage.setItem("email", user.email);
+                localStorage.setItem("role", user.role);
+                localStorage.setItem("company", user.company);
+                localStorage.setItem("userID", user.ID);
                 localStorage.setItem("stayLoggedIn", stayLoggedIn);
 
                 setTimeout(
                   function () {
                     var oRouter = UIComponent.getRouterFor(this);
-                    oRouter.navTo("profile");
+                    oRouter.navTo("home");
                   }.bind(this),
                   1000
                 );

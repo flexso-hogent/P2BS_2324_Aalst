@@ -76,22 +76,16 @@ sap.ui.define(
 
       onFeedback: function () {
         var that = this;
-        var loginView = sap.ui.view({
-          viewName: "flexso.view.Login",
-          type: sap.ui.core.mvc.ViewType.XML,
-        });
-        oRouter = UIComponent.getRouterFor(this);
-        var oLoginController = oRouter.getViews().byId("flexso.view.Login").getController();
-        var username = oLoginController.getView().byId("usernameInput").getValue();
+        var loggedInUserEmail = localStorage.getItem("email");
 
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
         var oRatingIndicator = this.getView().byId("feedbackRating");
         var oTextArea = this.getView().byId("reviewTextArea");
-        // var username = sap.ui.getCore().byId("loginPage").getController().username;
-        ID = 1;
+
+        var ID = 1;
         var feedbackData = {
           FeedbackID: "fb"+ ID,
-          Username: username,
+          Username: loggedInUserEmail,
           SessionTitle: sessie,
           Rating: oRatingIndicator.getValue(),
           Review: oTextArea.getValue(),
@@ -114,7 +108,7 @@ sap.ui.define(
                 type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(feedbackData),
-                success: function () {
+                success: function (data) {
                   MessageToast.show("Bedankt voor uw feedback!");
                   setTimeout(
                     function () {
