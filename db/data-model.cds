@@ -100,7 +100,7 @@ entity Users {
         hnumber  : Integer;
         city     : String;
         country  : String;
-        zip      : String;
-        phone    : String; // Changed to String
+        zip      : Integer;
+        phone    : Integer;
         gender   : String;
 }

@@ -64,12 +64,19 @@ sap.ui.define(
               // Extract user data from the response
               var userData = data.value[0];
 
-              // Create a JSON model with user data
               var oUserDataModel = new sap.ui.model.json.JSONModel({
                 email: userData.email,
                 company: userData.company,
                 role: userData.role,
-                userID: userData.userID, // If needed
+                userID: userData.userID,
+                // bdate: userData.bdate,
+                street: userData.street,
+                hnumber: userData.hnumber,
+                city: userData.city,
+                country: userData.country,
+                zip: userData.zip,
+                phone: userData.phone,
+                gender: userData.gender,
               });
 
               // Set the user data model to the view
@@ -89,7 +96,19 @@ sap.ui.define(
         var updatedEmail = this.getView().byId("emailInput").getValue();
         var updatedCompany = this.getView().byId("companyInput").getValue();
         var updatedRole = this.getView().byId("roleInput").getValue();
+        // var updatedBdate = this.getView().byId("bdateInput").getValue();
+        var updatedStreet = this.getView().byId("streetInput").getValue();
+        var updatedHnumber = parseInt(
+          this.getView().byId("hnumberInput").getValue()
+        );
 
+        var updatedCity = this.getView().byId("cityInput").getValue();
+        var updatedCountry = this.getView().byId("countryInput").getValue();
+        var updatedZip = parseInt(this.getView().byId("zipInput").getValue());
+        var updatedPhone = parseInt(
+          this.getView().byId("phoneInput").getValue()
+        );
+        var updatedGender = this.getView().byId("genderInput").getSelectedKey();
         // Confirmation dialog
         var dialog = new sap.m.Dialog({
           title: "Confirm",
@@ -105,6 +124,15 @@ sap.ui.define(
                 email: updatedEmail,
                 company: updatedCompany,
                 role: updatedRole,
+                // bdate: updatedBdate,
+                street: updatedStreet,
+                hnumber: updatedHnumber,
+                city: updatedCity,
+                country: updatedCountry,
+                zip: updatedZip,
+                phone: updatedPhone,
+                gender: updatedGender,
+
                 // Add other fields if needed
               };
 
