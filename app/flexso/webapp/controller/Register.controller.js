@@ -4,11 +4,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/ui/model/odata/v2/ODataModel",
   ],
-  /**
-   * @param {typeof sap.ui.core.mvc.Controller} Controller
-   */
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel) {
     "use strict";
 
     return Controller.extend("flexso.controller.Register", {
@@ -17,7 +15,6 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -30,6 +27,7 @@ sap.ui.define(
         this.getView().setModel(oImageModel, "imageModel");
       },
       onRegister: function () {
+        var that = this;
         var email = this.getView().byId("emailInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
         var role = this.getView().byId("roleInput").getValue();
@@ -45,31 +43,74 @@ sap.ui.define(
 
         if (!isValidEmail(email)) {
           MessageToast.show("Invalid email address!");
+          return;
         }
 
         if (password !== passwordRepeat) {
-          MessageToast.show("passwords do not match!");
+          MessageToast.show("Passwords do not match!");
+          return;
         }
 
         if (
-          email === "" ||
-          company === "" ||
-          role === "" ||
-          password === "" ||
-          passwordRepeat === ""
+          [email, company, role, password, passwordRepeat].some(
+            (field) => !field
+          )
         ) {
           MessageToast.show("Please fill in all fields!");
-        } else if (isValidEmail(email) && password === passwordRepeat) {
-          MessageToast.show("Registration successful!");
-          setTimeout(
-            function () {
-              var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("login");
-            }.bind(this),
-            1000
-          );
+          return;
         }
+
+        var oDataModel = new ODataModel(
+          "http://localhost:4004/odata/v2/catalog/",
+          {
+            json: true,
+          }
+        );
+
+        oDataModel.read("/Users", {
+          filters: [
+            new sap.ui.model.Filter(
+              "email",
+              sap.ui.model.FilterOperator.EQ,
+              email
+            ),
+          ],
+          success: function (data) {
+            if (data.results && data.results.length > 0) {
+              MessageToast.show("Registration failed! Please try again.");
+            } else {
+              var requestData = {
+                name: email,
+                email: email,
+                company: company,
+                role: role,
+                password: password,
+              };
+
+              oDataModel.create("/Users", requestData, {
+                success: function () {
+                  MessageToast.show("Registration successful!");
+                  setTimeout(function () {
+                    var oRouter = UIComponent.getRouterFor(that);
+                    oRouter.navTo("login");
+                  }, 1000);
+                },
+                error: function (error) {
+                  MessageToast.show(
+                    "Registration failed: " + error.responseText
+                  );
+                },
+              });
+            }
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show(
+              "Error checking user existence: " + error.responseText
+            );
+          },
+        });
       },
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";

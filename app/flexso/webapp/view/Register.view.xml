@@ -69,6 +69,7 @@
                         placeholder="{i18n>emailPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="test@gmail.com"
                     />
 
                     <!--Company Label-->
@@ -85,6 +86,7 @@
                         placeholder="{i18n>companyPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Flexso"
                     />
 
                     <!--Role label-->
@@ -101,6 +103,7 @@
                         placeholder="{i18n>rolePlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Admin"
                     />
 
                     <!--Password Label-->
@@ -117,6 +120,7 @@
                         placeholder="{i18n>passwordPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="test123"
                     />
 
                     <!--Confirm Password label-->
@@ -133,6 +137,7 @@
                         placeholder="{i18n>confirmPasswordPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="test123"
                     />
 
                     <!--Register Button-->

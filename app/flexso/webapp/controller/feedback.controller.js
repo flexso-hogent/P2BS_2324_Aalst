@@ -28,6 +28,21 @@ sap.ui.define(
         });
 
         this.getView().setModel(oImageModel, "imageModel");
+
+        // var oDataModel = new ODataModel(
+        //   "http://localhost:4004/odata/v2/catalog/",
+        //   {
+        //     json: true,
+        //   }
+        // );
+
+        // oDataModel.read("/Sessions", {
+        //   success: function (oData) {
+        //     var oModel = new JSONModel(oData.results);
+        //     this.getView().setModel(oModel, "sessionsModel");
+        //   }.bind(this),
+        // });
+
       },
 
       onSwitchToEnglish: function () {
@@ -83,6 +98,19 @@ sap.ui.define(
           }
         }
       },
+
+      // onSearch: function (eEvent) {
+      //   var aFilters = [];
+      //   var sQuery = eEvent.getSource().getValue();
+      //   if (sQuery && sQuery.length > 0) {
+      //     var filter = new Filter("carrID", FilterOperator.Contains, sQuery);
+      //     aFilters.push(filter);
+      //   }
+
+      //   var oTable = this.byId("idFlightsTable");
+      //   var oBinding = oTable.getBinding("items");
+      //   oBinding.filter(aFilters, "Application");
+      // }
     });
   }
 );

@@ -4,8 +4,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/ui/model/odata/v2/ODataModel",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel) {
     "use strict";
 
     return Controller.extend("flexso.controller.Login", {
@@ -14,7 +15,6 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -40,20 +40,52 @@ sap.ui.define(
           .byId("stayLoggedInCheckbox")
           .getSelected();
 
-        if (username === "admin@gmail.com" && password === "Bab1234!") {
-          MessageToast.show("Login successful");
-          setTimeout(
-            function () {
-              var oRouter = UIComponent.getRouterFor(this);
-              oRouter.navTo("home");
-            }.bind(this),
-            1000
-          );
+        var oDataModel = new ODataModel(
+          "http://localhost:4004/odata/v2/catalog/",
+          {
+            json: true,
+          }
+        );
 
-          localStorage.setItem("stayLoggedIn", stayLoggedIn);
-        } else {
-          MessageToast.show("Invalid credentials. Please try again.");
-        }
+        oDataModel.read("/Users", {
+          filters: [
+            new sap.ui.model.Filter(
+              "email",
+              sap.ui.model.FilterOperator.EQ,
+              username
+            ),
+          ],
+          success: function (data) {
+            if (data.results && data.results.length > 0) {
+              var user = data.results[0];
+              if (user.password === password) {
+                MessageToast.show("Login successful");
+                localStorage.setItem("stayLoggedIn", stayLoggedIn);
+
+                setTimeout(
+                  function () {
+                    var oRouter = UIComponent.getRouterFor(this);
+                    oRouter.navTo("profile");
+                  }.bind(this),
+                  1000
+                );
+              } else {
+                MessageToast.show(
+                  "User or password is wrong. Please try again."
+                );
+              }
+            } else {
+              MessageToast.show(
+                "User or password is wrong. Please register first."
+              );
+            }
+          }.bind(this),
+          error: function (error) {
+            MessageToast.show(
+              "Error checking user existence: " + error.responseText
+            );
+          },
+        });
       },
 
       onRegisterPress: function () {
@@ -78,10 +110,6 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
-      // onProfileButtonClick: function () {
-      //   var oRouter = UIComponent.getRouterFor(this);
-      //   oRouter.navTo("profile");
-      // },
     });
   }
 );

@@ -36,4 +36,15 @@ Content-Type: application/json;IEEE754Compatible=true
 ###
 GET http://localhost:4004/odata/v4/catalog/Events
 
+###
+POST http://localhost:4004/odata/v4/catalog/Users
+Content-Type: application/json
+
+{"name": "Some User"}
+
+###
+GET http://localhost:4004/odata/v4/catalog/Users
+###
+DELETE http://localhost:4004/odata/v4/catalog/Users(xx)
+
 

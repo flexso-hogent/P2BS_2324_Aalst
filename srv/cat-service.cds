@@ -2,7 +2,7 @@ using my.project as my from '../db/data-model';
 
 service CatalogService {
     entity Sessions @readonly     as projection on my.Sessions;
-    entity Users @readonly        as projection on my.Users;
+    entity Users         as projection on my.Users;
     entity Rating @readonly       as projection on my.Rating;
     entity Admin @readonly        as projection on my.Admin;
     entity Registration @readonly as projection on my.Registration;
