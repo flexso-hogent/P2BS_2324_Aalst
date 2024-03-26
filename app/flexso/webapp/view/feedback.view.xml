@@ -4,7 +4,8 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
->
+    displayBlock="true"
+>   
     <Page
         id="feedbackPage"
         title="Feedback"
@@ -42,8 +43,8 @@
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"
-                        width="100%"
-                        height="100%"
+                        width="20%"
+                        height="20%"
                         class="loginImage"
                     />
 
@@ -62,11 +63,49 @@
                     />
 
                     <!--Sessie input-->
-                    <SearchField id="_IDGenSearchField1"
-                        liveChange=".onSearch"
-                        width="100%" 
-                    />
+                    <OverflowToolbar id="_IDGenOverflowToolbar1">
+                        <SearchField id="sessieZoekenInput" liveChange="onSearch" width="100%" />
+                    </OverflowToolbar>
 
+                    <!--Tabel-->
+                    <Table id="sessionTable"
+                        inset="false"
+                        items="{/Sessions}"
+                        width="100%">
+
+                        <columns >
+                            <Column id="clmSessionTitel" width="60%">
+                                <Text id="lblSessionTitel" text="Session" />
+                            </Column>
+                            <Column id="clmSessionDate" minScreenWidth="Tablet" demandPopin="true">
+                                <Text id="lblSessionDate" text="Session Date" />
+                            </Column>
+                            <Column id="clmSessionTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Text id="lblSessionTime" text="Time" />
+                            </Column>
+                            <Column id="clmSessionSpeaker" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Text id="lblSessionSpeaker" text="Speaker" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem1"
+                            vAlign="Middle"
+                            type="Navigation"
+                            press="onSessionSelect">
+                                <cells>
+                                    <Text id="txtSessionTitel"
+                                    text="{title}" />
+                                    <Text id="txtSessionDate"
+                                    text="{date}" />
+                                    <Text id="txtSessionTime"
+                                    text="{time}" />
+                                    <Text id="txtSessionSpeaker"
+                                    text="{speaker}" />
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
 
                     <!--Feedback-->
                     <Label
@@ -99,7 +138,7 @@
                     <Button
                         id="sendFeedback"
                         text="{i18n>sendFeedback}"
-                        width="100%"
+                        width="35%"
                         press="onFeedback"
                         class="feedbackButton"
                     />

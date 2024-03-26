@@ -47,4 +47,8 @@ GET http://localhost:4004/odata/v4/catalog/Users
 ###
 DELETE http://localhost:4004/odata/v4/catalog/Users(xx)
 
+###
+GET http://localhost:4004/odata/v4/catalog/Feedback
 
+###
+POST http://localhost:4004/odata/v4/catalog/Feedback

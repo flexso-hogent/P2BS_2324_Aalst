@@ -1,4 +1,4 @@
-FeedbackID,Username,FeedbackMessage,FeedbackDate,SessionID
-"fb1","user1@example.com","Great session!","2024-04-10 10:30:00","s1"
-"fb2","user2@example.com","The speaker was very knowledgeable.","2024-04-10 11:45:00","s1"
-"fb3","user3@example.com","Could have been more interactive.","2024-04-10 13:00:00","s1"
+FeedbackID,Username,SessionTitle,Rating,Review,FeedbackDate
+"fb1","user1@example.com","Impact of AI on the economy",5,"Great session!","2024-03-10 10:30:00"
+"fb2","user2@example.com","Impact of AI on the economy",4,"The speaker was very knowledgeable.","2024-03-17 11:45:00"
+"fb3","user3@example.com","Impact of AI on the economy",2,"Could have been more interactive.","2024-02-14 13:00:00"

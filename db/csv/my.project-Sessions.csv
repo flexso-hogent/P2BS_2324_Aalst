@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 sessionID,Title,StartDate,EndDate,StartTime,EndTime,Room,Description,Speaker,TotalSeats,EventID
 sessionID1,"Introduction to AI","2024-04-10","2024-04-10","09:00:00","09:45:00","Room A","Overview of artificial intelligence concepts","John Doe",50,"eventID1"
 sessionID2,"Web Development Basics","2024-05-15","2024-05-15","10:00:00","11:30:00","Room B","Introduction to web development technologies","Jane Smith",40,"eventID2"
@@ -6,3 +7,12 @@ sessionID4,"Blockchain Applications","2024-07-25","2024-07-25","11:30:00","13:00
 sessionID5,"Startup Pitch Session","2024-08-30","2024-08-30","10:00:00","12:00:00","Room E","Witness exciting startup pitches and innovative ideas","Mark Wilson",45,"eventID5"
 
 
+=======
+ID,Title,Date,Time,Room,Description,Speaker,AvailableSeats,Location,EventID
+1,"Introduction to AI","2024-04-10","09:00:00","Room A","Overview of artificial intelligence concepts","John Doe",50,"Conference Center","e1"
+2,"Web Development Basics","2024-05-15","10:00:00","Room B","Introduction to web development technologies","Jane Smith",40,"Tech Institute","e2"
+3,"Data Science Fundamentals","2024-06-20","13:00:00","Room C","Foundational principles of data science","Alex Johnson",60,"Data Science Lab","e3"
+4,"Blockchain Applications","2024-07-25","11:30:00","Room D","Exploring real-world applications of blockchain technology","Emily Brown",55,"Blockchain Center","e4"
+5,"Startup Pitch Session","2024-08-30","10:00:00","Room E","Witness exciting startup pitches and innovative ideas","Mark Wilson",45,"Startup Hub","e5"
+6,"Impact of AI on the economy","2024-03-25","11:30:00","Room F", "What's the impact of Artificial Intelligence on the current Economy","Mark wilson",2,"Conference Center","e1"
+>>>>>>> searchbarFeedback

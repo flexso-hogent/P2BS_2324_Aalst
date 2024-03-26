@@ -8,6 +8,6 @@ service CatalogService {
     entity Registration @readonly as projection on my.Registration;
     entity Events @readonly       as projection on my.Events;
     entity Scores @readonly       as projection on my.Scores;
-    entity Feedback @readonly     as projection on my.Feedback;
+    entity Feedback     as projection on my.Feedback;
     entity Scoreboard @readonly   as projection on my.Scoreboard;
 }
