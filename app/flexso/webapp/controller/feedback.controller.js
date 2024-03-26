@@ -6,13 +6,32 @@ sap.ui.define(
     "sap/ui/core/UIComponent",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/model/odata/v2/ODataModel",
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller, JSONModel, MessageToast, UIComponent, Filter, FilterOperator, ODataModel) {
+  function (
+    Controller,
+    JSONModel,
+    MessageToast,
+    UIComponent,
+    Filter,
+    FilterOperator
+  ) {
     "use strict";
+
+    function generateUUID() {
+      var dt = new Date().getTime();
+      var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          var r = (dt + Math.random() * 16) % 16 | 0;
+          dt = Math.floor(dt / 16);
+          return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
+      return uuid;
+    }
 
     return Controller.extend("flexso.controller.feedback", {
       onInit: function () {
@@ -31,20 +50,6 @@ sap.ui.define(
         });
 
         this.getView().setModel(oImageModel, "imageModel");
-
-        // var oDataModel = new ODataModel(
-        //   "http://localhost:4004/odata/v2/catalog/",
-        //   {
-        //     json: true,
-        //   }
-        // );
-
-        // oDataModel.read("/Sessions", {
-        //   success: function (oData) {
-        //     var oModel = new JSONModel(oData.results);
-        //     this.getView().setModel(oModel, "sessionsModel");
-        //   }.bind(this),
-        // });
 
         var oSession = {
           Titel: "",
@@ -73,26 +78,21 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
-
       onFeedback: function () {
-        var that = this;
+        // Feedback submission logic with AJAX
         var loggedInUserEmail = localStorage.getItem("email");
-
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
         var oRatingIndicator = this.getView().byId("feedbackRating");
         var oTextArea = this.getView().byId("reviewTextArea");
 
-        var ID = 1;
         var feedbackData = {
-          FeedbackID: "fb"+ ID,
+          FeedbackID: generateUUID(),
           Username: loggedInUserEmail,
           SessionTitle: sessie,
           Rating: oRatingIndicator.getValue(),
           Review: oTextArea.getValue(),
-          FeedbackDate: new Date().toISOString() 
+          FeedbackDate: new Date().toISOString(),
         };
-
-        //var oDataModel = new ODataModel("http://localhost:4004/odata/v2/catalog/");
 
         if (sessie === "") {
           MessageToast.show("Gelieve een sessie in te geven");
@@ -115,12 +115,15 @@ sap.ui.define(
                       var oRouter = UIComponent.getRouterFor(this);
                       oRouter.navTo("home");
                     }.bind(this),
-                    1000);
-                    ID++;
-                },
+                    1000
+                  );
+                }.bind(this),
                 error: function (xhr, status, error) {
-                  MessageToast.show("Er is een fout opgetreden bij het versturen van feedback: " + error);
-                }
+                  MessageToast.show(
+                    "Er is een fout opgetreden bij het versturen van feedback: " +
+                      error
+                  );
+                },
               });
             }
           } else {
@@ -136,11 +139,15 @@ sap.ui.define(
                     var oRouter = UIComponent.getRouterFor(this);
                     oRouter.navTo("home");
                   }.bind(this),
-                  1000);
-              },
+                  1000
+                );
+              }.bind(this),
               error: function (xhr, status, error) {
-                MessageToast.show("Er is een fout opgetreden bij het versturen van feedback: " + error);
-              }
+                MessageToast.show(
+                  "Er is een fout opgetreden bij het versturen van feedback: " +
+                    error
+                );
+              },
             });
           }
         }
@@ -159,13 +166,10 @@ sap.ui.define(
         oBinding.filter(aFilters, "Application");
       },
 
-      onSessionSelect: function(oEvent) {
+      onSessionSelect: function (oEvent) {
         var oSelectedItem = oEvent.getSource();
         var sTitel = oSelectedItem.getCells()[0].getText();
 
-
-
-        // datum en tijd ophalen van geselecteerde item
         var sDate = oSelectedItem.getCells()[1].getText();
         var sTime = oSelectedItem.getCells()[2].getText();
 
@@ -178,9 +182,7 @@ sap.ui.define(
           var oSearchField = this.getView().byId("sessieZoekenInput");
           oSearchField.setValue(sTitel);
         }
-
-        
-      }
+      },
     });
   }
 );
