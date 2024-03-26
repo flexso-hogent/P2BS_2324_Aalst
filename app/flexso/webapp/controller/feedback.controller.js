@@ -1,3 +1,4 @@
+
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
@@ -33,6 +34,15 @@ sap.ui.define(
       return uuid;
     }
 
+    var feedbackIDCounter = parseInt(localStorage.getItem("feedbackIDCounter"));
+
+    function generateFeedbackId() {
+      var feedbackID = 'fb' + feedbackIDCounter;
+      feedbackIDCounter++;
+      localStorage.setItem("feedbackIDCounter", feedbackIDCounter);
+      return feedbackID;
+    }
+
     return Controller.extend("flexso.controller.feedback", {
       onInit: function () {
         var oRootPath = jQuery.sap.getModulePath(
@@ -53,8 +63,10 @@ sap.ui.define(
 
         var oSession = {
           Titel: "",
-          Date: null,
-          Time: null,
+          startDate: null,
+          endDate: null,
+          startTime: null,
+          endTime: null,
           Speaker: "",
         };
         var oModel = new JSONModel(oSession);
@@ -170,10 +182,10 @@ sap.ui.define(
         var oSelectedItem = oEvent.getSource();
         var sTitel = oSelectedItem.getCells()[0].getText();
 
-        var sDate = oSelectedItem.getCells()[1].getText();
-        var sTime = oSelectedItem.getCells()[2].getText();
+        var sEndDate = oSelectedItem.getCells()[2].getText();
+        var sEndTime = oSelectedItem.getCells()[4].getText();
 
-        var oSelectedDateTime = new Date(sDate + " " + sTime);
+        var oSelectedDateTime = new Date(sEndDate + " " + sEndTime);
         var oCurrentDateTime = new Date();
 
         if (oSelectedDateTime > oCurrentDateTime) {
