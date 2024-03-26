@@ -77,11 +77,17 @@
                             <Column id="clmSessionTitel" width="60%">
                                 <Text id="lblSessionTitel" text="Session" />
                             </Column>
-                            <Column id="clmSessionDate" minScreenWidth="Tablet" demandPopin="true">
-                                <Text id="lblSessionDate" text="Session Date" />
+                            <Column id="clmSessionStartDate" minScreenWidth="Tablet" demandPopin="true">
+                                <Text id="lblSessionStartDate" text="Session Start Date" />
                             </Column>
-                            <Column id="clmSessionTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionTime" text="Time" />
+                            <Column id="clmSessionEndDate" minScreenWidth="Tablet" demandPopin="true">
+                                <Text id="lblSessionEndDate" text="Session End Date" />
+                            </Column>
+                            <Column id="clmSessionStartTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Text id="lblSessionStartTime" text="Start Time" />
+                            </Column>
+                            <Column id="clmSessionEndTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Text id="lblSessionEndTime" text="End Time" />
                             </Column>
                             <Column id="clmSessionSpeaker" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
                                 <Text id="lblSessionSpeaker" text="Speaker" />
@@ -95,13 +101,16 @@
                                 <cells>
                                     <Text id="txtSessionTitel"
                                     text="{title}" />
-                                    <Text id="txtSessionDate"
-                                    text="{date}" />
-                                    <Text id="txtSessionTime"
-                                    text="{time}" />
+                                    <Text id="txtSessionStartDate"
+                                    text="{startDate}" />
+                                    <Text id="txtSessionEndDate"
+                                    text="{endDate}" />
+                                    <Text id="txtSessionStartTime"
+                                    text="{startTime}" />
+                                    <Text id="txtSessionEndTime"
+                                    text="{endTime}" />
                                     <Text id="txtSessionSpeaker"
                                     text="{speaker}" />
-
                                 </cells>
                             </ColumnListItem>
                         </items>
