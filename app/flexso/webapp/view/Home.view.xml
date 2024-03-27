@@ -100,12 +100,37 @@
                 <!-- Add more buttons here as needed -->
             </FlexBox>
 
+            <!-- Title for Feedback Section -->
             <Title
                 id="_IDGenTitle2"
                 text="{i18n>myEventTitle}"
                 level="H2"
                 class="sapUiSmallMarginBegin"
             />
+
+            <!-- Feedback Section -->
+            <!-- Feedback Section -->
+            <VBox
+                id="_IDGenVBox2"
+                class="sapUiSmallMarginBegin"
+            >
+                <Label
+                    id="_IDGenLabel1"
+                    text="{i18n>FeedbackHomeTitle}"
+                    class="sapUiTinyMarginBottom"
+                />
+                <List
+                    id="_IDGenList1"
+                    items="{imageModel>/feedbackData}"
+                    noDataText="{i18n>noDataText}"
+                >
+                    <StandardListItem
+                        id="_IDGenStandardListItem2"
+                        title="{imageModel>SessionTitle}"
+                        description="{=${imageModel>Review} + ('⭐'.repeat(${imageModel>Rating})) }"
+                    />
+                </List>
+            </VBox>
         </content>
     </Page>
 </mvc:View>
