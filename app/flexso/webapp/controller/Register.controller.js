@@ -35,7 +35,6 @@ sap.ui.define(
         var passwordRepeat = this.getView()
           .byId("confirmPasswordInput")
           .getValue();
-        // var bdate = this.getView().byId("birthdateInput").getValue();
         var street = this.getView().byId("streetInput").getValue();
         var hnumber = this.getView().byId("hnumberInput").getValue();
         var city = this.getView().byId("cityInput").getValue();
@@ -59,11 +58,21 @@ sap.ui.define(
           return;
         }
 
-        if (
-          [email, company, role, password, passwordRepeat].some(
-            (field) => !field
-          )
-        ) {
+        var requiredFields = [
+          email,
+          company,
+          role,
+          password,
+          passwordRepeat,
+          street,
+          hnumber,
+          city,
+          country,
+          zip,
+          phone,
+          gender,
+        ];
+        if (requiredFields.some((field) => !field)) {
           MessageToast.show("Please fill in all fields!");
           return;
         }
@@ -92,7 +101,6 @@ sap.ui.define(
                 company: company,
                 role: role,
                 password: password,
-                // bdate: bdate,
                 street: street,
                 hnumber: hnumber,
                 city: city,

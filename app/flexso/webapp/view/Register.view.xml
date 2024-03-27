@@ -133,6 +133,7 @@
                         type="Text"
                         placeholder="{i18n>streetPlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- House Number Label -->
@@ -148,6 +149,7 @@
                         type="Number"
                         placeholder="{i18n>hnumberPlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- City Label -->
@@ -163,6 +165,7 @@
                         type="Text"
                         placeholder="{i18n>cityPlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- Country Label -->
@@ -178,6 +181,7 @@
                         type="Text"
                         placeholder="{i18n>countryPlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- Zip Code Label -->
@@ -193,6 +197,7 @@
                         type="Number"
                         placeholder="{i18n>zipPlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- Phone Label -->
@@ -208,6 +213,7 @@
                         type="Number"
                         placeholder="{i18n>phonePlaceholder}"
                         class="registerInput"
+                        required="true"
                     />
 
                     <!-- Gender Label -->
@@ -221,6 +227,7 @@
                     <Select
                         id="genderInput"
                         class="registerInput"
+                        required="true"
                     >
                         <core:Item
                             id="_IDGenItem1"
