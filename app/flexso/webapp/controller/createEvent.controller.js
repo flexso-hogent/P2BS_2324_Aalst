@@ -23,21 +23,17 @@ sap.ui.define(
 
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
-        oResourceModel.setProperty("/locale", "en");
+        oResourceModel.sLocale = "en";
         sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
       },
 
       onSwitchToDutch: function () {
         var oResourceModel = this.getView().getModel("i18n");
-        oResourceModel.setProperty("/locale", "nl");
+        oResourceModel.sLocale = "nl";
         sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
       },
-
-      onProfileButtonClick: function () {
-        var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("profile");
-      },
-
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");

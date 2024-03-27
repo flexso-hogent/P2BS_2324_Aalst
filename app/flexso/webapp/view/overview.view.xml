@@ -10,7 +10,6 @@
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button id="_IDGenBackHomeButton" text="{i18n>backToHomeButton}" press="onBackToHome" />
                 <Button
                     id="_IDGenButton3"
                     text="{i18n>EN}"
@@ -23,14 +22,14 @@
                 />
                 <Button
                     id="_IDGenBackHomeButton2"
-                    text="{i18n>backToHomeButton}"
+                    icon="sap-icon://person-placeholder"
                     press="onBackToHome"
                 />
             </Toolbar>
         </headerContent>
         <List id="eventList" items="{eventModel>/}">
             <items>
-                <StandardListItem id="_IDGenStandardListItem1" title="{eventModel>Name}" info="{eventModel>SDate} until {eventModel>EDate} " description="{eventModel>Description}" />
+                <StandardListItem id="_IDGenStandardListItem1" title="{eventModel>Name}" info="{eventModel>SDate} {i18n>until} {eventModel>EDate} " description="{eventModel>Description}" />
             </items>
         </List>
     </Page>

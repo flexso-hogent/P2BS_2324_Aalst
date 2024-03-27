@@ -15,11 +15,6 @@
                     press="onSwitchToDutch"
                 />
                 <Button
-                    id="_IDGenBackHomeButton2"
-                    text="{i18n>backToHomeButton}"
-                    press="onBackToHome"
-                />
-                <Button
                     id="_IDGenProfileButton"
                     icon="sap-icon://person-placeholder"
                     press="onProfileButtonClick"
@@ -32,9 +27,9 @@
                 <DatePicker id="_IDGenDatePicker1" value="{path: '/startDate'}" placeholder="{i18n>startDate}" required="true" />
                 <DatePicker id="_IDGenDatePicker2" value="{path: '/endDate'}" placeholder="{i18n>endDate}" required="true" />
                 <Input id="_IDGenInput2" value="{path: '/location', type: 'sap.ui.model.type.String', constraints: {notEmpty: true}}" placeholder="{i18n>location}" required="true" />
-                <TextArea id="_IDGenTextArea1" value="{path: '/description'}" placeholder="{i18n>description}" required="true" />
+                <TextArea id="_IDGenTextArea1" value="{path: '/description'}" placeholder="{i18n>description}" required="true"/>
 
-                <Button id="_IDGenButton1" text="{i18n>register}" press="onRegisterPress" />
+                <Button id="_IDGenButton1" text="{i18n>EventAanmakenButton}" press="onRegisterPress" />
             </VBox>
         </content>
     </Page>
