@@ -4,6 +4,7 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="registerPage"
@@ -105,6 +106,145 @@
                         required="true"
                         value="Admin"
                     />
+                    <!-- Birthdate Label -->
+                    <!-- <Label
+                        id="_IDGenLabel1"
+                        text="{i18n>birthdateLabel}"
+                        class="registerLabel"
+                    /> -->
+
+                    <!-- Birthdate Input -->
+                    <!-- <DatePicker
+                        id="birthdateInput"
+                        class="registerInput"
+                        required="true"
+                    /> -->
+
+                    <!-- Street Label -->
+                    <Label
+                        id="_IDGenLabel2"
+                        text="{i18n>streetLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- Street Input -->
+                    <Input
+                        id="streetInput"
+                        type="Text"
+                        placeholder="{i18n>streetPlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- House Number Label -->
+                    <Label
+                        id="_IDGenLabel3"
+                        text="{i18n>hnumberLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- House Number Input -->
+                    <Input
+                        id="hnumberInput"
+                        type="Number"
+                        placeholder="{i18n>hnumberPlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- City Label -->
+                    <Label
+                        id="_IDGenLabel4"
+                        text="{i18n>cityLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- City Input -->
+                    <Input
+                        id="cityInput"
+                        type="Text"
+                        placeholder="{i18n>cityPlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- Country Label -->
+                    <Label
+                        id="_IDGenLabel5"
+                        text="{i18n>countryLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- Country Input -->
+                    <Input
+                        id="countryInput"
+                        type="Text"
+                        placeholder="{i18n>countryPlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- Zip Code Label -->
+                    <Label
+                        id="_IDGenLabel6"
+                        text="{i18n>zipLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- Zip Code Input -->
+                    <Input
+                        id="zipInput"
+                        type="Number"
+                        placeholder="{i18n>zipPlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- Phone Label -->
+                    <Label
+                        id="_IDGenLabel7"
+                        text="{i18n>phoneLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- Phone Input -->
+                    <Input
+                        id="phoneInput"
+                        type="Number"
+                        placeholder="{i18n>phonePlaceholder}"
+                        class="registerInput"
+                        required="true"
+                    />
+
+                    <!-- Gender Label -->
+                    <Label
+                        id="_IDGenLabel8"
+                        text="{i18n>genderLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- Gender Input -->
+                    <Select
+                        id="genderInput"
+                        class="registerInput"
+                        required="true"
+                    >
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="male"
+                            text="{i18n>genderMale}"
+                        />
+                        <core:Item
+                            id="_IDGenItem2"
+                            key="female"
+                            text="{i18n>genderFemale}"
+                        />
+                        <core:Item
+                            id="_IDGenItem3"
+                            key="other"
+                            text="{i18n>genderOther}"
+                        />
+                    </Select>
 
                     <!--Password Label-->
                     <Label

@@ -66,6 +66,14 @@ sap.ui.define(
                 localStorage.setItem("role", user.role);
                 localStorage.setItem("company", user.company);
                 localStorage.setItem("userID", user.ID);
+                localStorage.setItem("bdate", user.bdate);
+                localStorage.setItem("street", user.street);
+                localStorage.setItem("hnumber", user.hnumber);
+                localStorage.setItem("city", user.city);
+                localStorage.setItem("country", user.country);
+                localStorage.setItem("zip", user.zip);
+                localStorage.setItem("phone", user.phone);
+                localStorage.setItem("gender", user.gender);
                 localStorage.setItem("stayLoggedIn", stayLoggedIn);
 
                 setTimeout(

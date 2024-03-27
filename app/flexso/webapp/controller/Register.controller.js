@@ -35,6 +35,13 @@ sap.ui.define(
         var passwordRepeat = this.getView()
           .byId("confirmPasswordInput")
           .getValue();
+        var street = this.getView().byId("streetInput").getValue();
+        var hnumber = this.getView().byId("hnumberInput").getValue();
+        var city = this.getView().byId("cityInput").getValue();
+        var country = this.getView().byId("countryInput").getValue();
+        var zip = this.getView().byId("zipInput").getValue();
+        var phone = this.getView().byId("phoneInput").getValue();
+        var gender = this.getView().byId("genderInput").getSelectedKey();
 
         function isValidEmail(email) {
           var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -51,11 +58,21 @@ sap.ui.define(
           return;
         }
 
-        if (
-          [email, company, role, password, passwordRepeat].some(
-            (field) => !field
-          )
-        ) {
+        var requiredFields = [
+          email,
+          company,
+          role,
+          password,
+          passwordRepeat,
+          street,
+          hnumber,
+          city,
+          country,
+          zip,
+          phone,
+          gender,
+        ];
+        if (requiredFields.some((field) => !field)) {
           MessageToast.show("Please fill in all fields!");
           return;
         }
@@ -80,13 +97,18 @@ sap.ui.define(
               MessageToast.show("Registration failed! Please try again.");
             } else {
               var requestData = {
-                name: email,
                 email: email,
                 company: company,
                 role: role,
                 password: password,
+                street: street,
+                hnumber: hnumber,
+                city: city,
+                country: country,
+                zip: zip,
+                phone: phone,
+                gender: gender,
               };
-
               oDataModel.create("/Users", requestData, {
                 success: function () {
                   MessageToast.show("Registration successful!");
