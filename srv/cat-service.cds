@@ -10,4 +10,5 @@ service CatalogService {
     entity Scores @readonly       as projection on my.Scores;
     entity Feedback     as projection on my.Feedback;
     entity Scoreboard @readonly   as projection on my.Scoreboard;
+    entity PasswordReset  as projection on my.PasswordReset;
 }

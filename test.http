@@ -52,3 +52,9 @@ GET http://localhost:4004/odata/v4/catalog/Feedback
 
 ###
 POST http://localhost:4004/odata/v4/catalog/Feedback
+
+###
+POST http://localhost:4004/odata/v4/catalog/PasswordReset
+Content-Type: application/json
+
+{"userEmail": "test@gmail.com "}

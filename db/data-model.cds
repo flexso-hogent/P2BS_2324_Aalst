@@ -104,3 +104,8 @@ entity Users {
         phone    : Integer;
         gender   : String;
 }
+entity PasswordReset {
+    key resetID      : UUID;
+        userEmail    : String;
+        
+}
