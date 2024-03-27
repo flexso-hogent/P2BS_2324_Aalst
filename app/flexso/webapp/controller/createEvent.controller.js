@@ -44,13 +44,12 @@ sap.ui.define(
       },
 
       onRegisterPress: function () {
-        console.log("Register button clicked"); 
+        console.log("Register button clicked");
         var oViewModel = this.getView().getModel();
         var oEventData = oViewModel.getData();
 
-        var that = this; /
+        var that = this;
 
-        // CHATGPT 
         if (oEventData.startDate) {
           oEventData.startDate = this.formatDate(oEventData.startDate);
         }
@@ -65,7 +64,6 @@ sap.ui.define(
           }
         );
 
-        // kijken of het al in de database zit
         oDataModel.read("/Events", {
           filters: [
             new sap.ui.model.Filter(
@@ -80,7 +78,6 @@ sap.ui.define(
                 "Event registration failed! Event already exists."
               );
             } else {
-              //als event nog niet bestaat en alles is ingevuld
               oDataModel.create("/Events", oEventData, {
                 success: function () {
                   MessageToast.show("Event registration successful!");
@@ -110,19 +107,12 @@ sap.ui.define(
         });
       },
 
-      //chatpt code om de datum te formateren van MM/DD/YYYY naar YYYY-MM-DD
       formatDate: function (dateString) {
-        // Parse the date string using JavaScript Date object
         var date = new Date(dateString);
-
-        // Extract year, month, and day
         var year = date.getFullYear();
-        var month = String(date.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+        var month = String(date.getMonth() + 1).padStart(2, "0");
         var day = String(date.getDate()).padStart(2, "0");
-
-        // Format the date as YYYY-MM-DD
         var formattedDate = year + "-" + month + "-" + day;
-
         return formattedDate;
       },
     });

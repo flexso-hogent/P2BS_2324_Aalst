@@ -167,7 +167,7 @@
         {
           "pattern": "createEvent",
           "name": "createEvent",
-          "target": "createEvent"
+          "target": ["createEvent"]
         }
       ],
       "targets": {
@@ -223,6 +223,7 @@
         },
         "createEvent": {
           "viewName": "flexso.view.CreateEvent",
+          "viewId": "createEvent",
           "viewLevel": 3
         }
       }
