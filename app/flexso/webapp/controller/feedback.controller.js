@@ -188,7 +188,7 @@ sap.ui.define(
         var oSelectedDateTime = new Date(sEndDate + " " + sEndTime);
         var oCurrentDateTime = new Date();
 
-        if (oSelectedDateTime > oCurrentDateTime) {
+        if (oSelectedDateTime > oCurrentDateTime || oSelectedDateTime == "Invalid Date") {
           MessageToast.show("Deze sessie moet nog plaatsvinden");
         } else {
           var oSearchField = this.getView().byId("sessieZoekenInput");
