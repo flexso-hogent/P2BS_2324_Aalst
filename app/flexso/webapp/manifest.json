@@ -163,6 +163,11 @@
           "name": "eventoverview",
           "pattern": "eventoverview",
           "target": ["EventOverview"]
+        },
+        {
+          "pattern": "createEvent",
+          "name": "createEvent",
+          "target": "createEvent"
         }
       ],
       "targets": {
@@ -214,6 +219,10 @@
         "eventoverview": {
           "viewName": "flexso.view.eventoverview",
           "viewId": "eventoverview",
+          "viewLevel": 3
+        },
+        "createEvent": {
+          "viewName": "flexso.view.CreateEvent",
           "viewLevel": 3
         }
       }

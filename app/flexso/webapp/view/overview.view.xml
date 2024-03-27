@@ -11,10 +11,20 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button id="_IDGenBackHomeButton" text="{i18n>backToHomeButton}" press="onBackToHome" />
-                  <Button
-                    id="_IDGenProfileButton"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
+                <Button
+                    id="_IDGenButton3"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                />
+                <Button
+                    id="_IDGenButton4"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                />
+                <Button
+                    id="_IDGenBackHomeButton2"
+                    text="{i18n>backToHomeButton}"
+                    press="onBackToHome"
                 />
             </Toolbar>
         </headerContent>
