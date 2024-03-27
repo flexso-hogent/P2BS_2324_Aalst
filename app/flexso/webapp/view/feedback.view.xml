@@ -26,7 +26,7 @@
                 />
                 <Button
                     id="_IDGenBackHomeButton"
-                    text="{i18n>backToHomeButton}"
+                    icon="sap-icon://person-placeholder"
                     press="onBackToHome"
                 />
             </Toolbar>
@@ -75,22 +75,22 @@
 
                         <columns >
                             <Column id="clmSessionTitel" width="60%">
-                                <Text id="lblSessionTitel" text="Session" />
+                                <Text id="lblSessionTitel" text="{i18n>SessionNameTable}" />
                             </Column>
                             <Column id="clmSessionStartDate" minScreenWidth="Tablet" demandPopin="true">
-                                <Text id="lblSessionStartDate" text="Session Start Date" />
+                                <Text id="lblSessionStartDate" text="{i18n>SessionStartTable}" />
                             </Column>
                             <Column id="clmSessionEndDate" minScreenWidth="Tablet" demandPopin="true">
-                                <Text id="lblSessionEndDate" text="Session End Date" />
+                                <Text id="lblSessionEndDate" text="{i18n>SessionEndTable}" />
                             </Column>
                             <Column id="clmSessionStartTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionStartTime" text="Start Time" />
+                                <Text id="lblSessionStartTime" text="{i18n>StartTimeTable}" />
                             </Column>
                             <Column id="clmSessionEndTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionEndTime" text="End Time" />
+                                <Text id="lblSessionEndTime" text="{i18n>EndTimeTable}" />
                             </Column>
                             <Column id="clmSessionSpeaker" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionSpeaker" text="Speaker" />
+                                <Text id="lblSessionSpeaker" text="{i18n>SessionSpeakerTable}" />
                             </Column>
                         </columns>
                         <items>
