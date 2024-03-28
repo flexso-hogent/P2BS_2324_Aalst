@@ -89,13 +89,20 @@
                     class="sapUiSmallMarginEnd"
                 />
                 <!-- Create Session Button -->
+
+                <Button
+                    id="_IDGenButtonCreateEvent"
+                    text="{i18n>createEventButton}"
+                    press="onGoToCreateEventPress"
+                    class="sapUiSmallMarginEnd"
+                />
+
                 <Button
                     id="_IDGenButtonCreateSession"
                     text="{i18n>createSessionButton}"
                     press="onGoToCreateSessionPress"
                     class="sapUiSmallMarginEnd"
                 />
-
                 <!-- Add more buttons here as needed -->
             </FlexBox>
 
