@@ -26,9 +26,13 @@
                 />
                 <Button
                     id="_IDGenBackHomeButton"
-                    icon="sap-icon://person-placeholder"
+                    text="{i18n>backToHomeButton}"
                     press="onBackToHome"
                 />
+                <Button 
+                    id="ProfileButton"
+                    icon="sap-icon://person-placeholder"
+                    press="onProfilePressed"/>
             </Toolbar>
         </headerContent>
         <content>
