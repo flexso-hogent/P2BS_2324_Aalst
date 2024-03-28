@@ -75,6 +75,10 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("en");
         this.getView().getModel("i18n").refresh();
       },
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("login");
+      },
 
       onSwitchToDutch: function () {
         var oResourceModel = this.getView().getModel("i18n");

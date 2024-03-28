@@ -19,6 +19,11 @@
                     icon="sap-icon://globe"
                     press="onDropdownPress"
                 />
+                <Button
+                    id="backButton"
+                    icon="sap-icon://nav-back"
+                    press="onBackToHome"
+                />
             </Toolbar>
         </headerContent>
         <content>
