@@ -84,16 +84,11 @@
                     press="onGoToOverviewEventPress"
                     class="sapUiSmallMarginEnd"
                 />
+                <!-- Create Session Button -->
                 <Button
-                    id="_IDGenButton7"
-                    text="{i18n>createEventButton}"
-                    press=""
-                    class="sapUiSmallMarginEnd"
-                />
-                <Button
-                    id="_IDGenButton8"
+                    id="_IDGenButtonCreateSession"
                     text="{i18n>createSessionButton}"
-                    press=""
+                    press="onGoToCreateSessionPress"
                     class="sapUiSmallMarginEnd"
                 />
 

@@ -21,6 +21,26 @@ sap.ui.define(
         });
 
         this.getView().setModel(oImageModel, "imageModel");
+
+        
+      },
+
+      onSwitchToEnglish: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "en";
+        sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onSwitchToDutch: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "nl";
+        sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
+      },
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
       },
 
       loadData: function () {
