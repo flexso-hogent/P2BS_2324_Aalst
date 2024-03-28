@@ -78,6 +78,29 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("en");
         this.getView().getModel("i18n").refresh();
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
+      onLogoutPress: function () {
+        var that = this;
+        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              localStorage.clear();
+              var oRouter = UIComponent.getRouterFor(that);
+              oRouter.navTo("login");
+            }
+          },
+        });
+      },
 
       onSwitchToDutch: function () {
         var oResourceModel = this.getView().getModel("i18n");

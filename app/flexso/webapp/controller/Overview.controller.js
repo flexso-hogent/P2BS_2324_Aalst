@@ -21,8 +21,17 @@ sap.ui.define(
         });
 
         this.getView().setModel(oImageModel, "imageModel");
+      },
+      // Inside your controller
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
 
-        
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
       },
 
       onSwitchToEnglish: function () {

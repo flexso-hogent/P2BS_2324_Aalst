@@ -5,11 +5,14 @@
     displayBlock="true"
 >
     <App id="app">
-        <Page id="appPage" title="Flexso">
+        <Page
+            id="appPage"
+            title="Flexso"
+        >
             <headerContent>
                 <Toolbar id="_IDGenToolbar1">
                     <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                
+
                     <Button
                         id="_IDGenButton3"
                         text="{i18n>EN}"
@@ -29,5 +32,4 @@
             </headerContent>
         </Page>
     </App>
-    
 </mvc:View>

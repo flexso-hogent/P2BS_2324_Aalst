@@ -11,6 +11,16 @@ sap.ui.define(
         this.getOwnerComponent().getRouter().initialize();
         this.getOwnerComponent().getRouter().navTo("List");
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
     });
   }
 );

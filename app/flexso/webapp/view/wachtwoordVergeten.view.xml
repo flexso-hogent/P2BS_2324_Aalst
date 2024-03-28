@@ -13,16 +13,16 @@
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
-                <!-- Taalknoppen toevoegen -->
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
-                    id="_IDGenButton2"
-                    text="English"
-                    press="onSwitchToEnglish"
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
                 />
                 <Button
-                    id="_IDGenButton3"
-                    text="Nederlands"
-                    press="onSwitchToDutch"
+                    id="backButton"
+                    icon="sap-icon://nav-back"
+                    press="onBackToHome"
                 />
             </Toolbar>
         </headerContent>
@@ -46,8 +46,14 @@
                     columnsM="1"
                     width="100%"
                 >
-                    <Text id="forgotPassword" text="{i18n>forgotPassword}" />
-                    <Text id="forgotPasswordText" text="{i18n>forgotPasswordText}" />
+                    <Text
+                        id="forgotPassword"
+                        text="{i18n>forgotPassword}"
+                    />
+                    <Text
+                        id="forgotPasswordText"
+                        text="{i18n>forgotPasswordText}"
+                    />
                     <Label
                         id="_IDGenLabel1"
                         text="{i18n>Email}"
@@ -69,4 +75,28 @@
             </VBox>
         </content>
     </Page>
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox id="_IDGenVBox3">
+                <Button
+                    id="_IDGenButton9"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>

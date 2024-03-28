@@ -15,18 +15,13 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
-                    id="_IDGenButton3"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
                 />
                 <Button
-                    id="_IDGenButton4"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                />
-                <Button
-                    id="_IDGenBackHomeButton"
-                    text="{i18n>back}"
+                    id="backButton"
+                    icon="sap-icon://nav-back"
                     press="onBackToHome"
                 />
             </Toolbar>
@@ -71,6 +66,37 @@
                         class="registerInput"
                         required="true"
                         value="test@gmail.com"
+                    />
+                    <Label
+                        id="_IDGenLabel9"
+                        text="{i18n>firstNameLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- firstname Input -->
+                    <Input
+                        id="firstnameInput"
+                        type="Text"
+                        placeholder="{i18n>firstNamePlaceholder}"
+                        class="registerInput"
+                        required="true"
+                        value="TestNaam"
+                    />
+
+                    <Label
+                        id="_IDGenLabel10"
+                        text="{i18n>lastNameLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- lastname Input -->
+                    <Input
+                        id="lastnameInput"
+                        type="Text"
+                        placeholder="{i18n>lastNamePlaceholder}"
+                        class="registerInput"
+                        required="true"
+                        value="TestAchternaam"
                     />
 
                     <!--Company Label-->
@@ -134,6 +160,7 @@
                         placeholder="{i18n>streetPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Hogentstraat"
                     />
 
                     <!-- House Number Label -->
@@ -150,6 +177,7 @@
                         placeholder="{i18n>hnumberPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="1"
                     />
 
                     <!-- City Label -->
@@ -166,6 +194,7 @@
                         placeholder="{i18n>cityPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Gent"
                     />
 
                     <!-- Country Label -->
@@ -182,6 +211,7 @@
                         placeholder="{i18n>countryPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Belgium"
                     />
 
                     <!-- Zip Code Label -->
@@ -198,6 +228,7 @@
                         placeholder="{i18n>zipPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="9000"
                     />
 
                     <!-- Phone Label -->
@@ -214,6 +245,7 @@
                         placeholder="{i18n>phonePlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="0477777777"
                     />
 
                     <!-- Gender Label -->
@@ -292,4 +324,28 @@
             </VBox>
         </content>
     </Page>
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox id="_IDGenVBox3">
+                <Button
+                    id="_IDGenButton9"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>

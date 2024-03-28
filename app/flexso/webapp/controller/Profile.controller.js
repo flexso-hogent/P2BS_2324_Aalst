@@ -66,6 +66,8 @@ sap.ui.define(
 
               var oUserDataModel = new sap.ui.model.json.JSONModel({
                 email: userData.email,
+                firstname: userData.firstname,
+                lastname: userData.lastname,
                 company: userData.company,
                 role: userData.role,
                 userID: userData.userID,
@@ -94,6 +96,7 @@ sap.ui.define(
       onUpdateProfilePress: function () {
         var that = this;
         var updatedEmail = this.getView().byId("emailInput").getValue();
+
         var updatedCompany = this.getView().byId("companyInput").getValue();
         var updatedRole = this.getView().byId("roleInput").getValue();
         // var updatedBdate = this.getView().byId("bdateInput").getValue();
@@ -218,6 +221,17 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("feedback");
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
+
       onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm("Are you sure you want to log out?", {
