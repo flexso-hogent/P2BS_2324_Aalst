@@ -1,4 +1,3 @@
-
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
@@ -37,7 +36,7 @@ sap.ui.define(
     var feedbackIDCounter = parseInt(localStorage.getItem("feedbackIDCounter"));
 
     function generateFeedbackId() {
-      var feedbackID = 'fb' + feedbackIDCounter;
+      var feedbackID = "fb" + feedbackIDCounter;
       feedbackIDCounter++;
       localStorage.setItem("feedbackIDCounter", feedbackIDCounter);
       return feedbackID;
@@ -126,6 +125,8 @@ sap.ui.define(
                     function () {
                       var oRouter = UIComponent.getRouterFor(this);
                       oRouter.navTo("home");
+
+                      window.location.reload();
                     }.bind(this),
                     1000
                   );
@@ -150,6 +151,15 @@ sap.ui.define(
                   function () {
                     var oRouter = UIComponent.getRouterFor(this);
                     oRouter.navTo("home");
+                    setTimeout(
+                      function () {
+                        var oRouter = UIComponent.getRouterFor(this);
+                        oRouter.navTo("home");
+
+                        window.location.reload();
+                      }.bind(this),
+                      1000
+                    );
                   }.bind(this),
                   1000
                 );
