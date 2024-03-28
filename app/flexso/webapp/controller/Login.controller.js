@@ -33,7 +33,7 @@ sap.ui.define(
         }
       },
 
-      onLoginPress: function () {
+      onLoginPress: async function () {
         var username = this.getView().byId("usernameInput").getValue();
         var password = this.getView().byId("passwordInput").getValue();
         var stayLoggedIn = this.getView()
@@ -42,63 +42,76 @@ sap.ui.define(
 
         var oDataModel = new ODataModel(
           "http://localhost:4004/odata/v2/catalog/",
-          {
-            json: true,
-          }
+          { json: true }
         );
 
-        oDataModel.read("/Users", {
-          filters: [
-            new sap.ui.model.Filter(
-              "email",
-              sap.ui.model.FilterOperator.EQ,
-              username
-            ),
-          ],
-          success: function (data) {
-            if (data.results && data.results.length > 0) {
-              var user = data.results[0];
-              if (user.password === password) {
-                MessageToast.show("Login successful");
+        try {
+          var data = await new Promise((resolve, reject) => {
+            oDataModel.read("/Users", {
+              filters: [
+                new sap.ui.model.Filter(
+                  "email",
+                  sap.ui.model.FilterOperator.EQ,
+                  username
+                ),
+              ],
+              success: function (data) {
+                resolve(data);
+              },
+              error: function (xhr, status, error) {
+                reject(error);
+              },
+            });
+          });
 
-                // Store user information in local storage
-                localStorage.setItem("email", user.email);
-                localStorage.setItem("role", user.role);
-                localStorage.setItem("company", user.company);
-                localStorage.setItem("userID", user.ID);
-                localStorage.setItem("bdate", user.bdate);
-                localStorage.setItem("street", user.street);
-                localStorage.setItem("hnumber", user.hnumber);
-                localStorage.setItem("city", user.city);
-                localStorage.setItem("country", user.country);
-                localStorage.setItem("zip", user.zip);
-                localStorage.setItem("phone", user.phone);
-                localStorage.setItem("gender", user.gender);
-                localStorage.setItem("stayLoggedIn", stayLoggedIn);
+          if (data.results && data.results.length > 0) {
+            var user = data.results[0];
+            var hashedPassword = await this.sha256(password);
 
-                setTimeout(
-                  function () {
-                    var oRouter = UIComponent.getRouterFor(this);
-                    oRouter.navTo("home");
-                  }.bind(this),
-                  1000
-                );
-              } else {
-                MessageToast.show(
-                  "User or password is wrong. Please try again."
-                );
-              }
+            if (user.password === hashedPassword) {
+              MessageToast.show("Login successful");
+
+              // Store user information in local storage
+              localStorage.setItem("email", user.email);
+              localStorage.setItem("role", user.role);
+              localStorage.setItem("company", user.company);
+              localStorage.setItem("userID", user.ID);
+              localStorage.setItem("bdate", user.bdate);
+              localStorage.setItem("street", user.street);
+              localStorage.setItem("hnumber", user.hnumber);
+              localStorage.setItem("city", user.city);
+              localStorage.setItem("country", user.country);
+              localStorage.setItem("zip", user.zip);
+              localStorage.setItem("phone", user.phone);
+              localStorage.setItem("gender", user.gender);
+              localStorage.setItem("stayLoggedIn", stayLoggedIn);
+
+              setTimeout(() => {
+                var oRouter = UIComponent.getRouterFor(this);
+                oRouter.navTo("home");
+              }, 1000);
             } else {
-              MessageToast.show(
-                "User or password is wrong. Please register first."
-              );
+              MessageToast.show("User or password is wrong. Please try again.");
             }
-          }.bind(this),
-          error: function (error) {
+          } else {
             MessageToast.show(
-              "Error checking user existence: " + error.responseText
+              "User or password is wrong. Please register first."
             );
-          },
+          }
+        } catch (error) {
+          MessageToast.show("Error checking user existence: " + error);
+        }
+      },
+      sha256: function (message) {
+        // Convert message to ArrayBuffer
+        var buffer = new TextEncoder().encode(message);
+        // Hash the ArrayBuffer
+        return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
+          return Array.prototype.map
+            .call(new Uint8Array(hash), function (x) {
+              return ("00" + x.toString(16)).slice(-2);
+            })
+            .join("");
         });
       },
 

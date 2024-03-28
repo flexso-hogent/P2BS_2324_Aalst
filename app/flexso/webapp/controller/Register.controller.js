@@ -26,12 +26,12 @@ sap.ui.define(
 
         this.getView().setModel(oImageModel, "imageModel");
       },
-      onRegister: function () {
+      onRegister: async function () {
         var that = this;
         var email = this.getView().byId("emailInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
         var role = this.getView().byId("roleInput").getValue();
-        var password = this.getView().byId("passwordInput").getValue();
+        var password = this.getView().byId("passwordInput").getValue(); // Plain password
         var passwordRepeat = this.getView()
           .byId("confirmPasswordInput")
           .getValue();
@@ -77,62 +77,88 @@ sap.ui.define(
           return;
         }
 
-        var oDataModel = new ODataModel(
-          "http://localhost:4004/odata/v2/catalog/",
-          {
-            json: true,
-          }
-        );
+        try {
+          // Hash the password using SHA-256
+          var hashedPassword = await this.sha256(password);
 
-        oDataModel.read("/Users", {
-          filters: [
-            new sap.ui.model.Filter(
-              "email",
-              sap.ui.model.FilterOperator.EQ,
-              email
-            ),
-          ],
-          success: function (data) {
-            if (data.results && data.results.length > 0) {
-              MessageToast.show("Registration failed! Please try again.");
-            } else {
-              var requestData = {
-                email: email,
-                company: company,
-                role: role,
-                password: password,
-                street: street,
-                hnumber: hnumber,
-                city: city,
-                country: country,
-                zip: zip,
-                phone: phone,
-                gender: gender,
-              };
+          var oDataModel = new ODataModel(
+            "http://localhost:4004/odata/v2/catalog/",
+            {
+              json: true,
+            }
+          );
+
+          var data = await new Promise((resolve, reject) => {
+            oDataModel.read("/Users", {
+              filters: [
+                new sap.ui.model.Filter(
+                  "email",
+                  sap.ui.model.FilterOperator.EQ,
+                  email
+                ),
+              ],
+              success: function (data) {
+                resolve(data);
+              },
+              error: function (xhr, status, error) {
+                reject(error);
+              },
+            });
+          });
+
+          if (data.results && data.results.length > 0) {
+            MessageToast.show("Registration failed! User already exists.");
+          } else {
+            var requestData = {
+              email: email,
+              company: company,
+              role: role,
+              password: hashedPassword, // Send hashed password
+              street: street,
+              hnumber: hnumber,
+              city: city,
+              country: country,
+              zip: zip,
+              phone: phone,
+              gender: gender,
+            };
+            await new Promise((resolve, reject) => {
               oDataModel.create("/Users", requestData, {
                 success: function () {
                   MessageToast.show("Registration successful!");
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(that);
                     oRouter.navTo("login");
+                    resolve();
                   }, 1000);
                 },
                 error: function (error) {
                   MessageToast.show(
                     "Registration failed: " + error.responseText
                   );
+                  reject(error);
                 },
               });
-            }
-          },
-          error: function (xhr, status, error) {
-            MessageToast.show(
-              "Error checking user existence: " + error.responseText
-            );
-          },
-        });
+            });
+          }
+        } catch (error) {
+          MessageToast.show("Error during registration: " + error);
+        }
       },
 
+      // SHA-256 hashing function
+      sha256: function (message) {
+        // Convert message to ArrayBuffer
+        var buffer = new TextEncoder().encode(message);
+        // Hash the ArrayBuffer
+        return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
+          return Array.prototype.map
+            .call(new Uint8Array(hash), function (x) {
+              return ("00" + x.toString(16)).slice(-2);
+            })
+            .join("");
+        });
+      },
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";

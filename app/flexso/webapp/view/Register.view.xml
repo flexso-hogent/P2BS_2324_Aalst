@@ -134,6 +134,7 @@
                         placeholder="{i18n>streetPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Hogentstraat"
                     />
 
                     <!-- House Number Label -->
@@ -150,6 +151,7 @@
                         placeholder="{i18n>hnumberPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="1"
                     />
 
                     <!-- City Label -->
@@ -166,6 +168,7 @@
                         placeholder="{i18n>cityPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Gent"
                     />
 
                     <!-- Country Label -->
@@ -182,6 +185,7 @@
                         placeholder="{i18n>countryPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="Belgium"
                     />
 
                     <!-- Zip Code Label -->
@@ -198,6 +202,7 @@
                         placeholder="{i18n>zipPlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="9000"
                     />
 
                     <!-- Phone Label -->
@@ -214,6 +219,7 @@
                         placeholder="{i18n>phonePlaceholder}"
                         class="registerInput"
                         required="true"
+                        value="0477777777"
                     />
 
                     <!-- Gender Label -->

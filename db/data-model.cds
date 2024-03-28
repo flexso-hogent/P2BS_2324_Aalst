@@ -89,8 +89,9 @@ entity Sessions {
 }
 
 entity Users {
-    key userID   : UUID; // Changed to UUID
-        name     : String;
+    key userID   : Integer; // Changed to UUID
+        firstname     : String;
+        lastname      : String;
         email    : String;
         password : String;
         company  : String;
