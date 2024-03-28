@@ -1,12 +1,5 @@
-<mvc:View
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    controllerName="flexso.controller.Overview"
->
-    <Page
-        id="overviewPage"
-        title="{i18n>overview}"
-    >
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flexso.controller.Overview">
+    <Page id="overviewPage" title="{i18n>overview}">
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
