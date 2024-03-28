@@ -298,6 +298,18 @@
                         />
 
                         <Text
+                            id="firstNameText"
+                            text="{i18n>firstname} {userInfo>/firstname}"
+                            class="userInfoText"
+                        />
+
+                        <Text
+                            id="lastNameText"
+                            text="{i18n>lastname} {userInfo>/lastname}"
+                            class="userInfoText"
+                        />
+
+                        <Text
                             id="companyText"
                             text="{i18n>companylabel}: {userInfo>/company}"
                             class="userInfoText"

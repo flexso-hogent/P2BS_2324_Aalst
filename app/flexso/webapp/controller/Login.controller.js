@@ -73,6 +73,8 @@ sap.ui.define(
 
               // Store user information in local storage
               localStorage.setItem("email", user.email);
+              localStorage.setItem("firstname", user.firstname);
+              localStorage.setItem("lastname", user.lastname);
               localStorage.setItem("role", user.role);
               localStorage.setItem("company", user.company);
               localStorage.setItem("userID", user.ID);

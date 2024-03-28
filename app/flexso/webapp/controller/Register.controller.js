@@ -29,6 +29,8 @@ sap.ui.define(
       onRegister: async function () {
         var that = this;
         var email = this.getView().byId("emailInput").getValue();
+        var firstname = this.getView().byId("firstnameInput").getValue();
+        var lastname = this.getView().byId("lastnameInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
         var role = this.getView().byId("roleInput").getValue();
         var password = this.getView().byId("passwordInput").getValue(); // Plain password
@@ -60,6 +62,8 @@ sap.ui.define(
 
         var requiredFields = [
           email,
+          firstname,
+          lastname,
           company,
           role,
           password,
@@ -111,6 +115,8 @@ sap.ui.define(
           } else {
             var requestData = {
               email: email,
+              firstname: firstname,
+              lastname: lastname,
               company: company,
               role: role,
               password: hashedPassword, // Send hashed password

@@ -66,6 +66,8 @@ sap.ui.define(
 
               var oUserDataModel = new sap.ui.model.json.JSONModel({
                 email: userData.email,
+                firstname: userData.firstname,
+                lastname: userData.lastname,
                 company: userData.company,
                 role: userData.role,
                 userID: userData.userID,
@@ -94,6 +96,7 @@ sap.ui.define(
       onUpdateProfilePress: function () {
         var that = this;
         var updatedEmail = this.getView().byId("emailInput").getValue();
+
         var updatedCompany = this.getView().byId("companyInput").getValue();
         var updatedRole = this.getView().byId("roleInput").getValue();
         // var updatedBdate = this.getView().byId("bdateInput").getValue();

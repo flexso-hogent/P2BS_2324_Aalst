@@ -72,6 +72,37 @@
                         required="true"
                         value="test@gmail.com"
                     />
+                    <Label
+                        id="_IDGenLabel9"
+                        text="{i18n>firstNameLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- firstname Input -->
+                    <Input
+                        id="firstnameInput"
+                        type="Text"
+                        placeholder="{i18n>firstNamePlaceholder}"
+                        class="registerInput"
+                        required="true"
+                        value="TestNaam"
+                    />
+
+                    <Label
+                        id="_IDGenLabel10"
+                        text="{i18n>lastNameLabel}"
+                        class="registerLabel"
+                    />
+
+                    <!-- lastname Input -->
+                    <Input
+                        id="lastnameInput"
+                        type="Text"
+                        placeholder="{i18n>lastNamePlaceholder}"
+                        class="registerInput"
+                        required="true"
+                        value="TestAchternaam"
+                    />
 
                     <!--Company Label-->
                     <Label
