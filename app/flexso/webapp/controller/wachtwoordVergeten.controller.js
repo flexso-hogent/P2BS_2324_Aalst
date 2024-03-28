@@ -82,6 +82,16 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
     });
   }
 );

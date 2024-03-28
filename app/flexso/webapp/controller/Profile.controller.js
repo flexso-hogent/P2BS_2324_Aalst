@@ -221,6 +221,17 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("feedback");
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
+
       onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm("Are you sure you want to log out?", {

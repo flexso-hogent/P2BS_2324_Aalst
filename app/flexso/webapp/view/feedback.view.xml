@@ -5,7 +5,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     displayBlock="true"
->   
+>
     <Page
         id="feedbackPage"
         title="Feedback"
@@ -15,24 +15,25 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
+                />
+                <Button
                     id="_IDGenButton3"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
+                    icon="sap-icon://home"
+                    press="onBackToHome"
                 />
                 <Button
                     id="_IDGenButton4"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
+                    icon="sap-icon://person-placeholder"
+                    press="onProfileButtonClick"
                 />
                 <Button
-                    id="_IDGenBackHomeButton"
-                    text="{i18n>backToHomeButton}"
-                    press="onBackToHome"
+                    id="_IDGenButton8"
+                    icon="sap-icon://log"
+                    press="onLogoutPress"
                 />
-                <Button 
-                    id="ProfileButton"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfilePressed"/>
             </Toolbar>
         </headerContent>
         <content>
@@ -68,53 +69,116 @@
 
                     <!--Sessie input-->
                     <OverflowToolbar id="_IDGenOverflowToolbar1">
-                        <SearchField id="sessieZoekenInput" liveChange="onSearch" width="100%" />
+                        <SearchField
+                            id="sessieZoekenInput"
+                            liveChange="onSearch"
+                            width="100%"
+                        />
                     </OverflowToolbar>
 
                     <!--Tabel-->
-                    <Table id="sessionTable"
+                    <Table
+                        id="sessionTable"
                         inset="false"
                         items="{/Sessions}"
-                        width="100%">
-
-                        <columns >
-                            <Column id="clmSessionTitel" width="60%">
-                                <Text id="lblSessionTitel" text="{i18n>SessionNameTable}" />
+                        width="100%"
+                    >
+                        <columns>
+                            <Column
+                                id="clmSessionTitel"
+                                width="60%"
+                            >
+                                <Text
+                                    id="lblSessionTitel"
+                                    text="{i18n>SessionNameTable}"
+                                />
                             </Column>
-                            <Column id="clmSessionStartDate" minScreenWidth="Tablet" demandPopin="true">
-                                <Text id="lblSessionStartDate" text="{i18n>SessionStartTable}" />
+                            <Column
+                                id="clmSessionStartDate"
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                            >
+                                <Text
+                                    id="lblSessionStartDate"
+                                    text="{i18n>SessionStartTable}"
+                                />
                             </Column>
-                            <Column id="clmSessionEndDate" minScreenWidth="Tablet" demandPopin="true">
-                                <Text id="lblSessionEndDate" text="{i18n>SessionEndTable}" />
+                            <Column
+                                id="clmSessionEndDate"
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                            >
+                                <Text
+                                    id="lblSessionEndDate"
+                                    text="{i18n>SessionEndTable}"
+                                />
                             </Column>
-                            <Column id="clmSessionStartTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionStartTime" text="{i18n>StartTimeTable}" />
+                            <Column
+                                id="clmSessionStartTime"
+                                minScreenWidth="Desktop"
+                                demandPopin="true"
+                                hAlign="End"
+                            >
+                                <Text
+                                    id="lblSessionStartTime"
+                                    text="{i18n>StartTimeTable}"
+                                />
                             </Column>
-                            <Column id="clmSessionEndTime" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionEndTime" text="{i18n>EndTimeTable}" />
+                            <Column
+                                id="clmSessionEndTime"
+                                minScreenWidth="Desktop"
+                                demandPopin="true"
+                                hAlign="End"
+                            >
+                                <Text
+                                    id="lblSessionEndTime"
+                                    text="{i18n>EndTimeTable}"
+                                />
                             </Column>
-                            <Column id="clmSessionSpeaker" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                <Text id="lblSessionSpeaker" text="{i18n>SessionSpeakerTable}" />
+                            <Column
+                                id="clmSessionSpeaker"
+                                minScreenWidth="Desktop"
+                                demandPopin="true"
+                                hAlign="End"
+                            >
+                                <Text
+                                    id="lblSessionSpeaker"
+                                    text="{i18n>SessionSpeakerTable}"
+                                />
                             </Column>
                         </columns>
                         <items>
-                            <ColumnListItem id="_IDGenColumnListItem1"
-                            vAlign="Middle"
-                            type="Navigation"
-                            press="onSessionSelect">
+                            <ColumnListItem
+                                id="_IDGenColumnListItem1"
+                                vAlign="Middle"
+                                type="Navigation"
+                                press="onSessionSelect"
+                            >
                                 <cells>
-                                    <Text id="txtSessionTitel"
-                                    text="{title}" />
-                                    <Text id="txtSessionStartDate"
-                                    text="{startDate}" />
-                                    <Text id="txtSessionEndDate"
-                                    text="{endDate}" />
-                                    <Text id="txtSessionStartTime"
-                                    text="{startTime}" />
-                                    <Text id="txtSessionEndTime"
-                                    text="{endTime}" />
-                                    <Text id="txtSessionSpeaker"
-                                    text="{speaker}" />
+                                    <Text
+                                        id="txtSessionTitel"
+                                        text="{title}"
+                                    />
+                                    <Text
+                                        id="txtSessionStartDate"
+                                        text="{startDate}"
+                                    />
+                                    <Text
+                                        id="txtSessionEndDate"
+                                        text="{endDate}"
+                                    />
+                                    <Text
+                                        id="txtSessionStartTime"
+                                        text="{startTime}"
+                                    />
+                                    <Text
+                                        id="txtSessionEndTime"
+                                        text="{endTime}"
+                                    />
+                                    <Text
+                                        id="txtSessionSpeaker"
+                                        text="{speaker}"
+                                    />
                                 </cells>
                             </ColumnListItem>
                         </items>
@@ -159,4 +223,28 @@
             </VBox>
         </content>
     </Page>
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox id="_IDGenVBox3">
+                <Button
+                    id="_IDGenButton9"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>

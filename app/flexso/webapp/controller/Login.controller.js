@@ -32,6 +32,16 @@ sap.ui.define(
           this.getView().byId("stayLoggedInCheckbox").setSelected(true);
         }
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
 
       onLoginPress: async function () {
         var username = this.getView().byId("usernameInput").getValue();

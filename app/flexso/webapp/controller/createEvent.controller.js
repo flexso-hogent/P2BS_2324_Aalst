@@ -111,6 +111,16 @@ sap.ui.define(
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
     });
   }
 );

@@ -151,6 +151,16 @@ sap.ui.define(
           MessageToast.show("Error during registration: " + error);
         }
       },
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
 
       // SHA-256 hashing function
       sha256: function (message) {

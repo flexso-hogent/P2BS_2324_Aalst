@@ -15,18 +15,13 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
-                    id="_IDGenButton3"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
                 />
                 <Button
-                    id="_IDGenButton4"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                />
-                <Button
-                    id="_IDGenBackHomeButton"
-                    text="{i18n>back}"
+                    id="backButton"
+                    icon="sap-icon://nav-back"
                     press="onBackToHome"
                 />
             </Toolbar>
@@ -329,4 +324,28 @@
             </VBox>
         </content>
     </Page>
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox id="_IDGenVBox3">
+                <Button
+                    id="_IDGenButton9"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>

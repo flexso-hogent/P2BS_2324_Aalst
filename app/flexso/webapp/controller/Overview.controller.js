@@ -33,6 +33,7 @@ sap.ui.define(
           oPopover.close();
         }
       },
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
