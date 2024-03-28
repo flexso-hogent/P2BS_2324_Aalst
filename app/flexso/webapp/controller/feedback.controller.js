@@ -124,7 +124,6 @@ sap.ui.define(
         var oTextArea = this.getView().byId("reviewTextArea");
 
         var feedbackData = {
-          FeedbackID: generateUUID(),
           Username: loggedInUserEmail,
           SessionTitle: sessie,
           Rating: oRatingIndicator.getValue(),

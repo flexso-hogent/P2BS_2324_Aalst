@@ -26,7 +26,7 @@ entity Events {
 }
 
 entity Feedback {
-    key FeedbackID      : UUID;
+    key FeedbackID      : Integer;
         Username        : String; // Association to Session
         SessionTitle    : String; // Association to Session
         Rating          : Integer;
