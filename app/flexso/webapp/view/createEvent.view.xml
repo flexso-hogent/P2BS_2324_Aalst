@@ -33,49 +33,28 @@
                 />
             </Toolbar>
         </headerContent>
-        <content>
-            <VBox
-                id="_IDGenVBox1"
-                class="sapUiSmallMargin"
-            >
-                <Input
-                    id="_IDGenInput1"
-                    value="{path: '/name', type: 'sap.ui.model.type.String', constraints: {notEmpty: true}}"
-                    placeholder="{i18n>eventName}"
-                    required="true"
-                />
-                <DatePicker
-                    id="_IDGenDatePicker1"
-                    value="{path: '/startDate'}"
-                    placeholder="{i18n>startDate}"
-                    required="true"
-                />
-                <DatePicker
-                    id="_IDGenDatePicker2"
-                    value="{path: '/endDate'}"
-                    placeholder="{i18n>endDate}"
-                    required="true"
-                />
-                <Input
-                    id="_IDGenInput2"
-                    value="{path: '/location', type: 'sap.ui.model.type.String', constraints: {notEmpty: true}}"
-                    placeholder="{i18n>location}"
-                    required="true"
-                />
-                <TextArea
-                    id="_IDGenTextArea1"
-                    value="{path: '/description'}"
-                    placeholder="{i18n>description}"
-                    required="true"
-                />
-
-                <Button
-                    id="_IDGenButton1"
-                    text="{i18n>EventAanmakenButton}"
-                    press="onRegisterPress"
-                />
-            </VBox>
-        </content>
+       <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%" height="100%" class="centerContainer">
+                <l:content>
+                    <VBox id="_IDGenVBox1" class="loginBox" width="1000px"> 
+                        <Label id="_IDGenLabel1" text="{i18n>eventName}" />
+                        <Input id="_IDGenInput1" value="{path: '/name', type: 'sap.ui.model.type.String'}" required="true" />
+                        
+                        <Label id="_IDGenLabel2" text="{i18n>startDate}" />
+                        <DatePicker id="_IDGenDatePicker1" value="{path: '/startDate'}" required="true" />
+                        
+                        <Label id="_IDGenLabel3" text="{i18n>endDate}" />
+                        <DatePicker id="_IDGenDatePicker2" value="{path: '/endDate'}" required="true"  />
+                        
+                        <Label id="_IDGenLabel4" text="{i18n>location}" />
+                        <Input id="_IDGenInput2" value="{path: '/location', type: 'sap.ui.model.type.String'}" required="true" />
+                        
+                        <Label id="_IDGenLabel5" text="{i18n>description}" />
+                        <TextArea id="_IDGenTextArea1" value="{path: '/description'}" required="true" width="100%" rows = "3"/>
+                        
+                        <Button id="_IDGenButton1" text="{i18n>EventAanmakenButton}" press="onRegisterPress" />
+                    </VBox>
+                </l:content>
+            </l:VerticalLayout>
     </Page>
     <Popover
         id="popover"
