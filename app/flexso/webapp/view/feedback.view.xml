@@ -24,7 +24,7 @@
                     icon="sap-icon://home"
                     press="onBackToHome"
                 />
-                <Button
+             <Button
                     id="_IDGenButton4"
                     icon="sap-icon://person-placeholder"
                     press="onProfileButtonClick"
