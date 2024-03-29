@@ -1,7 +1,34 @@
 sessionID,Title,startDate,endDate,startTime,endTime,Room,Description,Speaker,totalSeats,EventID
-1,"Introduction to AI","2024-04-10","2024-04-13","09:00:00","15:00:00","Room A","Overview of artificial intelligence concepts","John Doe",50,"Conference Center","e1"
-2,"Web Development Basics","2024-05-15","2024-05-20","10:00:00","12:30:00","Room B","Introduction to web development technologies","Jane Smith",40,"Tech Institute","e2"
-3,"Data Science Fundamentals","2024-06-20","2024-06-24","13:00:00","13:00:00","Room C","Foundational principles of data science","Alex Johnson",60,"Data Science Lab","e3"
-4,"Blockchain Applications","2024-07-25","2024-07-26","11:30:00","11:30:00","Room D","Exploring real-world applications of blockchain technology","Emily Brown",55,"Blockchain Center","e4"
-5,"Startup Pitch Session","2024-08-30","2024-09-02","10:00:00","10:00:00","Room E","Witness exciting startup pitches and innovative ideas","Mark Wilson",45,"Startup Hub","e5"
-6,"Impact of AI on the economy","2024-03-22","2024-03-25","11:30:00","11:30:00","Room F", "What's the impact of Artificial Intelligence on the current Economy","Mark wilson",2,"Conference Center","e1"
+sessionID1,Tech Summit 2024 - Session 1,2024-03-15,2024-03-17,09:00,12:00,Main Hall,Session 1 of Tech Summit 2024,TBD,100,eventID1
+sessionID2,Tech Summit 2024 - Session 2,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 2 of Tech Summit 2024,TBD,100,eventID1
+sessionID3,Tech Summit 2024 - Session 3,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 3 of Tech Summit 2024,TBD,100,eventID1
+sessionID4,Tech Summit 2024 - Session 4,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 4 of Tech Summit 2024,TBD,100,eventID1
+sessionID5,Data Science Conference - Session 1,2024-03-10,2024-03-12,09:00,12:00,Main Hall,Session 1 of Data Science Conference,TBD,100,eventID2
+sessionID6,Data Science Conference - Session 2,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 2 of Data Science Conference,TBD,100,eventID2
+sessionID7,Data Science Conference - Session 3,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 3 of Data Science Conference,TBD,100,eventID2
+sessionID8,Data Science Conference - Session 4,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 4 of Data Science Conference,TBD,100,eventID2
+sessionID9,Startup Weekend - Session 1,2024-10-05,2024-10-07,09:00,12:00,Main Hall,Session 1 of Startup Weekend,TBD,100,eventID3
+sessionID10,Startup Weekend - Session 2,2024-10-05,2024-10-07,09:00,12:00,Main Hall,Session 2 of Startup Weekend,TBD,100,eventID3
+sessionID11,Startup Weekend - Session 3,2024-10-05,2024-10-07,09:00,12:00,Main Hall,Session 3 of Startup Weekend,TBD,100,eventID3
+sessionID12,Startup Weekend - Session 4,2024-10-05,2024-10-07,09:00,12:00,Main Hall,Session 4 of Startup Weekend,TBD,100,eventID3
+sessionID13,Digital Marketing Summit - Session 1,2024-12-08,2024-12-09,09:00,12:00,Main Hall,Session 1 of Digital Marketing Summit,TBD,100,eventID4
+sessionID14,Digital Marketing Summit - Session 2,2024-12-08,2024-12-09,09:00,12:00,Main Hall,Session 2 of Digital Marketing Summit,TBD,100,eventID4
+sessionID15,Digital Marketing Summit - Session 3,2024-12-08,2024-12-09,09:00,12:00,Main Hall,Session 3 of Digital Marketing Summit,TBD,100,eventID4
+sessionID16,Digital Marketing Summit - Session 4,2024-12-08,2024-12-09,09:00,12:00,Main Hall,Session 4 of Digital Marketing Summit,TBD,100,eventID4
+sessionID17,AI & Robotics Expo - Session 1,2024-11-20,2024-11-22,09:00,12:00,Main Hall,Session 1 of AI & Robotics Expo,TBD,100,eventID5
+sessionID18,AI & Robotics Expo - Session 2,2024-11-20,2024-11-22,09:00,12:00,Main Hall,Session 2 of AI & Robotics Expo,TBD,100,eventID5
+sessionID19,AI & Robotics Expo - Session 3,2024-11-20,2024-11-22,09:00,12:00,Main Hall,Session 3 of AI & Robotics Expo,TBD,100,eventID5
+sessionID20,AI & Robotics Expo - Session 4,2024-11-20,2024-11-22,09:00,12:00,Main Hall,Session 4 of AI & Robotics Expo,TBD,100,eventID5
+sessionID21,Blockchain Summit - Session 1,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 1 of Blockchain Summit,TBD,100,eventID6
+sessionID22,Blockchain Summit - Session 2,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 2 of Blockchain Summit,TBD,100,eventID6
+sessionID23,Blockchain Summit - Session 3,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 3 of Blockchain Summit,TBD,100,eventID6
+sessionID24,Blockchain Summit - Session 4,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 4 of Blockchain Summit,TBD,100,eventID6
+sessionID25,Cybersecurity Conference - Session 1,2024-03-28,2024-03-30,09:00,12:00,Main Hall,Session 1 of Cybersecurity Conference,TBD,100,eventID7
+sessionID26,Cybersecurity Conference - Session 2,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 2 of Cybersecurity Conference,TBD,100,eventID7
+sessionID27,Cybersecurity Conference - Session 3,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 3 of Cybersecurity Conference,TBD,100,eventID7
+sessionID28,Cybersecurity Conference - Session 4,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 4 of Cybersecurity Conference,TBD,100,eventID7
+sessionID29,Healthcare Innovation Forum - Session 1,2024-03-15,2024-03-17,09:00,12:00,Main Hall,Session 1 of Healthcare Innovation Forum,TBD,100,eventID8
+sessionID30,Healthcare Innovation Forum - Session 2,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 2 of Healthcare Innovation Forum,TBD,100,eventID8
+sessionID31,Healthcare Innovation Forum - Session 3,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 3 of Healthcare Innovation Forum,TBD,100,eventID8
+sessionID32,Healthcare Innovation Forum - Session 4,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 4 of Healthcare Innovation Forum,TBD,100,eventID8
+sessionID33,Fintech Expo - Session 1,2024-11-05,2024-11-07,09:00,12:00,Main Hall,Session 1 of Fintech Expo,TBD,100,eventID
