@@ -111,6 +111,24 @@ sap.ui.define(
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
       },
+      onLogoutPress: function () {
+        var that = this;
+        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              localStorage.clear();
+              var oRouter = UIComponent.getRouterFor(that);
+              oRouter.navTo("login");
+            }
+          },
+        });
+      },
+      onProfileButtonClick: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("profile");
+      },
+
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");

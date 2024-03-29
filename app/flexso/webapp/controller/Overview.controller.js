@@ -51,6 +51,19 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
+      onLogoutPress: function () {
+        var that = this;
+        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              localStorage.clear();
+              var oRouter = UIComponent.getRouterFor(that);
+              oRouter.navTo("login");
+            }
+          },
+        });
+      },
 
       loadData: function () {
         var that = this;
