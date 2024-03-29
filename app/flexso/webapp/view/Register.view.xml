@@ -133,18 +133,18 @@
                         value="Admin"
                     />
                     <!-- Birthdate Label -->
-                    <!-- <Label
+                    <Label
                         id="_IDGenLabel1"
                         text="{i18n>birthdateLabel}"
                         class="registerLabel"
-                    /> -->
+                    />
 
                     <!-- Birthdate Input -->
-                    <!-- <DatePicker
-                        id="birthdateInput"
+                    <DatePicker
+                        id="bdateInput"
                         class="registerInput"
                         required="true"
-                    /> -->
+                    />
 
                     <!-- Street Label -->
                     <Label

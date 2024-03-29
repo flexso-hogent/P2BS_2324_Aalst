@@ -119,20 +119,22 @@
                                 width="100%"
                                 class="roleInput"
                             />
+
                             <!-- Birthdate Label -->
-                            <!-- <Label
+                            <Label
                                 id="_IDGenLabel9"
                                 text="{i18n>birthdateLabel}"
                                 class="profileLabel"
-                            /> -->
+                            />
 
                             <!-- Birthdate Input -->
-                            <!-- <DatePicker
+
+                            <DatePicker
                                 id="bdateInput"
-                                class="profileInput"
-                                value="{userInfo>/bdate}"
+                                class="profileLabel"
                                 editable="false"
-                            /> -->
+                                value="{userInfo>/bdate}"
+                            />
 
                             <!-- Street Label -->
                             <Label
@@ -320,12 +322,6 @@
                             text="{i18n>rolelabel}: {userInfo>/role}"
                             class="userInfoText"
                         />
-                        <!-- Birthdate Text -->
-                        <!-- <Text
-                            id="bdateText"
-                            text="{i18n>birthdateLabel}: {userInfo>/bdate}"
-                            class="userInfoText"
-                        /> -->
 
                         <!-- Street Text -->
                         <Text
@@ -375,37 +371,42 @@
                             text="{i18n>genderLabel}: {= ${userInfo>/gender} === 'male' ? ${i18n>genderMale} : ${userInfo>/gender} === 'female' ? ${i18n>genderFemale} : ${i18n>genderOther}}"
                             class="userInfoText"
                         />
+                        <!-- Birthdate Text -->
+                        <Text
+                            id="bdateText"
+                            text="{i18n>birthdateLabel}: {userInfo>/bdate}"
+                            class="userInfoText"
+                        />
                     </VBox>
                 </HBox>
             </VBox>
-          
         </content>
     </Page>
-      <Popover
-                id="popover"
-                placement="Auto"
-                showArrow="true"
-                title="{i18n>Menu}"
-                contentWidth="auto"
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox
+                id="_IDGenVBox"
+                width="100%"
             >
-                <content>
-                    <VBox
-                        id="_IDGenVBox"
-                        width="100%"
-                    >
-                        <Button
-                            id="_IDGenButton"
-                            text="{i18n>EN}"
-                            press="onSwitchToEnglish"
-                            width="100%"
-                        />
-                        <Button
-                            id="_IDGenButton10"
-                            text="{i18n>NL}"
-                            press="onSwitchToDutch"
-                            width="100%"
-                        />
-                    </VBox>
-                </content>
-            </Popover>
+                <Button
+                    id="_IDGenButton"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>
