@@ -1,9 +1,9 @@
 sessionID,Title,startDate,endDate,startTime,endTime,Room,Description,Speaker,totalSeats,EventID
-sessionID1,Tech Summit 2024 - Session 1,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 1 of Tech Summit 2024,TBD,100,eventID1
+sessionID1,Tech Summit 2024 - Session 1,2024-03-15,2024-03-17,09:00,12:00,Main Hall,Session 1 of Tech Summit 2024,TBD,100,eventID1
 sessionID2,Tech Summit 2024 - Session 2,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 2 of Tech Summit 2024,TBD,100,eventID1
 sessionID3,Tech Summit 2024 - Session 3,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 3 of Tech Summit 2024,TBD,100,eventID1
 sessionID4,Tech Summit 2024 - Session 4,2024-09-15,2024-09-17,09:00,12:00,Main Hall,Session 4 of Tech Summit 2024,TBD,100,eventID1
-sessionID5,Data Science Conference - Session 1,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 1 of Data Science Conference,TBD,100,eventID2
+sessionID5,Data Science Conference - Session 1,2024-03-10,2024-03-12,09:00,12:00,Main Hall,Session 1 of Data Science Conference,TBD,100,eventID2
 sessionID6,Data Science Conference - Session 2,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 2 of Data Science Conference,TBD,100,eventID2
 sessionID7,Data Science Conference - Session 3,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 3 of Data Science Conference,TBD,100,eventID2
 sessionID8,Data Science Conference - Session 4,2024-11-10,2024-11-12,09:00,12:00,Main Hall,Session 4 of Data Science Conference,TBD,100,eventID2
@@ -23,11 +23,11 @@ sessionID21,Blockchain Summit - Session 1,2024-10-25,2024-10-26,09:00,12:00,Main
 sessionID22,Blockchain Summit - Session 2,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 2 of Blockchain Summit,TBD,100,eventID6
 sessionID23,Blockchain Summit - Session 3,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 3 of Blockchain Summit,TBD,100,eventID6
 sessionID24,Blockchain Summit - Session 4,2024-10-25,2024-10-26,09:00,12:00,Main Hall,Session 4 of Blockchain Summit,TBD,100,eventID6
-sessionID25,Cybersecurity Conference - Session 1,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 1 of Cybersecurity Conference,TBD,100,eventID7
+sessionID25,Cybersecurity Conference - Session 1,2024-03-28,2024-03-30,09:00,12:00,Main Hall,Session 1 of Cybersecurity Conference,TBD,100,eventID7
 sessionID26,Cybersecurity Conference - Session 2,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 2 of Cybersecurity Conference,TBD,100,eventID7
 sessionID27,Cybersecurity Conference - Session 3,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 3 of Cybersecurity Conference,TBD,100,eventID7
 sessionID28,Cybersecurity Conference - Session 4,2024-09-28,2024-09-30,09:00,12:00,Main Hall,Session 4 of Cybersecurity Conference,TBD,100,eventID7
-sessionID29,Healthcare Innovation Forum - Session 1,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 1 of Healthcare Innovation Forum,TBD,100,eventID8
+sessionID29,Healthcare Innovation Forum - Session 1,2024-03-15,2024-03-17,09:00,12:00,Main Hall,Session 1 of Healthcare Innovation Forum,TBD,100,eventID8
 sessionID30,Healthcare Innovation Forum - Session 2,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 2 of Healthcare Innovation Forum,TBD,100,eventID8
 sessionID31,Healthcare Innovation Forum - Session 3,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 3 of Healthcare Innovation Forum,TBD,100,eventID8
 sessionID32,Healthcare Innovation Forum - Session 4,2024-12-15,2024-12-17,09:00,12:00,Main Hall,Session 4 of Healthcare Innovation Forum,TBD,100,eventID8
