@@ -33,6 +33,8 @@ sap.ui.define(
         var lastname = this.getView().byId("lastnameInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
         var role = this.getView().byId("roleInput").getValue();
+        var bdatePicker = this.getView().byId("bdateInput");
+        var bdate = bdatePicker.getDateValue(); // Get the selected date from the DatePicker control
         var password = this.getView().byId("passwordInput").getValue(); // Plain password
         var passwordRepeat = this.getView()
           .byId("confirmPasswordInput")
@@ -66,6 +68,7 @@ sap.ui.define(
           lastname,
           company,
           role,
+          bdate,
           password,
           passwordRepeat,
           street,
@@ -113,12 +116,16 @@ sap.ui.define(
           if (data.results && data.results.length > 0) {
             MessageToast.show("Registration failed! User already exists.");
           } else {
+            // Format the date to YYYY-MM-DD format
+            var formattedBdate = bdate.toISOString().split("T")[0];
+
             var requestData = {
               email: email,
               firstname: firstname,
               lastname: lastname,
               company: company,
               role: role,
+              bdate: formattedBdate, // Use the formatted date
               password: hashedPassword, // Send hashed password
               street: street,
               hnumber: hnumber,
@@ -151,6 +158,7 @@ sap.ui.define(
           MessageToast.show("Error during registration: " + error);
         }
       },
+
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
