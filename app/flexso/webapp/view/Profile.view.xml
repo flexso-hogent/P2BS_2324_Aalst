@@ -378,7 +378,10 @@
                     </VBox>
                 </HBox>
             </VBox>
-            <Popover
+          
+        </content>
+    </Page>
+      <Popover
                 id="popover"
                 placement="Auto"
                 showArrow="true"
@@ -405,6 +408,4 @@
                     </VBox>
                 </content>
             </Popover>
-        </content>
-    </Page>
 </mvc:View>
