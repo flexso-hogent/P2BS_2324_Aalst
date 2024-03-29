@@ -65,7 +65,7 @@ sap.ui.define(
                 zip: userData.zip,
                 phone: userData.phone,
                 gender: userData.gender,
-                birthdate: userData.bdate,
+                bdate: userData.bdate,
               });
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
@@ -93,6 +93,12 @@ sap.ui.define(
         var updatedPhone = parseInt(
           this.getView().byId("phoneInput").getValue()
         );
+        var updatedBdate = this.getView().byId("bdateInput").getDateValue();
+        // Convert date to string in the format YYYY-MM-DD
+        var formattedBdate = updatedBdate
+          ? updatedBdate.toISOString().split("T")[0]
+          : null;
+
         var updatedGender = this.getView().byId("genderInput").getSelectedKey();
         var dialog = new sap.m.Dialog({
           title: "Confirm",
@@ -114,7 +120,7 @@ sap.ui.define(
                 zip: updatedZip,
                 phone: updatedPhone,
                 gender: updatedGender,
-                birthdate: updatedBdate,
+                bdate: formattedBdate,
               };
               var userId;
               $.ajax({
@@ -182,14 +188,16 @@ sap.ui.define(
         this.getView().getModel("i18n").refresh();
       },
 
-      formatDate: function (date) {
-        if (!date) {
-          return null;
-        }
-        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-          pattern: "dd MMM yyyy",
-        });
-        return oDateFormat.format(date);
+      formatter: {
+        formatDate: function (date) {
+          if (!date) {
+            return null;
+          }
+          var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern: "dd MMM yyyy",
+          });
+          return oDateFormat.format(date);
+        },
       },
 
       onBackToHome: function () {

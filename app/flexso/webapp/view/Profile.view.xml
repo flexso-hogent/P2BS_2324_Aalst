@@ -129,11 +129,11 @@
 
                             <!-- Birthdate Input -->
 
-<DatePicker
-    id="bdateInput"
-    class="profileLabel"
-    editable="true"
-    value="{
+                            <DatePicker
+                                id="bdateInput"
+                                class="profileLabel"
+                                editable="true"
+                                value="{
         path: 'userInfo>/birthdate',
         type: 'sap.ui.model.type.Date',
         formatOptions: {
@@ -142,12 +142,9 @@
         },
         formatter: '.formatter.formatDate'
     }"
-    valueFormat="yyyy-MM-dd"
-    displayFormat="dd-MM-yyyy"
-/>
-
-
-
+                                valueFormat="yyyy-MM-dd"
+                                displayFormat="dd-MM-yyyy"
+                            />
 
                             <!-- Street Label -->
                             <Label
@@ -335,12 +332,6 @@
                             text="{i18n>rolelabel}: {userInfo>/role}"
                             class="userInfoText"
                         />
-                        <!-- Birthdate Text -->
-                        <!-- <Text
-                            id="bdateText"
-                            text="{i18n>birthdateLabel}: {userInfo>/bdate}"
-                            class="userInfoText"
-                        /> -->
 
                         <!-- Street Text -->
                         <Text
@@ -396,38 +387,36 @@
                             text="{i18n>birthdateLabel}: {userInfo>/bdate}"
                             class="userInfoText"
                         />
-                        
                     </VBox>
                 </HBox>
             </VBox>
-          
         </content>
     </Page>
-      <Popover
-                id="popover"
-                placement="Auto"
-                showArrow="true"
-                title="{i18n>Menu}"
-                contentWidth="auto"
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox
+                id="_IDGenVBox"
+                width="100%"
             >
-                <content>
-                    <VBox
-                        id="_IDGenVBox"
-                        width="100%"
-                    >
-                        <Button
-                            id="_IDGenButton"
-                            text="{i18n>EN}"
-                            press="onSwitchToEnglish"
-                            width="100%"
-                        />
-                        <Button
-                            id="_IDGenButton10"
-                            text="{i18n>NL}"
-                            press="onSwitchToDutch"
-                            width="100%"
-                        />
-                    </VBox>
-                </content>
-            </Popover>
+                <Button
+                    id="_IDGenButton"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>
