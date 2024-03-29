@@ -1,11 +1,11 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/format/DateFormat",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, DateFormat, MessageToast, UIComponent) {
     "use strict";
 
     return Controller.extend("flexso.controller.Profile", {
@@ -14,19 +14,15 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
         );
-
-        var oImageModel = new JSONModel({
+        var oImageModel = new sap.ui.model.json.JSONModel({
           path: oRootPath,
           profileImagePath: oProfileImagePath,
         });
-
         this.getView().setModel(oImageModel, "imageModel");
-
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.attachRoutePatternMatched(this.onRoutePatternMatched, this);
       },
@@ -40,30 +36,21 @@ sap.ui.define(
 
       loadUserData: function () {
         var that = this;
-
-        // Retrieve logged-in user's email from local storage
         var loggedInUserEmail = localStorage.getItem("email");
-
         if (!loggedInUserEmail) {
           MessageToast.show("Logged-in user email not found.");
           return;
         }
-
-        // Construct the URL to fetch user data based on email
         var userDataUrl =
           "http://localhost:4004/odata/v4/catalog/Users?$filter=email eq '" +
           loggedInUserEmail +
           "'";
-
-        // Fetch user data using AJAX
         $.ajax({
           url: userDataUrl,
           type: "GET",
           success: function (data) {
             if (data.value.length > 0) {
-              // Extract user data from the response
               var userData = data.value[0];
-
               var oUserDataModel = new sap.ui.model.json.JSONModel({
                 email: userData.email,
                 firstname: userData.firstname,
@@ -71,7 +58,6 @@ sap.ui.define(
                 company: userData.company,
                 role: userData.role,
                 userID: userData.userID,
-                // bdate: userData.bdate,
                 street: userData.street,
                 hnumber: userData.hnumber,
                 city: userData.city,
@@ -79,9 +65,8 @@ sap.ui.define(
                 zip: userData.zip,
                 phone: userData.phone,
                 gender: userData.gender,
+                birthdate: userData.bdate,
               });
-
-              // Set the user data model to the view
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
               MessageToast.show("User data not found.");
@@ -96,15 +81,12 @@ sap.ui.define(
       onUpdateProfilePress: function () {
         var that = this;
         var updatedEmail = this.getView().byId("emailInput").getValue();
-
         var updatedCompany = this.getView().byId("companyInput").getValue();
         var updatedRole = this.getView().byId("roleInput").getValue();
-        // var updatedBdate = this.getView().byId("bdateInput").getValue();
         var updatedStreet = this.getView().byId("streetInput").getValue();
         var updatedHnumber = parseInt(
           this.getView().byId("hnumberInput").getValue()
         );
-
         var updatedCity = this.getView().byId("cityInput").getValue();
         var updatedCountry = this.getView().byId("countryInput").getValue();
         var updatedZip = parseInt(this.getView().byId("zipInput").getValue());
@@ -112,7 +94,6 @@ sap.ui.define(
           this.getView().byId("phoneInput").getValue()
         );
         var updatedGender = this.getView().byId("genderInput").getSelectedKey();
-        // Confirmation dialog
         var dialog = new sap.m.Dialog({
           title: "Confirm",
           type: "Message",
@@ -122,12 +103,10 @@ sap.ui.define(
           beginButton: new sap.m.Button({
             text: "Yes",
             press: function () {
-              // Construct the updated user data
               var updatedUserData = {
                 email: updatedEmail,
                 company: updatedCompany,
                 role: updatedRole,
-                // bdate: updatedBdate,
                 street: updatedStreet,
                 hnumber: updatedHnumber,
                 city: updatedCity,
@@ -135,17 +114,14 @@ sap.ui.define(
                 zip: updatedZip,
                 phone: updatedPhone,
                 gender: updatedGender,
-
-                // Add other fields if needed
+                birthdate: updatedBdate,
               };
-
-              // Get the user ID associated with the updated email
               var userId;
               $.ajax({
                 url: "http://localhost:4004/odata/v4/catalog/Users",
                 type: "GET",
                 data: { $filter: "email eq '" + updatedEmail + "'" },
-                async: false, // Ensure synchronous execution
+                async: false,
                 success: function (data) {
                   if (data.value.length > 0) {
                     userId = data.value[0].userID;
@@ -161,12 +137,8 @@ sap.ui.define(
                   return;
                 },
               });
-
-              // Construct the URL to update the user
               var updateUserUrl =
                 "http://localhost:4004/odata/v4/catalog/Users(" + userId + ")";
-
-              // Send a PATCH request to update the user
               $.ajax({
                 url: updateUserUrl,
                 type: "PATCH",
@@ -174,14 +146,12 @@ sap.ui.define(
                 data: JSON.stringify(updatedUserData),
                 success: function () {
                   MessageToast.show("Profile updated successfully");
-                  // Load user data after the update is performed
                   that.loadUserData();
                 },
                 error: function (xhr, status, error) {
                   MessageToast.show("Failed to update profile: " + error);
                 },
               });
-
               dialog.close();
             },
           }),
@@ -195,7 +165,6 @@ sap.ui.define(
             dialog.destroy();
           },
         });
-
         dialog.open();
       },
 
@@ -212,6 +181,17 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
+
+      formatDate: function (date) {
+        if (!date) {
+          return null;
+        }
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+          pattern: "dd MMM yyyy",
+        });
+        return oDateFormat.format(date);
+      },
+
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
@@ -221,10 +201,10 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("feedback");
       },
+
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
-
         if (!oPopover.isOpen()) {
           oPopover.openBy(oButton);
         } else {

@@ -119,20 +119,35 @@
                                 width="100%"
                                 class="roleInput"
                             />
+
                             <!-- Birthdate Label -->
-                            <!-- <Label
+                            <Label
                                 id="_IDGenLabel9"
                                 text="{i18n>birthdateLabel}"
                                 class="profileLabel"
-                            /> -->
+                            />
 
                             <!-- Birthdate Input -->
-                            <!-- <DatePicker
-                                id="bdateInput"
-                                class="profileInput"
-                                value="{userInfo>/bdate}"
-                                editable="false"
-                            /> -->
+
+<DatePicker
+    id="bdateInput"
+    class="profileLabel"
+    editable="true"
+    value="{
+        path: 'userInfo>/birthdate',
+        type: 'sap.ui.model.type.Date',
+        formatOptions: {
+            style: 'medium',
+            pattern: 'dd-MM-yyyy'
+        },
+        formatter: '.formatter.formatDate'
+    }"
+    valueFormat="yyyy-MM-dd"
+    displayFormat="dd-MM-yyyy"
+/>
+
+
+
 
                             <!-- Street Label -->
                             <Label
@@ -375,6 +390,13 @@
                             text="{i18n>genderLabel}: {= ${userInfo>/gender} === 'male' ? ${i18n>genderMale} : ${userInfo>/gender} === 'female' ? ${i18n>genderFemale} : ${i18n>genderOther}}"
                             class="userInfoText"
                         />
+                        <!-- Birthdate Text -->
+                        <Text
+                            id="bdateText"
+                            text="{i18n>birthdateLabel}: {userInfo>/bdate}"
+                            class="userInfoText"
+                        />
+                        
                     </VBox>
                 </HBox>
             </VBox>

@@ -97,6 +97,7 @@ sap.ui.define(
               localStorage.setItem("phone", user.phone);
               localStorage.setItem("gender", user.gender);
               localStorage.setItem("stayLoggedIn", stayLoggedIn);
+              localStorage.setItem("birtdays", user.bdate);
 
               setTimeout(() => {
                 var oRouter = UIComponent.getRouterFor(this);
