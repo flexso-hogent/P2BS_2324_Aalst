@@ -3,69 +3,86 @@
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton5"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
+                <Button id="_IDGenBackHomeButton" text="{i18n>backToHomeButton}" press="onBackToHome" />
+                <Button id="_IDGenProfileButton" icon="{imageModel>/profileImagePath}" press="onProfileButtonClick" />
             </Toolbar>
         </headerContent>
-        <List
-            id="eventList"
-            items="{eventModel>/}"
-        >
-            <items>
-                <StandardListItem
-                    id="_IDGenStandardListItem1"
-                    title="{eventModel>Name}"
-                    info="{eventModel>SDate} {i18n>until} {eventModel>EDate} "
-                    description="{eventModel>Description}"
-                />
-            </items>
-        </List>
-    </Page>
 
-    <!-- Popover should be part of the View, not a direct sibling of Page -->
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
         <content>
-            <VBox
-                id="_IDGenVBox1"
-                width="100%"
-            >
-                <Button
-                    id="_IDGenButton1"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton2"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
+            <FlexBox id="_IDGenFlexBox1" alignItems="Start">
+                <!-- EVENT BOX-->
+                <VBox width="100%" id="eventBox">
+                    <Title id="overviewTitleP" text="{i18n>Overview Title}" />
+                    <SearchField id="overviewSearchFieldP" search="onSearch" liveChange="onSearchLiveChange" placeholder="{i18n>Search}" width="50%" />
+                    
+                    <List id="overviewListP" items="{ path: 'eventModel>/' }" noDataText="{i18n>noData}" selectionChange="onEventSelect">
+                        <items>
+                            <CustomListItem id="_IDGenCustomListItem1">
+                                <HBox id="_IDGenHBox1" class="hBoxClickable">
+                                    <VBox id="_IDGenVBox1">
+                                        <Label id="_IDGenLabel7" text="{eventModel>Name}" />
+                                        <HBox id="_IDGenHBox3">
+                                            <Label id="_IDGenLabel8" text="Van: " />
+                                            <DatePicker id="_IDGenDatePicker1" value="{eventModel>SDate}" />
+                                            <Label id="_IDGenLabel9" text="Tot: " />
+                                            <DatePicker id="_IDGenDatePicker2" value="{eventModel>EDate}" />
+                                        </HBox>
+                                        <Label id="_IDGenLabel10" text="Locatie: {eventModel>location}" />
+                                        <Text id="_IDGenText5" text="Beschrijving: {eventModel>description}" />
+                                        
+                                    </VBox>
+
+                                </HBox>
+                                <Button id="_IDGenButton1" text="Bekijk sessies" press="onViewSessionsPress" />
+                            </CustomListItem>
+                        </items>
+                    </List>
+                </VBox>
+                
+                <!-- SESSIE BOX (initieel verborgen) -->
+                <VBox width="100%" id="sessionsBox" visible="false">
+                    <HBox id="_IDGenHBox2">
+                        
+                        <VBox id="_IDGenVBox4" width="100%">
+                            <Title id="_IDGenTitle2" text="Overview Sessions" />
+                            <Button id="expandSessionsButton" icon="sap-icon://slim-arrow-left" press="onExpandSessionsPress" />
+
+                            <VBox id="sessionInfoBox" visible="false">
+                                <List id="sessionsList" items="{ path: 'sessionModel>/' }" selectionChange="onSessionSelect">
+                                    <items>
+                                        <CustomListItem id="sessionListItem" press="onSessionSelect">
+                                            <HBox id="_IDGenHBox4" class="hBoxClickable">
+                                                <VBox id="_IDGenVBox5">
+                                                    <Label id="_IDGenLabel11" text="{sessionModel>title}" />
+
+                                                    <HBox id="_IDGenHBox5">
+                                                        <Label id="_IDGenLabel12" text="{i18n>Start Date}: " />
+                                                        <DatePicker id="_IDGenDatePicker3" value="{sessionModel>startDate}" />
+
+                                                        <Label id="_IDGenLabel16" text="{i18n>End Date}: " />
+                                                        <DatePicker id="_IDGenDatePicker4" value="{sessionModel>endDate}" />
+
+                                                    </HBox>
+                                                    <Label id="_IDGenLabel14" text="{i18n>Location}: {sessionModel>location}" />
+                                                    <Label id="_IDGenLabel17" text="{i18n>Speaker}: {sessionModel>speaker}" />
+                                                    <Label id="_IDGenLabel18" text="{i18n>Total Seats}: {sessionModel>totalSeats}" />
+                                                    <Label id="_IDGenLabel15" text="{i18n>Description}: {sessionModel>description}" />
+                                                </VBox>
+                                            </HBox>
+                                            <Button id="_IDGenButton2" text="Registreer" press="onRegisterPress" />
+                                        </CustomListItem>
+                                    </items>
+                                </List>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </FlexBox>
         </content>
+<<<<<<< HEAD
     </Popover>
 </mvc:View>
+=======
+    </Page>
+</mvc:View>
+>>>>>>> ee39216 (eventoverview + create session (werkt nog niet helemaal))
