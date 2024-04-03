@@ -45,7 +45,7 @@
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
                     class="createSessionLayout"
-                > 
+                >
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"
