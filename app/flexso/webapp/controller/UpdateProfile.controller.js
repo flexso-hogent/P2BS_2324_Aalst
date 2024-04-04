@@ -72,69 +72,87 @@ sap.ui.define(
           },
         });
       },
-
       onUpdateProfilePress: function () {
         var that = this;
-        var updatedUserData = {
-          email: this.getView().byId("emailInput").getValue(),
-          company: this.getView().byId("companyInput").getValue(),
-          street: this.getView().byId("streetInput").getValue(),
-          hnumber: parseInt(this.getView().byId("hnumberInput").getValue()),
-          city: this.getView().byId("cityInput").getValue(),
-          country: this.getView().byId("countryInput").getValue(),
-          zip: parseInt(this.getView().byId("zipInput").getValue()),
-          phone: parseInt(this.getView().byId("phoneInput").getValue()),
-          gender: this.getView().byId("genderInput").getSelectedKey(),
-          bdate: this.getView()
-            .byId("bdateInput")
-            .getDateValue()
-            .toISOString()
-            .split("T")[0],
-        };
 
-        var userId;
-        $.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Users",
-          type: "GET",
-          data: { $filter: "email eq '" + updatedUserData.email + "'" },
-          async: false,
-          success: function (data) {
-            if (data.value.length > 0) {
-              userId = data.value[0].userID;
-            } else {
-              MessageToast.show(
-                "User not found with the provided email address"
-              );
-              return;
-            }
-          },
-          error: function (xhr, status, error) {
-            MessageToast.show("Failed to retrieve user data: " + error);
-            return;
-          },
-        });
+        sap.m.MessageBox.confirm(
+          "Are you sure you want to update your profile?",
+          {
+            title: "Confirmation",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                // User confirmed, proceed with updating the profile
+                var updatedUserData = {
+                  email: that.getView().byId("emailInput").getValue(),
+                  company: that.getView().byId("companyInput").getValue(),
+                  street: that.getView().byId("streetInput").getValue(),
+                  hnumber: parseInt(
+                    that.getView().byId("hnumberInput").getValue()
+                  ),
+                  city: that.getView().byId("cityInput").getValue(),
+                  country: that.getView().byId("countryInput").getValue(),
+                  zip: parseInt(that.getView().byId("zipInput").getValue()),
+                  phone: parseInt(that.getView().byId("phoneInput").getValue()),
+                  gender: that.getView().byId("genderInput").getSelectedKey(),
+                  bdate: that
+                    .getView()
+                    .byId("bdateInput")
+                    .getDateValue()
+                    .toISOString()
+                    .split("T")[0],
+                };
 
-        var updateUserUrl =
-          "http://localhost:4004/odata/v4/catalog/Users(" + userId + ")";
-        $.ajax({
-          url: updateUserUrl,
-          type: "PATCH",
-          contentType: "application/json",
-          data: JSON.stringify(updatedUserData),
-          success: function () {
-            MessageToast.show("Profile updated successfully");
-            setTimeout(function () {
-              that.loadUserData();
+                var userId;
+                $.ajax({
+                  url: "http://localhost:4004/odata/v4/catalog/Users",
+                  type: "GET",
+                  data: { $filter: "email eq '" + updatedUserData.email + "'" },
+                  async: false,
+                  success: function (data) {
+                    if (data.value.length > 0) {
+                      userId = data.value[0].userID;
+                    } else {
+                      MessageToast.show(
+                        "User not found with the provided email address"
+                      );
+                      return;
+                    }
+                  },
+                  error: function (xhr, status, error) {
+                    MessageToast.show("Failed to retrieve user data: " + error);
+                    return;
+                  },
+                });
 
-              // Navigate back to the profile page after the delay
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("profile");
-            }, 1500); // 1.5 seconds delay
-          },
-          error: function (xhr, status, error) {
-            MessageToast.show("Failed to update profile: " + error);
-          },
-        });
+                var updateUserUrl =
+                  "http://localhost:4004/odata/v4/catalog/Users(" +
+                  userId +
+                  ")";
+                $.ajax({
+                  url: updateUserUrl,
+                  type: "PATCH",
+                  contentType: "application/json",
+                  data: JSON.stringify(updatedUserData),
+                  success: function () {
+                    MessageToast.show("Profile updated successfully");
+                    setTimeout(function () {
+                      that.loadUserData();
+
+                      // Navigate back to the profile page after the delay
+                      var oRouter = UIComponent.getRouterFor(that);
+                      oRouter.navTo("profile");
+                    }, 1500); // 1.5 seconds delay
+                  },
+                  error: function (xhr, status, error) {
+                    MessageToast.show("Failed to update profile: " + error);
+                  },
+                });
+              } else {
+                // User canceled, do nothing
+              }
+            },
+          }
+        );
       },
 
       onLogoutPress: function () {
@@ -180,6 +198,19 @@ sap.ui.define(
         } else {
           oPopover.close();
         }
+      },
+      onSwitchToEnglish: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "en";
+        sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onSwitchToDutch: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "nl";
+        sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
       },
     });
   }
