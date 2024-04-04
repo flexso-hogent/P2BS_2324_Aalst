@@ -1,0 +1,251 @@
+<mvc:View
+    controllerName="flexso.controller.UpdateProfile"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        id="updateProfilePage"
+        title="{i18n>updateProfileTitle}"
+        class="updateProfilePage"
+    >
+        <headerContent>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Button
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
+                />
+                <Button
+                    id="_IDGenButton3"
+                    icon="sap-icon://home"
+                    press="onBackToHome"
+                />
+                <Button
+                    id="_IDGenButton4"
+                    icon="sap-icon://person-placeholder"
+                    press="onProfileButtonClick"
+                />
+                <Button
+                    id="_IDGenButton5"
+                    icon="sap-icon://log"
+                    press="onLogoutPress"
+                />
+            </Toolbar>
+        </headerContent>
+
+        <Image
+            id="_IDGenImage1"
+            src="{imageModel>/path}"
+            class="profileImage"
+        />
+        <content>
+            <VBox
+                id="_IDGenVBox1"
+                alignItems="Center"
+                justifyContent="SpaceAround"
+                width="100%"
+            >
+                <HBox
+                    id="_IDGenHBox1"
+                    width="100%"
+                >
+                    <!-- Left side: User input -->
+                    <VBox
+                        id="_IDGenVBox2"
+                        class="profileBox"
+                        alignItems="Center"
+                        width="50%"
+                    >
+                        <!-- Email Label -->
+                        <Label
+                            id="_IDGenLabel2"
+                            text="{i18n>emailLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Email Input -->
+                        <Input
+                            id="emailInput"
+                            placeholder="{i18n>emailPlaceholder}"
+                            value="{= ${userInfo>/email} || ''}"
+                            width="100%"
+                            class="profileInput"
+                            editable="false"
+                        />
+
+                        <!-- Birthdate Label -->
+                        <Label
+                            id="_IDGenLabel9"
+                            text="{i18n>birthdateLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Birthdate Input -->
+                        <DatePicker
+                            id="bdateInput"
+                            class="profileLabel"
+                            editable="false"
+                            value="{userInfo>/bdate}"
+                        />
+                        <!-- Company Label -->
+                        <Label
+                            id="_IDGenLabel3"
+                            text="{i18n>companylabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Company Input -->
+                        <Input
+                            id="companyInput"
+                            placeholder="{i18n>companyPlaceholder}"
+                            value="{userInfo>/company}"
+                            width="100%"
+                            class="profileInput"
+                        />
+                    </VBox>
+
+                    <!-- Right side: Additional inputs -->
+                    <VBox
+                        id="_IDGenVBox3"
+                        class="profileBox"
+                        alignItems="Center"
+                        width="50%"
+                    >
+                        <!-- Street Label -->
+                        <Label
+                            id="_IDGenLabel10"
+                            text="{i18n>streetLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Street Input -->
+                        <Input
+                            id="streetInput"
+                            placeholder="{i18n>streetPlaceholder}"
+                            value="{userInfo>/street}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- House Number Label -->
+                        <Label
+                            id="_IDGenLabel11"
+                            text="{i18n>hnumberLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- House Number Input -->
+                        <Input
+                            id="hnumberInput"
+                            placeholder="{i18n>hnumberPlaceholder}"
+                            value="{userInfo>/hnumber}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- City Label -->
+                        <Label
+                            id="_IDGenLabel12"
+                            text="{i18n>cityLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- City Input -->
+                        <Input
+                            id="cityInput"
+                            placeholder="{i18n>cityPlaceholder}"
+                            value="{userInfo>/city}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- Country Label -->
+                        <Label
+                            id="_IDGenLabel13"
+                            text="{i18n>countryLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Country Input -->
+                        <Input
+                            id="countryInput"
+                            placeholder="{i18n>countryPlaceholder}"
+                            value="{userInfo>/country}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- Zip Code Label -->
+                        <Label
+                            id="_IDGenLabel14"
+                            text="{i18n>zipLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Zip Code Input -->
+                        <Input
+                            id="zipInput"
+                            placeholder="{i18n>zipPlaceholder}"
+                            value="{userInfo>/zip}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- Phone Label -->
+                        <Label
+                            id="_IDGenLabel15"
+                            text="{i18n>phoneLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Phone Input -->
+                        <Input
+                            id="phoneInput"
+                            placeholder="{i18n>phonePlaceholder}"
+                            value="{userInfo>/phone}"
+                            width="100%"
+                            class="profileInput"
+                        />
+
+                        <!-- Gender Label -->
+                        <Label
+                            id="_IDGenLabel16"
+                            text="{i18n>genderLabel}"
+                            class="profileLabel"
+                        />
+                        <!-- Gender Input -->
+                        <Select
+                            id="genderInput"
+                            class="profileInput"
+                            selectedKey="{userInfo>/gender}"
+                        >
+                            <core:Item
+                                id="_IDGenItem4"
+                                key="male"
+                                text="{i18n>genderMale}"
+                            />
+                            <core:Item
+                                id="_IDGenItem5"
+                                key="female"
+                                text="{i18n>genderFemale}"
+                            />
+                            <core:Item
+                                id="_IDGenItem6"
+                                key="other"
+                                text="{i18n>genderOther}"
+                            />
+                        </Select>
+                    </VBox>
+                </HBox>
+
+                <!-- Update Profile Button -->
+                <Button
+                    id="_IDGenButton1"
+                    text="{i18n>updateProfileButton}"
+                    press="onUpdateProfilePress"
+                    class="updateProfileButton"
+                />
+                <Button
+                    id="_IDGenButton2"
+                    text="{i18n>loguit}"
+                    press="onLogoutPress"
+                    class="logoutButton"
+                />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

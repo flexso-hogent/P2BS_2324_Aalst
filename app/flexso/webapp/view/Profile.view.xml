@@ -37,349 +37,121 @@
         </headerContent>
 
         <content>
-            <VBox
-                id="_IDGenVBox1"
-                alignItems="Center"
-                justifyContent="SpaceAround"
+            <Image
+                id="_IDGenImage1"
+                src="{imageModel>/path}"
+                class="profileImage"
+            />
+
+            <FlexBox
+                id="_IDGenFlexBox"
+                class="flex-container"
+                alignItems="Start"
+                justifyContent="SpaceBetween"
                 width="100%"
             >
-                <!-- Title -->
-                <Title
-                    id="_IDGenTitle1"
-                    text="{i18n>titleProfilePage}"
-                    level="H2"
-                    class="profileTitle"
-                />
-
-                <HBox
-                    id="_IDGenHBox1"
-                    width="100%"
+                <VBox
+                    id="_IDGenVBox3"
+                    class="profileBox"
+                    alignItems="Start"
+                    justifyContent="Center"
+                    width="45%"
                 >
-                    <!-- Left side: User input -->
-                    <VBox
-                        id="_IDGenVBox2"
-                        class="profileBox"
-                        alignItems="Center"
-                        width="50%"
-                    >
-                        <l:VerticalLayout
-                            id="_IDGenVerticalLayout1"
-                            class="profileLayout"
-                        >
-                            <Image
-                                id="_IDGenImage1"
-                                src="{imageModel>/path}"
-                                width="100%"
-                                height="100%"
-                                class="profileImage"
-                            />
+                    <Title
+                        id="userInfoTitle"
+                        text="{i18n>userInfoTitle}"
+                        class="userInfoTitle"
+                    />
+                    <Text
+                        id="emailText"
+                        text="{i18n>emailLabel}: {userInfo>/email}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Email Label -->
-                            <Label
-                                id="_IDGenLabel2"
-                                text="{i18n>emailLabel}"
-                                class="profileLabel"
-                            />
+                    <!-- Street Text -->
+                    <Text
+                        id="streetText"
+                        text="{i18n>streetLabel}: {userInfo>/street}"
+                        class="userInfoText"
+                    />
 
-                            <Input
-                                id="emailInput"
-                                placeholder="{i18n>emailPlaceholder}"
-                                value="{= ${userInfo>/email} || ''}"
-                                width="100%"
-                                class="profileInput"
-                                editable="false"
-                            />
+                    <!-- House Number Text -->
+                    <Text
+                        id="hnumberText"
+                        text="{i18n>hnumberLabel}: {userInfo>/hnumber}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Company Label -->
-                            <Label
-                                id="_IDGenLabel3"
-                                text="{i18n>companylabel}"
-                                class="profileLabel"
-                            />
-                            <!-- Company Input -->
-                            <Input
-                                id="companyInput"
-                                placeholder="{i18n>companyPlaceholder}"
-                                value="{userInfo>/company}"
-                                width="100%"
-                                class="profileInput"
-                            />
+                    <!-- City Text -->
+                    <Text
+                        id="cityText"
+                        text="{i18n>cityLabel}: {userInfo>/city}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Role Label -->
-                            <Label
-                                id="_IDGenLabel4"
-                                text="{i18n>rolelabel}"
-                                class="roleLabel"
-                            />
-                            <!-- Role Input -->
-                            <Input
-                                id="roleInput"
-                                placeholder="{i18n>rolePlaceholder}"
-                                value="{userInfo>/role}"
-                                width="100%"
-                                class="roleInput"
-                            />
+                    <!-- Country Text -->
+                    <Text
+                        id="countryText"
+                        text="{i18n>countryLabel}: {userInfo>/country}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Birthdate Label -->
-                            <Label
-                                id="_IDGenLabel9"
-                                text="{i18n>birthdateLabel}"
-                                class="profileLabel"
-                            />
+                    <!-- Zip Code Text -->
+                    <Text
+                        id="zipText"
+                        text="{i18n>zipLabel}: {userInfo>/zip}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Birthdate Input -->
+                    <Text
+                        id="firstNameText"
+                        text="{i18n>firstname}: {userInfo>/firstname}"
+                        class="userInfoText"
+                    />
+                    <Text
+                        id="lastNameText"
+                        text="{i18n>lastname}: {userInfo>/lastname}"
+                        class="userInfoText"
+                    />
+                    <Text
+                        id="companyText"
+                        text="{i18n>companylabel}: {userInfo>/company}"
+                        class="userInfoText"
+                    />
 
-                            <DatePicker
-                                id="bdateInput"
-                                class="profileLabel"
-                                editable="false"
-                                value="{userInfo>/bdate}"
-                            />
+                    <!-- Phone Text -->
+                    <Text
+                        id="phoneText"
+                        text="{i18n>phoneLabel}: {userInfo>/phone}"
+                        class="userInfoText"
+                    />
 
-                            <!-- Street Label -->
-                            <Label
-                                id="_IDGenLabel10"
-                                text="{i18n>streetLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- Street Input -->
-                            <Input
-                                id="streetInput"
-                                placeholder="{i18n>streetPlaceholder}"
-                                value="{userInfo>/street}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- House Number Label -->
-                            <Label
-                                id="_IDGenLabel11"
-                                text="{i18n>hnumberLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- House Number Input -->
-                            <Input
-                                id="hnumberInput"
-                                placeholder="{i18n>hnumberPlaceholder}"
-                                value="{userInfo>/hnumber}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- City Label -->
-                            <Label
-                                id="_IDGenLabel12"
-                                text="{i18n>cityLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- City Input -->
-                            <Input
-                                id="cityInput"
-                                placeholder="{i18n>cityPlaceholder}"
-                                value="{userInfo>/city}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- Country Label -->
-                            <Label
-                                id="_IDGenLabel13"
-                                text="{i18n>countryLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- Country Input -->
-                            <Input
-                                id="countryInput"
-                                placeholder="{i18n>countryPlaceholder}"
-                                value="{userInfo>/country}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- Zip Code Label -->
-                            <Label
-                                id="_IDGenLabel14"
-                                text="{i18n>zipLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- Zip Code Input -->
-                            <Input
-                                id="zipInput"
-                                placeholder="{i18n>zipPlaceholder}"
-                                value="{userInfo>/zip}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- Phone Label -->
-                            <Label
-                                id="_IDGenLabel15"
-                                text="{i18n>phoneLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- Phone Input -->
-                            <Input
-                                id="phoneInput"
-                                placeholder="{i18n>phonePlaceholder}"
-                                value="{userInfo>/phone}"
-                                width="100%"
-                                class="profileInput"
-                            />
-
-                            <!-- Gender Label -->
-                            <Label
-                                id="_IDGenLabel16"
-                                text="{i18n>genderLabel}"
-                                class="profileLabel"
-                            />
-
-                            <!-- Gender Input -->
-                            <Select
-                                id="genderInput"
-                                class="profileInput"
-                                selectedKey="{userInfo>/gender}"
-                            >
-                                <core:Item
-                                    id="_IDGenItem4"
-                                    key="male"
-                                    text="{i18n>genderMale}"
-                                />
-                                <core:Item
-                                    id="_IDGenItem5"
-                                    key="female"
-                                    text="{i18n>genderFemale}"
-                                />
-                                <core:Item
-                                    id="_IDGenItem6"
-                                    key="other"
-                                    text="{i18n>genderOther}"
-                                />
-                            </Select>
-
-                            <!-- Update Profile Button -->
-                            <Button
-                                id="_IDGenButton1"
-                                text="{i18n>updateProfileButton}"
-                                press="onUpdateProfilePress"
-                                width="100%"
-                                class="updateProfileButton"
-                            />
-                            <Button
-                                id="_IDGenButton2"
-                                text="{i18n>loguit}"
-                                press="onLogoutPress"
-                                width="100%"
-                            />
-                        </l:VerticalLayout>
-                    </VBox>
-
-                    <!-- Right side: User information -->
-                    <VBox
-                        id="_IDGenVBox3"
-                        class="profileBox"
-                        alignItems="Start"
-                        justifyContent="Center"
-                        width="50%"
-                    >
-                        <Label
-                            id="userInfoTitle"
-                            text="{i18n>userInfoTitle}"
-                            class="userInfoTitle"
-                        />
-
-                        <Text
-                            id="emailText"
-                            text="{i18n>emailLabel}: {userInfo>/email}"
-                            class="userInfoText"
-                        />
-
-                        <Text
-                            id="firstNameText"
-                            text="{i18n>firstname}: {userInfo>/firstname}"
-                            class="userInfoText"
-                        />
-
-                        <Text
-                            id="lastNameText"
-                            text="{i18n>lastname}: {userInfo>/lastname}"
-                            class="userInfoText"
-                        />
-
-                        <Text
-                            id="companyText"
-                            text="{i18n>companylabel}: {userInfo>/company}"
-                            class="userInfoText"
-                        />
-
-                        <Text
-                            id="roleText"
-                            text="{i18n>rolelabel}: {userInfo>/role}"
-                            class="userInfoText"
-                        />
-
-                        <!-- Street Text -->
-                        <Text
-                            id="streetText"
-                            text="{i18n>streetLabel}: {userInfo>/street}"
-                            class="userInfoText"
-                        />
-
-                        <!-- House Number Text -->
-                        <Text
-                            id="hnumberText"
-                            text="{i18n>hnumberLabel}: {userInfo>/hnumber}"
-                            class="userInfoText"
-                        />
-
-                        <!-- City Text -->
-                        <Text
-                            id="cityText"
-                            text="{i18n>cityLabel}: {userInfo>/city}"
-                            class="userInfoText"
-                        />
-
-                        <!-- Country Text -->
-                        <Text
-                            id="countryText"
-                            text="{i18n>countryLabel}: {userInfo>/country}"
-                            class="userInfoText"
-                        />
-
-                        <!-- Zip Code Text -->
-                        <Text
-                            id="zipText"
-                            text="{i18n>zipLabel}: {userInfo>/zip}"
-                            class="userInfoText"
-                        />
-
-                        <!-- Phone Text -->
-                        <Text
-                            id="phoneText"
-                            text="{i18n>phoneLabel}: {userInfo>/phone}"
-                            class="userInfoText"
-                        />
-
-                        <!-- Gender Text -->
-                        <Text
-                            id="genderText"
-                            text="{i18n>genderLabel}: {= ${userInfo>/gender} === 'male' ? ${i18n>genderMale} : ${userInfo>/gender} === 'female' ? ${i18n>genderFemale} : ${i18n>genderOther}}"
-                            class="userInfoText"
-                        />
-                        <!-- Birthdate Text -->
-                        <Text
-                            id="bdateText"
-                            text="{i18n>birthdateLabel}: {userInfo>/bdate}"
-                            class="userInfoText"
-                        />
-                    </VBox>
-                </HBox>
-            </VBox>
+                    <!-- Gender Text -->
+                    <Text
+                        id="genderText"
+                        text="{i18n>genderLabel}: {= ${userInfo>/gender} === 'male' ? ${i18n>genderMale} : ${userInfo>/gender} === 'female' ? ${i18n>genderFemale} : ${i18n>genderOther}}"
+                        class="userInfoText"
+                    />
+                    <!-- Birthdate Text -->
+                    <Text
+                        id="bdateText"
+                        text="{i18n>birthdateLabel}: {userInfo>/bdate}"
+                        class="userInfoText"
+                    />
+                </VBox>
+            </FlexBox>
+            <Button
+                id="_IDGenButton1"
+                text="{i18n>updateProfileButton}"
+                press="onUpdateProfilePressNav"
+                class="updateProfileButton"
+            />
+            <Button
+                id="_IDGenButton2"
+                text="{i18n>loguit}"
+                press="onLogoutPress"
+                class="logoutButton"
+            />
         </content>
     </Page>
     <Popover

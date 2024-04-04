@@ -124,6 +124,7 @@
           "pattern": "login",
           "target": ["Login"]
         },
+
         {
           "name": "register",
           "pattern": "register",
@@ -168,6 +169,11 @@
           "pattern": "createEvent",
           "name": "createEvent",
           "target": ["createEvent"]
+        },
+        {
+          "name": "updateProfile",
+          "pattern": "updateProfile",
+          "target": ["UpdateProfile"]
         }
       ],
       "targets": {
@@ -224,6 +230,11 @@
         "createEvent": {
           "viewName": "flexso.view.CreateEvent",
           "viewId": "createEvent",
+          "viewLevel": 3
+        },
+        "UpdateProfile": {
+          "viewName": "flexso.view.UpdateProfile",
+          "viewId": "updateProfile",
           "viewLevel": 3
         }
       }
