@@ -295,19 +295,19 @@
 
                         <Text
                             id="emailText"
-                            text="{i18n>emailLabel} {userInfo>/email}"
+                            text="{i18n>emailLabel}: {userInfo>/email}"
                             class="userInfoText"
                         />
 
                         <Text
                             id="firstNameText"
-                            text="{i18n>firstname} {userInfo>/firstname}"
+                            text="{i18n>firstname}: {userInfo>/firstname}"
                             class="userInfoText"
                         />
 
                         <Text
                             id="lastNameText"
-                            text="{i18n>lastname} {userInfo>/lastname}"
+                            text="{i18n>lastname}: {userInfo>/lastname}"
                             class="userInfoText"
                         />
 
