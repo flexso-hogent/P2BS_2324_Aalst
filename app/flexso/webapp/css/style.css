@@ -128,25 +128,55 @@
   height: 50px;
 }
 
-.formField {
+.registerTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.registerImage {
+  display: block;
+  margin: 0 auto;
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.outerFlexBox {
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 10px;
 }
 
-.formField .registerLabel {
-  padding-right: 10px;
-  flex: 1;
-  width: 150px; /* Fixed width for labels */
+.outerFlexBoxWithPadding {
+  padding: 1rem;
 }
 
-.registerInput {
-  padding: 8px;
-  flex: 2;
-  width: 100%; /* Take remaining space */
-}
-
-.rightFlexBox {
+.registerFlexBox {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.leftFlexBox,
+.rightFlexBox {
+  flex: 1;
+}
+
+.formField {
+  margin-bottom: 1rem;
+}
+
+.registerLabel {
+  width: 150px; /* Adjust width as needed */
+  text-align: right;
+  padding-right: 1rem;
+  margin-top: 8px; /* Add margin-top */
+}
+.registerInput {
+  flex: 1;
+}
+
+.registerButton {
+  margin-top: 1rem;
+  width: 200px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
 }

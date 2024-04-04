@@ -9,7 +9,7 @@
 >
     <Page
         id="registerPage"
-        title="Register"
+        title="Flexso"
         class="registerPage"
     >
         <headerContent>
@@ -138,7 +138,27 @@
                             />
                         </FlexBox>
 
-                        <!-- Role -->
+                        <!-- Phone -->
+                        <FlexBox
+                            id="_IDGenFlexBox13"
+                            class="formField"
+                        >
+                            <Label
+                                id="_IDGenLabel7"
+                                text="{i18n>phoneLabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="phoneInput"
+                                type="Number"
+                                placeholder="{i18n>phonePlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="0477777777"
+                            />
+                        </FlexBox>
+
+                        <!-- Role
                         <FlexBox
                             id="_IDGenFlexBox6"
                             class="formField"
@@ -156,11 +176,12 @@
                                 required="true"
                                 value="Admin"
                             />
-                        </FlexBox>
-                        <!-- Birthdate -->
+                        </FlexBox> -->
+
                         <FlexBox
                             id="_IDGenFlexBox7"
                             class="formField"
+                            justifyContent="Center"
                         >
                             <Label
                                 id="_IDGenLabel1"
@@ -171,27 +192,42 @@
                                 id="bdateInput"
                                 class="registerInput"
                                 required="true"
+                                value="1999-01-01"
+                                width="93%"
                             />
                         </FlexBox>
 
-                        <!-- Password -->
+                        <!-- Gender -->
                         <FlexBox
-                            id="_IDGenFlexBox15"
+                            id="_IDGenFlexBox14"
                             class="formField"
                         >
                             <Label
-                                id="passwordLabel"
-                                text="{i18n>passwordLabel}"
+                                id="_IDGenLabel8"
+                                text="{i18n>genderLabel}"
                                 class="registerLabel"
                             />
-                            <Input
-                                id="passwordInput"
-                                type="Password"
-                                placeholder="{i18n>passwordPlaceholder}"
-                                class="registerInput"
+                            <Select
+                                id="genderInput"
                                 required="true"
-                                value="test123"
-                            />
+                                width="180px"
+                            >
+                                <core:Item
+                                    id="_IDGenItem1"
+                                    key="male"
+                                    text="{i18n>genderMale}"
+                                />
+                                <core:Item
+                                    id="_IDGenItem2"
+                                    key="female"
+                                    text="{i18n>genderFemale}"
+                                />
+                                <core:Item
+                                    id="_IDGenItem3"
+                                    key="other"
+                                    text="{i18n>genderOther}"
+                                />
+                            </Select>
                         </FlexBox>
                     </FlexBox>
 
@@ -304,56 +340,24 @@
                                 />
                             </FlexBox>
 
-                            <!-- Phone -->
+                            <!-- Password -->
                             <FlexBox
-                                id="_IDGenFlexBox13"
+                                id="_IDGenFlexBox15"
                                 class="formField"
                             >
                                 <Label
-                                    id="_IDGenLabel7"
-                                    text="{i18n>phoneLabel}"
+                                    id="passwordLabel"
+                                    text="{i18n>passwordLabel}"
                                     class="registerLabel"
                                 />
                                 <Input
-                                    id="phoneInput"
-                                    type="Number"
-                                    placeholder="{i18n>phonePlaceholder}"
+                                    id="passwordInput"
+                                    type="Password"
+                                    placeholder="{i18n>passwordPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="0477777777"
+                                    value="test123"
                                 />
-                            </FlexBox>
-
-                            <!-- Gender -->
-                            <FlexBox
-                                id="_IDGenFlexBox14"
-                                class="formField"
-                            >
-                                <Label
-                                    id="_IDGenLabel8"
-                                    text="{i18n>genderLabel}"
-                                    class="registerLabel"
-                                />
-                                <Select
-                                    id="genderInput"
-                                    required="true"
-                                >
-                                    <core:Item
-                                        id="_IDGenItem1"
-                                        key="male"
-                                        text="{i18n>genderMale}"
-                                    />
-                                    <core:Item
-                                        id="_IDGenItem2"
-                                        key="female"
-                                        text="{i18n>genderFemale}"
-                                    />
-                                    <core:Item
-                                        id="_IDGenItem3"
-                                        key="other"
-                                        text="{i18n>genderOther}"
-                                    />
-                                </Select>
                             </FlexBox>
 
                             <!-- Confirm Password -->
