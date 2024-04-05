@@ -84,25 +84,27 @@
 .fadeIn {
   animation: fadeIn 1s ease-in;
 }
+
 .centerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; /* Adjust as needed */
 }
 
 #forgotPassword {
   font-size: 16px;
   font-weight: bold;
 }
+
 #forgotPasswordText {
   margin-bottom: 15px;
 }
 
 .bigButton {
-  width: 200px;
-  height: 200px;
-  margin: 10px;
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  margin: 10px; /* Adjust the margin as needed */
 }
 
 .registerTitle {
@@ -125,19 +127,6 @@
   margin-top: 20px;
   width: 200px;
   height: 50px;
-}
-
-.registerTitle {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.registerImage {
-  display: block;
-  margin: 0 auto;
-  width: 200px; /* Adjust the width as needed */
-  height: auto;
-  margin-bottom: 1rem;
 }
 
 .outerFlexBox {
@@ -170,6 +159,7 @@
   padding-right: 1rem;
   margin-top: 8px; /* Add margin-top */
 }
+
 .registerInput {
   flex: 1;
 }
@@ -179,6 +169,7 @@
   width: 200px; /* Adjust width as needed */
   height: 50px; /* Adjust height as needed */
 }
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -192,6 +183,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
 .userInfoTitle {
   font-size: 20px;
   font-weight: bold;
@@ -204,13 +196,8 @@
   margin: auto; /* Center horizontally */
   display: block; /* For margin auto to work, display block is needed */
 }
-.updateProfileButton {
-  display: block;
-  margin: auto; /* Center horizontally */
-  margin-top: 20px;
-  width: 200px;
-  height: 50px;
-}
+
+.updateProfileButton,
 .logoutButton {
   display: block;
   margin: auto; /* Center horizontally */
@@ -231,15 +218,10 @@
   border-radius: 5px;
 }
 
-.sectionHeader {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+#datum {
+  text-align: right;
 }
-.sessionRegisterButtonsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px; /* Set the height to your desired value */
-  margin-top: 1rem;
+
+#_IDGenButton1 {
+  margin-left: auto; /* Push the button to the right */
 }
