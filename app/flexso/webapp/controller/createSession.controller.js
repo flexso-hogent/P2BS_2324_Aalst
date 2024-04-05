@@ -50,21 +50,28 @@ sap.ui.define([
                 room: oView.byId("_IDGenInput2").getValue(),
                 description: oView.byId("_IDGenInput3").getValue(),
                 speaker: oView.byId("_IDGenInput4").getValue(),
-                totalSeats: oView.byId("_IDGenInput5").getValue(),
+                totalSeats: parseInt(oView.byId("_IDGenInput5").getValue()), // Parse totalSeats to ensure it's a number
                 eventID: oView.byId("eventSelect").getSelectedItem().getKey(),
             };
           
+            var that = this; // Preserve reference to the controller
+        
             var oDataModel = new sap.ui.model.odata.v2.ODataModel("http://localhost:4004/odata/v4/catalog/");
           
             oDataModel.create("/Sessions", oSessionData, {
                 success: function () {
-                    oView.byId("messageText").setText("Session creation successful!").setVisible(true);
+                    MessageToast.show("Session creation successful!");
+                    setTimeout(function () {
+                        var oRouter = UIComponent.getRouterFor(that);
+                        oRouter.navTo("home");
+                    }, 1000);
                 },
                 error: function () {
-                    oView.byId("messageText").setText("Error creating session!").setVisible(true);
+                    MessageToast.show("Error creating session!");
                 }
             });
         },
+        
         
         
         
