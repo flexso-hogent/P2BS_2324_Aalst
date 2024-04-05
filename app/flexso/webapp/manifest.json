@@ -176,7 +176,7 @@
         },
         {
           "name": "Registersession",
-          "pattern": "Registersession/{sessionData}",
+          "pattern": "Registersession",
           "target": ["Registersession"]
         },
         {

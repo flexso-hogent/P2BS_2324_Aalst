@@ -88,7 +88,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
 #forgotPassword {
@@ -101,11 +101,9 @@
 
 .bigButton {
   width: 200px;
-  height: 200px; 
-  margin: 10px; 
+  height: 200px;
+  margin: 10px;
 }
-<<<<<<< HEAD
-/* styles.css */
 
 .registerTitle {
   display: flex;
@@ -225,7 +223,27 @@
   margin-top: 1rem;
   text-align: left;
 }
-=======
 
+.infoBox {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
->>>>>>> ee39216 (eventoverview + create session (werkt nog niet helemaal))
+.sectionHeader {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.sessionRegisterButtonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Set the height to your desired value */
+  margin-top: 1rem;
+}
+
+.sessionRegisterButtons {
+  margin-left: 50px; /* Adjust the margin-left as needed */
+}

@@ -75,7 +75,7 @@ entity Scores {
 }
 
 entity Sessions {
-    key sessionID   : UUID;
+    key sessionID   : Integer;
         title       : String;
         startDate   : Date;
         endDate     : Date;
@@ -109,4 +109,21 @@ entity PasswordReset {
     key resetID      : UUID;
         userEmail    : String;
         
+}
+
+entity registerdOnASession  {
+    sessionID : Integer;
+    userID    : Integer;
+    firstname     : String;
+    lastname      : String;
+    email    : String;
+    title       : String;
+    startDate   : Date;
+    endDate     : Date;
+    startTime   : Time;
+    endTime     : Time;
+    room        : String;
+    description : String;
+    speaker     : String;
+    totalSeats  : Integer;
 }
