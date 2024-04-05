@@ -82,6 +82,7 @@ sap.ui.define(
               MessageToast.show("Login successful");
 
               // Store user information in local storage
+              localStorage.setItem("userID", user.userID);
               localStorage.setItem("email", user.email);
               localStorage.setItem("firstname", user.firstname);
               localStorage.setItem("lastname", user.lastname);

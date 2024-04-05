@@ -1,0 +1,42 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="flexso.controller.Registersession">
+    <Page id="registerSessionPage" title="Register Session">
+        <content>
+            <VBox id="sessionInfoBox" class="sapUiSmallMargin">
+                <Label id="_IDGenLabel1" text="Title:"/>
+                <Text id="_IDGenText1" text="{sessionModel>/title}"/>
+                
+                <Label id="_IDGenLabel2" text="Start Date:"/>
+                <Text id="_IDGenText2" text="{sessionModel>/startDate}"/>
+                
+                <Label id="_IDGenLabel3" text="End Date:"/>
+                <Text id="_IDGenText3" text="{sessionModel>/endDate}"/>
+                
+                <Label id="_IDGenLabel4" text="Location:"/>
+                <Text id="_IDGenText4" text="{sessionModel>/location}"/>
+                
+                <Label id="_IDGenLabel5" text="Speaker:"/>
+                <Text id="_IDGenText5" text="{sessionModel>/speaker}"/>
+                
+                <Label id="_IDGenLabel6" text="Total Seats:"/>
+                <Text id="_IDGenText6" text="{sessionModel>/totalSeats}"/>
+                
+                <Label id="_IDGenLabel7" text="Description:"/>
+                <Text id="_IDGenText7" text="{sessionModel>/description}"/>
+            </VBox>
+            
+            <!-- In de View, om de gebruikersgegevens weer te geven -->
+            <VBox id="userInfoBox" class="sapUiSmallMargin">
+                <Label id="_IDGenUserIDLabel" text="User ID:"/>
+                <Text id="_IDGenUserIDText" text="{userData>/userID}"/>
+
+                <Label id="_IDGenUsernameLabel" text="Username:"/>
+                <Text id="_IDGenUsernameText" text="{userData>/Username}"/>
+
+                
+            </VBox>
+
+
+            <Button id="_IDGenButton1" text="Register" press="onRegisterPress"/>
+        </content>
+    </Page>
+</mvc:View>

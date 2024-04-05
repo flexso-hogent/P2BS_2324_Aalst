@@ -124,7 +124,6 @@
           "pattern": "login",
           "target": ["Login"]
         },
-
         {
           "name": "register",
           "pattern": "register",
@@ -170,13 +169,21 @@
           "name": "createEvent",
           "target": ["createEvent"]
         },
-        
-          {
-            "name": "updateProfile",
-            "pattern": "updateProfile",
-            "target": ["UpdateProfile"]
-          }
-          
+        {
+          "pattern": "createSession",
+          "name": "createSession",
+          "target": ["createSession"]
+        },
+        {
+          "name": "Registersession",
+          "pattern": "Registersession/{sessionData}",
+          "target": ["Registersession"]
+        },
+        {
+          "name": "updateProfile",
+          "pattern": "updateProfile",
+          "target": ["UpdateProfile"]
+        }
       ],
       "targets": {
         "App": {
@@ -234,15 +241,19 @@
           "viewId": "createEvent",
           "viewLevel": 3
         },
-<<<<<<< HEAD
-        "UpdateProfile": {
-          "viewName": "flexso.view.UpdateProfile",
-          "viewId": "updateProfile",
-=======
         "createSession": {
           "viewName": "flexso.view.CreateSession",
           "viewId": "createSession",
->>>>>>> ee39216 (eventoverview + create session (werkt nog niet helemaal))
+          "viewLevel": 3
+        },
+        "Registersession": {
+          "viewName": "flexso.view.Registersession",
+          "viewId": "Registersession",
+          "viewLevel": 3
+        },
+        "UpdateProfile": {
+          "viewName": "flexso.view.UpdateProfile",
+          "viewId": "updateProfile",
           "viewLevel": 3
         }
       }

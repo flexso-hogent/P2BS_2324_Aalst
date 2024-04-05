@@ -179,6 +179,7 @@ sap.ui.define([
 
                     var sessions = filteredSessions.map(function (session) {
                         return {
+                            sessionID: session.sessionID,
                             title: session.title,
                             startDate: session.startDate + " - " + session.startTime,
                             endDate: session.endDate + " - " + session.endTime,
@@ -227,7 +228,20 @@ sap.ui.define([
             }
         
             oBinding.filter(oFilter);
-        }
+        },
+        
+        onRegisterPress: function (oEvent) {
+            var oSessionContext = oEvent.getSource().getBindingContext("sessionModel");
+            if (oSessionContext) {
+                var oSessionData = oSessionContext.getObject();
+                var oRouter = UIComponent.getRouterFor(this);
+                oRouter.navTo("Registersession", {
+                    sessionData: JSON.stringify(oSessionData)
+                });
+            } else {
+                MessageToast.show("Selecteer een sessie om te registreren.");
+            }
+        },
         
         
 
