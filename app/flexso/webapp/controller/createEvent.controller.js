@@ -11,6 +11,17 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.CreateEvent", {
       onInit: function () {
+        var oRootPath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/Flexso.png"
+        );
+
+        var oImageModel = new JSONModel({
+          path: oRootPath,
+        });
+
+        this.getView().setModel(oImageModel, "imageModel");
+
         var oViewModel = new JSONModel({
           name: "",
           startDate: null,
@@ -34,6 +45,7 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
+
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
@@ -45,6 +57,17 @@ sap.ui.define(
         var oEventData = oViewModel.getData();
 
         var that = this;
+
+        if (
+          !oEventData.name ||
+          !oEventData.startDate ||
+          !oEventData.endDate ||
+          !oEventData.location ||
+          !oEventData.description
+        ) {
+          MessageToast.show("Please fill in all fields.");
+          return;
+        }
 
         if (oEventData.startDate) {
           oEventData.startDate = this.formatDate(oEventData.startDate);
@@ -111,6 +134,7 @@ sap.ui.define(
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
       },
+
       onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm("Are you sure you want to log out?", {
@@ -124,6 +148,7 @@ sap.ui.define(
           },
         });
       },
+
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
