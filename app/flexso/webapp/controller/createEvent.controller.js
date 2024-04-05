@@ -11,6 +11,17 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.CreateEvent", {
       onInit: function () {
+        var oRootPath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/Flexso.png"
+        );
+
+        var oImageModel = new JSONModel({
+          path: oRootPath,
+        });
+
+        this.getView().setModel(oImageModel, "imageModel");
+
         var oViewModel = new JSONModel({
           name: "",
           startDate: null,
