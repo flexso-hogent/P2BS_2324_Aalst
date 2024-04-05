@@ -36,28 +36,109 @@
         </headerContent>
 
         <content>
-            <VBox id="createSessionContent" alignItems="Center" justifyContent="Center" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
-                <Label id="_IDGenLabel1" text="Select Event" />
-                <Select id="eventSelect" items="{eventModel>/}">
-                    <core:Item id="_IDGenItem1" key="{eventModel>eventID}" text="{eventModel>Name}" />
+            <VBox
+                id="createSessionContent"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop"
+            >
+                <Label
+                    id="_IDGenLabel1"
+                    text="Select Event"
+                />
+                <Select
+                    id="eventSelect"
+                    items="{eventModel>/}"
+                >
+                    <core:Item
+                        id="_IDGenItem1"
+                        key="{eventModel>eventID}"
+                        text="{eventModel>Name}"
+                    />
                 </Select>
 
-                
-                <Input id="_IDGenInput1" value="{sessionModel>/title}" placeholder="Title" />
-                <DatePicker id="_IDGenDatePicker1" value="{sessionModel>/startDate}" placeholder="Start Date" />
-                <DatePicker id="_IDGenDatePicker2" value="{sessionModel>/endDate}" placeholder="End Date" />
-                <TimePicker id="_IDGenTimePicker1" value="{sessionModel>/startTime}" placeholder="Start Time" />
-                <TimePicker id="_IDGenTimePicker2" value="{sessionModel>/endTime}" placeholder="End Time" />
-                <Input id="_IDGenInput2" value="{sessionModel>/room}" placeholder="Room" />
-                <Input id="_IDGenInput3" value="{sessionModel>/description}" placeholder="Description" />
-                <Input id="_IDGenInput4" value="{sessionModel>/speaker}" placeholder="Speaker" />
-                <Input id="_IDGenInput5" value="{sessionModel>/totalSeats}" placeholder="Total Seats" />
-                
-                <Button id="_IDGenButton9" text="Create Session" press="onCreateSession" />
+                <Input
+                    id="_IDGenInput1"
+                    value="{sessionModel>/title}"
+                    placeholder="Title"
+                />
+                <DatePicker
+                    id="_IDGenDatePicker1"
+                    value="{sessionModel>/startDate}"
+                    placeholder="Start Date"
+                />
+                <DatePicker
+                    id="_IDGenDatePicker2"
+                    value="{sessionModel>/endDate}"
+                    placeholder="End Date"
+                />
+                <TimePicker
+                    id="_IDGenTimePicker1"
+                    value="{sessionModel>/startTime}"
+                    placeholder="Start Time"
+                />
+                <TimePicker
+                    id="_IDGenTimePicker2"
+                    value="{sessionModel>/endTime}"
+                    placeholder="End Time"
+                />
+                <Input
+                    id="_IDGenInput2"
+                    value="{sessionModel>/room}"
+                    placeholder="Room"
+                />
+                <Input
+                    id="_IDGenInput3"
+                    value="{sessionModel>/description}"
+                    placeholder="Description"
+                />
+                <Input
+                    id="_IDGenInput4"
+                    value="{sessionModel>/speaker}"
+                    placeholder="Speaker"
+                />
+                <Input
+                    id="_IDGenInput5"
+                    value="{sessionModel>/totalSeats}"
+                    placeholder="Total Seats"
+                />
 
-                <Text id="messageText" visible="false" />
+                <Button
+                    id="_IDGenButton9"
+                    text="Create Session"
+                    press="onCreateSession"
+                />
 
+                <Text
+                    id="messageText"
+                    visible="false"
+                />
             </VBox>
         </content>
     </Page>
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
+        <content>
+            <VBox
+                id="_IDGenVBox"
+                width="100%"
+            >
+                <Button
+                    id="_IDGenButton"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
+            </VBox>
+        </content>
+    </Popover>
 </mvc:View>
