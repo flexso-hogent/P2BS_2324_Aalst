@@ -1,4 +1,5 @@
 <mvc:View
+    xmlns:imageeditor="sap.suite.ui.commons.imageeditor"
     controllerName="flexso.controller.Register"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -8,7 +9,7 @@
 >
     <Page
         id="registerPage"
-        title="Register"
+        title="Flexso"
         class="registerPage"
     >
         <headerContent>
@@ -26,302 +27,369 @@
                 />
             </Toolbar>
         </headerContent>
+        <!--Title-->
+        <Title
+            id="_IDGenTitle1"
+            text="{i18n>titleRegisterPage}"
+            level="H2"
+            class="registerTitle"
+        />
+        <Image
+            id="imageFlexso"
+            src="{imageModel>/path}"
+            class="registerImage"
+        />
+
         <content>
-            <VBox
-                id="_IDGenVBox1"
-                class="registerBox"
+            <FlexBox
+                id="_IDGenOuterFlexBox"
+                class="outerFlexBox outerFlexBoxWithPadding"
+                justifyContent="Center"
+                alignItems="Center"
             >
-                <l:VerticalLayout
-                    id="_IDGenVerticalLayout1"
-                    class="loginLayout"
+                <FlexBox
+                    id="_IDGenFlexBox1"
+                    class="registerFlexBox"
+                    direction="Row"
                 >
-                    <Image
-                        id="imageFlexso"
-                        src="{imageModel>/path}"
-                        width="100%"
-                        height="100%"
-                        class="loginImage"
-                    />
-
-                    <!--Title-->
-                    <Title
-                        id="_IDGenTitle1"
-                        text="{i18n>titleRegisterPage}"
-                        level="H2"
-                        class="registerTitle"
-                    />
-
-                    <!-- Email Label-->
-                    <Label
-                        id="emailLabel"
-                        text="{i18n>emailLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Email Input-->
-                    <Input
-                        id="emailInput"
-                        type="Email"
-                        placeholder="{i18n>emailPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="test@gmail.com"
-                    />
-                    <Label
-                        id="_IDGenLabel9"
-                        text="{i18n>firstNameLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- firstname Input -->
-                    <Input
-                        id="firstnameInput"
-                        type="Text"
-                        placeholder="{i18n>firstNamePlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="TestNaam"
-                    />
-
-                    <Label
-                        id="_IDGenLabel10"
-                        text="{i18n>lastNameLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- lastname Input -->
-                    <Input
-                        id="lastnameInput"
-                        type="Text"
-                        placeholder="{i18n>lastNamePlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="TestAchternaam"
-                    />
-
-                    <!--Company Label-->
-                    <Label
-                        id="companyLabel"
-                        text="{i18n>companylabel}"
-                        class="registerLabel"
-                    />
-
-                    <!--Company Input-->
-                    <Input
-                        id="companyInput"
-                        type="Text"
-                        placeholder="{i18n>companyPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="Flexso"
-                    />
-
-                    <!--Role label-->
-                    <Label
-                        id="roleLabel"
-                        text="{i18n>rolelabel}"
-                        class="registerLabel"
-                    />
-
-                    <!--Role Input-->
-                    <Input
-                        id="roleInput"
-                        type="Text"
-                        placeholder="{i18n>rolePlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="Admin"
-                    />
-                    <!-- Birthdate Label -->
-                    <Label
-                        id="_IDGenLabel1"
-                        text="{i18n>birthdateLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Birthdate Input -->
-                    <DatePicker
-                        id="bdateInput"
-                        class="registerInput"
-                        required="true"
-                    />
-
-                    <!-- Street Label -->
-                    <Label
-                        id="_IDGenLabel2"
-                        text="{i18n>streetLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Street Input -->
-                    <Input
-                        id="streetInput"
-                        type="Text"
-                        placeholder="{i18n>streetPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="Hogentstraat"
-                    />
-
-                    <!-- House Number Label -->
-                    <Label
-                        id="_IDGenLabel3"
-                        text="{i18n>hnumberLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- House Number Input -->
-                    <Input
-                        id="hnumberInput"
-                        type="Number"
-                        placeholder="{i18n>hnumberPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="1"
-                    />
-
-                    <!-- City Label -->
-                    <Label
-                        id="_IDGenLabel4"
-                        text="{i18n>cityLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- City Input -->
-                    <Input
-                        id="cityInput"
-                        type="Text"
-                        placeholder="{i18n>cityPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="Gent"
-                    />
-
-                    <!-- Country Label -->
-                    <Label
-                        id="_IDGenLabel5"
-                        text="{i18n>countryLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Country Input -->
-                    <Input
-                        id="countryInput"
-                        type="Text"
-                        placeholder="{i18n>countryPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="Belgium"
-                    />
-
-                    <!-- Zip Code Label -->
-                    <Label
-                        id="_IDGenLabel6"
-                        text="{i18n>zipLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Zip Code Input -->
-                    <Input
-                        id="zipInput"
-                        type="Number"
-                        placeholder="{i18n>zipPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="9000"
-                    />
-
-                    <!-- Phone Label -->
-                    <Label
-                        id="_IDGenLabel7"
-                        text="{i18n>phoneLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Phone Input -->
-                    <Input
-                        id="phoneInput"
-                        type="Number"
-                        placeholder="{i18n>phonePlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="0477777777"
-                    />
-
-                    <!-- Gender Label -->
-                    <Label
-                        id="_IDGenLabel8"
-                        text="{i18n>genderLabel}"
-                        class="registerLabel"
-                    />
-
-                    <!-- Gender Input -->
-                    <Select
-                        id="genderInput"
-                        class="registerInput"
-                        required="true"
+                    <!-- Left Column -->
+                    <FlexBox
+                        id="_IDGenLeftFlexBox"
+                        class="leftFlexBox"
+                        direction="Column"
                     >
-                        <core:Item
-                            id="_IDGenItem1"
-                            key="male"
-                            text="{i18n>genderMale}"
-                        />
-                        <core:Item
-                            id="_IDGenItem2"
-                            key="female"
-                            text="{i18n>genderFemale}"
-                        />
-                        <core:Item
-                            id="_IDGenItem3"
-                            key="other"
-                            text="{i18n>genderOther}"
-                        />
-                    </Select>
+                        <!-- Email -->
+                        <FlexBox
+                            id="_IDGenFlexBox2"
+                            class="formField"
+                        >
+                            <Label
+                                id="emailLabel"
+                                text="{i18n>emailLabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="emailInput"
+                                type="Email"
+                                placeholder="{i18n>emailPlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="test@gmail.com"
+                            />
+                        </FlexBox>
 
-                    <!--Password Label-->
-                    <Label
-                        id="passwordLabel"
-                        text="{i18n>passwordLabel}"
-                        class="registerLabel"
-                    />
+                        <!-- Firstname -->
+                        <FlexBox
+                            id="_IDGenFlexBox3"
+                            class="formField"
+                        >
+                            <Label
+                                id="_IDGenLabel9"
+                                text="{i18n>firstNameLabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="firstnameInput"
+                                type="Text"
+                                placeholder="{i18n>firstNamePlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="TestNaam"
+                            />
+                        </FlexBox>
 
-                    <!--Password Input-->
-                    <Input
-                        id="passwordInput"
-                        type="Password"
-                        placeholder="{i18n>passwordPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="test123"
-                    />
+                        <!-- Lastname -->
+                        <FlexBox
+                            id="_IDGenFlexBox4"
+                            class="formField"
+                        >
+                            <Label
+                                id="_IDGenLabel10"
+                                text="{i18n>lastNameLabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="lastnameInput"
+                                type="Text"
+                                placeholder="{i18n>lastNamePlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="TestAchternaam"
+                            />
+                        </FlexBox>
 
-                    <!--Confirm Password label-->
-                    <Label
-                        id="confirmPasswordLabel"
-                        text="{i18n>confirmPasswordlabel}"
-                        class="registerLabel"
-                    />
+                        <!-- Company -->
+                        <FlexBox
+                            id="_IDGenFlexBox5"
+                            class="formField"
+                        >
+                            <Label
+                                id="companyLabel"
+                                text="{i18n>companylabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="companyInput"
+                                type="Text"
+                                placeholder="{i18n>companyPlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="Flexso"
+                            />
+                        </FlexBox>
 
-                    <!--Confirm Password Input-->
-                    <Input
-                        id="confirmPasswordInput"
-                        type="Password"
-                        placeholder="{i18n>confirmPasswordPlaceholder}"
-                        class="registerInput"
-                        required="true"
-                        value="test123"
-                    />
+                        <!-- Phone -->
+                        <FlexBox
+                            id="_IDGenFlexBox13"
+                            class="formField"
+                        >
+                            <Label
+                                id="_IDGenLabel7"
+                                text="{i18n>phoneLabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="phoneInput"
+                                type="Number"
+                                placeholder="{i18n>phonePlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="0477777777"
+                            />
+                        </FlexBox>
 
-                    <!--Register Button-->
-                    <Button
-                        id="registerButton"
-                        text="{i18n>registerButton}"
-                        width="100%"
-                        press="onRegister"
-                        class="registerButton"
-                    />
-                </l:VerticalLayout>
-            </VBox>
+                        <!-- Role
+                        <FlexBox
+                            id="_IDGenFlexBox6"
+                            class="formField"
+                        >
+                            <Label
+                                id="roleLabel"
+                                text="{i18n>rolelabel}"
+                                class="registerLabel"
+                            />
+                            <Input
+                                id="roleInput"
+                                type="Text"
+                                placeholder="{i18n>rolePlaceholder}"
+                                class="registerInput"
+                                required="true"
+                                value="Admin"
+                            />
+                        </FlexBox> -->
+
+                        <FlexBox
+                            id="_IDGenFlexBox7"
+                            class="formField"
+                            justifyContent="Center"
+                        >
+                            <Label
+                                id="_IDGenLabel1"
+                                text="{i18n>birthdateLabel}"
+                                class="registerLabel"
+                            />
+                            <DatePicker
+                                id="bdateInput"
+                                class="registerInput"
+                                required="true"
+                                value="1999-01-01"
+                                width="93%"
+                            />
+                        </FlexBox>
+
+                        <!-- Gender -->
+                        <FlexBox
+                            id="_IDGenFlexBox14"
+                            class="formField"
+                        >
+                            <Label
+                                id="_IDGenLabel8"
+                                text="{i18n>genderLabel}"
+                                class="registerLabel"
+                            />
+                            <Select
+                                id="genderInput"
+                                required="true"
+                                width="180px"
+                            >
+                                <core:Item
+                                    id="_IDGenItem1"
+                                    key="male"
+                                    text="{i18n>genderMale}"
+                                />
+                                <core:Item
+                                    id="_IDGenItem2"
+                                    key="female"
+                                    text="{i18n>genderFemale}"
+                                />
+                                <core:Item
+                                    id="_IDGenItem3"
+                                    key="other"
+                                    text="{i18n>genderOther}"
+                                />
+                            </Select>
+                        </FlexBox>
+                    </FlexBox>
+
+                    <!-- Right Column -->
+                    <FlexBox
+                        id="_IDGenRightFlexBox"
+                        class="rightFlexBox"
+                        direction="Column"
+                    >
+                        <l:VerticalLayout
+                            id="_IDGenVerticalLayout2"
+                            class="loginLayout"
+                        >
+                            <!-- Street -->
+                            <FlexBox
+                                id="_IDGenFlexBox8"
+                                class="formField"
+                            >
+                                <Label
+                                    id="_IDGenLabel2"
+                                    text="{i18n>streetLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="streetInput"
+                                    type="Text"
+                                    placeholder="{i18n>streetPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="Hogentstraat"
+                                />
+                            </FlexBox>
+                            <!-- House Number -->
+                            <FlexBox
+                                id="_IDGenFlexBox9"
+                                class="formField"
+                            >
+                                <Label
+                                    id="_IDGenLabel3"
+                                    text="{i18n>hnumberLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="hnumberInput"
+                                    type="Number"
+                                    placeholder="{i18n>hnumberPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="1"
+                                />
+                            </FlexBox>
+
+                            <!-- City -->
+                            <FlexBox
+                                id="_IDGenFlexBox10"
+                                class="formField"
+                            >
+                                <Label
+                                    id="_IDGenLabel4"
+                                    text="{i18n>cityLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="cityInput"
+                                    type="Text"
+                                    placeholder="{i18n>cityPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="Gent"
+                                />
+                            </FlexBox>
+
+                            <!-- Country -->
+                            <FlexBox
+                                id="_IDGenFlexBox11"
+                                class="formField"
+                            >
+                                <Label
+                                    id="_IDGenLabel5"
+                                    text="{i18n>countryLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="countryInput"
+                                    type="Text"
+                                    placeholder="{i18n>countryPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="Belgium"
+                                />
+                            </FlexBox>
+
+                            <!-- Zip Code -->
+                            <FlexBox
+                                id="_IDGenFlexBox12"
+                                class="formField"
+                            >
+                                <Label
+                                    id="_IDGenLabel6"
+                                    text="{i18n>zipLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="zipInput"
+                                    type="Number"
+                                    placeholder="{i18n>zipPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="9000"
+                                />
+                            </FlexBox>
+
+                            <!-- Password -->
+                            <FlexBox
+                                id="_IDGenFlexBox15"
+                                class="formField"
+                            >
+                                <Label
+                                    id="passwordLabel"
+                                    text="{i18n>passwordLabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="passwordInput"
+                                    type="Password"
+                                    placeholder="{i18n>passwordPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="test123"
+                                />
+                            </FlexBox>
+
+                            <!-- Confirm Password -->
+                            <FlexBox
+                                id="_IDGenFlexBox16"
+                                class="formField"
+                            >
+                                <Label
+                                    id="confirmPasswordLabel"
+                                    text="{i18n>confirmPasswordlabel}"
+                                    class="registerLabel"
+                                />
+                                <Input
+                                    id="confirmPasswordInput"
+                                    type="Password"
+                                    placeholder="{i18n>confirmPasswordPlaceholder}"
+                                    class="registerInput"
+                                    required="true"
+                                    value="test123"
+                                />
+                            </FlexBox>
+                        </l:VerticalLayout>
+                    </FlexBox>
+                </FlexBox>
+            </FlexBox>
+            <Button
+                id="registerButton"
+                text="{i18n>registerButton}"
+                press="onRegister"
+                class="registerButton"
+                type="Accept"
+            />
         </content>
     </Page>
     <Popover

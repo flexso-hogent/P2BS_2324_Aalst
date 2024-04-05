@@ -77,7 +77,10 @@ sap.ui.define(
           },
         });
       },
-
+      onUpdateProfilePressNav: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("updateProfile");
+      },
       onUpdateProfilePress: function () {
         var that = this;
         var updatedEmail = this.getView().byId("emailInput").getValue();

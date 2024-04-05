@@ -104,3 +104,118 @@
   height: 200px; /* Adjust the height as needed */
   margin: 10px; /* Adjust the margin as needed */
 }
+/* styles.css */
+
+.registerTitle {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.registerImage {
+  width: 150px;
+  height: 150px;
+  margin: auto; /* Center horizontally */
+  display: block; /* For margin auto to work, display block is needed */
+}
+
+.registerButton {
+  display: block;
+  margin: auto; /* Center horizontally */
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+}
+
+.registerTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.registerImage {
+  display: block;
+  margin: 0 auto;
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.outerFlexBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outerFlexBoxWithPadding {
+  padding: 1rem;
+}
+
+.registerFlexBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.leftFlexBox,
+.rightFlexBox {
+  flex: 1;
+}
+
+.formField {
+  margin-bottom: 1rem;
+}
+
+.registerLabel {
+  width: 150px; /* Adjust width as needed */
+  text-align: right;
+  padding-right: 1rem;
+  margin-top: 8px; /* Add margin-top */
+}
+.registerInput {
+  flex: 1;
+}
+
+.registerButton {
+  margin-top: 1rem;
+  width: 200px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileBox {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.userInfoTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  margin: auto; /* Center horizontally */
+  display: block; /* For margin auto to work, display block is needed */
+}
+.updateProfileButton {
+  display: block;
+  margin: auto; /* Center horizontally */
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+}
+.logoutButton {
+  display: block;
+  margin: auto; /* Center horizontally */
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+}

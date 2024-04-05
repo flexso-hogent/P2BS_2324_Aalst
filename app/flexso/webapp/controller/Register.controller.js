@@ -32,7 +32,7 @@ sap.ui.define(
         var firstname = this.getView().byId("firstnameInput").getValue();
         var lastname = this.getView().byId("lastnameInput").getValue();
         var company = this.getView().byId("companyInput").getValue();
-        var role = this.getView().byId("roleInput").getValue();
+        // var role = this.getView().byId("roleInput").getValue();
         var bdatePicker = this.getView().byId("bdateInput");
         var bdate = bdatePicker.getDateValue(); // Get the selected date from the DatePicker control
         var password = this.getView().byId("passwordInput").getValue(); // Plain password
@@ -67,7 +67,7 @@ sap.ui.define(
           firstname,
           lastname,
           company,
-          role,
+          // role,
           bdate,
           password,
           passwordRepeat,
@@ -124,7 +124,7 @@ sap.ui.define(
               firstname: firstname,
               lastname: lastname,
               company: company,
-              role: role,
+              // role: role,
               bdate: formattedBdate, // Use the formatted date
               password: hashedPassword, // Send hashed password
               street: street,
