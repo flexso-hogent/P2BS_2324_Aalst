@@ -191,6 +191,11 @@ sap.ui.define(
         var oTable = this.getView().byId("sessionTable");
         var oBinding = oTable.getBinding("items");
         oBinding.filter(aFilters, "Application");
+
+        var sessie = this.getView().byId("sessieZoekenInput").getValue();
+        if (sessie === "") {
+          oTable.setVisible(true);
+        }
       },
 
       onSessionSelect: function (oEvent) {
@@ -208,7 +213,10 @@ sap.ui.define(
         } else {
           var oSearchField = this.getView().byId("sessieZoekenInput");
           oSearchField.setValue(sTitel);
-        }
+
+          var oTable = this.getView().byId("sessionTable");
+          oTable.setVisible(false);
+        }       
       },
     });
   }

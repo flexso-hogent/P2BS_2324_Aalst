@@ -219,3 +219,8 @@
   width: 200px;
   height: 50px;
 }
+
+.feedbackLabel {
+  margin-top: 1rem;
+  text-align: left;
+}
