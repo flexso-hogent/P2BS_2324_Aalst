@@ -40,6 +40,7 @@
             <VBox
                 id="_IDGenVBox1"
                 class="registerBox"
+                width="100%"
             >
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
@@ -48,8 +49,8 @@
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"
-                        width="20%"
-                        height="20%"
+                        width="200px"
+                        height="200px"
                         class="loginImage"
                     />
 
@@ -72,7 +73,7 @@
                         <SearchField
                             id="sessieZoekenInput"
                             liveChange="onSearch"
-                            width="100%"
+                            width="1853px"
                         />
                     </OverflowToolbar>
 
