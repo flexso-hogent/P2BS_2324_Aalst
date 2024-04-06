@@ -23,6 +23,37 @@ sap.ui.define(
 
         // Call a function to fetch feedback data and update the model
         this.fetchFeedbackData();
+        this.fetchRegisteredSessionsData();
+      },
+      fetchRegisteredSessionsData: function () {
+        // Get the logged-in user's email address
+        var loggedInUserEmail = localStorage.getItem("email");
+
+        // Replace this with your actual service URL
+        var sessionServiceURL =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
+
+        // Construct the filter based on the logged-in user's email
+        var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
+
+        // Append the filter to the service URL
+        sessionServiceURL += filter;
+
+        $.ajax({
+          url: sessionServiceURL,
+          type: "GET",
+          success: function (data) {
+            // Assuming the response data is an array of registered session objects
+            // Update the model with the fetched registered session data
+            var oModel = this.getView().getModel("imageModel");
+            oModel.setProperty("/registeredSessionsData", data.value);
+          }.bind(this),
+          error: function (xhr, status, error) {
+            MessageToast.show(
+              "Error fetching registered sessions data: " + error
+            );
+          },
+        });
       },
 
       // Function to fetch feedback data from the backend

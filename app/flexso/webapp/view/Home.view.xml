@@ -10,7 +10,7 @@
     <Page
         id="_IDGenPage1"
         title="{i18n>home}"
-        enableScrolling="false"
+        enableScrolling="true"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -105,7 +105,36 @@
                 />
                 <!-- Add more buttons here as needed -->
             </FlexBox>
+            <Title
+                id="_IDGenTitle"
+                text="{i18n>myEventTitleSessions}"
+                level="H2"
+                class="sapUiSmallMarginBegin"
+            />
 
+            <VBox
+                id="_IDGenVBox"
+                class="sapUiSmallMarginBegin"
+            >
+                <Label
+                    id="_IDGenLabel"
+                    text="{i18n>SessionHomeTitle}"
+                    class="sapUiTinyMarginBottom"
+                />
+                <List
+                    id="_IDGenList"
+                    items="{imageModel>/registeredSessionsData}"
+                    noDataText="{i18n>noDataTextSessions}"
+                >
+                    <StandardListItem
+                        id="_IDGenStandardListItem"
+                        title="{imageModel>title}"
+                        description="{= 'Start Date: ' + ${imageModel>startDate} + ', End Date: ' + ${imageModel>endDate} + '\n' + 
+                       'Start Time: ' + ${imageModel>startTime} + ', End Time: ' + ${imageModel>endTime} + '\n' + 
+                       'Total Seats: ' + ${imageModel>totalSeats} + ', Speaker: ' + ${imageModel>speaker}}"
+                    />
+                </List>
+            </VBox>
             <!-- Title for Feedback Section -->
             <Title
                 id="_IDGenTitle2"
