@@ -17,6 +17,7 @@ sap.ui.define(
         var oImageModel = new JSONModel({
           profileImagePath: oProfileImagePath,
           feedbackData: [], // Initialize an empty array to hold feedback data
+          role: localStorage.getItem("role"), // Retrieve the role from local storage
         });
 
         this.getView().setModel(oImageModel, "imageModel");
@@ -24,7 +25,27 @@ sap.ui.define(
         // Call a function to fetch feedback data and update the model
         this.fetchFeedbackData();
         this.fetchRegisteredSessionsData();
+
+        // Compute visibility of create buttons based on role
+        this.computeCreateButtonsVisibility();
+
+        // Add listener for changes to the role property
+        oImageModel.attachPropertyChange(this.onRoleChange, this);
       },
+
+      onRoleChange: function (oEvent) {
+        if (oEvent.getParameter("path") === "/role") {
+          this.computeCreateButtonsVisibility();
+        }
+      },
+
+      computeCreateButtonsVisibility: function () {
+        var oImageModel = this.getView().getModel("imageModel");
+        var role = oImageModel.getProperty("/role");
+        var isAdmin = role === "admin";
+        oImageModel.setProperty("/isAdmin", isAdmin);
+      },
+
       fetchRegisteredSessionsData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");

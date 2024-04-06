@@ -1,11 +1,3 @@
 userID;firstname;lastname;email;password;company;role;bdate;street;hnumber;city;country;zip;phone;gender
-1;Sophie; Dupont;sophiedupont@example.com;securepass123;BelgiumTech;Attendee;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Female
-2;Lucas; Dubois;lucasdubois@example.com;strongpassword456;InnovativeSolutions;Attendee;1985-09-20;Avenue des Fleurs;12;Antwerp;Belgium;2000;3245678901;Male
-3;Camille; Leroy;camilleleroy@example.com;letmein789;DataWorks;Speaker;1978-12-10;Place du Marché;8;Ghent;Belgium;9000;3223456789;Female
-4;Thomas ;Lambert;thomaslambert@example.com;password123;TechStart;Attendee;1982-04-30;Chaussée de Charleroi;35;Liège;Belgium;4000;3210987654;Male
-5;Emma ;Moreau;emmoreau@example.com;abc123;DigitalTech;Speaker;1989-07-25;Rue des Arts;17;Bruges;Belgium;8000;3287654321;Female
-6;Louis; Martin;louismartin@example.com;password456;TechSolutions;Attendee;1995-02-18;Rue des Bouchers;7;Namur;Belgium;5000;3298765432;Male
-7;Charlotte; Simon;charlottesimon@example.com;qwerty;SoftwareGenius;Attendee;1980-11-05;Rue Royale;21;Mons;Belgium;7000;3276543210;Female
-8;Hugo; Laurent;hugolaurent@example.com;pass123;TechRevolution;Speaker;1975-08-12;Rue des Halles;14;Charleroi;Belgium;6000;3265432109;Male
-9;Zoé; De Smet;zoe_desmet@example.com;password789;TechInnovate;Attendee;1987-03-22;Avenue Louise;9;Leuven;Belgium;3000;3254321098;Female
-10;Léo ;Dubois;leodubois@example.com;secret;WebCreators;Attendee;1993-06-08;Place de l'Université;4;Brussels;Belgium;1000;3232109876;Male
+1;Sophie; Dupont;t@gmail.com;6cbefd8960d511540f34779628ef4e5a55b758d3be5749cd8878a09b348c052b;BelgiumTech;admin;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Female
+

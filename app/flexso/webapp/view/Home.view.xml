@@ -90,6 +90,20 @@
                 />
                 <!-- Create Session Button -->
 
+                <!-- Add more buttons here as needed -->
+            </FlexBox>
+
+            <!-- FlexBox for Create Buttons -->
+
+            <FlexBox
+                id="_IDGenFlexBox1"
+                justifyContent="Center"
+                wrap="Wrap"
+                alignItems="Center"
+                class="sapUiSmallMargin sapUiContentPadding"
+                visible="{imageModel>/isAdmin}"
+            >
+                <!-- Create Event Button -->
                 <Button
                     id="_IDGenButtonCreateEvent"
                     text="{i18n>createEventButton}"
@@ -97,14 +111,15 @@
                     class="sapUiSmallMarginEnd"
                 />
 
+                <!-- Create Session Button -->
                 <Button
                     id="_IDGenButtonCreateSession"
                     text="{i18n>createSessionButton}"
                     press="onGoToCreateSessionPress"
                     class="sapUiSmallMarginEnd"
                 />
-                <!-- Add more buttons here as needed -->
             </FlexBox>
+
             <Title
                 id="_IDGenTitle"
                 text="{i18n>myEventTitleSessions}"

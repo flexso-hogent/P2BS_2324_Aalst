@@ -102,6 +102,7 @@ sap.ui.define(
               setTimeout(() => {
                 var oRouter = UIComponent.getRouterFor(this);
                 oRouter.navTo("home");
+                window.location.reload(); // Reload homepage
               }, 1000);
             } else {
               MessageToast.show("User or password is wrong. Please try again.");
