@@ -11,6 +11,22 @@ sap.ui.define(
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
         this.loadData();
+
+        var oRootPath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/Flexso.png"
+        );
+
+        var oProfileImagePath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/profile.jpg"
+        );
+        var oImageModel = new JSONModel({
+          path: oRootPath,
+          profileImagePath: oProfileImagePath,
+        });
+
+        this.getView().setModel(oImageModel, "imageModel");
       },
 
       loadData: function () {

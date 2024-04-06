@@ -1,183 +1,220 @@
-<mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  controllerName="flexso.controller.Overview"
->
-  <Page id="overviewPage" title="{i18n>overview}">
-    <headerContent>
-      <Toolbar id="_IDGenToolbar1">
-        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-        <Button
-          id="languageButton"
-          icon="sap-icon://globe"
-          press="onDropdownPress"
-        />
-        <Button
-          id="_IDGenButton3"
-          icon="sap-icon://home"
-          press="onBackToHome"
-        />
-        <Button
-          id="_IDGenButton4"
-          icon="sap-icon://person-placeholder"
-          press="onProfileButtonClick"
-        />
-        <Button
-          id="_IDGenButton5"
-          icon="sap-icon://log"
-          press="onLogoutPress"
-        />
-      </Toolbar>
-    </headerContent>
+sap.ui.define(
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
+    "sap/ui/core/UIComponent",
+  ],
+  function (Controller, JSONModel, MessageToast, UIComponent) {
+    "use strict";
 
-    <content>
-      <FlexBox id="_IDGenFlexBox1" alignItems="Start">
-        <VBox width="100%" id="eventBox">
-          <Title id="overviewTitleP" text="{i18n>OverviewTitle}" />
-          <SearchField
-            id="overviewSearchFieldP"
-            search="onSearch"
-            liveChange="onSearchLiveChange"
-            placeholder="{i18n>Search}"
-            width="100%"
-          />
+    return Controller.extend("flexso.controller.Overview", {
+      _selectedEvent: null,
 
-          <List
-            id="overviewListP"
-            items="{ path: 'eventModel>/' }"
-            noDataText="{i18n>noData}"
-            selectionChange="onEventSelect"
-          >
-            <items>
-              <CustomListItem id="_IDGenCustomListItem1">
-                <HBox id="_IDGenHBox1" class="hBoxClickable">
-                  <VBox id="_IDGenVBox1">
-                    <Label id="_IDGenLabel7" text="{eventModel>Name}" />
-                    <HBox id="_IDGenHBox3">
-                      <Label
-                        id="datum"
-                        text="{eventModel>SDate} {i18n>until} {eventModel>EDate} "
-                      ></Label>
-                    </HBox>
-                    <Label
-                      id="_IDGenLabel10"
-                      text="{i18n>Location}: {eventModel>location}"
-                    />
-                    <Text
-                      id="_IDGenText5"
-                      text="{i18n>description}: {eventModel>description}"
-                      width="95%"
-                    />
-                  </VBox>
-                </HBox>
-                <Button
-                  id="_IDGenButton1"
-                  text="{i18n>EventSessions}"
-                  press="onViewSessionsPress"
-                />
-              </CustomListItem>
-            </items>
-          </List>
-        </VBox>
+      onInit: function () {
+        this.loadData();
+        var oProfileImagePath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/profile.jpg"
+        );
+        var oImageModel = new JSONModel({
+          profileImagePath: oProfileImagePath,
+        });
 
-        <VBox width="100%" id="sessionsBox" visible="false">
-          <HBox id="_IDGenHBox2">
-            <VBox id="_IDGenVBox4" width="100%">
-              <Title id="_IDGenTitle2" text="{i18n>OverviewSessions}" />
-              <Button
-                id="expandSessionsButton"
-                icon="sap-icon://slim-arrow-left"
-                press="onExpandSessionsPress"
-              />
+        this.getView().setModel(oImageModel, "imageModel");
 
-              <VBox id="sessionInfoBox" visible="false">
-                <List
-                  id="sessionsList"
-                  items="{ path: 'sessionModel>/' }"
-                  selectionChange="onSessionSelect"
-                >
-                  <items>
-                    <CustomListItem
-                      id="sessionListItem"
-                      press="onSessionSelect"
-                    >
-                      <HBox id="_IDGenHBox4" class="hBoxClickable">
-                        <VBox id="_IDGenVBox5">
-                          <Label
-                            id="_IDGenLabel11"
-                            text="{sessionModel>title}"
-                          />
-                          <HBox id="_IDGenHBox5">
-                            <Label
-                              id="_IDGenLabel12"
-                              text="{i18n>StartDate}: "
-                            />
-                            <Text
-                              id="_IDGenDatePicker3"
-                              text="{sessionModel>startDate}"
-                            />
-                            <Label id="_IDGenLabel16" text="{i18n>EndDate}: " />
-                            <Text
-                              id="_IDGenDatePicker4"
-                              text="{sessionModel>endDate}"
-                            />
-                          </HBox>
-                          <Label
-                            id="_IDGenLabel14"
-                            text="{i18n>Location}: {sessionModel>location}"
-                          />
-                          <Label
-                            id="_IDGenLabel17"
-                            text="{i18n>Speaker}: {sessionModel>speaker}"
-                          />
-                          <Label
-                            id="_IDGenLabel18"
-                            text="{i18n>TotalSeats}: {sessionModel>totalSeats}"
-                          />
-                          <Label
-                            id="_IDGenLabel15"
-                            text="{i18n>Description}: {sessionModel>description}"
-                          />
-                        </VBox>
-                      </HBox>
-                      <Button
-                        id="_IDGenButton2"
-                        text="{i18n>register}"
-                        press="onRegisterPress"
-                      />
-                    </CustomListItem>
-                  </items>
-                </List>
-              </VBox>
-            </VBox>
-          </HBox>
-        </VBox>
-      </FlexBox>
-    </content>
-  </Page>
+        // Verberg de sessies standaard
+        var oSessionsBox = this.getView().byId("sessionsBox");
+        oSessionsBox.setVisible(false);
+      },
 
-  <Popover
-    id="popover"
-    placement="Auto"
-    showArrow="true"
-    title="{i18n>Menu}"
-    contentWidth="auto"
-  >
-    <content>
-      <VBox id="_IDGenVBox">
-        <Button
-          id="_IDGenButton9"
-          text="{i18n>EN}"
-          press="onSwitchToEnglish"
-          width="100%"
-        />
-        <Button
-          id="_IDGenButton10"
-          text="{i18n>NL}"
-          press="onSwitchToDutch"
-          width="100%"
-        />
-      </VBox>
-    </content>
-  </Popover>
-</mvc:View>;
+      onDropdownPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oPopover = this.getView().byId("popover");
+
+        if (!oPopover.isOpen()) {
+          oPopover.openBy(oButton);
+        } else {
+          oPopover.close();
+        }
+      },
+
+      onSwitchToEnglish: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "en";
+        sap.ui.getCore().getConfiguration().setLanguage("en");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onSwitchToDutch: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "nl";
+        sap.ui.getCore().getConfiguration().setLanguage("nl");
+        this.getView().getModel("i18n").refresh();
+      },
+
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
+      },
+
+      onProfileButtonClick: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("profile");
+      },
+
+      onLogoutPress: function () {
+        var that = this;
+        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              localStorage.clear();
+              var oRouter = UIComponent.getRouterFor(that);
+              oRouter.navTo("login");
+            }
+          },
+        });
+      },
+
+      onViewSessionsPress: function (oEvent) {
+        var oSelectedListItem = oEvent.getSource().getParent();
+        var oEventModel = oSelectedListItem
+          .getBindingContext("eventModel")
+          .getObject();
+        var eventID = oEventModel.eventID;
+
+        if (eventID) {
+          this.loadSessions(eventID);
+          var oSessionsBox = this.getView().byId("sessionsBox");
+          oSessionsBox.setVisible(true);
+        } else {
+          MessageToast.show("EventID is not defined.");
+        }
+      },
+
+      loadData: function () {
+        var that = this;
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Events",
+          dataType: "json",
+          success: function (data) {
+            var filteredEvents = data.value.map(function (event) {
+              return {
+                eventID: event.eventID,
+                Name: event.name,
+                SDate: event.startDate,
+                EDate: event.endDate,
+                STime: event.startTime,
+                ETime: event.endTime,
+                location: event.location,
+                totalSeats: event.totalSeats,
+                speaker: event.speaker,
+                description: event.description,
+              };
+            });
+
+            var eventModel = new JSONModel(filteredEvents);
+            that.getView().setModel(eventModel, "eventModel");
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show("Error fetching data: " + error);
+          },
+        });
+      },
+
+      loadSessions: function (eventID) {
+        var that = this;
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          success: function (data) {
+            var filteredSessions = data.value.filter(function (session) {
+              return session.eventID === eventID;
+            });
+
+            var sessions = filteredSessions.map(function (session) {
+              return {
+                sessionID: session.sessionID,
+                title: session.title,
+                startDate: session.startDate,
+                startTime: session.startTime,
+                endDate: session.endDate,
+                endTime: session.endTime,
+                location: session.room,
+                speaker: session.speaker,
+                totalSeats: session.totalSeats,
+                description: session.description,
+              };
+            });
+
+            var sessionModel = new JSONModel(sessions);
+            that.getView().setModel(sessionModel, "sessionModel");
+
+            var oSessionInfoBox = that.getView().byId("sessionInfoBox");
+            oSessionInfoBox.setVisible(true);
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show("Error fetching session data: " + error);
+          },
+        });
+      },
+
+      onExpandSessionsPress: function () {
+        var oSessionsBox = this.getView().byId("sessionsBox");
+        var oExpandSessionsButton = this.getView().byId("expandSessionsButton");
+
+        if (oSessionsBox.getVisible()) {
+          oSessionsBox.setVisible(false);
+          oExpandSessionsButton.setIcon("sap-icon://slim-arrow-left");
+        }
+      },
+
+      onSearchLiveChange: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        this.filterEvents(sQuery);
+      },
+
+      filterEvents: function (sQuery) {
+        var oList = this.getView().byId("overviewListP");
+        var oBinding = oList.getBinding("items");
+        var oFilter;
+
+        if (sQuery) {
+          oFilter = new sap.ui.model.Filter(
+            "Name",
+            sap.ui.model.FilterOperator.Contains,
+            sQuery
+          );
+        }
+
+        oBinding.filter(oFilter);
+      },
+
+      onRegisterPress: function (oEvent) {
+        var oSessionContext = oEvent
+          .getSource()
+          .getBindingContext("sessionModel");
+        if (oSessionContext) {
+          var oSessionData = oSessionContext.getObject();
+          localStorage.setItem("title", oSessionData.title);
+          localStorage.setItem("startDate", oSessionData.startDate);
+          localStorage.setItem("endDate", oSessionData.endDate);
+          localStorage.setItem("startTime", oSessionData.startTime);
+          localStorage.setItem("endTime", oSessionData.endTime);
+          localStorage.setItem("location", oSessionData.location);
+          localStorage.setItem("speaker", oSessionData.speaker);
+          localStorage.setItem("totalSeats", oSessionData.totalSeats);
+          localStorage.setItem("description", oSessionData.description);
+          localStorage.setItem("sessionID", oSessionData.sessionID);
+          localStorage.setItem("eventID", oSessionData.eventID);
+
+          var oRouter = UIComponent.getRouterFor(this);
+          oRouter.navTo("Registersession");
+        } else {
+          MessageToast.show("Select a session to register.");
+        }
+      },
+    });
+  }
+);
