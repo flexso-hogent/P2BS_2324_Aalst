@@ -33,7 +33,7 @@
                 />
             </Toolbar>
         </headerContent>
-        <l:VerticalLayout width="100%" class="centerContainer">
+        <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%" class="centerContainer">
             <l:content>
                 <VBox id="_IDGenVBox1" class="loginBox" width="1000px"> 
                     <Title id="_IDGenTitle1" text="{i18n>titleMakeSession}" level="H2" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginBottom"/> 
