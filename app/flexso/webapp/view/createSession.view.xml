@@ -15,7 +15,7 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
-                    id="languageButton"
+                    id="languageButton1"
                     icon="sap-icon://globe"
                     press="onDropdownPress"
                 />
