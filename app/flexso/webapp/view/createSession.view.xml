@@ -15,7 +15,7 @@
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <Button
-                    id="languageButton1"
+                    id="languageButton"
                     icon="sap-icon://globe"
                     press="onDropdownPress"
                 />
@@ -45,7 +45,7 @@
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
                     class="createSessionLayout"
-                >
+                > 
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"

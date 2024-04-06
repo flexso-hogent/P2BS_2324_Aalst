@@ -3,6 +3,7 @@
     xmlns="sap.m"
     controllerName="flexso.controller.Overview"
 >
+
     <Page
         id="overviewPage"
         title="{i18n>overview}"
@@ -68,122 +69,47 @@
                                     class="hBoxClickable"
                                 >
                                     <VBox id="_IDGenVBox1">
-                                        <Label
-                                            id="_IDGenLabel7"
-                                            text="{eventModel>Name}"
-                                        />
+                                        <Label id="_IDGenLabel7" text="{eventModel>Name}" />
                                         <HBox id="_IDGenHBox3">
-                                            <Label
-                                                id="datum"
-                                                text="{eventModel>SDate} {i18n>until} {eventModel>EDate} "
-                                            />
+                                            <Label id="datum" text="{eventModel>SDate} {i18n>until} {eventModel>EDate} "></Label>
                                         </HBox>
-                                        <Label
-                                            id="_IDGenLabel10"
-                                            text="{i18n>Location}: {eventModel>location}"
-                                        />
-                                        <Text
-                                            id="_IDGenText5"
-                                            text="{i18n>description}: {eventModel>description}"
-                                            width="95%"
-                                        />
+                                        <Label id="_IDGenLabel10" text="{i18n>Location}: {eventModel>location}" />
+                                        <Text id="_IDGenText5" text="{i18n>description}: {eventModel>description}" width="95%" />
                                     </VBox>
                                 </HBox>
-                                <Button
-                                    id="_IDGenButton1"
-                                    text="{i18n>EventSessions}"
-                                    press="onViewSessionsPress"
-                                />
+                                <Button id="_IDGenButton1" text="{i18n>EventSessions}" press="onViewSessionsPress" />
                             </CustomListItem>
                         </items>
                     </List>
                 </VBox>
 
                 <!-- SESSIE BOX (initieel verborgen) -->
-                <VBox
-                    width="100%"
-                    id="sessionsBox"
-                    visible="false"
-                >
+                <VBox width="100%" id="sessionsBox" visible="false">
                     <HBox id="_IDGenHBox2">
-                        <VBox
-                            id="_IDGenVBox4"
-                            width="100%"
-                        >
-                            <Title
-                                id="_IDGenTitle2"
-                                text="{i18n>OverviewSessions}"
-                            />
-                            <Button
-                                id="expandSessionsButton"
-                                icon="sap-icon://slim-arrow-left"
-                                press="onExpandSessionsPress"
-                            />
+                        <VBox id="_IDGenVBox4" width="100%">
+                            <Title id="_IDGenTitle2" text="{i18n>OverviewSessions}" />
+                            <Button id="expandSessionsButton" icon="sap-icon://slim-arrow-left" press="onExpandSessionsPress" />
 
-                            <VBox
-                                id="sessionInfoBox"
-                                visible="false"
-                            >
-                                <List
-                                    id="sessionsList"
-                                    items="{ path: 'sessionModel>/' }"
-                                    selectionChange="onSessionSelect"
-                                >
+                            <VBox id="sessionInfoBox" visible="false">
+                                <List id="sessionsList" items="{ path: 'sessionModel>/' }" selectionChange="onSessionSelect">
                                     <items>
-                                        <CustomListItem
-                                            id="sessionListItem"
-                                            press="onSessionSelect"
-                                        >
-                                            <HBox
-                                                id="_IDGenHBox4"
-                                                class="hBoxClickable"
-                                            >
+                                        <CustomListItem id="sessionListItem" press="onSessionSelect">
+                                            <HBox id="_IDGenHBox4" class="hBoxClickable">
                                                 <VBox id="_IDGenVBox5">
-                                                    <Label
-                                                        id="_IDGenLabel11"
-                                                        text="{sessionModel>title}"
-                                                    />
+                                                    <Label id="_IDGenLabel11" text="{sessionModel>title}" />
                                                     <HBox id="_IDGenHBox5">
-                                                        <Label
-                                                            id="_IDGenLabel12"
-                                                            text="{i18n>StartDate}: "
-                                                        />
-                                                        <Text
-                                                            id="_IDGenDatePicker3"
-                                                            text="{sessionModel>startDate}"
-                                                        />
-                                                        <Label
-                                                            id="_IDGenLabel16"
-                                                            text="{i18n>EndDate}: "
-                                                        />
-                                                        <Text
-                                                            id="_IDGenDatePicker4"
-                                                            text="{sessionModel>endDate}"
-                                                        />
+                                                        <Label id="_IDGenLabel12" text="{i18n>StartDate}: " />
+                                                        <Text id="_IDGenDatePicker3" text="{sessionModel>startDate}" />
+                                                        <Label id="_IDGenLabel16" text="{i18n>EndDate}: " />
+                                                        <Text id="_IDGenDatePicker4" text="{sessionModel>endDate}" />
                                                     </HBox>
-                                                    <Label
-                                                        id="_IDGenLabel14"
-                                                        text="{i18n>Location}: {sessionModel>location}"
-                                                    />
-                                                    <Label
-                                                        id="_IDGenLabel17"
-                                                        text="{i18n>Speaker}: {sessionModel>speaker}"
-                                                    />
-                                                    <Label
-                                                        id="_IDGenLabel18"
-                                                        text="{i18n>TotalSeats}: {sessionModel>totalSeats}"
-                                                    />
-                                                    <Label
-                                                        id="_IDGenLabel15"
-                                                        text="{i18n>Description}: {sessionModel>description}"
-                                                    />
+                                                    <Label id="_IDGenLabel14" text="{i18n>Location}: {sessionModel>location}" />
+                                                    <Label id="_IDGenLabel17" text="{i18n>Speaker}: {sessionModel>speaker}" />
+                                                    <Label id="_IDGenLabel18" text="{i18n>TotalSeats}: {sessionModel>totalSeats}" />
+                                                    <Label id="_IDGenLabel15" text="{i18n>Description}: {sessionModel>description}" />
                                                 </VBox>
                                             </HBox>
-                                            <Button
-                                                id="_IDGenButton2"
-                                                text="{i18n>register}"
-                                                press="onRegisterPress"
-                                            />
+                                            <Button id="_IDGenButton2" text="{i18n>register}" press="onRegisterPress" />
                                         </CustomListItem>
                                     </items>
                                 </List>
@@ -204,18 +130,8 @@
     >
         <content>
             <VBox id="_IDGenVBox">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
+                <Button id="_IDGenButton9" text="{i18n>EN}" press="onSwitchToEnglish" width="100%" />
+                <Button id="_IDGenButton10" text="{i18n>NL}" press="onSwitchToDutch" width="100%" />
             </VBox>
         </content>
     </Popover>
