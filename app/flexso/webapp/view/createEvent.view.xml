@@ -33,61 +33,29 @@
                 />
             </Toolbar>
         </headerContent>
-<<<<<<< HEAD
-        <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%" class="centerContainer">
+        <l:VerticalLayout width="100%" class="centerContainer">
             <l:content>
                 <VBox id="_IDGenVBox1" class="loginBox" width="1000px"> 
                     <Title id="_IDGenTitle1" text="{i18n>titleMakeSession}" level="H2" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginBottom"/> 
-
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"
                         class="registerImage"
                     />
-                    
                     <Label id="_IDGenLabel1" text="{i18n>eventName}" />
                     <Input id="_IDGenInput1" value="{path: '/name', type: 'sap.ui.model.type.String'}" required="true" />
-
                     <Label id="_IDGenLabel2" text="{i18n>startDate}" />
                     <DatePicker id="_IDGenDatePicker1" value="{path: '/startDate'}" required="true" />
-
                     <Label id="_IDGenLabel3" text="{i18n>endDate}" />
                     <DatePicker id="_IDGenDatePicker2" value="{path: '/endDate'}" required="true" />
-
                     <Label id="_IDGenLabel4" text="{i18n>location}" />
                     <Input id="_IDGenInput2" value="{path: '/location', type: 'sap.ui.model.type.String'}" required="true" />
-
                     <Label id="_IDGenLabel5" text="{i18n>description}" />
                     <TextArea id="_IDGenTextArea1" value="{path: '/description'}" required="true" width="100%" rows="3" />
-
                     <Button id="_IDGenButton1" text="{i18n>EventAanmakenButton}" press="onRegisterPress" />
                 </VBox>
             </l:content>
         </l:VerticalLayout>
-=======
-       <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%"  class="centerContainer">
-                <l:content>
-                    <VBox id="_IDGenVBox1" class="loginBox" width="1000px"> 
-                        <Label id="_IDGenLabel1" text="{i18n>eventName}" />
-                        <Input id="_IDGenInput1" value="{path: '/name', type: 'sap.ui.model.type.String'}" required="true" />
-                        
-                        <Label id="_IDGenLabel2" text="{i18n>startDate}" />
-                        <DatePicker id="_IDGenDatePicker1" value="{path: '/startDate'}" required="true" />
-                        
-                        <Label id="_IDGenLabel3" text="{i18n>endDate}" />
-                        <DatePicker id="_IDGenDatePicker2" value="{path: '/endDate'}" required="true"  />
-                        
-                        <Label id="_IDGenLabel4" text="{i18n>location}" />
-                        <Input id="_IDGenInput2" value="{path: '/location', type: 'sap.ui.model.type.String'}" required="true" />
-                        
-                        <Label id="_IDGenLabel5" text="{i18n>description}" />
-                        <TextArea id="_IDGenTextArea1" value="{path: '/description'}" required="true" width="100%" rows = "3"/>
-                        
-                        <Button id="_IDGenButton1" text="{i18n>EventAanmakenButton}" press="onRegisterPress" />
-                    </VBox>
-                </l:content>
-            </l:VerticalLayout>
->>>>>>> ee39216 (eventoverview + create session (werkt nog niet helemaal))
     </Page>
     <Popover
         id="popover"
