@@ -10,7 +10,7 @@
         title="{i18n>title}"
     >
         <List
-            id="list"
+            id="list1"
             items="{/Products}"
             mode="SingleSelectMaster"
         >
