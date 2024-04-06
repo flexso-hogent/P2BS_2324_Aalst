@@ -4,10 +4,12 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
+    displayBlock="true"
 >
     <Page
         id="_IDGenPage1"
-        title="Create Session"
+        title="{i18n>CreateSession}"
+        class="feedbackPage"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -34,83 +36,109 @@
                 />
             </Toolbar>
         </headerContent>
-
         <content>
             <VBox
                 id="createSessionContent"
-                class="sapUiSmallMarginBegin sapUiSmallMarginTop"
+                class="createSessionBox"
+                width="100%"
             >
-                <Label
-                    id="_IDGenLabel1"
-                    text="Select Event"
-                />
-                <Select
-                    id="eventSelect"
-                    items="{eventModel>/}"
-                >
-                    <core:Item
-                        id="_IDGenItem1"
-                        key="{eventModel>eventID}"
-                        text="{eventModel>Name}"
+                <l:VerticalLayout
+                    id="_IDGenVerticalLayout1"
+                    class="createSessionLayout"
+                > 
+                    <Image
+                        id="imageFlexso"
+                        src="{imageModel>/path}"
+                        width="200px"
+                        height="200px"
+                        class="loginImage"
                     />
-                </Select>
+                    <Label
+                        id="_IDGenLabel1"
+                        text="{i18n>SelectEvent}"
+                        class="LabelCreateSession"
+                    />
+                    <Select
+                        id="eventSelect"
+                        items="{eventModel>/}"
+                        width="1853px"
+                        class="InputCreateSession"
+                    >
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="{eventModel>eventID}"
+                            text="{eventModel>Name}"
+                        />
+                    </Select>
 
-                <Input
-                    id="_IDGenInput1"
-                    value="{sessionModel>/title}"
-                    placeholder="Title"
-                />
-                <DatePicker
-                    id="_IDGenDatePicker1"
-                    value="{sessionModel>/startDate}"
-                    placeholder="Start Date"
-                />
-                <DatePicker
-                    id="_IDGenDatePicker2"
-                    value="{sessionModel>/endDate}"
-                    placeholder="End Date"
-                />
-                <TimePicker
-                    id="_IDGenTimePicker1"
-                    value="{sessionModel>/startTime}"
-                    placeholder="Start Time"
-                />
-                <TimePicker
-                    id="_IDGenTimePicker2"
-                    value="{sessionModel>/endTime}"
-                    placeholder="End Time"
-                />
-                <Input
-                    id="_IDGenInput2"
-                    value="{sessionModel>/room}"
-                    placeholder="Room"
-                />
-                <Input
-                    id="_IDGenInput3"
-                    value="{sessionModel>/description}"
-                    placeholder="Description"
-                />
-                <Input
-                    id="_IDGenInput4"
-                    value="{sessionModel>/speaker}"
-                    placeholder="Speaker"
-                />
-                <Input
-                    id="_IDGenInput5"
-                    value="{sessionModel>/totalSeats}"
-                    placeholder="Total Seats"
-                />
+                    <Input
+                        id="_IDGenInput1"
+                        value="{sessionModel>/title}"
+                        placeholder="{i18n>Title}"
+                        class="InputCreateSession"
+                    />
+                    <DatePicker
+                        id="_IDGenDatePicker1"
+                        value="{sessionModel>/startDate}"
+                        placeholder="{i18n>StartDate}"
+                        class="InputCreateSession"
+                    />
+                    <DatePicker
+                        id="_IDGenDatePicker2"
+                        value="{sessionModel>/endDate}"
+                        placeholder="{i18n>EndDate}"
+                        class="InputCreateSession"
+                    />
+                    <TimePicker
+                        id="_IDGenTimePicker1"
+                        value="{sessionModel>/startTime}"
+                        placeholder="{i18n>StartTime}"
+                        width="1853px"
+                        class="InputCreateSession"
+                    />
+                    <TimePicker
+                        id="_IDGenTimePicker2"
+                        value="{sessionModel>/endTime}"
+                        placeholder="{i18n>EndTime}"
+                        width="1853px"
+                        class="InputCreateSession"
+                    />
+                    <Input
+                        id="_IDGenInput2"
+                        value="{sessionModel>/room}"
+                        placeholder="{i18n>Room}"
+                        class="InputCreateSession"
+                    />
+                    <Input
+                        id="_IDGenInput3"
+                        value="{sessionModel>/description}"
+                        placeholder="{i18n>Description}"
+                        class="InputCreateSession"
+                    />
+                    <Input
+                        id="_IDGenInput4"
+                        value="{sessionModel>/speaker}"
+                        placeholder="{i18n>Speaker}"
+                        class="InputCreateSession"
+                    />
+                    <Input
+                        id="_IDGenInput5"
+                        value="{sessionModel>/totalSeats}"
+                        placeholder="{i18n>TotalSeats}"
+                        class="InputCreateSession"
+                    />
 
-                <Button
-                    id="_IDGenButton9"
-                    text="Create Session"
-                    press="onCreateSession"
-                />
+                    <Button
+                        id="_IDGenButton9"
+                        text="{i18n>CreateSession}"
+                        press="onCreateSession"
+                    />
 
-                <Text
-                    id="messageText"
-                    visible="false"
-                />
+                    <Text
+                        id="messageText"
+                        visible="false"
+                    />
+                </l:VerticalLayout>
             </VBox>
         </content>
     </Page>

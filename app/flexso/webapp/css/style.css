@@ -225,3 +225,32 @@
 #_IDGenButton1 {
   margin-left: auto; /* Push the button to the right */
 }
+
+.loginImageCreateSession {
+  width: 200px;
+  height: 200px;
+  margin: auto; /* Center horizontally */
+  display: block; /* For margin auto to work, display block is needed */
+}
+
+.InputCreateSession {
+  margin-bottom: 1rem;
+}
+
+.LabelCreateSession {
+  font-weight: bold;
+}
+
+.createSessionBox {
+  margin-top: 100px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.createSessionLayout {
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
