@@ -71,9 +71,11 @@
                                     <VBox id="_IDGenVBox1">
                                         <Label id="_IDGenLabel7" text="{eventModel>Name}" />
                                         <HBox id="_IDGenHBox3">
-                                            <Label id="datum" text="{eventModel>SDate} {i18n>until} {eventModel>EDate} "></Label>
+                                            <Label id="datum" text="{eventModel>SDate} {i18n>until} {eventModel>EDate}"></Label>
                                         </HBox>
                                         <Label id="_IDGenLabel10" text="{i18n>Location}: {eventModel>location}" />
+                                      
+ 
                                         <Text id="_IDGenText5" text="{i18n>description}: {eventModel>description}" width="95%" />
                                     </VBox>
                                 </HBox>
@@ -103,7 +105,7 @@
                                                         <Label id="_IDGenLabel16" text="{i18n>EndDate}: " />
                                                         <Text id="_IDGenDatePicker4" text="{sessionModel>endDate}" />
                                                     </HBox>
-                                                    <Label id="_IDGenLabel14" text="{i18n>Location}: {sessionModel>location}" />
+                                                    <Label id="_IDGenLabel14" text="{i18n>Location}: {sessionModel>location}"  />
                                                     <Label id="_IDGenLabel17" text="{i18n>Speaker}: {sessionModel>speaker}" />
                                                     <Label id="_IDGenLabel18" text="{i18n>TotalSeats}: {sessionModel>totalSeats}" />
                                                     <Label id="_IDGenLabel15" text="{i18n>Description}: {sessionModel>description}" />
