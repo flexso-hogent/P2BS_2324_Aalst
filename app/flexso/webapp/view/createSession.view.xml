@@ -159,6 +159,13 @@
                         id="_IDGenButton9"
                         text="{i18n>CreateSession}"
                         press="onCreateSession"
+                        width="30%"
+                    />
+                    <Button
+                        id="_IDGenButton2"
+                        text="{i18n>Back}"
+                        press="onBackToHome"
+                        width="30%"
                     />
 
                     <Text
