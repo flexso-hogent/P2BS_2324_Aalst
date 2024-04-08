@@ -10,6 +10,8 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.Overview", {
       _selectedEvent: null,
+      _tableWidth: "90%",
+      _sessionBoxWidth: "10%",
 
       onInit: function () {
         this.loadData();
@@ -91,6 +93,34 @@ sap.ui.define(
         } else {
           MessageToast.show("EventID is not defined.");
         }
+
+        // Adjust layout after showing sessions
+        this.adjustLayout();
+      },
+
+      onExpandSessionsPress: function () {
+        var oSessionsBox = this.getView().byId("sessionsBox");
+        var oExpandSessionsButton = this.getView().byId("expandSessionsButton");
+
+        if (oSessionsBox.getVisible()) {
+          oSessionsBox.setVisible(false);
+          this._tableWidth = "100%";
+          this._sessionBoxWidth = "0%";
+          oExpandSessionsButton.setIcon("sap-icon://slim-arrow-left"); // Change icon to indicate hiding
+        } else {
+          oSessionsBox.setVisible(true);
+          this._tableWidth = "50%";
+          this._sessionBoxWidth = "50%";
+          oExpandSessionsButton.setIcon("sap-icon://slim-arrow-right"); // Change icon to indicate expanding
+        }
+
+        // Adjust layout after expanding/hiding sessions
+        this.adjustLayout();
+      },
+
+      adjustLayout: function () {
+        this.getView().byId("_IDGenFlexBox1").setWidth(this._tableWidth);
+        this.getView().byId("_IDGenHBox2").setWidth(this._sessionBoxWidth);
       },
 
       loadData: function () {
@@ -158,16 +188,6 @@ sap.ui.define(
             MessageToast.show("Error fetching session data: " + error);
           },
         });
-      },
-
-      onExpandSessionsPress: function () {
-        var oSessionsBox = this.getView().byId("sessionsBox");
-        var oExpandSessionsButton = this.getView().byId("expandSessionsButton");
-
-        if (oSessionsBox.getVisible()) {
-          oSessionsBox.setVisible(false);
-          oExpandSessionsButton.setIcon("sap-icon://slim-arrow-left");
-        }
       },
 
       onSearchLiveChange: function (oEvent) {
