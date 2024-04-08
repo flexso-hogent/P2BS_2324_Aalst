@@ -29,6 +29,21 @@ sap.ui.define(
         this.getView().setModel(oImageModel, "imageModel");
       },
 
+      onTotalSeatsChange: function (oEvent) {
+        var oInput = oEvent.getSource();
+        var sValue = oInput.getValue();
+
+        // Validate if the input is an integer
+        if (!Number.isInteger(Number(sValue))) {
+          // If not an integer, reset the value or show an error message
+          oInput.setValueState("Error");
+          oInput.setValueStateText("Please enter a valid integer value.");
+        } else {
+          // If valid, remove any validation state
+          oInput.setValueState("None");
+        }
+      },
+
       loadData: function () {
         var that = this;
         jQuery.ajax({
@@ -50,7 +65,7 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching data: " + error);
+            sap.MessageBox.error("Error fetching data: " + error);
           },
         });
       },
@@ -68,6 +83,7 @@ sap.ui.define(
         var oView = this.getView();
         var that = this;
 
+        // Proceed with session creation
         // Fetch the latest session ID from the backend
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Sessions?$orderby=sessionID desc&$top=1",
@@ -105,6 +121,13 @@ sap.ui.define(
               eventID: eventID, // Use the generated GUID for eventID
             };
 
+            // Check if any required field is empty
+            for (var key in oSessionData) {
+              if (oSessionData.hasOwnProperty(key) && !oSessionData[key]) {
+                sap.m.MessageBox.error("Please fill in all fields correctly.");
+                return; // Exit the function if any required field is empty
+              }
+            }
             // Post the new session data to the backend
             jQuery.ajax({
               url: "http://localhost:4004/odata/v4/catalog/Sessions",
@@ -119,12 +142,12 @@ sap.ui.define(
                 }, 1000);
               },
               error: function () {
-                MessageToast.show("Error creating session!");
+                sap.MessageBox.error("Error creating session");
               },
             });
           },
           error: function () {
-            MessageToast.show("Error fetching latest session ID!");
+            sap.MessageBox.error("Error fetching session data");
           },
         });
       },
