@@ -10,7 +10,7 @@
         id="_IDGenPage1"
         title="Flexso"
         class="feedbackPage"
-        enableScrolling="false"
+        enableScrolling="true"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -46,7 +46,7 @@
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
                     class="createSessionLayout"
-                    width="1000px"
+                    width="100%"
                 >
                     <Title
                         id="_IDGenTitle1"
