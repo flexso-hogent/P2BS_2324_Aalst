@@ -10,6 +10,7 @@
         id="_IDGenPage1"
         title="{i18n>CreateSession}"
         class="feedbackPage"
+        enableScrolling="false"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -45,13 +46,18 @@
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
                     class="createSessionLayout"
-                > 
+                    width="1000px"
+                >
+                    <Title
+                        id="_IDGenTitle1"
+                        text="{i18n>titleCreateSession}"
+                        level="H2"
+                        class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginBottom"
+                    />
                     <Image
                         id="imageFlexso"
                         src="{imageModel>/path}"
-                        width="200px"
-                        height="200px"
-                        class="loginImage"
+                        class="registerImage"
                     />
                     <Label
                         id="_IDGenLabel1"
@@ -61,7 +67,7 @@
                     <Select
                         id="eventSelect"
                         items="{eventModel>/}"
-                        width="1853px"
+                        width="100%"
                         class="InputCreateSession"
                     >
                         <core:Item
@@ -75,56 +81,63 @@
                         id="_IDGenInput1"
                         value="{sessionModel>/title}"
                         placeholder="{i18n>Title}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <DatePicker
                         id="_IDGenDatePicker1"
                         value="{sessionModel>/startDate}"
                         placeholder="{i18n>StartDate}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <DatePicker
                         id="_IDGenDatePicker2"
                         value="{sessionModel>/endDate}"
                         placeholder="{i18n>EndDate}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <TimePicker
                         id="_IDGenTimePicker1"
                         value="{sessionModel>/startTime}"
                         placeholder="{i18n>StartTime}"
-                        width="1853px"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <TimePicker
                         id="_IDGenTimePicker2"
                         value="{sessionModel>/endTime}"
                         placeholder="{i18n>EndTime}"
-                        width="1853px"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <Input
                         id="_IDGenInput2"
                         value="{sessionModel>/room}"
                         placeholder="{i18n>Room}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <Input
                         id="_IDGenInput3"
                         value="{sessionModel>/description}"
                         placeholder="{i18n>Description}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <Input
                         id="_IDGenInput4"
                         value="{sessionModel>/speaker}"
                         placeholder="{i18n>Speaker}"
+                        width="100%"
                         class="InputCreateSession"
                     />
                     <Input
                         id="_IDGenInput5"
                         value="{sessionModel>/totalSeats}"
                         placeholder="{i18n>TotalSeats}"
+                        width="100%"
                         class="InputCreateSession"
                     />
 

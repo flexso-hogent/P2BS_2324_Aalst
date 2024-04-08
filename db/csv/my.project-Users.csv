@@ -1,3 +1,3 @@
 userID;firstname;lastname;email;password;company;role;bdate;street;hnumber;city;country;zip;phone;gender
 1;Sophie; Dupont;t@gmail.com;6cbefd8960d511540f34779628ef4e5a55b758d3be5749cd8878a09b348c052b;BelgiumTech;admin;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Female
-
+2;Flexso;Admin;Admin.flexso@flexso.com;fecfd612a07a341206537e4c40fe77d15afddc4c76ae8b6d09b563c16fc6d98d;Flexso;admin;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Male
