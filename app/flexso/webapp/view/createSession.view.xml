@@ -8,7 +8,7 @@
 >
     <Page
         id="_IDGenPage1"
-        title="{i18n>CreateSession}"
+        title="Flexso"
         class="feedbackPage"
         enableScrolling="false"
     >
@@ -52,7 +52,7 @@
                         id="_IDGenTitle1"
                         text="{i18n>titleCreateSession}"
                         level="H2"
-                        class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginBottom"
+                        class="TitleCreateSession"
                     />
                     <Image
                         id="imageFlexso"

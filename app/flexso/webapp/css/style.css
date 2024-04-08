@@ -262,3 +262,14 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+.TitleCreateSession {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(0 114 135);
+}
+
+.LabelCreateSession {
+  font-size: 16px;
+  color: rgb(0 114 135);
+}
