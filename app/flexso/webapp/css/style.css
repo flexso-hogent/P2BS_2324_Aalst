@@ -254,3 +254,17 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
+
+.feedbackLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lHorizontalLayout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
