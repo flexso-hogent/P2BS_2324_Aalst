@@ -40,8 +40,9 @@
             <l:content>
                 <VBox
                     id="_IDGenVBox1"
-                    class="loginBox"
-                    width="100%"
+                    class="feedbackBox"
+                    width="1000px"
+                    
                     >
                         <Title
                             id="_IDGenTitle1"
@@ -81,7 +82,7 @@
                             <columns>
                                 <Column
                                     id="clmSessionTitel"
-                                    width="50%"
+                                    width="45%"
                                 >
                                     <Text
                                         id="lblSessionTitel"
@@ -210,7 +211,7 @@
                         <Button
                             id="sendFeedback"
                             text="{i18n>sendFeedback}"
-                            width="35%"
+                            width="50%"
                             press="onFeedback"
                             class="feedbackButton"
                         />
