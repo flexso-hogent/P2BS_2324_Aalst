@@ -85,7 +85,7 @@ entity Sessions {
         description : String;
         speaker     : String;
         totalSeats  : Integer;
-        eventID     : UUID; // Association to Events;
+        eventID     : String; // Association to Events;
 }
 
 entity Users {
