@@ -41,7 +41,7 @@ sap.ui.define(
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-          MessageToast.show("Logged-in user email not found.");
+          sap.m.MessageBox.error("Logged-in user email not found.");
           return;
         }
         var userDataUrl =
@@ -68,11 +68,11 @@ sap.ui.define(
               });
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
-              MessageToast.show("User data not found.");
+              sap.m.MessageBox.error("User data not found.");
             }
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Failed to fetch user data: " + error);
+            sap.m.MessageBox.error("Failed to fetch user data: " + error);
           },
         });
       },
@@ -116,14 +116,16 @@ sap.ui.define(
                     if (data.value.length > 0) {
                       userId = data.value[0].userID;
                     } else {
-                      MessageToast.show(
+                      sap.m.MessageBox.error(
                         "User not found with the provided email address"
                       );
                       return;
                     }
                   },
                   error: function (xhr, status, error) {
-                    MessageToast.show("Failed to retrieve user data: " + error);
+                    sap.m.MessageBox.error(
+                      "Failed to retrieve user data: " + error
+                    );
                     return;
                   },
                 });
@@ -148,7 +150,9 @@ sap.ui.define(
                     }, 1500); // 1.5 seconds delay
                   },
                   error: function (xhr, status, error) {
-                    MessageToast.show("Failed to update profile: " + error);
+                    sap.m.MessageBox.error(
+                      "Failed to update profile, make sure your changes are correct. "
+                    );
                   },
                 });
               } else {
