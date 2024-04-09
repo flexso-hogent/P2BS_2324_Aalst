@@ -111,13 +111,13 @@ sap.ui.define(
         };
 
         if (sessie === "") {
-          MessageToast.show("Gelieve een sessie in te geven");
+          sap.m.MessageBox.error("Gelieve een sessie te selecteren!");
         } else if (oRatingIndicator.getValue() === 0) {
-          MessageToast.show("Gelieve een rating in te geven");
+          sap.m.MessageBox.error("Gelieve een rating in te geven!");
         } else {
           if (oRatingIndicator.getValue() <= 2) {
             if (oTextArea.getValue() === "") {
-              MessageToast.show("Gelieve een review in te geven");
+              sap.m.MessageBox.error("Gelieve een review in te geven!");
             } else {
               $.ajax({
                 url: "http://localhost:4004/odata/v4/catalog/Feedback",
@@ -137,7 +137,7 @@ sap.ui.define(
                   );
                 }.bind(this),
                 error: function (xhr, status, error) {
-                  MessageToast.show(
+                  sap.m.MessageBox.error(
                     "Er is een fout opgetreden bij het versturen van feedback: " +
                       error
                   );
@@ -170,7 +170,7 @@ sap.ui.define(
                 );
               }.bind(this),
               error: function (xhr, status, error) {
-                MessageToast.show(
+                sap.m.MessageBox.error(
                   "Er is een fout opgetreden bij het versturen van feedback: " +
                     error
                 );
@@ -209,7 +209,7 @@ sap.ui.define(
         var oCurrentDateTime = new Date();
 
         if (oSelectedDateTime > oCurrentDateTime) {
-          MessageToast.show("Deze sessie moet nog plaatsvinden");
+          sap.m.MessageBox.error("Deze sessie moet nog plaatsvinden");
         } else {
           var oSearchField = this.getView().byId("sessieZoekenInput");
           oSearchField.setValue(sTitel);

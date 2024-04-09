@@ -6,7 +6,7 @@
 
     <Page
         id="overviewPage"
-        title="{i18n>overview}"
+        title="Flexso"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -44,7 +44,13 @@
                     width="100%"
                     id="eventBox"
                 >
-                    <Title
+                    <Title 
+                        id="TitleOverview"
+                        text="{i18n>TitleOverview}"
+                        level="H2"
+                        class="TitleOverview"
+                    />
+                    <Label
                         id="overviewTitleP"
                         text="{i18n>OverviewTitle}"
                     />
@@ -87,7 +93,7 @@
                 <VBox width="100%" id="sessionsBox" visible="false">
                     <HBox id="_IDGenHBox2">
                         <VBox id="_IDGenVBox4" width="100%">
-                            <Title id="_IDGenTitle2" text="{i18n>OverviewSessions}" />
+                            <Title id="_IDGenTitle2" text="{i18n>OverviewSessions}" class="TitleOverview"/>
                             <Button id="expandSessionsButton" icon="sap-icon://slim-arrow-left" press="onExpandSessionsPress" />
 
                             <VBox id="sessionInfoBox" visible="false">

@@ -7,7 +7,7 @@
 >
     <Page
         id="updateProfilePage"
-        title="{i18n>updateProfileTitle}"
+        title="Flexso"
         class="updateProfilePage"
     >
         <headerContent>

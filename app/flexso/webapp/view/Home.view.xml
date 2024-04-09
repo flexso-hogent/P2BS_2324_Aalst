@@ -9,8 +9,9 @@
 >
     <Page
         id="_IDGenPage1"
-        title="{i18n>home}"
+        title="Flexso"
         enableScrolling="true"
+        class="titlesHomepage"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">

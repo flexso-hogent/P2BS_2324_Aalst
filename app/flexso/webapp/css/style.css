@@ -70,6 +70,7 @@
 
 .coolTitleAnimation {
   animation: coolTitle 1s ease-out;
+  color: rgb(0 114 135);
 }
 
 @keyframes fadeIn {
@@ -112,6 +113,11 @@
   justify-content: center;
   margin-top: 20px;
   font-size: 20px;
+  color: rgb(0 114 135);
+}
+
+.loginTitle {
+  color: rgb(0 114 135);
 }
 
 .registerImage {
@@ -188,6 +194,7 @@
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: rgb(0 114 135);
 }
 
 .profileImage {
@@ -293,5 +300,14 @@
 
 .LabelCreateSession {
   font-size: 16px;
+  color: rgb(0 114 135);
+}
+
+.TitleOverview{
+  margin-bottom: 10px;
+  color: rgb(0 114 135);
+}
+
+.titlesPages{
   color: rgb(0 114 135);
 }

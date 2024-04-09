@@ -5,7 +5,7 @@
 >
     <Page
         id="registerSessionPage"
-        title="Register Session"
+        title="Flexso"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -37,6 +37,10 @@
                 id="sessionInfoBox"
                 class="infoBox"
             >
+                <Title 
+                    id="TitleRegisterSession"
+                    text="{i18n>TitleRegisterSession}" 
+                    class="titlesPages"/>
                 <Label
                     id="_IDGenLabel1"
                     text="Session Information"
