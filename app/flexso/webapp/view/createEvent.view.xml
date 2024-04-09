@@ -112,12 +112,14 @@
                 <Button
                     id="_IDGenButton1"
                     text="{i18n>EventAanmakenButton}"
+                    class="sapUiSmallMarginTop createEventButtons"
                     press="onRegisterPress"
                     width="30%"
                 />
                 <Button
                     id="_IDGenButton2"
                     text="{i18n>backToHomeButton}"
+                    class="sapUiSmallMarginTop createEventButtons"
                     press="onBackToHome"
                     width="30%"
                 />

@@ -144,13 +144,13 @@
                 id="_IDGenButton1"
                 text="{i18n>updateProfileButton}"
                 press="onUpdateProfilePressNav"
-                class="updateProfileButton"
+                class="sapUiSmallMarginTop updateProfileButton"
             />
             <Button
                 id="_IDGenButton2"
                 text="{i18n>backToHomeButton}"
                 press="onBackToHome"
-                class="logoutButton"
+                class="sapUiSmallMarginTop updateProfileButton"
             />
         </content>
     </Page>

@@ -32,9 +32,7 @@
                     <Image
                         id="_IDGenImage1"
                         src="{imageModel>/path}"
-                        width="50%"
-                        height="50%"
-                        class="loginImage"
+                        class="profileImage"
                     />
                     <!-- Title -->
                     <Title
@@ -89,7 +87,7 @@
                         text="{i18n>titleLoginPage}"
                         press="onLoginPress"
                         width="100%"
-                        class="loginButton"
+                        class="sapUiSmallMarginEnd loginButton"
                     />
 
                     <!-- Forgot Password Link -->
@@ -105,7 +103,7 @@
                         text="{i18n>registerLink}"
                         press="onRegisterPress"
                         width="100%"
-                        class="registerButton"
+                        class="sapUiSmallMarginEnd registerButton"
                     />
                 </l:VerticalLayout>
             </VBox>

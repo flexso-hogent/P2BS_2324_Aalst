@@ -79,15 +79,17 @@
                 <Button
                     id="_IDGenButton5"
                     text="{i18n>feedbackButton}"
+                    icon="sap-icon://feedback"
                     press="onFeedbackPress"
-                    class="sapUiSmallMarginEnd"
+                    class="sapUiSmallMarginEnd createButtons"
                 />
                 <!-- Overview Event Button -->
                 <Button
                     id="_IDGenButton6"
                     text="{i18n>overviewEventButton}"
+                    icon="sap-icon://detail-view"
                     press="onGoToOverviewEventPress"
-                    class="sapUiSmallMarginEnd"
+                    class="sapUiSmallMarginEnd createButtons"
                 />
                 <!-- Create Session Button -->
 
@@ -108,16 +110,18 @@
                 <Button
                     id="_IDGenButtonCreateEvent"
                     text="{i18n>createEventButton}"
+                    icon="sap-icon://create"
                     press="onGoToCreateEventPress"
-                    class="sapUiSmallMarginEnd"
+                    class="sapUiSmallMarginEnd createButtons"
                 />
 
                 <!-- Create Session Button -->
                 <Button
                     id="_IDGenButtonCreateSession"
                     text="{i18n>createSessionButton}"
+                    icon="sap-icon://calendar"
                     press="onGoToCreateSessionPress"
-                    class="sapUiSmallMarginEnd"
+                    class="sapUiSmallMarginEnd createButtons"
                 />
             </FlexBox>
 

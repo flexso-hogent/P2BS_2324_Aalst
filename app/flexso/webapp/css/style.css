@@ -296,11 +296,65 @@
   color: rgb(0 114 135);
 }
 
-.TitleOverview{
+.TitleOverview {
   margin-bottom: 10px;
   color: rgb(0 114 135);
 }
 
-.titlesPages{
+.titlesPages {
   color: rgb(0 114 135);
+}
+
+/* Set static background color */
+.loginButton,
+.loginButton.sapMBtnBase,
+.loginButton .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+
+.registerButton,
+.registerButton.sapMBtnBase,
+.registerButton .sapMBtnHoverable {
+  background-color: rgb(239 175 57) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+/* Style buttons as squares */
+.createButtons,
+.createButtons.sapMBtnBase,
+.createButtons .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+  width: 250px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  display: flex; /* Ensure buttons take up full space */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  font-size: 18px; /* Adjust font size as needed */
+  flex-direction: column; /* Stack content vertically */
+  text-align: center; /* Center text horizontally */
+}
+
+/* Style button */
+.createEventButtons,
+.createEventButtons.sapMBtnBase,
+.createEventButtons .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+.updateProfileButton,
+.updateProfileButton.sapMBtnBase,
+.updateProfileButton .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
 }

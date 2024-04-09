@@ -46,7 +46,7 @@
                 <l:VerticalLayout
                     id="_IDGenVerticalLayout1"
                     class="createSessionLayout"
-                    width="100%"
+                    width="75%"
                 >
                     <Title
                         id="_IDGenTitle1"
@@ -158,12 +158,14 @@
                     <Button
                         id="_IDGenButton9"
                         text="{i18n>CreateSession}"
+                        class="sapUiSmallMarginTop createEventButtons"
                         press="onCreateSession"
                         width="30%"
                     />
                     <Button
                         id="_IDGenButton2"
                         text="{i18n>backToHomeButton}"
+                        class="sapUiSmallMarginTop createEventButtons"
                         press="onBackToHome"
                         width="30%"
                     />

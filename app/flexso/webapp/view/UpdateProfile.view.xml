@@ -237,13 +237,13 @@
                     id="_IDGenButton1"
                     text="{i18n>updateProfileButton}"
                     press="onUpdateProfilePress"
-                    class="updateProfileButton"
+                    class="sapUiSmallMarginTop updateProfileButton"
                 />
                 <Button
                     id="_IDGenButton2"
                     text="{i18n>backToProfile}"
                     press="onBackToProfilePress"
-                    class="logoutButton"
+                    class="sapUiSmallMarginTop updateProfileButton"
                 />
             </VBox>
         </content>
