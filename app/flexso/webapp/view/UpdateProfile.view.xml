@@ -241,8 +241,8 @@
                 />
                 <Button
                     id="_IDGenButton2"
-                    text="{i18n>loguit}"
-                    press="onLogoutPress"
+                    text="{i18n>backToProfile}"
+                    press="onBackToProfilePress"
                     class="logoutButton"
                 />
             </VBox>

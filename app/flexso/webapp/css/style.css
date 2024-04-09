@@ -180,6 +180,7 @@
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
+  background-color: rgb(242, 240, 234);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -234,7 +235,6 @@
 }
 
 .createSessionBox {
-  margin-top: 50px;
   background-color: rgb(242, 240, 234);
   padding: 20px;
   border-radius: 10px;
@@ -288,4 +288,3 @@
   font-size: 16px;
   color: rgb(0 114 135);
 }
-

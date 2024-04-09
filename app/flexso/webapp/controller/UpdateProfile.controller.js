@@ -32,6 +32,10 @@ sap.ui.define(
           this.loadUserData();
         }
       },
+      onBackToProfilePress: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("profile");
+      },
 
       loadUserData: function () {
         var that = this;

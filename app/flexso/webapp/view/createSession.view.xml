@@ -10,7 +10,7 @@
         id="_IDGenPage1"
         title="Flexso"
         class="feedbackPage"
-        enableScrolling="true"
+        enableScrolling="false"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -163,7 +163,7 @@
                     />
                     <Button
                         id="_IDGenButton2"
-                        text="{i18n>Back}"
+                        text="{i18n>backToHomeButton}"
                         press="onBackToHome"
                         width="30%"
                     />
