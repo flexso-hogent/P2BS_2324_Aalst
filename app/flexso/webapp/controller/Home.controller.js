@@ -17,12 +17,64 @@ sap.ui.define(
         var oImageModel = new JSONModel({
           profileImagePath: oProfileImagePath,
           feedbackData: [], // Initialize an empty array to hold feedback data
+          role: localStorage.getItem("role"), // Retrieve the role from local storage
         });
 
         this.getView().setModel(oImageModel, "imageModel");
 
         // Call a function to fetch feedback data and update the model
         this.fetchFeedbackData();
+        this.fetchRegisteredSessionsData();
+
+        // Compute visibility of create buttons based on role
+        this.computeCreateButtonsVisibility();
+
+        // Add listener for changes to the role property
+        oImageModel.attachPropertyChange(this.onRoleChange, this);
+      },
+
+      onRoleChange: function (oEvent) {
+        if (oEvent.getParameter("path") === "/role") {
+          this.computeCreateButtonsVisibility();
+        }
+      },
+
+      computeCreateButtonsVisibility: function () {
+        var oImageModel = this.getView().getModel("imageModel");
+        var role = oImageModel.getProperty("/role");
+        var isAdmin = role === "admin";
+        oImageModel.setProperty("/isAdmin", isAdmin);
+      },
+
+      fetchRegisteredSessionsData: function () {
+        // Get the logged-in user's email address
+        var loggedInUserEmail = localStorage.getItem("email");
+
+        // Replace this with your actual service URL
+        var sessionServiceURL =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
+
+        // Construct the filter based on the logged-in user's email
+        var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
+
+        // Append the filter to the service URL
+        sessionServiceURL += filter;
+
+        $.ajax({
+          url: sessionServiceURL,
+          type: "GET",
+          success: function (data) {
+            // Assuming the response data is an array of registered session objects
+            // Update the model with the fetched registered session data
+            var oModel = this.getView().getModel("imageModel");
+            oModel.setProperty("/registeredSessionsData", data.value);
+          }.bind(this),
+          error: function (xhr, status, error) {
+            MessageToast.show(
+              "Error fetching registered sessions data: " + error
+            );
+          },
+        });
       },
 
       // Function to fetch feedback data from the backend

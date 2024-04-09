@@ -3,7 +3,7 @@
 }
 
 .loginBox {
-  margin-top: 100px;
+  margin-top: 50px;
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
@@ -234,8 +234,16 @@
 }
 
 .createSessionBox {
-  margin-top: 100px;
-  background-color: #f4f4f4;
+  margin-top: 50px;
+  background-color: rgb(242, 240, 234);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.eventBox {
+  background-color: rgb(242, 240, 234);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -246,3 +254,38 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
+
+.feedbackLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lHorizontalLayout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.feedbackBox {
+  margin-top: 100px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: rgb(242, 240, 234);
+}
+.TitleCreateSession {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(0 114 135);
+}
+
+.LabelCreateSession {
+  font-size: 16px;
+  color: rgb(0 114 135);
+}
+

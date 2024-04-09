@@ -65,7 +65,7 @@ sap.ui.define(
           !oEventData.location ||
           !oEventData.description
         ) {
-          MessageToast.show("Please fill in all fields.");
+          sap.m.MessageBox.error("Please fill in all fields.");
           return;
         }
 
@@ -93,7 +93,7 @@ sap.ui.define(
           ],
           success: function (data) {
             if (data.results && data.results.length > 0) {
-              MessageToast.show(
+              sap.m.MessageBox.error(
                 "Event registration failed! Event already exists."
               );
             } else {
@@ -101,15 +101,7 @@ sap.ui.define(
                 success: function () {
                   MessageToast.show("Event registration successful!");
                   setTimeout(function () {
-                    var oRouter = UIComponent.getRouterFor(that);
-                    oRouter.navTo("home");
-                    oViewModel.setData({
-                      name: "",
-                      startDate: null,
-                      endDate: null,
-                      location: "",
-                      description: "",
-                    });
+                    that.navigateToHome();
                   }, 1000);
                 },
                 error: function (error) {
@@ -119,10 +111,23 @@ sap.ui.define(
             }
           },
           error: function (xhr, status, error) {
-            MessageToast.show(
+            sap.m.MessageBox.error(
               "Error checking event existence: " + error.responseText
             );
           },
+        });
+      },
+
+      navigateToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
+        var oViewModel = this.getView().getModel();
+        oViewModel.setData({
+          name: "",
+          startDate: null,
+          endDate: null,
+          location: "",
+          description: "",
         });
       },
 

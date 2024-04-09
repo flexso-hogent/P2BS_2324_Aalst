@@ -141,20 +141,37 @@ sap.ui.define(
 
         this.sendRegistrationToBackend(oRegistrationData);
       },
-
       sendRegistrationToBackend: function (oRegistrationData) {
+        var that = this;
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/registerdOnASession",
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify(oRegistrationData),
           success: function () {
-            MessageToast.show("Session registered successfully");
+            // Delay showing the success message by 1.5 seconds
+            setTimeout(function () {
+              MessageToast.show("Session registered successfully");
+              // Navigate back to home page
+              that.onBackToHome();
+            }, 1500);
           },
           error: function (xhr, status, error) {
             MessageToast.show("Failed to register session: " + error);
           },
         });
+      },
+
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
+
+        // Refresh the home page
+        var oHomeController = oRouter.getViews()["flexso.controller.Home"];
+        if (oHomeController) {
+          oHomeController.getController().fetchFeedbackData();
+          oHomeController.getController().fetchRegisteredSessionsData(); // Assuming you have a function to fetch registered sessions data
+        }
       },
 
       onLogoutPress: function () {
@@ -183,10 +200,7 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
       },
-      onBackToHome: function () {
-        var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("home");
-      },
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
