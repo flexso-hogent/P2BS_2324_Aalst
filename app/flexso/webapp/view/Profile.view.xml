@@ -148,8 +148,8 @@
             />
             <Button
                 id="_IDGenButton2"
-                text="{i18n>loguit}"
-                press="onLogoutPress"
+                text="{i18n>backToHomeButton}"
+                press="onBackToHome"
                 class="logoutButton"
             />
         </content>

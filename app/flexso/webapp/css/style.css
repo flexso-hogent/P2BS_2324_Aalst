@@ -186,6 +186,7 @@
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
+  background-color: rgb(242, 240, 234);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -225,14 +226,6 @@
   border-radius: 5px;
 }
 
-#datum {
-  text-align: right;
-}
-
-#_IDGenButton1 {
-  margin-left: auto; /* Push the button to the right */
-}
-
 .loginImageCreateSession {
   width: 200px;
   height: 200px;
@@ -249,7 +242,6 @@
 }
 
 .createSessionBox {
-  margin-top: 50px;
   background-color: rgb(242, 240, 234);
   padding: 20px;
   border-radius: 10px;
@@ -269,6 +261,7 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
+
 .feedbackLayout {
   display: flex;
   justify-content: center;
