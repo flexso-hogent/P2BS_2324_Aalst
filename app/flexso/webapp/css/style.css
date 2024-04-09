@@ -218,14 +218,6 @@
   border-radius: 5px;
 }
 
-#datum {
-  text-align: right;
-}
-
-#_IDGenButton1 {
-  margin-left: auto; /* Push the button to the right */
-}
-
 .loginImageCreateSession {
   width: 200px;
   height: 200px;
@@ -262,6 +254,7 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
+
 .feedbackLayout {
   display: flex;
   justify-content: center;
@@ -295,3 +288,4 @@
   font-size: 16px;
   color: rgb(0 114 135);
 }
+

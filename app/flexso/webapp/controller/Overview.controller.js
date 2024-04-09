@@ -10,6 +10,8 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.Overview", {
       _selectedEvent: null,
+      _tableWidth: "90%",
+      _sessionBoxWidth: "10%",
 
       onInit: function () {
         this.loadData();
@@ -27,7 +29,25 @@ sap.ui.define(
         var oSessionsBox = this.getView().byId("sessionsBox");
         oSessionsBox.setVisible(false);
       },
+      onToggleHalfScreen: function () {
+        var oEventTable = this.byId("eventTable");
+        var oSessionsList = this.byId("sessionsList");
+        var oToggleButton = this.byId("toggleButton");
 
+        var bEventTableVisible = oEventTable.getVisible();
+        var bSessionsListVisible = oSessionsList.getVisible();
+
+        // Toggle visibility
+        oEventTable.setVisible(!bEventTableVisible);
+        oSessionsList.setVisible(!bSessionsListVisible);
+
+        // Change button text based on visibility
+        if (bEventTableVisible) {
+          oToggleButton.setText("Toggle Half-screen");
+        } else {
+          oToggleButton.setText("Toggle Full-screen");
+        }
+      },
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
@@ -83,14 +103,36 @@ sap.ui.define(
           .getBindingContext("eventModel")
           .getObject();
         var eventID = oEventModel.eventID;
+        var oSessionsBox = this.getView().byId("sessionsBox");
 
         if (eventID) {
           this.loadSessions(eventID);
-          var oSessionsBox = this.getView().byId("sessionsBox");
           oSessionsBox.setVisible(true);
+          // Adjust layout after showing sessions
+          this.adjustLayout("25%");
         } else {
           MessageToast.show("EventID is not defined.");
         }
+      },
+      adjustLayout: function (sessionsWidth) {
+        var oSplitter = this.getView().byId("_IDGenSplitter1");
+        var oTable = this.getView().byId("eventTable");
+        var oSessionsBox = this.getView().byId("sessionsBox");
+
+        // Set size of the content areas within the splitter
+        oSplitter
+          .getContentAreas()[0]
+          .setLayoutData(
+            new sap.ui.layout.SplitterLayoutData({ size: "auto" })
+          );
+        oSplitter
+          .getContentAreas()[1]
+          .setLayoutData(
+            new sap.ui.layout.SplitterLayoutData({ size: sessionsWidth })
+          );
+
+        // Refresh the splitter after layout change
+        oSplitter.invalidate();
       },
 
       loadData: function () {
@@ -151,6 +193,10 @@ sap.ui.define(
             var sessionModel = new JSONModel(sessions);
             that.getView().setModel(sessionModel, "sessionModel");
 
+            // Show sessions box after data is loaded
+            var oSessionsBox = that.getView().byId("sessionsBox");
+            oSessionsBox.setVisible(true);
+
             var oSessionInfoBox = that.getView().byId("sessionInfoBox");
             oSessionInfoBox.setVisible(true);
           },
@@ -160,24 +206,14 @@ sap.ui.define(
         });
       },
 
-      onExpandSessionsPress: function () {
-        var oSessionsBox = this.getView().byId("sessionsBox");
-        var oExpandSessionsButton = this.getView().byId("expandSessionsButton");
-
-        if (oSessionsBox.getVisible()) {
-          oSessionsBox.setVisible(false);
-          oExpandSessionsButton.setIcon("sap-icon://slim-arrow-left");
-        }
-      },
-
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
         this.filterEvents(sQuery);
       },
 
       filterEvents: function (sQuery) {
-        var oList = this.getView().byId("overviewListP");
-        var oBinding = oList.getBinding("items");
+        var oTable = this.getView().byId("eventTable");
+        var oBinding = oTable.getBinding("items");
         var oFilter;
 
         if (sQuery) {
