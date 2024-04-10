@@ -359,3 +359,75 @@
   border-radius: 5px !important;
   color: #f4f4f4 !important;
 }
+.outlookButton,
+.outlookButton.sapMBtnBase,
+.outlookButton .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+
+.sapUiSmallMarginEnd {
+  margin-right: 1rem !important; /* Adjust the margin as needed */
+}
+.sessionInfoBox {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: rgb(0 114 135);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.sessionTitle {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.sessionDateTimeBox {
+  margin-bottom: 0.5rem;
+}
+
+.sessionLabel {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.sessionValue {
+  color: white;
+}
+
+.sessionSpacer {
+  margin-right: 1rem;
+}
+.sessionBox {
+  background-color: rgb(242, 240, 234);
+  padding: 1rem;
+}
+.feedbackItemContainer {
+  margin-top: 0rem;
+}
+
+.feedbackBox {
+  background-color: rgb(242, 240, 234);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.feedbackTitle {
+  font-weight: bold;
+  margin-bottom: 0rem;
+}
+
+.feedbackText {
+  margin-bottom: 0.2rem;
+}
+
+.feedbackRating {
+  margin-left: 1rem;
+}
+.titleFeedback {
+  color: rgb(0 114 135);
+  margin-top: 2%;
+  font-size: 18px;
+}

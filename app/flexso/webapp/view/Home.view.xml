@@ -129,30 +129,114 @@
                 id="_IDGenTitle"
                 text="{i18n>myEventTitleSessions}"
                 level="H2"
-                class="sapUiSmallMarginBegin"
+                class="sapUiSmallMarginBegin titleFeedback"
             />
 
             <VBox
                 id="_IDGenVBox"
                 class="sapUiSmallMarginBegin"
             >
-                <Label
-                    id="_IDGenLabel"
-                    text="{i18n>SessionHomeTitle}"
-                    class="sapUiTinyMarginBottom"
-                />
                 <List
                     id="_IDGenList"
                     items="{imageModel>/registeredSessionsData}"
                     noDataText="{i18n>noDataTextSessions}"
                 >
-                    <StandardListItem
-                        id="_IDGenStandardListItem"
-                        title="{imageModel>title}"
-                        description="{= 'Start Date: ' + ${imageModel>startDate} + ', End Date: ' + ${imageModel>endDate} + '\n' + 
-                       'Start Time: ' + ${imageModel>startTime} + ', End Time: ' + ${imageModel>endTime} + '\n' + 
-                       'Total Seats: ' + ${imageModel>totalSeats} + ', Speaker: ' + ${imageModel>speaker}}"
-                    />
+                    <CustomListItem
+                        id="_IDGenCustomListItem1"
+                        class="sessionBox"
+                    >
+                        <FlexBox
+                            id="_IDGenFlexBox2"
+                            alignItems="Center"
+                            justifyContent="SpaceBetween"
+                        >
+                            <VBox
+                                id="_IDGenVBox4"
+                                class="sessionInfoBox"
+                            >
+                                <Title
+                                    id="_IDGenTitle3"
+                                    text="{imageModel>title}"
+                                    class="sessionTitle"
+                                />
+                                <HBox
+                                    id="_IDGenHBox1"
+                                    alignItems="Center"
+                                    class="sessionDateTimeBox"
+                                >
+                                    <Text
+                                        id="_IDGenTextStartDate"
+                                        text="Start Date:"
+                                        class="sessionLabel"
+                                    />
+                                    <Text
+                                        id="_IDGenTextStartDateValue"
+                                        text="{imageModel>startDate}"
+                                        class="sessionValue"
+                                    />
+                                    <Text
+                                        id="_IDGenTextSpacer1"
+                                        text=""
+                                        class="sessionSpacer"
+                                    />
+                                    <Text
+                                        id="_IDGenTextEndDate"
+                                        text="End Date:"
+                                        class="sessionLabel"
+                                    />
+                                    <Text
+                                        id="_IDGenTextEndDateValue"
+                                        text="{imageModel>endDate}"
+                                        class="sessionValue"
+                                    />
+                                </HBox>
+                                <HBox
+                                    id="_IDGenHBox2"
+                                    alignItems="Center"
+                                    class="sessionDateTimeBox"
+                                >
+                                    <Text
+                                        id="_IDGenTextStartTime"
+                                        text="Start Time:"
+                                        class="sessionLabel"
+                                    />
+                                    <Text
+                                        id="_IDGenTextStartTimeValue"
+                                        text="{imageModel>startTime}"
+                                        class="sessionValue"
+                                    />
+                                    <Text
+                                        id="_IDGenTextSpacer2"
+                                        text=""
+                                        class="sessionSpacer"
+                                    />
+                                    <Text
+                                        id="_IDGenTextEndTime"
+                                        text="End Time:"
+                                        class="sessionLabel"
+                                    />
+                                    <Text
+                                        id="_IDGenTextEndTimeValue"
+                                        text="{imageModel>endTime}"
+                                        class="sessionValue"
+                                    />
+                                </HBox>
+                            </VBox>
+
+                            <FlexBox
+                                id="_IDGenFlexBox3"
+                                class="sapUiSmallMarginEnd"
+                            >
+                                <Button
+                                    id="_IDGenButtonExportToOutlook"
+                                    text="{i18n>exportToOutlookButton}"
+                                    icon="sap-icon://calendar"
+                                    press="onExportToOutlookPress"
+                                    class="sapUiSmallMarginEnd outlookButton"
+                                />
+                            </FlexBox>
+                        </FlexBox>
+                    </CustomListItem>
                 </List>
             </VBox>
             <!-- Title for Feedback Section -->
@@ -160,28 +244,42 @@
                 id="_IDGenTitle2"
                 text="{i18n>myEventTitle}"
                 level="H2"
-                class="sapUiSmallMarginBegin"
+                class="sapUiSmallMarginBegin titleFeedback"
             />
 
             <VBox
-                id="_IDGenVBox2"
-                class="sapUiSmallMarginBegin"
+                id="_IDGenVBoxFeedbackContainer"
+                class="sapUiSmallMarginBegin feedbackItemContainer"
             >
-                <Label
-                    id="_IDGenLabel1"
-                    text="{i18n>FeedbackHomeTitle}"
-                    class="sapUiTinyMarginBottom"
-                />
                 <List
                     id="_IDGenList1"
                     items="{imageModel>/feedbackData}"
                     noDataText="{i18n>noDataText}"
                 >
-                    <StandardListItem
-                        id="_IDGenStandardListItem2"
-                        title="{imageModel>SessionTitle}"
-                        description="{=${imageModel>Review} + ('⭐'.repeat(${imageModel>Rating})) }"
-                    />
+                    <CustomListItem
+                        id="_IDGenCustomListItem2"
+                        class="feedbackBox"
+                    >
+                        <FlexBox id="_IDGenFlexBoxFeedbackItem">
+                            <VBox id="_IDGenVBoxFeedbackItem">
+                                <Title
+                                    id="_IDGenTitleFeedback"
+                                    text="{imageModel>SessionTitle}"
+                                    class="feedbackTitle"
+                                />
+                                <Text
+                                    id="_IDGenTextFeedback"
+                                    text="{imageModel>Review}"
+                                    class="feedbackText"
+                                />
+                            </VBox>
+                            <Text
+                                id="_IDGenTextFeedbackRating"
+                                text="{= '⭐'.repeat(${imageModel>Rating}) }"
+                                class="feedbackRating"
+                            />
+                        </FlexBox>
+                    </CustomListItem>
                 </List>
             </VBox>
         </content>

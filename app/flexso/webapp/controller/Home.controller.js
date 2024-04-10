@@ -167,6 +167,50 @@ sap.ui.define(
           oPopover.close();
         }
       },
+      onExportToOutlookPress: function (oEvent) {
+        var oListItem = oEvent.getSource().getParent(); // Get the parent list item
+        var oSessionData = oListItem
+          .getBindingContext("imageModel")
+          .getObject(); // Get the session data from the model
+        var icalContent = this.generateICalContent([oSessionData]);
+
+        // Trigger file download with the generated ICS content
+        this.downloadICSFile(icalContent, "calendar_event.ics");
+      },
+
+      // Function to generate ICS content from session data
+      generateICalContent: function (sessions) {
+        var icalContent = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\n";
+
+        sessions.forEach(function (session) {
+          icalContent += "BEGIN:VEVENT\r\n";
+          icalContent += "SUMMARY:" + session.title + "\r\n";
+          icalContent +=
+            "DTSTART:" + session.startDate + "T" + session.startTime + "\r\n";
+          icalContent +=
+            "DTEND:" + session.endDate + "T" + session.endTime + "\r\n";
+          // Add description
+          icalContent += "DESCRIPTION:" + session.description + "\r\n";
+          icalContent += "END:VEVENT\r\n";
+        });
+
+        icalContent += "END:VCALENDAR\r\n";
+
+        return icalContent;
+      },
+
+      // Function to trigger file download with the given content
+      downloadICSFile: function (content, filename) {
+        var blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      },
     });
   }
 );
