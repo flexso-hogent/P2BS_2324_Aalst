@@ -56,31 +56,30 @@
                         text="{sessionModel>/title}"
                     />
                 </VBox>
-                <HBox id="_IDGenHBox1">
-                    <VBox id="_IDGenVBox2">
-                        <Label
-                            id="_IDGenLabel3"
-                            text="Start Date:"
-                        />
-                        <Text
-                            id="_IDGenText2"
-                            text="{sessionModel>/startDate}"
-                            class="dateText"
-                        />
-                    </VBox>
-                    <VBox id="_IDGenVBox3">
-                        <Label
-                            id="_IDGenLabel4"
-                            text="End Date:"
-                        />
-                        <Text
-                            id="_IDGenText3"
-                            text="{sessionModel>/endDate}"
-                            class="dateText"
-                        />
-                    </VBox>
 
-                </HBox>
+                <VBox id="_IDGenVBox2">
+                    <Label
+                        id="_IDGenLabel3"
+                        text="Start Date:"
+                    />
+                    <Text
+                        id="_IDGenText2"
+                        text="{sessionModel>/startDate}"
+                        class="dateText"
+                    />
+                </VBox>
+                
+                <VBox id="_IDGenVBox3">
+                    <Label
+                        id="_IDGenLabel4"
+                        text="End Date:"
+                    />
+                    <Text
+                        id="_IDGenText3"
+                        text="{sessionModel>/endDate}"
+                        class="dateText"
+                    />
+                </VBox>
 
                 <VBox id="_IDGenVBox4">
                     <Label
@@ -157,17 +156,13 @@
                         text="{userData>/email}"
                     />
                 </VBox>
-                 <HBox
-                    id="_IDGenHBox3"
-                    class="sessionRegisterButtonsContainer"
-                >
+                <HBox id="_IDGenHBox2" justifyContent="Center" alignItems="Center">
                     <Button
                         id="_IDGenButton1"
                         text="Register"
                         press="onRegisterPress"
                         class="sessionRegisterButtons"
                     />
-
                     <Button
                         id="_IDGenButton2"
                         text="Go back"

@@ -157,6 +157,11 @@ sap.ui.define(
         oRouter.navTo("createSession");
       },
 
+      onGoToEventRegistrationOverview: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("registrationoverview");
+      },
+
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");

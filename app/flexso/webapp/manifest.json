@@ -175,6 +175,11 @@
           "target": ["createSession"]
         },
         {
+          "name": "registrationoverview",
+          "pattern": "registrationoverview",
+          "target": ["registrationoverview"]
+        },
+        {
           "name": "Registersession",
           "pattern": "Registersession",
           "target": ["Registersession"]
@@ -244,6 +249,11 @@
         "createSession": {
           "viewName": "flexso.view.CreateSession",
           "viewId": "createSession",
+          "viewLevel": 3
+        },
+        "registrationoverview": {
+          "viewName": "flexso.view.registrationoverview",
+          "viewId": "registrationoverview",
           "viewLevel": 3
         },
         "Registersession": {

@@ -123,6 +123,15 @@
                     press="onGoToCreateSessionPress"
                     class="sapUiSmallMarginEnd createButtons"
                 />
+
+                <!-- Event Registration Overview Button -->
+                <Button
+                    id="_IDGenButtonEventRegistrationOverview"
+                    text="{i18n>EventRegistrationOverview}"
+                    icon="sap-icon://employee-lookup"
+                    press="onGoToEventRegistrationOverview"
+                    class="sapUiSmallMarginEnd createButtons"
+                />
             </FlexBox>
 
             <Title
