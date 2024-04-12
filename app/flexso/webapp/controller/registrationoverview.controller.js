@@ -185,8 +185,8 @@ sap.ui.define([
             });
         },
         
-        onSearch: function(oEvent) {
-            var sQuery = oEvent.getParameter("query");
+        onLiveSearch: function(oEvent) {
+            var sQuery = oEvent.getParameter("newValue");
             var oFilter = new sap.ui.model.Filter({
                 filters: [
                     new sap.ui.model.Filter("firstname", sap.ui.model.FilterOperator.Contains, sQuery),
@@ -197,6 +197,7 @@ sap.ui.define([
             var oBinding = this.getView().byId("participantsList").getBinding("items");
             oBinding.filter([oFilter]);
         },
+        
         
         
         onSwitchToEnglish: function () {

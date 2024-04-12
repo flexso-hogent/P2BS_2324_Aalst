@@ -33,7 +33,7 @@
                 </VBox>
 
                 <!-- Zoekbalk -->
-                <SearchField class="searchbarregister" id="searchField" width="100%" search="onSearch" placeholder="{i18n>searchbarparticipants}" />
+                <SearchField class="searchbarregister" id="searchField" width="100%" liveChange="onLiveSearch" placeholder="{i18n>searchbarparticipants}" />
 
                 <!-- Lijst met deelnemers -->
                 <List class="participantsList" id="participantsList" items="{participantModel>/}">
