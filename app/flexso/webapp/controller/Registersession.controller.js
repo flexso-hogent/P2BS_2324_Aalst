@@ -121,26 +121,72 @@ sap.ui.define(
         var oSessionModel = this.getView().getModel("sessionModel");
         var oUserDataModel = this.getView().getModel("userData");
 
-        var oRegistrationData = {
-          sessionID: oSessionModel.getProperty("/sessionID"),
+        // Check if the user has already registered for this session
+        if (
+          this.isUserAlreadyRegistered(oSessionModel.getProperty("/sessionID"))
+        ) {
+          sap.m.MessageBox.error(
+            "You have already registered for this session"
+          );
+        } else {
+          var oRegistrationData = {
+            sessionID: oSessionModel.getProperty("/sessionID"),
 
-          title: oSessionModel.getProperty("/title"),
-          startDate: oSessionModel.getProperty("/startDate"),
-          endDate: oSessionModel.getProperty("/endDate"),
-          startTime: oSessionModel.getProperty("/startTime"),
-          endTime: oSessionModel.getProperty("/endTime"),
-          room: oSessionModel.getProperty("/room"),
-          description: oSessionModel.getProperty("/description"),
-          speaker: oSessionModel.getProperty("/speaker"),
-          totalSeats: oSessionModel.getProperty("/totalSeats"),
-          eventID: oSessionModel.getProperty("/eventID"),
-          firstname: oUserDataModel.getProperty("/firstname"),
-          lastname: oUserDataModel.getProperty("/lastname"),
-          email: oUserDataModel.getProperty("/email"),
-        };
+            title: oSessionModel.getProperty("/title"),
+            startDate: oSessionModel.getProperty("/startDate"),
+            endDate: oSessionModel.getProperty("/endDate"),
+            startTime: oSessionModel.getProperty("/startTime"),
+            endTime: oSessionModel.getProperty("/endTime"),
+            room: oSessionModel.getProperty("/room"),
+            description: oSessionModel.getProperty("/description"),
+            speaker: oSessionModel.getProperty("/speaker"),
+            totalSeats: oSessionModel.getProperty("/totalSeats"),
+            eventID: oSessionModel.getProperty("/eventID"),
+            firstname: oUserDataModel.getProperty("/firstname"),
+            lastname: oUserDataModel.getProperty("/lastname"),
+            email: oUserDataModel.getProperty("/email"),
+          };
 
-        this.sendRegistrationToBackend(oRegistrationData);
+          this.sendRegistrationToBackend(oRegistrationData);
+        }
       },
+
+      isUserAlreadyRegistered: function (sessionId) {
+        var loggedInUserEmail = localStorage.getItem("email");
+        if (!loggedInUserEmail) {
+          // If the user is not logged in, return false
+          return false;
+        }
+
+        // Fetch the user's registration data from the backend
+        var registrationDataUrl =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=sessionID eq " +
+          sessionId +
+          " and email eq '" +
+          loggedInUserEmail +
+          "'";
+        var isUserRegistered = false;
+
+        jQuery.ajax({
+          url: registrationDataUrl,
+          type: "GET",
+          async: false, // Ensure synchronous request to wait for the response
+          success: function (data) {
+            // If any registration data is returned, the user is already registered
+            if (data && data.value && data.value.length > 0) {
+              isUserRegistered = true;
+            }
+          },
+          error: function (xhr, status, error) {
+            sap.m.MessageBox.error(
+              "Failed to fetch registration data: " + error
+            );
+          },
+        });
+
+        return isUserRegistered;
+      },
+
       sendRegistrationToBackend: function (oRegistrationData) {
         var that = this;
         jQuery.ajax({
