@@ -89,6 +89,9 @@ sap.ui.define(
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
+
+        // Reload the page instantly
+        window.location.reload(true); // Pass true to reload the page from the server, bypassing the cache
       },
 
       onProfileButtonClick: function () {
@@ -114,69 +117,37 @@ sap.ui.define(
           sap.m.MessageBox.error("Gelieve een sessie te selecteren!");
         } else if (oRatingIndicator.getValue() === 0) {
           sap.m.MessageBox.error("Gelieve een rating in te geven!");
+        } else if (
+          oRatingIndicator.getValue() <= 2 &&
+          oTextArea.getValue().trim() === ""
+        ) {
+          sap.m.MessageBox.error("Gelieve een review in te geven!");
         } else {
-          if (oRatingIndicator.getValue() <= 2) {
-            if (oTextArea.getValue() === "") {
-              sap.m.MessageBox.error("Gelieve een review in te geven!");
-            } else {
-              $.ajax({
-                url: "http://localhost:4004/odata/v4/catalog/Feedback",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(feedbackData),
-                success: function (data) {
-                  MessageToast.show("Bedankt voor uw feedback!");
-                  setTimeout(
-                    function () {
-                      var oRouter = UIComponent.getRouterFor(this);
-                      oRouter.navTo("home");
-
-                      window.location.reload();
-                    }.bind(this),
-                    1000
-                  );
+          $.ajax({
+            url: "http://localhost:4004/odata/v4/catalog/Feedback",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(feedbackData),
+            success: function (data) {
+              MessageToast.show("Bedankt voor uw feedback!");
+              setTimeout(
+                function () {
+                  var oRouter = UIComponent.getRouterFor(this);
+                  oRouter.navTo("home");
+                  // Reload the page
+                  window.location.reload(true); // Pass true to reload the page from the server, bypassing the cache
                 }.bind(this),
-                error: function (xhr, status, error) {
-                  sap.m.MessageBox.error(
-                    "Er is een fout opgetreden bij het versturen van feedback: " +
-                      error
-                  );
-                },
-              });
-            }
-          } else {
-            $.ajax({
-              url: "http://localhost:4004/odata/v4/catalog/Feedback",
-              type: "POST",
-              contentType: "application/json",
-              data: JSON.stringify(feedbackData),
-              success: function (data) {
-                MessageToast.show("Bedankt voor uw feedback!");
-                setTimeout(
-                  function () {
-                    var oRouter = UIComponent.getRouterFor(this);
-                    oRouter.navTo("home");
-                    setTimeout(
-                      function () {
-                        var oRouter = UIComponent.getRouterFor(this);
-                        oRouter.navTo("home");
+                1500
+              ); // Wait for 1.5 seconds (1500 milliseconds) before navigating
+            }.bind(this),
 
-                        window.location.reload();
-                      }.bind(this),
-                      1000
-                    );
-                  }.bind(this),
-                  1000
-                );
-              }.bind(this),
-              error: function (xhr, status, error) {
-                sap.m.MessageBox.error(
-                  "Er is een fout opgetreden bij het versturen van feedback: " +
-                    error
-                );
-              },
-            });
-          }
+            error: function (xhr, status, error) {
+              sap.m.MessageBox.error(
+                "Er is een fout opgetreden bij het versturen van feedback: " +
+                  error
+              );
+            },
+          });
         }
       },
 
@@ -216,7 +187,7 @@ sap.ui.define(
 
           var oTable = this.getView().byId("sessionTable");
           oTable.setVisible(false);
-        }       
+        }
       },
     });
   }
