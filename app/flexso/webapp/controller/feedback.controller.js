@@ -114,14 +114,20 @@ sap.ui.define(
         };
 
         if (sessie === "") {
-          sap.m.MessageBox.error("Gelieve een sessie te selecteren!");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackErrorSession")
+          );
         } else if (oRatingIndicator.getValue() === 0) {
-          sap.m.MessageBox.error("Gelieve een rating in te geven!");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackErrorRating")
+          );
         } else if (
           oRatingIndicator.getValue() <= 2 &&
           oTextArea.getValue().trim() === ""
         ) {
-          sap.m.MessageBox.error("Gelieve een review in te geven!");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackError")
+          );
         } else {
           $.ajax({
             url: "http://localhost:4004/odata/v4/catalog/Feedback",
@@ -143,8 +149,7 @@ sap.ui.define(
 
             error: function (xhr, status, error) {
               sap.m.MessageBox.error(
-                "Er is een fout opgetreden bij het versturen van feedback: " +
-                  error
+                this.getView().getModel("i18n").getProperty("standardError")
               );
             },
           });
@@ -180,7 +185,9 @@ sap.ui.define(
         var oCurrentDateTime = new Date();
 
         if (oSelectedDateTime > oCurrentDateTime) {
-          sap.m.MessageBox.error("Deze sessie moet nog plaatsvinden");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("SessiePlaatsvinden")
+          );
         } else {
           var oSearchField = this.getView().byId("sessieZoekenInput");
           oSearchField.setValue(sTitel);
