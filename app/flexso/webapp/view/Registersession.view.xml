@@ -37,19 +37,20 @@
                 id="sessionInfoBox"
                 class="infoBox"
             >
-                <Title 
+                <Title
                     id="TitleRegisterSession"
-                    text="{i18n>TitleRegisterSession}" 
-                    class="titlesPages"/>
+                    text="{i18n>TitleRegisterSession}"
+                    class="titlesPages"
+                />
                 <Label
                     id="_IDGenLabel1"
-                    text="Session Information"
+                    text="{i18n>SessionInformation}"
                     class="sectionHeader"
                 />
                 <VBox id="_IDGenVBox1">
                     <Label
                         id="_IDGenLabel2"
-                        text="Title:"
+                        text="{i18n>Title}"
                     />
                     <Text
                         id="_IDGenText1"
@@ -60,7 +61,7 @@
                 <VBox id="_IDGenVBox2">
                     <Label
                         id="_IDGenLabel3"
-                        text="Start Date:"
+                        text="{i18n>StartDate}"
                     />
                     <Text
                         id="_IDGenText2"
@@ -68,11 +69,11 @@
                         class="dateText"
                     />
                 </VBox>
-                
+
                 <VBox id="_IDGenVBox3">
                     <Label
                         id="_IDGenLabel4"
-                        text="End Date:"
+                        text="{i18n>EndDate}"
                     />
                     <Text
                         id="_IDGenText3"
@@ -84,7 +85,7 @@
                 <VBox id="_IDGenVBox4">
                     <Label
                         id="_IDGenLabel5"
-                        text="Location:"
+                        text="{i18n>Location}"
                     />
                     <Text
                         id="_IDGenText4"
@@ -94,7 +95,7 @@
                 <VBox id="_IDGenVBox5">
                     <Label
                         id="_IDGenLabel6"
-                        text="Speaker:"
+                        text="{i18n>Speaker}"
                     />
                     <Text
                         id="_IDGenText5"
@@ -104,7 +105,7 @@
                 <VBox id="_IDGenVBox6">
                     <Label
                         id="_IDGenLabel7"
-                        text="Total Seats:"
+                        text="{i18n>TotalSeats}"
                     />
                     <Text
                         id="_IDGenText6"
@@ -114,7 +115,7 @@
                 <VBox id="_IDGenVBox7">
                     <Label
                         id="_IDGenLabel8"
-                        text="Description:"
+                        text="{i18n>Description}"
                     />
                     <Text
                         id="_IDGenText7"
@@ -124,7 +125,7 @@
 
                 <Label
                     id="_IDGenLabel9"
-                    text="Your Information"
+                    text="{i18n>PersonalInformation}"
                     class="sectionHeader"
                 />
                 <VBox
@@ -133,7 +134,7 @@
                 >
                     <Label
                         id="_IDGenLabel10"
-                        text="First Name:"
+                        text="{i18n>firstNameLabel}"
                     />
                     <Text
                         id="_IDGenText8"
@@ -141,7 +142,7 @@
                     />
                     <Label
                         id="_IDGenLabel11"
-                        text="Last Name:"
+                        text="{i18n>lastNameLabel}"
                     />
                     <Text
                         id="_IDGenText9"
@@ -149,29 +150,32 @@
                     />
                     <Label
                         id="_IDGenLabel12"
-                        text="Email:"
+                        text="{i18n>Email}"
                     />
                     <Text
                         id="_IDGenText10"
                         text="{userData>/email}"
                     />
                 </VBox>
-                <HBox id="_IDGenHBox2" justifyContent="Center" alignItems="Center">
+                <HBox
+                    id="_IDGenHBox2"
+                    justifyContent="Center"
+                    alignItems="Center"
+                >
                     <Button
                         id="_IDGenButton1"
-                        text="Register"
+                        text="{i18n>register}"
                         press="onRegisterPress"
                         class="sessionRegisterButtons"
                     />
                     <Button
                         id="_IDGenButton2"
-                        text="Go back"
+                        text="{i18n>goBack}"
                         press="OnGoBackPress"
                         class="sessionRegisterButtons"
                     />
                 </HBox>
             </VBox>
-           
         </content>
     </Page>
 
@@ -183,18 +187,18 @@
         contentWidth="auto"
     >
         <content>
-            <VBox
-                id="_IDGenVBox"
-            >
+            <VBox id="_IDGenVBox">
                 <Button
-                    id="_IDGenButton"
+                    id="_IDGenButton9"
                     text="{i18n>EN}"
                     press="onSwitchToEnglish"
+                    width="100%"
                 />
                 <Button
                     id="_IDGenButton10"
                     text="{i18n>NL}"
                     press="onSwitchToDutch"
+                    width="100%"
                 />
             </VBox>
         </content>

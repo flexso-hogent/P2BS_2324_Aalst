@@ -149,15 +149,16 @@ sap.ui.define(
           contentType: "application/json",
           data: JSON.stringify(oRegistrationData),
           success: function () {
-            // Delay showing the success message by 1.5 seconds
+            // Show a success message
+            MessageToast.show("Session registered successfully");
+
+            // Navigate back to home page after a delay
             setTimeout(function () {
-              MessageToast.show("Session registered successfully");
-              // Navigate back to home page
               that.onBackToHome();
             }, 1500);
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Failed to register session: " + error);
+            sap.m.MessageBox.error("Failed to register session: " + error);
           },
         });
       },
@@ -166,12 +167,8 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
 
-        // Refresh the home page
-        var oHomeController = oRouter.getViews()["flexso.controller.Home"];
-        if (oHomeController) {
-          oHomeController.getController().fetchFeedbackData();
-          oHomeController.getController().fetchRegisteredSessionsData(); // Assuming you have a function to fetch registered sessions data
-        }
+        // Reload the page
+        window.location.reload();
       },
 
       onLogoutPress: function () {

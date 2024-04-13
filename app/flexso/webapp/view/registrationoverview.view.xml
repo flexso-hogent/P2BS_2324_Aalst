@@ -1,65 +1,159 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="flexso.controller.registrationoverview" class="registrationoverviewPage">
-    <Page id="registrationoverview" title="Flexso">
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="flexso.controller.registrationoverview"
+    class="registrationoverviewPage"
+>
+    <Page
+        id="registrationoverview"
+        title="Flexso"
+        class="backgroundFlexso"
+    >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button id="languageButton" icon="sap-icon://globe" press="onDropdownPress" />
-                <Button id="_IDGenButton3" icon="sap-icon://home" press="onBackToHome" />
-                <Button id="_IDGenButton4" icon="sap-icon://person-placeholder" press="onProfileButtonClick" />
-                <Button id="_IDGenButton5" icon="sap-icon://log" press="onLogoutPress" />
+                <Button
+                    id="languageButton"
+                    icon="sap-icon://globe"
+                    press="onDropdownPress"
+                />
+                <Button
+                    id="_IDGenButton3"
+                    icon="sap-icon://home"
+                    press="onBackToHome"
+                />
+                <Button
+                    id="_IDGenButton4"
+                    icon="sap-icon://person-placeholder"
+                    press="onProfileButtonClick"
+                />
+                <Button
+                    id="_IDGenButton5"
+                    icon="sap-icon://log"
+                    press="onLogoutPress"
+                />
             </Toolbar>
         </headerContent>
         <content>
-            <VBox class="pageregistersessionoverview" id="_IDGenHBox1" >
+            <VBox
+                class="pageregistersessionoverview"
+                id="_IDGenHBox1"
+            >
                 <!-- TITLE: EVENT REGISTRATION OVERVIEW-->
-                <VBox class="boxtitleregistrations" id="boxtitleregistrations">
-                    <Title class="titleRegistrations" id="titleRegistrations" text="{i18n>EventRegistrationOverview}" />
+                <VBox
+                    class="boxtitleregistrations"
+                    id="boxtitleregistrations"
+                >
+                    <Title
+                        class="titleRegistrations"
+                        id="titleRegistrations"
+                        text="{i18n>EventRegistrationOverview}"
+                    />
                 </VBox>
 
                 <!-- TITLE: CHOOSE AN EVENT-->
                 <!-- SELECT BOX WITH THE EVENTS-->
                 <VBox id="_IDGenVBox2">
-                    <Title class="titleEventsChoose" id="titleEventsChoose" text="{i18n>ChooseAnEvent}" />
-                    <Select id="sessionSelect" change="onSessionSelectChange">
-                    </Select>
+                    <Title
+                        class="titleEventsChoose"
+                        id="titleEventsChoose"
+                        text="{i18n>ChooseAnEvent}"
+                    />
+                    <Select
+                        id="sessionSelect"
+                        change="onSessionSelectChange"
+                    />
                 </VBox>
 
                 <!-- TITLE: CHOOSE A SESSION-->
                 <VBox id="sessionsBox">
-                    <Title class="titleEventsChoose" id="titleSessionChoose" text="{i18n>ChooseASession}" />
-                    <Select id="sessionSelect1" change="onSessionSelectChange">
-                        <core:Item id="_IDGenItem1" key="{sessionModel>sessionID}" text="{sessionModel>title}" />
+                    <Title
+                        class="titleEventsChoose"
+                        id="titleSessionChoose"
+                        text="{i18n>ChooseASession}"
+                    />
+                    <Select
+                        id="sessionSelect1"
+                        change="onSessionSelectChange"
+                    >
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="{sessionModel>sessionID}"
+                            text="{sessionModel>title}"
+                        />
                     </Select>
                 </VBox>
 
                 <!-- Zoekbalk -->
-                <SearchField class="searchbarregister" id="searchField" width="100%" liveChange="onLiveSearch" placeholder="{i18n>searchbarparticipants}" />
+                <SearchField
+                    class="searchbarregister"
+                    id="searchField"
+                    width="100%"
+                    liveChange="onLiveSearch"
+                    placeholder="{i18n>searchbarparticipants}"
+                />
 
                 <!-- Lijst met deelnemers -->
-                <List class="participantsList" id="participantsList" items="{participantModel>/}">
+                <List
+                    class="participantsList"
+                    id="participantsList"
+                    items="{participantModel>/}"
+                >
                     <items>
-                        <ObjectListItem id="_IDGenObjectListItem1" title="{participantModel>firstname} {participantModel>lastname}" type="Active">
+                        <ObjectListItem
+                            id="_IDGenObjectListItem1"
+                            title="{participantModel>firstname} {participantModel>lastname}"
+                            type="Active"
+                        >
                             <attributes>
-                                <ObjectAttribute id="_IDGenObjectAttribute1" title="Email" text="{participantModel>email}" />
+                                <ObjectAttribute
+                                    id="_IDGenObjectAttribute1"
+                                    title="Email"
+                                    text="{participantModel>email}"
+                                />
                                 <!-- Voeg hier extra attributen toe indien nodig -->
                             </attributes>
                         </ObjectListItem>
                     </items>
                 </List>
 
-
                 <!-- Button terug naar home page-->
-                <VBox class="boxbutton" id="_IDGenVBox3">
-                    <Button class="buttonregistrationoverview" id="_IDGenButton6S" text="{i18n>BackToHome}" press="onBackToHome" />
+                <VBox
+                    class="boxbutton"
+                    id="_IDGenVBox3"
+                >
+                    <Button
+                        class="buttonregistrationoverview"
+                        id="_IDGenButton6S"
+                        text="{i18n>BackToHome}"
+                        press="onBackToHome"
+                    />
                 </VBox>
             </VBox>
         </content>
     </Page>
-    <Popover id="popover" placement="Auto" showArrow="true" title="{i18n>Menu}" contentWidth="auto">
+    <Popover
+        id="popover"
+        placement="Auto"
+        showArrow="true"
+        title="{i18n>Menu}"
+        contentWidth="auto"
+    >
         <content>
-            <VBox id="_IDGenVBox">
-                <Button id="_IDGenButton" text="{i18n>EN}" press="onSwitchToEnglish" />
-                <Button id="_IDGenButton10" text="{i18n>NL}" press="onSwitchToDutch" />
+            <VBox id="_IDGenVBox4">
+                <Button
+                    id="_IDGenButton9"
+                    text="{i18n>EN}"
+                    press="onSwitchToEnglish"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton10"
+                    text="{i18n>NL}"
+                    press="onSwitchToDutch"
+                    width="100%"
+                />
             </VBox>
         </content>
     </Popover>
