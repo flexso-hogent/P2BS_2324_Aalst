@@ -9,7 +9,7 @@
     <Page
         id="_IDGenPage1"
         title="Flexso"
-        class="feedbackPage"
+        class="createPages"
         enableScrolling="false"
     >
         <headerContent>

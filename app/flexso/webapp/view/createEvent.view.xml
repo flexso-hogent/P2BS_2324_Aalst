@@ -8,6 +8,7 @@
         id="_IDGenPage1"
         title="{i18n>Flexso}"
         enableScrolling="false"
+        class="createPages"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">

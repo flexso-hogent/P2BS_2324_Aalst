@@ -6,6 +6,7 @@
     <Page
         id="registerSessionPage"
         title="Flexso"
+        class="backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">

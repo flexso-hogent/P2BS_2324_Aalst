@@ -11,7 +11,7 @@
         id="_IDGenPage1"
         title="Flexso"
         enableScrolling="true"
-        class="titlesHomepage"
+        class="backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -143,12 +143,13 @@
 
             <VBox
                 id="_IDGenVBox"
-                class="sapUiSmallMarginBegin"
+                class="sapUiSmallMarginBegin "
             >
                 <List
                     id="_IDGenList"
                     items="{imageModel>/registeredSessionsData}"
                     noDataText="{i18n>noDataTextSessions}"
+                    class="Nodata"
                 >
                     <CustomListItem
                         id="_IDGenCustomListItem1"
@@ -264,6 +265,7 @@
                     id="_IDGenList1"
                     items="{imageModel>/feedbackData}"
                     noDataText="{i18n>noDataText}"
+                    class="Nodata"
                 >
                     <CustomListItem
                         id="_IDGenCustomListItem2"

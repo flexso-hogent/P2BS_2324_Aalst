@@ -8,7 +8,7 @@
     <Page
         id="profilePage"
         title="Flexso"
-        class="profilePage"
+        class="profilePage backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">

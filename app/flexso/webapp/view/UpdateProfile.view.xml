@@ -8,7 +8,7 @@
     <Page
         id="updateProfilePage"
         title="Flexso"
-        class="updateProfilePage"
+        class="updateProfilePage backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -50,7 +50,8 @@
             >
                 <HBox
                     id="_IDGenHBox1"
-                    width="100%"
+                    width="60%"
+                    class="profileHBox"
                 >
                     <!-- Left side: User input -->
                     <VBox
