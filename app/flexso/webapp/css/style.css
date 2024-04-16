@@ -220,6 +220,9 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: rgb(242, 240, 234);
+  max-width: 50%;
+  margin: 0 auto;
+  margin-top: 2%;
 }
 
 .loginImageCreateSession {
@@ -613,4 +616,15 @@
 
 .ratingpercentage {
   margin-right: 20px !important;
+}
+
+.sessionListItem {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  margin-top: 2%;
 }

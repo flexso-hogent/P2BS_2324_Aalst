@@ -132,6 +132,7 @@
                 <VBox
                     id="userInfoBox"
                     class="infoBox"
+                    width="100%"
                 >
                     <Label
                         id="_IDGenLabel10"

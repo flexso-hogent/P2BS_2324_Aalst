@@ -145,6 +145,7 @@
                     <CustomListItem
                         id="sessionListItem"
                         press="onSessionSelect"
+                        class="sessionListItem"
                     >
                         <VBox id="_IDGenVBox1">
                             <HBox id="_IDGenHBox1">
@@ -154,8 +155,8 @@
                                 />
                             </HBox>
                             <HBox id="_IDGenHBox2">
-                                <Text
-                                    id="_IDGenDatePicker3"
+                                <Label
+                                    id="label"
                                     text="{i18n>duration}: {sessionModel>startDate} {i18n>until} {sessionModel>endDate}"
                                 />
                             </HBox>
@@ -168,13 +169,21 @@
                             <HBox id="_IDGenHBox3">
                                 <Label
                                     id="_IDGenLabel18"
-                                    text="{i18n>TotalSeats}: {sessionModel>totalSeats}"
+                                    text="{i18n>TotalSeats}:"
+                                />
+                                <Text
+                                    id="text"
+                                    text="{sessionModel>totalSeats}"
                                 />
                             </HBox>
                             <HBox id="_IDGenHBox5">
                                 <Label
                                     id="_IDGenLabel17"
-                                    text="{i18n>Speaker}: {sessionModel>speaker}"
+                                    text="{i18n>Speaker}:"
+                                />
+                                <Text
+                                    id="text1"
+                                    text="{sessionModel>speaker}"
                                 />
                             </HBox>
                         </VBox>
@@ -182,6 +191,7 @@
                             id="_IDGenButton2"
                             text="{i18n>register}"
                             press="onRegisterPress"
+                            class="registerButton"
                         />
                     </CustomListItem>
                 </List>
