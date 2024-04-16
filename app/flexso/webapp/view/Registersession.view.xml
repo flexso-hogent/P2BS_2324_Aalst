@@ -127,7 +127,7 @@
                 <Label
                     id="_IDGenLabel9"
                     text="{i18n>PersonalInformation}"
-                    class="sectionHeader"
+                    class="sectionHeader2"
                 />
                 <VBox
                     id="userInfoBox"

@@ -474,6 +474,13 @@
   margin-top: 1rem;
 }
 
+.sectionHeader2 {
+  color: #007cc0; /* Donkerblauw */
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-left: 25%;
+}
+
 /* Labeltekst */
 .sapMLabel {
   color: #007cc0; /* Donkerblauw */
