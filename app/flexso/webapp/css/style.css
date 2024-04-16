@@ -584,3 +584,33 @@
     rgb(0 114 135)
   ) !important;
 }
+
+.sessionScoresBox {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: rgb(242, 240, 234);
+}
+
+.sessionScoresLabel {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  color: black;
+}
+
+.listItemsSessions {
+  margin: 15px !important;
+}
+
+.sessionsboxen {
+  padding: 20px;
+}
+
+.ratingpercentage {
+  margin-right: 20px !important;
+}

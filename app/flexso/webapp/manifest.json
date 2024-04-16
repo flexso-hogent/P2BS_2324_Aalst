@@ -188,6 +188,11 @@
           "name": "updateProfile",
           "pattern": "updateProfile",
           "target": ["UpdateProfile"]
+        },
+        {
+          "name": "sessionScores",
+          "pattern": "sessionScores",
+          "target": ["SessionScores"]
         }
       ],
       "targets": {
@@ -264,6 +269,11 @@
         "UpdateProfile": {
           "viewName": "flexso.view.UpdateProfile",
           "viewId": "updateProfile",
+          "viewLevel": 3
+        },
+        "SessionScores": {
+          "viewName": "flexso.view.SessionScores",
+          "viewId": "sessionScores",
           "viewLevel": 3
         }
       }

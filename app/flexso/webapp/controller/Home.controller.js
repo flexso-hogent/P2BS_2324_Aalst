@@ -182,6 +182,10 @@ sap.ui.define(
         // Trigger file download with the generated ICS content
         this.downloadICSFile(icalContent, "calendar_event.ics");
       },
+      onGoToScoreOverview: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("sessionScores");
+      },
 
       // Function to generate ICS content from session data
       generateICalContent: function (sessions) {

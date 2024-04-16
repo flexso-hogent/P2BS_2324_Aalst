@@ -132,6 +132,13 @@
                     press="onGoToEventRegistrationOverview"
                     class="sapUiSmallMarginEnd createButtons"
                 />
+                <Button
+                    id="_IDScoreOverview"
+                    text="{i18n>ScoreOverview}"
+                    icon="sap-icon://unfavorite"
+                    press="onGoToScoreOverview"
+                    class="sapUiSmallMarginEnd createButtons"
+                />
             </FlexBox>
 
             <Title
