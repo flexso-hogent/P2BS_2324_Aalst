@@ -9,7 +9,7 @@
     <Page
         id="feedbackPage"
         title="Flexso"
-        class="feedbackPage"
+        class="feedbackPage backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">

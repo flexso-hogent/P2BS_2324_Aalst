@@ -1,19 +1,12 @@
-.loginPage {
-  background-color: #f4f4f4;
-}
-
 .loginBox {
-  margin-top: 50px;
-  background-color: #f4f4f4;
-  padding: 20px;
+  margin-top: 5% !important;
+  padding-bottom: 3% !important;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   background-color: rgb(242, 240, 234);
-}
-
-.loginLayout {
-  margin: 0 auto;
+  max-width: 50%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the box horizontally */
 }
 
 .loginInput,
@@ -190,6 +183,7 @@
   background-color: rgb(242, 240, 234);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin-left: 2%;
 }
 
 .userInfoTitle {
@@ -244,7 +238,6 @@
 }
 
 .createSessionBox {
-  background-color: rgb(242, 240, 234);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -364,7 +357,7 @@
 .outlookButton,
 .outlookButton.sapMBtnBase,
 .outlookButton .sapMBtnHoverable {
-  background-color: rgb(0, 178, 221) !important;
+  background-color: rgb(239 175 57) !important;
   border: none !important;
   border-radius: 5px !important;
   color: #f4f4f4 !important;
@@ -384,7 +377,7 @@
 .sessionTitle {
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: white;
+  color: white !important;
 }
 
 .sessionDateTimeBox {
@@ -403,9 +396,17 @@
   margin-right: 1rem;
 }
 .sessionBox {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
   background-color: rgb(242, 240, 234);
-  padding: 1rem;
+  max-width: 80%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the box horizontally */
+  margin-top: 2%;
 }
+
 .feedbackItemContainer {
   margin-top: 0rem;
 }
@@ -414,6 +415,23 @@
   background-color: rgb(242, 240, 234);
   padding: 1rem;
   margin-top: 1rem;
+  max-width: 80%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the box horizontally */
+  margin-bottom: 2% !important;
+}
+.Nodata .sapMListItems {
+  background-color: rgba(255, 255, 255, 0); /* Transparent background */
+}
+/* Adjust width and text color for no data message */
+/* Adjust width and text color for no data message */
+.Nodata,
+.sapMListNoDataText {
+  max-width: 80%; /* Limit width */
+  margin: 0 auto; /* Center horizontally */
+  padding: 10px; /* Add padding */
+  text-align: center; /* Center the text */
+  color: black; /* Text color */
+  background-color: transparent; /* Make background transparent */
 }
 
 .feedbackTitle {
@@ -429,9 +447,10 @@
   margin-left: 1rem;
 }
 .titleFeedback {
-  color: rgb(0 114 135);
+  color: white !important;
   margin-top: 2%;
   font-size: 18px;
+  margin-left: 19% !important;
 }
 
 /* Register session */
@@ -546,4 +565,22 @@
 }
 .searchbarregister {
   margin-top: 10px;
+}
+.createPages {
+  background-color: rgb(242 240 234);
+}
+.customBackground {
+  background-color: #f2f0ea; /* Your desired background color */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  max-width: 40%;
+  margin: 0 auto; /* Center the box horizontally */
+}
+
+.backgroundEventCreate {
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgb(0 114 135)
+  ) !important;
 }

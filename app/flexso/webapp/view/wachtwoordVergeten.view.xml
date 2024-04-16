@@ -10,6 +10,7 @@
         title="Flexso"
         showHeader="true"
         headerContent="headerContent"
+        class="backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -32,6 +33,7 @@
                 alignItems="Center"
                 justifyContent="Center"
                 width="100%"
+                class="sapUiSmallMarginTop"
             >
                 <f:SimpleForm
                     id="forgotPasswordForm"

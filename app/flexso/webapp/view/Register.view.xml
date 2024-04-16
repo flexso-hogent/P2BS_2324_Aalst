@@ -10,7 +10,7 @@
     <Page
         id="registerPage"
         title="Flexso"
-        class="registerPage"
+        class="registerPage backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
@@ -43,7 +43,7 @@
         <content>
             <FlexBox
                 id="_IDGenOuterFlexBox"
-                class="outerFlexBox outerFlexBoxWithPadding"
+                class="outerFlexBox outerFlexBoxWithPadding customBackground"
                 justifyContent="Center"
                 alignItems="Center"
             >
@@ -383,6 +383,7 @@
                     </FlexBox>
                 </FlexBox>
             </FlexBox>
+
             <Button
                 id="registerButton"
                 text="{i18n>registerButton}"

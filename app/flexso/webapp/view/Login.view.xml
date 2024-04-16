@@ -7,7 +7,7 @@
     <Page
         id="loginPage"
         title="Flexso"
-        class="loginPage"
+        class="backgroundEventCreate"
     >
         <headerContent>
             <Toolbar id="_IDGenToolbar1">
