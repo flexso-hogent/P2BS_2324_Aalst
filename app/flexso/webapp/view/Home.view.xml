@@ -46,11 +46,17 @@
                 justifyContent="Center"
                 class="sapUiSmallMarginBegin sapUiSmallMarginTop"
             >
-                <!-- Title with Cool Animation -->
                 <Title
                     id="_IDGenTitle1"
                     text="{i18n>titleHomePage}"
                     class="coolTitleAnimation"
+                />
+                <!-- Link to a website -->
+                <Link
+                    id="_IDGenLink1"
+                    text="{i18n>linkText}"
+                    href="https://www.flexso.com/en"
+                    target="_blank"
                 />
 
                 <!-- Add any additional content here as needed -->
@@ -148,7 +154,7 @@
                 />
                 <Button
                     id="viewAllSessionsButton1"
-                    text="View All Sessions"
+                    text="{i18n>viewAllSessions}"
                     icon="sap-icon://detail-view"
                     press="onViewAllSessionsPress"
                     class="sapUiSmallMarginEnd viewAllSessionsButton"
@@ -251,9 +257,23 @@
                                 class="sapUiSmallMarginEnd"
                             >
                                 <Button
+                                    id="FeedbackDirect"
+                                    text="{i18n>GeefFeedback}"
+                                    icon="sap-icon://add-favorite"
+                                    press="goToFeedbackDirect"
+                                    class="sapUiSmallMarginEnd outlookButton"
+                                />
+                                <Button
+                                    id="SchrijfUit"
+                                    text="{i18n>SchrijfUit}"
+                                    icon="sap-icon://decline"
+                                    press="goToSchrijfUit"
+                                    class="sapUiSmallMarginEnd outlookButton"
+                                />
+                                <Button
                                     id="_IDGenButtonExportToOutlook"
                                     text="{i18n>exportToOutlookButton}"
-                                    icon="sap-icon://calendar"
+                                    icon="sap-icon://add-calendar"
                                     press="onExportToOutlookPress"
                                     class="sapUiSmallMarginEnd outlookButton"
                                 />
@@ -278,7 +298,7 @@
                 />
                 <Button
                     id="viewAllFeedbackButton1"
-                    text="View all given feedback"
+                    text="{i18n>viewAllFeedback}"
                     icon="sap-icon://detail-view"
                     press="onAllFeedbackPress"
                     class="sapUiSmallMarginEnd viewAllFeedbackButton"
