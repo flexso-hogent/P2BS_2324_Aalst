@@ -96,6 +96,33 @@ sap.ui.define(
           },
         });
       },
+      onSort: function (oEvent) {
+        this.bDescending = !this.bDescending;
+        this.fnApplyFiltersAndOrdering();
+      },
+      fnApplyFiltersAndOrdering: function (oEvent) {
+        var aFilters = [],
+          aSorters = [];
+
+        // Sort by start date (SDate)
+        aSorters.push(new sap.ui.model.Sorter("SDate", this.bDescending));
+
+        if (this.sSearchQuery) {
+          // Add filtering by name if search query exists
+          var oFilter = new sap.ui.model.Filter(
+            "Name",
+            sap.ui.model.FilterOperator.Contains,
+            this.sSearchQuery
+          );
+          aFilters.push(oFilter);
+        }
+
+        // Apply filters and sorters to the table binding
+        this.byId("eventTable")
+          .getBinding("items")
+          .filter(aFilters)
+          .sort(aSorters);
+      },
 
       onViewSessionsPress: function (oEvent) {
         var oSelectedListItem = oEvent.getSource().getParent();
@@ -205,26 +232,47 @@ sap.ui.define(
           },
         });
       },
-
+      // Search field for session name
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
-        this.filterEvents(sQuery);
+        var sLocationQuery = this.getView()
+          .byId("LocatieZoekenInput")
+          .getValue(); // Get the value from the location search field
+        this.applyFilters(sQuery, sLocationQuery);
       },
 
-      filterEvents: function (sQuery) {
+      // Search field for location
+      onLocatieZoekenLiveChange: function (oEvent) {
+        var sLocationQuery = oEvent.getParameter("newValue");
+        var sSearchQuery = this.getView().byId("sessieZoekenInput").getValue(); // Get the value from the session name search field
+        this.applyFilters(sSearchQuery, sLocationQuery);
+      },
+
+      applyFilters: function (sSearchQuery, sLocationQuery) {
         var oTable = this.getView().byId("eventTable");
         var oBinding = oTable.getBinding("items");
-        var oFilter;
+        var aFilters = [];
 
-        if (sQuery) {
-          oFilter = new sap.ui.model.Filter(
+        if (sSearchQuery) {
+          var oSearchFilter = new sap.ui.model.Filter(
             "Name",
             sap.ui.model.FilterOperator.Contains,
-            sQuery
+            sSearchQuery
           );
+          aFilters.push(oSearchFilter);
         }
 
-        oBinding.filter(oFilter);
+        if (sLocationQuery) {
+          var oLocationFilter = new sap.ui.model.Filter(
+            "location",
+            sap.ui.model.FilterOperator.Contains,
+            sLocationQuery
+          );
+          aFilters.push(oLocationFilter);
+        }
+
+        // Apply combined filters to the table binding
+        oBinding.filter(aFilters);
       },
 
       onRegisterPress: function (oEvent) {

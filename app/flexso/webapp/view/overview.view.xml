@@ -39,13 +39,30 @@
             </Toolbar>
         </headerContent>
 
-        <OverflowToolbar id="_IDGenOverflowToolbar1">
-            <SearchField
-                id="sessieZoekenInput"
-                liveChange="onSearchLiveChange"
-                width="100%"
-            />
-        </OverflowToolbar>
+      <OverflowToolbar id="_IDGenOverflowToolbar1">
+    <SearchField
+        id="sessieZoekenInput"
+        liveChange="onSearchLiveChange"
+        width="16%"
+        placeholder="{i18n>phSearch1}"
+    />
+    <SearchField
+        id="LocatieZoekenInput"
+        liveChange="onLocatieZoekenLiveChange"
+        width="16%"
+        placeholder="{i18n>phsearch2}"
+    />
+        <OverflowToolbarButton
+            id="_IDGenOverflowToolbarButton1"
+            tooltip="Sort"
+            type="Transparent"
+            text="Sort"
+            icon="sap-icon://sort"
+            press="onSort"
+           
+        />
+
+</OverflowToolbar>
 
         <l:Splitter
             id="_IDGenSplitter1"
