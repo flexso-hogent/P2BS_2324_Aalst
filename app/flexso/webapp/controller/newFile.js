@@ -276,7 +276,11 @@ sap.ui.define(
       },
       voegSessieToe: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("createSession", {});
+        var oEventTable = this.getView().byId("eventTable");
+        var oSelectedItem = oEventTable.getSelectedItem();
+        oRouter.navTo("createEvent", {
+          eventId: oEventData.eventID,
+        });
       },
 
       onRegisterPress: function (oEvent) {

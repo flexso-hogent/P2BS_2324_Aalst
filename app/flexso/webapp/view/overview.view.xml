@@ -154,16 +154,26 @@
 
             <!-- SESSIE BOX -->
             <VBox id="sessionsBox">
+            <Button id="buttonAddSessie"
+                icon = "sap-icon://add"
+                press="voegSessieToe"
+                width="100%"
+                text="{i18n>ADDSESSIE}"> 
+
+                </Button>
                 <List
                     id="sessionsList"
                     items="{ path: 'sessionModel>/' }"
                     noDataText="{i18n>noData}"
                 >
+                
                     <CustomListItem
                         id="sessionListItem"
                         press="onSessionSelect"
                         class="sessionListItem"
+                        
                     >
+                    
                         <VBox id="_IDGenVBox1">
                             <HBox id="_IDGenHBox1">
                                 <Label
@@ -212,6 +222,7 @@
                         />
                     </CustomListItem>
                 </List>
+                
             </VBox>
         </l:Splitter>
     </Page>
@@ -222,6 +233,8 @@
         title="{i18n>Menu}"
         contentWidth="auto"
     >
+
+
         <content>
             <VBox id="_IDGenVBox3">
                 <Button

@@ -109,7 +109,7 @@
                         />
                         <Text
                             id="_IDGenText11"
-                            text="{allSessionsModel>location}"
+                            text="{allSessionsModel>room}"
                         />
 
                         <Text
