@@ -39,13 +39,27 @@
             </Toolbar>
         </headerContent>
 
-        <OverflowToolbar id="_IDGenOverflowToolbar1">
-            <SearchField
-                id="sessieZoekenInput"
-                liveChange="onSearchLiveChange"
-                width="100%"
-            />
-        </OverflowToolbar>
+      <OverflowToolbar id="_IDGenOverflowToolbar1">
+    <SearchField
+        id="sessieZoekenInput"
+        liveChange="onSearchLiveChange"
+        width="16%"
+        placeholder="{i18n>phSearch1}"
+    />
+    <SearchField
+        id="LocatieZoekenInput"
+        liveChange="onLocatieZoekenLiveChange"
+        width="16%"
+        placeholder="{i18n>phsearch2}"
+    />
+    <DateRangeSelection
+    id="datumzoekeninput"
+    liveChange="onDateRangeLiveChange"
+    placeholder="{i18n>phDatum}"
+    width="25%"
+    ></DateRangeSelection>
+ 
+</OverflowToolbar>
 
         <l:Splitter
             id="_IDGenSplitter1"

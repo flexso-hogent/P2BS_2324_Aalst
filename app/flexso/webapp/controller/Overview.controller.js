@@ -205,6 +205,65 @@ sap.ui.define(
           },
         });
       },
+      //locatie filteren
+      onLocatieZoekenLiveChange: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        this.filterSessionsByLocation(sQuery);
+      },
+
+      filterSessionsByLocation: function (sQuery) {
+        var oTable = this.getView().byId("eventTable");
+        var oBinding = oTable.getBinding("items");
+        var oFilter;
+
+        if (sQuery) {
+          oFilter = new sap.ui.model.Filter(
+            "location",
+            sap.ui.model.FilterOperator.Contains,
+            sQuery
+          );
+        }
+
+        oBinding.filter(oFilter);
+      },
+      //datum filteren
+      onDateRangeLiveChange: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        this.filterData(sQuery);
+      },
+
+      filterData: function (sQuery) {
+        var oTable = this.getView().byId("eventTable");
+        var oBinding = oTable.getBinding("items");
+        var oFilter;
+
+        if (sQuery) {
+          // Assuming you have retrieved the selected start and end dates from the datepicker
+          var oStartDate = datePicker.getStartDate();
+          var oEndDate = datePicker.getEndDate();
+
+          var aFilters = [];
+
+          // Check if start date and end date are valid
+          if (oStartDate && oEndDate) {
+            var oStartDateFilter = new sap.ui.model.Filter(
+              "startDate",
+              sap.ui.model.FilterOperator.GE,
+              oStartDate
+            );
+            var oEndDateFilter = new sap.ui.model.Filter(
+              "endDate",
+              sap.ui.model.FilterOperator.LE,
+              oEndDate
+            );
+
+            aFilters.push(oStartDateFilter);
+            aFilters.push(oEndDateFilter);
+          }
+
+          oBinding.filter(aFilters);
+        }
+      },
 
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
