@@ -53,14 +53,6 @@
                     class="coolTitleAnimation"
                 />
 
-                <!-- Information Content with Fade-in Animation -->
-                <Text
-                    id="_IDGenText1"
-                    text="{i18n>homePageText}"
-                    textAlign="Center"
-                    class="fadeIn"
-                />
-
                 <!-- Add any additional content here as needed -->
             </VBox>
 
@@ -91,6 +83,7 @@
                     press="onGoToOverviewEventPress"
                     class="sapUiSmallMarginEnd createButtons"
                 />
+
                 <!-- Create Session Button -->
 
                 <!-- Add more buttons here as needed -->
@@ -141,13 +134,26 @@
                 />
             </FlexBox>
 
-            <Title
-                id="_IDGenTitle"
-                text="{i18n>myEventTitleSessions}"
-                level="H2"
-                class="sapUiSmallMarginBegin titleFeedback"
-            />
-
+            <FlexBox
+                id="_IDGenFlexBox4"
+                justifyContent="Center"
+                alignItems="Center"
+                class="viewAllSessionsButtonContainer"
+            >
+                <Title
+                    id="_IDGenTitle"
+                    text="{i18n>myEventTitleSessions}"
+                    level="H2"
+                    class="sapUiSmallMarginBegin titleFeedback"
+                />
+                <Button
+                    id="viewAllSessionsButton1"
+                    text="View All Sessions"
+                    icon="sap-icon://detail-view"
+                    press="onViewAllSessionsPress"
+                    class="sapUiSmallMarginEnd viewAllSessionsButton"
+                />
+            </FlexBox>
             <VBox
                 id="_IDGenVBox"
                 class="sapUiSmallMarginBegin "
@@ -257,12 +263,27 @@
                 </List>
             </VBox>
             <!-- Title for Feedback Section -->
-            <Title
-                id="_IDGenTitle2"
-                text="{i18n>myEventTitle}"
-                level="H2"
-                class="sapUiSmallMarginBegin titleFeedback"
-            />
+
+            <FlexBox
+                id="_IDGenFlexBox5"
+                justifyContent="Center"
+                alignItems="Center"
+                class="viewAllSessionsButtonContainer"
+            >
+                <Title
+                    id="_IDGenTitle2"
+                    text="{i18n>myEventTitle}"
+                    level="H2"
+                    class="sapUiSmallMarginBegin titleFeedback"
+                />
+                <Button
+                    id="viewAllFeedbackButton1"
+                    text="View all given feedback"
+                    icon="sap-icon://detail-view"
+                    press="onAllFeedbackPress"
+                    class="sapUiSmallMarginEnd viewAllFeedbackButton"
+                />
+            </FlexBox>
 
             <VBox
                 id="_IDGenVBoxFeedbackContainer"
