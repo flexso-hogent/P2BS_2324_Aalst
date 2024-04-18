@@ -52,13 +52,16 @@
         width="16%"
         placeholder="{i18n>phsearch2}"
     />
-    <DateRangeSelection
-    id="datumzoekeninput"
-    liveChange="onDateRangeLiveChange"
-    placeholder="{i18n>phDatum}"
-    width="25%"
-    ></DateRangeSelection>
- 
+        <OverflowToolbarButton
+            id="_IDGenOverflowToolbarButton1"
+            tooltip="Sort"
+            type="Transparent"
+            text="Sort"
+            icon="sap-icon://sort"
+            press="onSort"
+           
+        />
+
 </OverflowToolbar>
 
         <l:Splitter
