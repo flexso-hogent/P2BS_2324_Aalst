@@ -65,9 +65,15 @@ sap.ui.define(
           type: "GET",
           success: function (data) {
             // Assuming the response data is an array of registered session objects
+            // Reverse the order of the sessions
+            var reversedSessions = data.value.reverse();
+
+            // Take the first two sessions
+            var firstTwoSessions = reversedSessions.slice(0, 2);
+
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
-            oModel.setProperty("/registeredSessionsData", data.value);
+            oModel.setProperty("/registeredSessionsData", firstTwoSessions);
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show(
@@ -77,7 +83,6 @@ sap.ui.define(
         });
       },
 
-      // Function to fetch feedback data from the backend
       fetchFeedbackData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
@@ -97,9 +102,15 @@ sap.ui.define(
           type: "GET",
           success: function (data) {
             // Assuming the response data is an array of feedback objects
+            // Reverse the order of the feedback entries
+            var reversedFeedback = data.value.reverse();
+
+            // Take the first two feedback entries
+            var firstTwoFeedback = reversedFeedback.slice(0, 2);
+
             // Update the model with the fetched feedback data
             var oModel = this.getView().getModel("imageModel");
-            oModel.setProperty("/feedbackData", data.value);
+            oModel.setProperty("/feedbackData", firstTwoFeedback);
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show("Error fetching feedback data: " + error);
@@ -220,6 +231,20 @@ sap.ui.define(
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       },
+
+      onViewAllSessionsPress: function () {
+        // Navigate to the view for all registered sessions
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("allSessions");
+      },
+      onAllFeedbackPress: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("allFeedback");
+      },
+
+      goToFeedbackDirect: function () {},
+
+      goToSchrijfUit: function () {},
     });
   }
 );

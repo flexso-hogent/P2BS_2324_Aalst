@@ -193,6 +193,16 @@
           "name": "sessionScores",
           "pattern": "sessionScores",
           "target": ["SessionScores"]
+        },
+        {
+          "name": "allSessions",
+          "pattern": "allSessions",
+          "target": ["allSessions"]
+        },
+        {
+          "name": "allFeedback",
+          "pattern": "allFeedback",
+          "target": ["allFeedback"]
         }
       ],
       "targets": {
@@ -274,6 +284,16 @@
         "SessionScores": {
           "viewName": "flexso.view.SessionScores",
           "viewId": "sessionScores",
+          "viewLevel": 3
+        },
+        "allSessions": {
+          "viewName": "flexso.view.allSessions",
+          "viewId": "allSessions",
+          "viewLevel": 3
+        },
+        "allFeedback": {
+          "viewName": "flexso.view.allFeedback",
+          "viewId": "allFeedback",
           "viewLevel": 3
         }
       }
