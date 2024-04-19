@@ -201,7 +201,7 @@
                             <HBox id="_IDGenHBox7" 
                             >
                             <Label id="_IDGenLabel3" text="{i18n>Room}:"></Label>
-                            <Text id="_IDGenText111" text="{sessionModel>location}" class="makeBlack"></Text>
+                            <Text id="_IDGenText111" text="{sessionModel>room}" class="makeBlack"></Text>
                             </HBox>
                             <HBox id="_IDGenHBox3">
                                 <Label

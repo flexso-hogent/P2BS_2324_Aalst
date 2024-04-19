@@ -197,6 +197,7 @@ sap.ui.define(
                 STime: event.startTime,
                 ETime: event.endTime,
                 room: event.room,
+                location: event.location,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
                 description: event.description,
