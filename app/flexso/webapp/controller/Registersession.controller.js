@@ -44,7 +44,7 @@ sap.ui.define(
         var title = localStorage.getItem("title");
         var startDate = localStorage.getItem("startDate");
         var endDate = localStorage.getItem("endDate");
-        var location = localStorage.getItem("location");
+        var location = localStorage.getItem("room");
         var speaker = localStorage.getItem("speaker");
         var totalSeats = parseInt(localStorage.getItem("totalSeats"));
         var description = localStorage.getItem("description");

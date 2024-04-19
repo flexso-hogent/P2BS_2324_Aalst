@@ -14,23 +14,42 @@ sap.ui.define(
       },
 
       fetchAllRegisteredSessions: function () {
-        var sessionServiceURL =
-          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
+        // Get the logged-in user's email address from localStorage
+        var userEmail = localStorage.getItem("email");
 
+        // Check if user email is available
+        if (!userEmail) {
+          MessageToast.show("User email not found in localStorage");
+          return;
+        }
+
+        // Construct the service URL with the filter
+        var sessionServiceURL =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=email eq '" +
+          userEmail +
+          "'";
+
+        // Make an AJAX request to fetch the registered sessions data
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
           success: function (data) {
-            // Reverse the order of the sessions
-            var reversedSessions = data.value.reverse();
-
-            // Update the model with all registered sessions data
-            var oModel = new JSONModel(reversedSessions);
-            this.getView().setModel(oModel, "allSessionsModel");
+            // Check if data is available
+            if (data && data.value && data.value.length > 0) {
+              // Update the model with the fetched sessions for the logged-in user
+              var oModel = new JSONModel(data.value);
+              this.getView().setModel(oModel, "allSessionsModel");
+            } else {
+              // No sessions found for the logged-in user
+              MessageToast.show(
+                "No registered sessions found for the logged-in user"
+              );
+            }
           }.bind(this),
           error: function (xhr, status, error) {
+            // Handle error case
             MessageToast.show(
-              "Error fetching all registered sessions data: " + error
+              "Error fetching registered sessions data: " + error
             );
           },
         });
@@ -96,7 +115,7 @@ sap.ui.define(
               sQuery
             ),
             new sap.ui.model.Filter(
-              "location",
+              "room",
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),
@@ -110,11 +129,68 @@ sap.ui.define(
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),
+            new sap.ui.model.Filter(
+              "startTime",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
+            new sap.ui.model.Filter(
+              "endTime",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
           ],
           and: false,
         });
         var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
         oBinding.filter([oFilter]);
+      },
+
+      onExportToOutlookPress: function (oEvent) {
+        var oSessionData = oEvent
+          .getSource()
+          .getBindingContext("allSessionsModel")
+          .getObject(); // Get session data from the button's context
+
+        // Generate ICS content for the selected session
+        var icalContent = this.generateICalContent([oSessionData]);
+
+        // Trigger file download with the generated ICS content
+        this.downloadICSFile(icalContent, "calendar_event.ics");
+      },
+
+      // Generate ICS content from session data
+      generateICalContent: function (sessions) {
+        var icalContent = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\n";
+
+        sessions.forEach(function (session) {
+          icalContent += "BEGIN:VEVENT\r\n";
+          icalContent += "SUMMARY:" + session.title + "\r\n";
+          icalContent +=
+            "DTSTART:" + session.startDate + "T" + session.startTime + "\r\n";
+          icalContent +=
+            "DTEND:" + session.endDate + "T" + session.endTime + "\r\n";
+          // Add description
+          icalContent += "DESCRIPTION:" + session.description + "\r\n";
+          icalContent += "END:VEVENT\r\n";
+        });
+
+        icalContent += "END:VCALENDAR\r\n";
+
+        return icalContent;
+      },
+
+      // Download ICS file
+      downloadICSFile: function (content, filename) {
+        var blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
       },
     });
   }

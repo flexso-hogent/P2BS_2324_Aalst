@@ -86,7 +86,7 @@
                 <VBox id="_IDGenVBox4">
                     <Label
                         id="_IDGenLabel5"
-                        text="{i18n>Location}"
+                        text="{i18n>Room}"
                     />
                     <Text
                         id="_IDGenText4"

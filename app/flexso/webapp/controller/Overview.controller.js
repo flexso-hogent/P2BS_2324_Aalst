@@ -176,7 +176,7 @@ sap.ui.define(
                 EDate: event.endDate,
                 STime: event.startTime,
                 ETime: event.endTime,
-                location: event.location,
+                room: event.room,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
                 description: event.description,
@@ -210,7 +210,7 @@ sap.ui.define(
                 startTime: session.startTime,
                 endDate: session.endDate,
                 endTime: session.endTime,
-                location: session.room,
+                room: session.room,
                 speaker: session.speaker,
                 totalSeats: session.totalSeats,
                 description: session.description,
@@ -290,7 +290,7 @@ sap.ui.define(
           localStorage.setItem("endDate", oSessionData.endDate);
           localStorage.setItem("startTime", oSessionData.startTime);
           localStorage.setItem("endTime", oSessionData.endTime);
-          localStorage.setItem("location", oSessionData.location);
+          localStorage.setItem("room", oSessionData.room);
           localStorage.setItem("speaker", oSessionData.speaker);
           localStorage.setItem("totalSeats", oSessionData.totalSeats);
           localStorage.setItem("description", oSessionData.description);

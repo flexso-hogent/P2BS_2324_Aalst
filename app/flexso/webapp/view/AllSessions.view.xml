@@ -37,9 +37,10 @@
 
         <SearchField
             id="_IDGenSearchField"
-            placeholder="Search for sessions..."
+            placeholder="{i18n>Search}"
             liveChange="onSearch"
             width="20%"
+            class="searchField"
         />
 
         <!-- Table to display all registered sessions -->
@@ -52,43 +53,73 @@
                 <Column id="_IDGenColumn1">
                     <Text
                         id="_IDGenText1"
-                        text="Title"
+                        text="{i18n>Title}"
                     />
                 </Column>
                 <Column id="_IDGenColumn2">
                     <Text
                         id="_IDGenText2"
-                        text="Start Date"
+                        text="{i18n>StartDate}"
                     />
                 </Column>
                 <Column id="_IDGenColumn3">
                     <Text
                         id="_IDGenText3"
-                        text="End Date"
+                        text="{i18n>EndDate}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn">
+                    <Text
+                        id="_IDGenText"
+                        text="{i18n>StartTime}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn11">
+                    <Text
+                        id="_IDGenTex11"
+                        text="{i18n>EndTime}"
                     />
                 </Column>
                 <Column id="_IDGenColumn4">
                     <Text
                         id="_IDGenText4"
-                        text="Location"
+                        text="{i18n>Room}"
                     />
                 </Column>
                 <Column id="_IDGenColumn5">
                     <Text
                         id="_IDGenText5"
-                        text="Speaker"
+                        text="{i18n>Speaker}"
                     />
                 </Column>
                 <Column id="_IDGenColumn6">
                     <Text
                         id="_IDGenText6"
-                        text="Total Seats"
+                        text="{i18n>TotalSeats}"
                     />
                 </Column>
                 <Column id="_IDGenColumn7">
                     <Text
                         id="_IDGenText7"
-                        text="Description"
+                        text="{i18n>Description}"
+                    />
+                </Column>
+                <Column id="_IDGenColumnFeedback">
+                    <Text
+                        id="_IDGenText16"
+                        text="{i18n>Feedback}"
+                    />
+                </Column>
+                <Column id="_IDGenColumnSchrijfUit">
+                    <Text
+                        id="_IDGenText17"
+                        text="{i18n>SchrijfUit}"
+                    />
+                </Column>
+                <Column id="_IDGenColumnExportToOutlook">
+                    <Text
+                        id="_IDGenText18"
+                        text="{i18n>exportToOutlookButton}"
                     />
                 </Column>
             </columns>
@@ -108,6 +139,14 @@
                             text="{allSessionsModel>endDate}"
                         />
                         <Text
+                            id="_IDGenText111"
+                            text="{allSessionsModel>startTime}"
+                        />
+                        <Text
+                            id="_IDGenText1111"
+                            text="{allSessionsModel>endTime}"
+                        />
+                        <Text
                             id="_IDGenText11"
                             text="{allSessionsModel>room}"
                         />
@@ -123,6 +162,24 @@
                         <Text
                             id="_IDGenText14"
                             text="{allSessionsModel>description}"
+                        />
+                        <Button
+                            id="_IDGenButton11"
+                            icon="sap-icon://add-favorite"
+                            press="goToFeedbackDirect"
+                            class="sapUiSmallMarginEnd outlookButton1"
+                        />
+                        <Button
+                            id="_IDGenButton12"
+                            icon="sap-icon://decline"
+                            press="goToSchrijfUit"
+                            class="sapUiSmallMarginEnd outlookButton1"
+                        />
+                        <Button
+                            id="_IDGenButton13"
+                            icon="sap-icon://add-calendar"
+                            press="onExportToOutlookPress"
+                            class="sapUiSmallMarginEnd outlookButton1"
                         />
                     </cells>
                 </ColumnListItem>
