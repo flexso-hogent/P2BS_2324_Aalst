@@ -97,27 +97,47 @@ sap.ui.define(
         });
       },
       onSort: function (oEvent) {
+        // Waarden van zoekvelden ophalen en opslaan in controller-variabelen
+        this._searchQuery = this.getView().byId("sessieZoekenInput").getValue();
+        this._locationQuery = this.getView()
+          .byId("LocatieZoekenInput")
+          .getValue();
+
         this.bDescending = !this.bDescending;
-        this.fnApplyFiltersAndOrdering();
+        this.fnApplyFiltersAndOrdering(); // Filters en sorteerders toepassen
       },
+
+      // Andere methoden...
+
+      // Methode om filters toe te passen
       fnApplyFiltersAndOrdering: function (oEvent) {
         var aFilters = [],
           aSorters = [];
 
-        // Sort by start date (SDate)
+        // Sorteer op startdatum (SDate)
         aSorters.push(new sap.ui.model.Sorter("SDate", this.bDescending));
 
-        if (this.sSearchQuery) {
-          // Add filtering by name if search query exists
+        if (this._searchQuery) {
+          // Filteren op naam als er een zoekopdracht is
           var oFilter = new sap.ui.model.Filter(
             "Name",
             sap.ui.model.FilterOperator.Contains,
-            this.sSearchQuery
+            this._searchQuery
           );
           aFilters.push(oFilter);
         }
 
-        // Apply filters and sorters to the table binding
+        if (this._locationQuery) {
+          // Filteren op locatie als er een locatiezoekopdracht is
+          var oLocationFilter = new sap.ui.model.Filter(
+            "location",
+            sap.ui.model.FilterOperator.Contains,
+            this._locationQuery
+          );
+          aFilters.push(oLocationFilter);
+        }
+
+        // Filters en sorteerders toepassen op de tabelbinding
         this.byId("eventTable")
           .getBinding("items")
           .filter(aFilters)
