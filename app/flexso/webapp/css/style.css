@@ -691,3 +691,22 @@
   color: #f4f4f4 !important;
   margin: 0 auto; /* Center the button horizontally */
 }
+.expandSessionsButton,
+.expandSessionsButton.sapMBtnBase,
+.expandSessionsButton .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #ff0000 !important;
+  margin: 0 auto; /* Center the button horizontally */
+}
+
+.expandSessionsButton .sapMBtnIcon {
+  color: #fff !important; /* Set the arrow color to white */
+}
+
+.makeBlack,
+.makeBlack.sapMBtnHoverable,
+.makeBlack.sapMBtnBase {
+  color: #333333;
+}

@@ -139,6 +139,8 @@
                                 id="expandSessionsButton"
                                 icon="sap-icon://process"
                                 press="onViewSessionsPress"
+                                class="expandSessionsButton"
+                                width="45%"
                             />
                         </cells>
                     </ColumnListItem>
@@ -184,14 +186,22 @@
                             <HBox id="_IDGenHBox2">
                                 <Label
                                     id="label"
-                                    text="{i18n>duration}: {sessionModel>startDate} {i18n>until} {sessionModel>endDate}"
+                                    text="{i18n>Date}:  "
                                 />
+                                <Text id="label2" text ="{sessionModel>startDate} {i18n>until} {sessionModel>endDate}" class="makeBlack"/>
                             </HBox>
                             <HBox id="_IDGenHBox6">
-                                <Label
+                            <Label id="_IDGenLabel2" text="{i18n>duration}:"></Label>
+                                <Text
                                     id="_IDGenLabel1"
                                     text="{sessionModel>startTime} {i18n>until} {sessionModel>endTime}"
+                                    class="makeBlack"
                                 />
+                            </HBox>
+                            <HBox id="_IDGenHBox7" 
+                            >
+                            <Label id="_IDGenLabel3" text="{i18n>Room}:"></Label>
+                            <Text id="_IDGenText111" text="{sessionModel>location}" class="makeBlack"></Text>
                             </HBox>
                             <HBox id="_IDGenHBox3">
                                 <Label
@@ -201,6 +211,7 @@
                                 <Text
                                     id="text"
                                     text="{sessionModel>totalSeats}"
+                                    class="makeBlack"
                                 />
                             </HBox>
                             <HBox id="_IDGenHBox5">
@@ -211,6 +222,7 @@
                                 <Text
                                     id="text1"
                                     text="{sessionModel>speaker}"
+                                    class ="makeBlack"
                                 />
                             </HBox>
                         </VBox>
