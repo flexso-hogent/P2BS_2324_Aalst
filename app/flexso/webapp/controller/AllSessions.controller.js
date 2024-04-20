@@ -12,7 +12,6 @@ sap.ui.define(
         // Fetch all registered sessions data
         this.fetchAllRegisteredSessions();
       },
-
       fetchAllRegisteredSessions: function () {
         // Get the logged-in user's email address from localStorage
         var userEmail = localStorage.getItem("email");
@@ -36,8 +35,10 @@ sap.ui.define(
           success: function (data) {
             // Check if data is available
             if (data && data.value && data.value.length > 0) {
-              // Update the model with the fetched sessions for the logged-in user
-              var oModel = new JSONModel(data.value);
+              // Reverse the fetched sessions data
+              var reversedData = data.value.reverse();
+              // Update the model with the reversed fetched sessions for the logged-in user
+              var oModel = new JSONModel(reversedData);
               this.getView().setModel(oModel, "allSessionsModel");
             } else {
               // No sessions found for the logged-in user
