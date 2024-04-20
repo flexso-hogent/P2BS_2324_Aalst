@@ -261,6 +261,21 @@ sap.ui.define(
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),
+            new sap.ui.model.Filter(
+              "company",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
+            new sap.ui.model.Filter(
+              "email",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
+            new sap.ui.model.Filter(
+              "bdate",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
           ],
           and: false,
         });
