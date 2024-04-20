@@ -390,6 +390,7 @@
 .sessionLabel {
   font-weight: bold;
   margin-right: 0.5rem;
+  color: rgb(239 175 57) !important;
 }
 .sessionValue {
   color: white;
