@@ -204,6 +204,7 @@ sap.ui.define(
 
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
         if (sessie === "") {
+          this.filterPastSessions();
           oTable.setVisible(true);
         }
       },
