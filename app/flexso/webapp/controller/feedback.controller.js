@@ -50,6 +50,12 @@ sap.ui.define(
         this.getView().setModel(oModel, "form");
       },
 
+      onAfterRendering: function () {
+        // Filter de tabel op afgelopen sessies na het renderen van de view
+        console.log("onAfterRendering")
+        this.filterPastSessions();
+      },
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
@@ -154,6 +160,34 @@ sap.ui.define(
             },
           });
         }
+      },
+
+      filterPastSessions: function () {
+        console.log("Filtering past sessions...");
+        var oCurrentDateTime = new Date();
+        oCurrentDateTime.setHours(0, 0, 0, 0); 
+        console.log("Current date and time: " + oCurrentDateTime);
+        var oTable = this.getView().byId("sessionTable");
+        var oBinding = oTable.getBinding("items");
+
+        var currentDay = oCurrentDateTime.getDate();
+        var currentMonth = oCurrentDateTime.getMonth() + 1;
+        var currentYear = oCurrentDateTime.getFullYear();
+
+        var formattedCurrentDate = currentYear + "-" + (currentMonth < 10 ? "0" : "") + currentMonth + "-" + (currentDay < 10 ? "0" : "") + currentDay;
+        
+        var pastSessionsFilter = new Filter({
+            path: "endDate",
+            operator: FilterOperator.LT, // Minder dan (Less Than)
+            value1: formattedCurrentDate
+        });
+
+        var combinedFilter = new Filter({
+          filters: [pastSessionsFilter],
+          and: true // Alle filters moeten waar zijn
+        });
+        
+        oBinding.filter(pastSessionsFilter);
       },
 
       onSearch: function (oEvent) {
