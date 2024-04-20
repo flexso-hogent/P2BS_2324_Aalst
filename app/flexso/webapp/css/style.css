@@ -662,6 +662,7 @@
 #_IDGenSearchField {
   margin-bottom: 20px;
 }
+
 .viewAllSessionsButton,
 .viewAllSessionsButton.sapMBtnBase,
 .viewAllSessionsButton .sapMBtnHoverable {
@@ -732,4 +733,16 @@
 .makeBlack.sapMBtnHoverable,
 .makeBlack.sapMBtnBase {
   color: #333333;
+}
+
+.feed {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: rgb(242, 240, 234);
+  max-width: 80%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the box horizontally */
+  margin-top: 2%;
 }
