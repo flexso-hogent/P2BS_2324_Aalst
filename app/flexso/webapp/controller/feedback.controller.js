@@ -234,9 +234,14 @@ sap.ui.define(
 
       onSearch: function (oEvent) {
         var aFilters = [];
-        var sQuery = oEvent.getSource().getValue();
+        var sQuery = oEvent.getSource().getValue().toLowerCase();
         if (sQuery && sQuery.length > 0) {
-          var filter = new Filter("title", FilterOperator.Contains, sQuery);
+          var filter = new Filter({
+            path: "title",
+            operator: FilterOperator.Contains,
+            value1: sQuery,
+            caseSensitive: false, // Set caseSensitive to false
+          });
           aFilters.push(filter);
         }
 
