@@ -245,13 +245,34 @@ sap.ui.define(
           aFilters.push(filter);
         }
 
+        // Apply filter for past sessions
+        var oCurrentDateTime = new Date();
+        oCurrentDateTime.setHours(0, 0, 0, 0);
+        var currentDay = oCurrentDateTime.getDate();
+        var currentMonth = oCurrentDateTime.getMonth() + 1;
+        var currentYear = oCurrentDateTime.getFullYear();
+        var formattedCurrentDate =
+          currentYear +
+          "-" +
+          (currentMonth < 10 ? "0" : "") +
+          currentMonth +
+          "-" +
+          (currentDay < 10 ? "0" : "") +
+          currentDay;
+
+        var pastSessionsFilter = new Filter({
+          path: "endDate",
+          operator: FilterOperator.LT,
+          value1: formattedCurrentDate,
+        });
+
         var oTable = this.getView().byId("sessionTable");
         var oBinding = oTable.getBinding("items");
+        aFilters.push(pastSessionsFilter); // Add past sessions filter to existing filters
         oBinding.filter(aFilters, "Application");
 
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
         if (sessie === "") {
-          this.filterPastSessions();
           oTable.setVisible(true);
         }
       },
