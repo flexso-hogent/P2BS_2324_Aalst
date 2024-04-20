@@ -193,6 +193,20 @@ sap.ui.define(
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       },
+      goToFeedbackDirect: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("feedback");
+      },
+      goToSchrijfUit: function () {
+        sap.m.MessageBox.confirm("Are you sure you want to write out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              MessageToast.show("You have successfully written out");
+            }
+          }.bind(this),
+        });
+      },
     });
   }
 );

@@ -242,9 +242,21 @@ sap.ui.define(
         oRouter.navTo("allFeedback");
       },
 
-      goToFeedbackDirect: function () {},
+      goToFeedbackDirect: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("feedback");
+      },
 
-      goToSchrijfUit: function () {},
+      goToSchrijfUit: function () {
+        sap.m.MessageBox.confirm("Are you sure you want to write out?", {
+          title: "Confirm",
+          onClose: function (oAction) {
+            if (oAction === sap.m.MessageBox.Action.OK) {
+              MessageToast.show("You have successfully written out");
+            }
+          }.bind(this),
+        });
+      },
     });
   }
 );

@@ -299,6 +299,10 @@ sap.ui.define(
           oTable.setVisible(false);
         }
       },
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
+      },
     });
   }
 );

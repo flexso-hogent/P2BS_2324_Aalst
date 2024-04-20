@@ -222,6 +222,13 @@
                         press="onFeedback"
                         class="sapUiSmallMarginTop updateProfileButton"
                     />
+                    <Button
+                        id="sendFeedback2"
+                        text="{i18n>backToHomeButton}"
+                        width="50%"
+                        press="onBackToHome"
+                        class="sapUiSmallMarginTop updateProfileButton"
+                    />
                 </VBox>
             </l:content>
         </l:VerticalLayout>
