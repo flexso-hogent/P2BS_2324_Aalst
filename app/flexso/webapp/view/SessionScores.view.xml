@@ -201,7 +201,8 @@
                                     >
                                         <ProgressIndicator
                                             id="progressIndicator"
-                                            percentValue="{sessionModel>averageRating}"
+                                            percentValue="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} : null}"
+                                            visible="{= ${sessionModel>averageRating} > 0 }"
                                             state="{= ${sessionModel>averageRating} >= 50 ? 'Success' : 'Error'}"
                                             width="15rem"
                                             height="1.5rem"
@@ -211,7 +212,7 @@
                                         <!-- Weergave van het percentage -->
                                         <Text
                                             id="rating"
-                                            text="{sessionModel>averageRating}%"
+                                            text="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} + '%' : ${i18n>noReviewsGivenLabel}}"
                                             class="{= ${sessionModel>averageRating} >= 50 ? 'GoodRating' : 'PoorRating'}"
                                         />
                                     </HBox>
