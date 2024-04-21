@@ -61,9 +61,11 @@ sap.ui.define(
         var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
         console.log("Session title: " + sSessionTitle);
         var oSearchField = this.getView().byId("sessieZoekenInput");
+        var oTable = this.getView().byId("sessionTable");
 
         if (oSearchField) {
           oSearchField.setValue(sSessionTitle);
+          oTable.setVisible(false);
         } else {
           console.log("Search field not found");
         }
