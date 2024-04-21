@@ -48,6 +48,7 @@
             id="_IDGenTable1"
             items="{allSessionsModel>/}"
             class="all-sessions-table"
+            selectionChange="onDelete"
         >
             <columns>
                 <Column id="_IDGenColumn1">
@@ -172,9 +173,10 @@
                         <Button
                             id="_IDGenButton12"
                             icon="sap-icon://decline"
-                            press="goToSchrijfUit"
+                            press="onLeaveSession"
                             class="sapUiSmallMarginEnd outlookButton1"
                         />
+
                         <Button
                             id="_IDGenButton13"
                             icon="sap-icon://add-calendar"

@@ -267,7 +267,7 @@
                                     id="SchrijfUit"
                                     text="{i18n>SchrijfUit}"
                                     icon="sap-icon://decline"
-                                    press="goToSchrijfUit"
+                                    press="onLeaveSession"
                                     class="sapUiSmallMarginEnd outlookButton"
                                 />
                                 <Button

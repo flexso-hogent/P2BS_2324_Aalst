@@ -197,15 +197,63 @@ sap.ui.define(
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("feedback");
       },
-      goToSchrijfUit: function () {
-        sap.m.MessageBox.confirm("Are you sure you want to write out?", {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              MessageToast.show("You have successfully written out");
-            }
-          }.bind(this),
-        });
+      onLeaveSession: function (oEvent) {
+        var oSelectedItem = oEvent
+          .getSource()
+          .getBindingContext("allSessionsModel")
+          .getObject();
+        var sSessionId = oSelectedItem.sessionID; // Assuming the property name is sessionID
+        var sSessionTitle = oSelectedItem.title; // Assuming the property name is title
+
+        var that = this; // Preserve reference to the controller
+
+        // Confirmation dialog
+        sap.m.MessageBox.confirm(
+          "Are you sure you want to leave session '" + sSessionTitle + "'?",
+          {
+            title: "Confirm",
+            actions: [
+              sap.m.MessageBox.Action.OK,
+              sap.m.MessageBox.Action.CANCEL,
+            ],
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                // User confirmed deletion, proceed with AJAX call
+                $.ajax({
+                  url:
+                    "http://localhost:4004/odata/v4/catalog/registerdOnASession(" +
+                    sSessionId +
+                    ")",
+                  type: "DELETE",
+                  success: function (data) {
+                    // Assuming successful deletion response returns some data
+                    // Update your UI accordingly, for example, remove the item from the model
+                    var oModel = that.getView().getModel("allSessionsModel");
+                    var aSessions = oModel.getProperty("/");
+                    var nIndex = aSessions.findIndex(function (oSession) {
+                      return oSession.sessionID === sSessionId;
+                    });
+                    if (nIndex !== -1) {
+                      aSessions.splice(nIndex, 1);
+                      oModel.setProperty("/", aSessions);
+                    }
+                    sap.m.MessageToast.show("Session left successfully");
+                    // Reload the page after 1.5 seconds (1500 milliseconds)
+                    setTimeout(function () {
+                      window.location.reload();
+                    }, 500);
+                  },
+                  error: function (xhr, status, error) {
+                    // Handle error
+                    sap.m.MessageToast.show(
+                      "Error occurred while leaving session: " + error
+                    );
+                  },
+                });
+              }
+            },
+          }
+        );
       },
     });
   }
