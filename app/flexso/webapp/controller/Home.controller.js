@@ -244,12 +244,26 @@ sap.ui.define(
 
       goToFeedbackDirect: function (oEvent) {
         var oSelectedItem = oEvent.getSource().getBindingContext("imageModel").getObject();
-        var sSessionTitle = oSelectedItem.title; 
+        var sSessionEndDate = oSelectedItem.endDate; 
+        var sSessionEndTime = oSelectedItem.endTime; 
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("feedback", {
-          sessionTitle: sSessionTitle
-        });
+        var sCurrentDateTime = new Date();
+
+        var sSessionEndDateTimeString = sSessionEndDate + ' ' + sSessionEndTime;
+
+        var oSessionEndDateTime = new Date(sSessionEndDateTimeString);
+    
+        if (sCurrentDateTime > oSessionEndDateTime) {
+            var sSessionTitle = oSelectedItem.title;
+            oRouter.navTo("feedback", {
+                sessionTitle: sSessionTitle
+            });
+        } else {
+            sap.m.MessageBox.error("Feedback submission is only available after the session has ended.");
+        }
       },
+    
+    
 
       onLeaveSession: function (oEvent) {
         var oSelectedItem = oEvent
