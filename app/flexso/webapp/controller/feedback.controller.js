@@ -52,6 +52,21 @@ sap.ui.define(
         };
         var oModel = new JSONModel(oSession);
         this.getView().setModel(oModel, "form");
+
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.getRoute("feedback").attachMatched(this._onRouteMatched, this);
+      },
+
+      _onRouteMatched: function (oEvent) {
+        var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
+        console.log("Session title: " + sSessionTitle);
+        var oSearchField = this.getView().byId("sessieZoekenInput");
+
+        if (oSearchField) {
+          oSearchField.setValue(sSessionTitle);
+        } else {
+          console.log("Search field not found");
+        }
       },
 
       fetchFeedbackSessions: function () {

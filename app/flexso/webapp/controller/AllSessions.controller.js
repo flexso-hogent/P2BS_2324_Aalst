@@ -193,9 +193,13 @@ sap.ui.define(
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       },
-      goToFeedbackDirect: function () {
+      goToFeedbackDirect: function (oEvent) {
+        var oSelectedItem = oEvent.getSource().getBindingContext("allSessionsModel").getObject();
+        var sSessionTitle = oSelectedItem.title; 
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("feedback");
+        oRouter.navTo("feedback", {
+          sessionTitle: sSessionTitle
+        });
       },
       onLeaveSession: function (oEvent) {
         var oSelectedItem = oEvent
