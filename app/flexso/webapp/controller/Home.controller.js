@@ -142,11 +142,11 @@ sap.ui.define(
         oRouter.navTo("profile");
       },
 
-      // onFeedbackPress: function () {
-      //   var oRouter = UIComponent.getRouterFor(this);
-      //   var sessionTitle = ""; // Or any default value you prefer
-      //   oRouter.navTo("feedback", { sessionTitle: sessionTitle }, true);
-      // },
+      onFeedbackPress: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        var sessionTitle = ""; // Or any default value you prefer
+        oRouter.navTo("feedback2");
+      },
 
       onLogoutPress: function () {
         var that = this;

@@ -55,13 +55,13 @@
             >
                 <!-- Feedback Button -->
                 <!--Gaat voorlopig niet meer omdat je geen titel meegeeft? -->
-                <!-- <Button
+                <Button
                     id="_IDGenButton5"
                     text="{i18n>feedbackButton}"
                     icon="sap-icon://feedback"
                     press="onFeedbackPress"
                     class="sapUiSmallMarginEnd createButtons"
-                /> -->
+                />
                 <!-- Overview Event Button -->
                 <Button
                     id="_IDGenButton6"
@@ -239,11 +239,6 @@
                                     />
                                 </HBox>
                             </VBox>
-
-                            <FlexBox
-                                id="_IDGenFlexBox3"
-                                class="sapUiSmallMarginEnd"
-                            >
                                 <!-- <Button
                                     id="FeedbackDirect"
                                     text="{i18n>GeefFeedback}"
@@ -265,14 +260,10 @@
                                     press="onExportToOutlookPress"
                                     class="sapUiSmallMarginEnd outlookButton"
                                 /> -->
-                                <TextArea
-                                    id="_IDGenTextArea1"
-                                    value="{imageModel>description}"
-                                    rows="3"
-                                    enabled="false"
-                                    class="sessionDescription"
-                                />
-                            </FlexBox>
+                                <VBox id="sessionDescriptionVbox">
+                                    <Label id="lebelSessionDescription2" text="Description:"/>
+                                    <Text id="sessionDescription" text="{imageModel>description}" class="sessionDescription"/>
+                                </VBox>
                         </FlexBox>
                     </CustomListItem>
                 </List>
