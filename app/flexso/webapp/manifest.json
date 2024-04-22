@@ -203,6 +203,11 @@
           "name": "allFeedback",
           "pattern": "allFeedback",
           "target": ["allFeedback"]
+        },
+        {
+          "name": "UpcomingEvents",
+          "pattern": "UpcomingEvents",
+          "target": ["UpcomingEvents"]
         }
       ],
       "targets": {
@@ -294,6 +299,11 @@
         "allFeedback": {
           "viewName": "flexso.view.allFeedback",
           "viewId": "allFeedback",
+          "viewLevel": 3
+        },
+        "UpcomingEvents": {
+          "viewName": "flexso.view.UpcomingEvents",
+          "viewId": "UpcomingEvents",
           "viewLevel": 3
         }
       }

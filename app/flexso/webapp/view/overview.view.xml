@@ -2,6 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core"
     controllerName="flexso.controller.Overview"
 >
     <Page
@@ -10,59 +12,33 @@
         enableScrolling="false"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <content>
-                    <HBox id="_IDGenHBox4">
-                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                        <Button
-                            id="_IDGenButton11"
-                            icon="sap-icon://globe"
-                            press="onDropdownPress"
-                        />
-                        <Button
-                            id="_IDGenButton12"
-                            icon="sap-icon://home"
-                            press="onBackToHome"
-                        />
-                        <Button
-                            id="_IDGenButton13"
-                            icon="sap-icon://person-placeholder"
-                            press="onProfileButtonClick"
-                        />
-                        <Button
-                            id="_IDGenButton14"
-                            icon="sap-icon://log"
-                            press="onLogoutPress"
-                        />
-                    </HBox>
-                </content>
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
-
-      <OverflowToolbar id="_IDGenOverflowToolbar1">
-    <SearchField
-        id="sessieZoekenInput"
-        liveChange="onSearchLiveChange"
-        width="16%"
-        placeholder="{i18n>phSearch1}"
-    />
-    <SearchField
-        id="LocatieZoekenInput"
-        liveChange="onLocatieZoekenLiveChange"
-        width="16%"
-        placeholder="{i18n>phsearch2}"
-    />
-        <OverflowToolbarButton
-            id="_IDGenOverflowToolbarButton1"
-            tooltip="Sort"
-            type="Transparent"
-            text="Sort"
-            icon="sap-icon://sort"
-            press="onSort"
-           
-        />
-
-</OverflowToolbar>
+        <OverflowToolbar id="_IDGenOverflowToolbar1">
+            <SearchField
+                id="sessieZoekenInput"
+                liveChange="onSearchLiveChange"
+                width="16%"
+                placeholder="{i18n>phSearch1}"
+            />
+            <SearchField
+                id="LocatieZoekenInput"
+                liveChange="onLocatieZoekenLiveChange"
+                width="16%"
+                placeholder="{i18n>phsearch2}"
+            />
+            <OverflowToolbarButton
+                id="_IDGenOverflowToolbarButton1"
+                tooltip="Sort"
+                type="Transparent"
+                text="Sort"
+                icon="sap-icon://sort"
+                press="onSort"
+            />
+        </OverflowToolbar>
 
         <l:Splitter
             id="_IDGenSplitter1"
@@ -156,26 +132,23 @@
 
             <!-- SESSIE BOX -->
             <VBox id="sessionsBox">
-            <Button id="buttonAddSessie"
-                icon = "sap-icon://add"
-                press="voegSessieToe"
-                width="100%"
-                text="{i18n>ADDSESSIE}"> 
-
-                </Button>
+                <Button
+                    id="buttonAddSessie"
+                    icon="sap-icon://add"
+                    press="voegSessieToe"
+                    width="100%"
+                    text="{i18n>ADDSESSIE}"
+                />
                 <List
                     id="sessionsList"
                     items="{ path: 'sessionModel>/' }"
                     noDataText="{i18n>noData}"
                 >
-                
                     <CustomListItem
                         id="sessionListItem"
                         press="onSessionSelect"
                         class="sessionListItem"
-                        
                     >
-                    
                         <VBox id="_IDGenVBox1">
                             <HBox id="_IDGenHBox1">
                                 <Label
@@ -188,20 +161,33 @@
                                     id="label"
                                     text="{i18n>Date}:  "
                                 />
-                                <Text id="label2" text ="{sessionModel>startDate} {i18n>until} {sessionModel>endDate}" class="makeBlack"/>
+                                <Text
+                                    id="label2"
+                                    text="{sessionModel>startDate} {i18n>until} {sessionModel>endDate}"
+                                    class="makeBlack"
+                                />
                             </HBox>
                             <HBox id="_IDGenHBox6">
-                            <Label id="_IDGenLabel2" text="{i18n>duration}:"></Label>
+                                <Label
+                                    id="_IDGenLabel2"
+                                    text="{i18n>duration}:"
+                                />
                                 <Text
                                     id="_IDGenLabel1"
                                     text="{sessionModel>startTime} {i18n>until} {sessionModel>endTime}"
                                     class="makeBlack"
                                 />
                             </HBox>
-                            <HBox id="_IDGenHBox7" 
-                            >
-                            <Label id="_IDGenLabel3" text="{i18n>Room}:"></Label>
-                            <Text id="_IDGenText111" text="{sessionModel>room}" class="makeBlack"></Text>
+                            <HBox id="_IDGenHBox7">
+                                <Label
+                                    id="_IDGenLabel3"
+                                    text="{i18n>Room}:"
+                                />
+                                <Text
+                                    id="_IDGenText111"
+                                    text="{sessionModel>room}"
+                                    class="makeBlack"
+                                />
                             </HBox>
                             <HBox id="_IDGenHBox3">
                                 <Label
@@ -222,7 +208,7 @@
                                 <Text
                                     id="text1"
                                     text="{sessionModel>speaker}"
-                                    class ="makeBlack"
+                                    class="makeBlack"
                                 />
                             </HBox>
                         </VBox>
@@ -234,34 +220,12 @@
                         />
                     </CustomListItem>
                 </List>
-                
             </VBox>
         </l:Splitter>
     </Page>
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-
-
-        <content>
-            <VBox id="_IDGenVBox3">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <!-- Popover Definition -->
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>
