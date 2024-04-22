@@ -746,3 +746,9 @@
   margin: 0 auto; /* Center the box horizontally */
   margin-top: 2%;
 }
+
+.barAll {
+  margin-left: 2.5%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}

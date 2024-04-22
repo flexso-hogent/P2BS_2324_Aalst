@@ -2,6 +2,7 @@
     controllerName="flexso.controller.AllSessions"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="_IDGenPage1"
@@ -10,46 +11,46 @@
         class="backgroundEventCreate"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton8"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
-
-        <SearchField
-            id="_IDGenSearchField"
-            placeholder="{i18n>Search}"
-            liveChange="onSearch"
-            width="20%"
-            class="searchField"
-        />
+        <HBox
+            id="_IDGenHBox1"
+            class="barAll"
+        >
+            <SearchField
+                id="_IDGenSearchField"
+                placeholder="{i18n>Search}"
+                liveChange="onSearch"
+                width="100%"
+            />
+            <Button
+                id="_IDGenButton1"
+                icon="sap-icon://sort"
+                press="onSortPress"
+            />
+        </HBox>
 
         <!-- Table to display all registered sessions -->
         <Table
             id="_IDGenTable1"
-            items="{allSessionsModel>/}"
+            items="{
+        path: 'allSessionsModel>/',
+        filters: [
+            {
+                path: 'endDate',
+                operator: 'GT',
+                value1: '{path: \'today\', formatter: \'flexso.controller.AllSessions.formatDate\'}'
+            }
+        ]
+    }"
             class="all-sessions-table"
             selectionChange="onDelete"
         >
+            <!-- Your table columns and items -->
+
             <columns>
                 <Column id="_IDGenColumn1">
                     <Text
@@ -111,18 +112,6 @@
                         text="{i18n>Feedback}"
                     />
                 </Column>
-                <Column id="_IDGenColumnSchrijfUit">
-                    <Text
-                        id="_IDGenText17"
-                        text="{i18n>SchrijfUit}"
-                    />
-                </Column>
-                <Column id="_IDGenColumnExportToOutlook">
-                    <Text
-                        id="_IDGenText18"
-                        text="{i18n>exportToOutlookButton}"
-                    />
-                </Column>
             </columns>
             <items>
                 <ColumnListItem id="_IDGenColumnListItem1">
@@ -170,46 +159,14 @@
                             press="goToFeedbackDirect"
                             class="sapUiSmallMarginEnd outlookButton1"
                         />
-                        <Button
-                            id="_IDGenButton12"
-                            icon="sap-icon://decline"
-                            press="onLeaveSession"
-                            class="sapUiSmallMarginEnd outlookButton1"
-                        />
-
-                        <Button
-                            id="_IDGenButton13"
-                            icon="sap-icon://add-calendar"
-                            press="onExportToOutlookPress"
-                            class="sapUiSmallMarginEnd outlookButton1"
-                        />
                     </cells>
                 </ColumnListItem>
             </items>
         </Table>
     </Page>
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-        <content>
-            <VBox id="_IDGenVBox3">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <!-- Popover Definition -->
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

@@ -39,6 +39,11 @@ sap.ui.define(
         }
       },
 
+      onViewUpcomingSessionsPress: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("UpcomingEvents");
+      },
+
       computeCreateButtonsVisibility: function () {
         var oImageModel = this.getView().getModel("imageModel");
         var role = oImageModel.getProperty("/role");
@@ -137,10 +142,12 @@ sap.ui.define(
         oRouter.navTo("profile");
       },
 
-      onFeedbackPress: function () {
-        var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("feedback");
-      },
+      // onFeedbackPress: function () {
+      //   var oRouter = UIComponent.getRouterFor(this);
+      //   var sessionTitle = ""; // Or any default value you prefer
+      //   oRouter.navTo("feedback", { sessionTitle: sessionTitle }, true);
+      // },
+
       onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm("Are you sure you want to log out?", {
@@ -243,27 +250,30 @@ sap.ui.define(
       },
 
       goToFeedbackDirect: function (oEvent) {
-        var oSelectedItem = oEvent.getSource().getBindingContext("imageModel").getObject();
-        var sSessionEndDate = oSelectedItem.endDate; 
-        var sSessionEndTime = oSelectedItem.endTime; 
+        var oSelectedItem = oEvent
+          .getSource()
+          .getBindingContext("imageModel")
+          .getObject();
+        var sSessionEndDate = oSelectedItem.endDate;
+        var sSessionEndTime = oSelectedItem.endTime;
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         var sCurrentDateTime = new Date();
 
-        var sSessionEndDateTimeString = sSessionEndDate + ' ' + sSessionEndTime;
+        var sSessionEndDateTimeString = sSessionEndDate + " " + sSessionEndTime;
 
         var oSessionEndDateTime = new Date(sSessionEndDateTimeString);
-    
+
         if (sCurrentDateTime > oSessionEndDateTime) {
-            var sSessionTitle = oSelectedItem.title;
-            oRouter.navTo("feedback", {
-                sessionTitle: sSessionTitle
-            });
+          var sSessionTitle = oSelectedItem.title;
+          oRouter.navTo("feedback", {
+            sessionTitle: sSessionTitle,
+          });
         } else {
-            sap.m.MessageBox.error("Feedback submission is only available after the session has ended.");
+          sap.m.MessageBox.error(
+            "Feedback submission is only available after the session has ended."
+          );
         }
       },
-    
-    
 
       onLeaveSession: function (oEvent) {
         var oSelectedItem = oEvent
