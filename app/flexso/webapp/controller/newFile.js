@@ -97,47 +97,27 @@ sap.ui.define(
         });
       },
       onSort: function (oEvent) {
-        // Waarden van zoekvelden ophalen en opslaan in controller-variabelen
-        this._searchQuery = this.getView().byId("sessieZoekenInput").getValue();
-        this._locationQuery = this.getView()
-          .byId("LocatieZoekenInput")
-          .getValue();
-
         this.bDescending = !this.bDescending;
-        this.fnApplyFiltersAndOrdering(); // Filters en sorteerders toepassen
+        this.fnApplyFiltersAndOrdering();
       },
-
-      // Andere methoden...
-
-      // Methode om filters toe te passen
       fnApplyFiltersAndOrdering: function (oEvent) {
         var aFilters = [],
           aSorters = [];
 
-        // Sorteer op startdatum (SDate)
+        // Sort by start date (SDate)
         aSorters.push(new sap.ui.model.Sorter("SDate", this.bDescending));
 
-        if (this._searchQuery) {
-          // Filteren op naam als er een zoekopdracht is
+        if (this.sSearchQuery) {
+          // Add filtering by name if search query exists
           var oFilter = new sap.ui.model.Filter(
             "Name",
             sap.ui.model.FilterOperator.Contains,
-            this._searchQuery
+            this.sSearchQuery
           );
           aFilters.push(oFilter);
         }
 
-        if (this._locationQuery) {
-          // Filteren op locatie als er een locatiezoekopdracht is
-          var oLocationFilter = new sap.ui.model.Filter(
-            "location",
-            sap.ui.model.FilterOperator.Contains,
-            this._locationQuery
-          );
-          aFilters.push(oLocationFilter);
-        }
-
-        // Filters en sorteerders toepassen op de tabelbinding
+        // Apply filters and sorters to the table binding
         this.byId("eventTable")
           .getBinding("items")
           .filter(aFilters)
@@ -196,7 +176,6 @@ sap.ui.define(
                 EDate: event.endDate,
                 STime: event.startTime,
                 ETime: event.endTime,
-                room: event.room,
                 location: event.location,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
@@ -231,7 +210,7 @@ sap.ui.define(
                 startTime: session.startTime,
                 endDate: session.endDate,
                 endTime: session.endTime,
-                room: session.room,
+                location: session.room,
                 speaker: session.speaker,
                 totalSeats: session.totalSeats,
                 description: session.description,
@@ -297,7 +276,11 @@ sap.ui.define(
       },
       voegSessieToe: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("createSession", {});
+        var oEventTable = this.getView().byId("eventTable");
+        var oSelectedItem = oEventTable.getSelectedItem();
+        oRouter.navTo("createEvent", {
+          eventId: oEventData.eventID,
+        });
       },
 
       onRegisterPress: function (oEvent) {
@@ -311,7 +294,7 @@ sap.ui.define(
           localStorage.setItem("endDate", oSessionData.endDate);
           localStorage.setItem("startTime", oSessionData.startTime);
           localStorage.setItem("endTime", oSessionData.endTime);
-          localStorage.setItem("room", oSessionData.room);
+          localStorage.setItem("location", oSessionData.location);
           localStorage.setItem("speaker", oSessionData.speaker);
           localStorage.setItem("totalSeats", oSessionData.totalSeats);
           localStorage.setItem("description", oSessionData.description);

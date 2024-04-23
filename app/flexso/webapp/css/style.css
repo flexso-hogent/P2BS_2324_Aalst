@@ -390,6 +390,7 @@
 .sessionLabel {
   font-weight: bold;
   margin-right: 0.5rem;
+  color: rgb(239 175 57) !important;
 }
 .sessionValue {
   color: white;
@@ -661,6 +662,7 @@
 #_IDGenSearchField {
   margin-bottom: 20px;
 }
+
 .viewAllSessionsButton,
 .viewAllSessionsButton.sapMBtnBase,
 .viewAllSessionsButton .sapMBtnHoverable {
@@ -691,23 +693,3 @@
   color: #f4f4f4 !important;
   margin: 0 auto; /* Center the button horizontally */
 }
-
-
-.LabelCreateSessionPage {
-  text-align: left !important;
-}
-
-
-/* Stijl voor de achtergrondkleur van de MessageToast */
-.sapMMessageToast {
-  background-color: rgb(0, 114, 135) !important; 
-  color: #ffffff !important; /* Witte tekst */
-  border: 2px solid #ffffff; /* Witte rand */
-  border-radius: 100px; /* Afgeronde hoeken */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Schaduw */
-}
-
-
-
-
-

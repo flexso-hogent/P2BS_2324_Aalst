@@ -11,29 +11,10 @@
         class="updateProfilePage backgroundEventCreate"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton5"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
 
         <Image
@@ -107,7 +88,7 @@
 
                     <!-- Right side: Additional inputs -->
                     <VBox
-                        id="_IDGenVBox3"
+                        id="_IDGenVBox"
                         class="profileBox"
                         alignItems="Center"
                         width="50%"
@@ -249,28 +230,9 @@
             </VBox>
         </content>
     </Page>
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-        <content>
-            <VBox id="_IDGenVBox">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <!-- Popover Definition -->
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

@@ -14,29 +14,10 @@
         class="backgroundEventCreate"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton5"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
 
         <content>
@@ -44,6 +25,22 @@
                 id="_IDGenVBox4"
                 class="sapUiSmallMarginBegin feedbackItemContainer"
             >
+                <HBox
+                    id="_IDGenHBox1"
+                    class="barAll"
+                >
+                    <SearchField
+                        id="_IDGenSearchField"
+                        placeholder="{i18n>SearchFeedback}"
+                        liveChange="onSearch"
+                        width="100%"
+                    />
+                    <Button
+                        id="_IDGenButton11"
+                        icon="sap-icon://sort"
+                        press="onSortPress"
+                    />
+                </HBox>
                 <Table
                     id="_IDGenTable1"
                     items="{feedbackModel>/}"
@@ -54,19 +51,19 @@
                         <Column id="_IDGenColumn1">
                             <Label
                                 id="_IDGenLabel1"
-                                text="Session Name"
+                                text="{i18n>SessionTitle}"
                             />
                         </Column>
                         <Column id="_IDGenColumn2">
                             <Label
                                 id="_IDGenLabel2"
-                                text="Rating"
+                                text="{i18n>Rating}"
                             />
                         </Column>
                         <Column id="_IDGenColumn3">
                             <Label
                                 id="_IDGenLabel3"
-                                text="Description"
+                                text="{i18n>Review}"
                             />
                         </Column>
                     </columns>
@@ -94,28 +91,8 @@
     </Page>
 
     <!-- Popover Definition -->
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-        <content>
-            <VBox id="_IDGenVBox3">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

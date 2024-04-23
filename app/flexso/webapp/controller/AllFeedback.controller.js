@@ -12,6 +12,21 @@ sap.ui.define(
         // Fetch feedback data
         this.fetchFeedbackData();
       },
+      onSearch: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        var oFilter = new sap.ui.model.Filter({
+          filters: [
+            new sap.ui.model.Filter(
+              "SessionTitle",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
+          ],
+          and: false,
+        });
+        var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
+        oBinding.filter([oFilter]);
+      },
 
       fetchFeedbackData: function () {
         // Get the logged-in user's email address
@@ -94,6 +109,29 @@ sap.ui.define(
       onBackToHome: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("home");
+      },
+      onSortPress: function () {
+        // Get the table binding
+        var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
+
+        // Get the current sort settings
+        var oSorter = oBinding.aSorters || [];
+
+        // Toggle sorting direction between ascending and descending
+        var bDescending = !oSorter[0] || !oSorter[0].bDescending;
+
+        // Apply custom sorting based on the number of stars
+        oBinding.sort(
+          new sap.ui.model.Sorter({
+            path: "Rating",
+            descending: bDescending,
+            sorter: function (a, b) {
+              var aRating = a.getProperty("Rating");
+              var bRating = b.getProperty("Rating");
+              return bRating - aRating; // Sorting in descending order based on the number of stars
+            },
+          })
+        );
       },
     });
   }

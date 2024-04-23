@@ -21,7 +21,11 @@ sap.ui.define(
     "use strict";
 
     return Controller.extend("flexso.controller.feedback", {
+      feedbackSessions: [],
+
       onInit: function () {
+        this.fetchFeedbackSessions();
+
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",
           "/images/Flexso.png"
@@ -48,6 +52,52 @@ sap.ui.define(
         };
         var oModel = new JSONModel(oSession);
         this.getView().setModel(oModel, "form");
+
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.getRoute("feedback").attachMatched(this._onRouteMatched, this);
+      },
+
+      _onRouteMatched: function (oEvent) {
+        var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
+        console.log("Session title: " + sSessionTitle);
+        var oSearchField = this.getView().byId("sessieZoekenInput");
+        var oTable = this.getView().byId("sessionTable");
+
+        if (oSearchField) {
+          oSearchField.setValue(sSessionTitle);
+          oTable.setVisible(false);
+        } else {
+          console.log("Search field not found");
+        }
+      },
+
+      fetchFeedbackSessions: function () {
+        // Fetch feedback sessions for the current user from the server
+        var loggedInUserEmail = localStorage.getItem("email");
+        // Replace this with your actual service URL
+        var feedbackSessionsURL =
+          "http://localhost:4004/odata/v4/catalog/Feedback?$filter=Username eq '" +
+          loggedInUserEmail +
+          "'";
+
+        $.ajax({
+          url: feedbackSessionsURL,
+          type: "GET",
+          success: function (data) {
+            // Store the session titles for which the user has already given feedback
+            this.feedbackSessions = data.value.map(function (feedback) {
+              return feedback.SessionTitle;
+            });
+          }.bind(this),
+          error: function (xhr, status, error) {
+            MessageToast.show("Error fetching feedback sessions: " + error);
+          },
+        });
+      },
+      onAfterRendering: function () {
+        // Filter de tabel op afgelopen sessies na het renderen van de view
+        console.log("onAfterRendering");
+        this.filterPastSessions();
       },
 
       onSwitchToEnglish: function () {
@@ -99,6 +149,14 @@ sap.ui.define(
         oRouter.navTo("profile");
       },
       onFeedback: function () {
+        // Check if the user has already given feedback for the selected session
+        var sessie = this.getView().byId("sessieZoekenInput").getValue();
+        if (this.feedbackSessions.includes(sessie)) {
+          sap.m.MessageBox.error(
+            "You have already given feedback for this session."
+          );
+          return; // Exit the function if feedback already given
+        }
         // Feedback submission logic with AJAX
         var loggedInUserEmail = localStorage.getItem("email");
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
@@ -156,16 +214,78 @@ sap.ui.define(
         }
       },
 
+      filterPastSessions: function () {
+        console.log("Filtering past sessions...");
+        var oCurrentDateTime = new Date();
+        oCurrentDateTime.setHours(0, 0, 0, 0);
+        console.log("Current date and time: " + oCurrentDateTime);
+        var oTable = this.getView().byId("sessionTable");
+        var oBinding = oTable.getBinding("items");
+
+        var currentDay = oCurrentDateTime.getDate();
+        var currentMonth = oCurrentDateTime.getMonth() + 1;
+        var currentYear = oCurrentDateTime.getFullYear();
+
+        var formattedCurrentDate =
+          currentYear +
+          "-" +
+          (currentMonth < 10 ? "0" : "") +
+          currentMonth +
+          "-" +
+          (currentDay < 10 ? "0" : "") +
+          currentDay;
+
+        var pastSessionsFilter = new Filter({
+          path: "endDate",
+          operator: FilterOperator.LT, // Minder dan (Less Than)
+          value1: formattedCurrentDate,
+        });
+
+        var combinedFilter = new Filter({
+          filters: [pastSessionsFilter],
+          and: true, // Alle filters moeten waar zijn
+        });
+
+        oBinding.filter(pastSessionsFilter);
+      },
+
       onSearch: function (oEvent) {
         var aFilters = [];
-        var sQuery = oEvent.getSource().getValue();
+        var sQuery = oEvent.getSource().getValue().toLowerCase();
         if (sQuery && sQuery.length > 0) {
-          var filter = new Filter("title", FilterOperator.Contains, sQuery);
+          var filter = new Filter({
+            path: "title",
+            operator: FilterOperator.Contains,
+            value1: sQuery,
+            caseSensitive: false, // Set caseSensitive to false
+          });
           aFilters.push(filter);
         }
 
+        // Apply filter for past sessions
+        var oCurrentDateTime = new Date();
+        oCurrentDateTime.setHours(0, 0, 0, 0);
+        var currentDay = oCurrentDateTime.getDate();
+        var currentMonth = oCurrentDateTime.getMonth() + 1;
+        var currentYear = oCurrentDateTime.getFullYear();
+        var formattedCurrentDate =
+          currentYear +
+          "-" +
+          (currentMonth < 10 ? "0" : "") +
+          currentMonth +
+          "-" +
+          (currentDay < 10 ? "0" : "") +
+          currentDay;
+
+        var pastSessionsFilter = new Filter({
+          path: "endDate",
+          operator: FilterOperator.LT,
+          value1: formattedCurrentDate,
+        });
+
         var oTable = this.getView().byId("sessionTable");
         var oBinding = oTable.getBinding("items");
+        aFilters.push(pastSessionsFilter); // Add past sessions filter to existing filters
         oBinding.filter(aFilters, "Application");
 
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
@@ -195,6 +315,10 @@ sap.ui.define(
           var oTable = this.getView().byId("sessionTable");
           oTable.setVisible(false);
         }
+      },
+      onBackToHome: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("home");
       },
     });
   }

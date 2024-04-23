@@ -4,6 +4,7 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
     displayBlock="true"
 >
     <Page
@@ -12,29 +13,10 @@
         class="sessionScoresPage"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton8"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
         <l:VerticalLayout
             id="_LayoutFeedback"
@@ -201,7 +183,8 @@
                                     >
                                         <ProgressIndicator
                                             id="progressIndicator"
-                                            percentValue="{sessionModel>averageRating}"
+                                            percentValue="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} : null}"
+                                            visible="{= ${sessionModel>averageRating} > 0 }"
                                             state="{= ${sessionModel>averageRating} >= 50 ? 'Success' : 'Error'}"
                                             width="15rem"
                                             height="1.5rem"
@@ -211,7 +194,7 @@
                                         <!-- Weergave van het percentage -->
                                         <Text
                                             id="rating"
-                                            text="{sessionModel>averageRating}%"
+                                            text="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} + '%' : ${i18n>noReviewsGivenLabel}}"
                                             class="{= ${sessionModel>averageRating} >= 50 ? 'GoodRating' : 'PoorRating'}"
                                         />
                                     </HBox>
@@ -223,28 +206,9 @@
             </l:content>
         </l:VerticalLayout>
     </Page>
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-        <content>
-            <VBox id="_IDGenVBox3">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <!-- Popover Definition -->
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

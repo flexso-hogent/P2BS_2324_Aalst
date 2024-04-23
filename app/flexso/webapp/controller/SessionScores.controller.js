@@ -97,10 +97,28 @@ sap.ui.define(
 
       onSearch: function (oEvent) {
         var aFilters = [];
-        var sQuery = oEvent.getSource().getValue();
+        var sQuery = oEvent.getSource().getValue().toLowerCase(); // Convert sQuery to lowercase
         if (sQuery && sQuery.length > 0) {
-          var filter = new Filter("name", FilterOperator.Contains, sQuery);
-          aFilters.push(filter);
+          var nameFilter = new Filter({
+            path: "name",
+            operator: FilterOperator.Contains,
+            value1: sQuery,
+            caseSensitive: false, // Set caseSensitive to false
+          });
+          var locationFilter = new Filter({
+            path: "location",
+            operator: FilterOperator.Contains,
+            value1: sQuery,
+            caseSensitive: false, // Set caseSensitive to false
+          });
+
+          // Combine both filters with logical OR
+          var combinedFilter = new Filter({
+            filters: [nameFilter, locationFilter],
+            and: false, // Logical OR
+          });
+
+          aFilters.push(combinedFilter);
         }
 
         var oTable = this.getView().byId("eventTable");

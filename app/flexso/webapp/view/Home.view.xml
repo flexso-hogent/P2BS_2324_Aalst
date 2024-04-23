@@ -14,31 +14,11 @@
         class="backgroundEventCreate"
     >
         <headerContent>
-            <Toolbar id="_IDGenToolbar1">
-                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                <Button
-                    id="languageButton"
-                    icon="sap-icon://globe"
-                    press="onDropdownPress"
-                />
-                <Button
-                    id="_IDGenButton3"
-                    icon="sap-icon://home"
-                    press="onBackToHome"
-                />
-                <Button
-                    id="_IDGenButton4"
-                    icon="sap-icon://person-placeholder"
-                    press="onProfileButtonClick"
-                />
-                <Button
-                    id="_IDGenButton8"
-                    icon="sap-icon://log"
-                    press="onLogoutPress"
-                />
-            </Toolbar>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
         </headerContent>
-
         <content>
             <VBox
                 id="_IDGenVBox1"
@@ -74,6 +54,7 @@
                 class="sapUiSmallMargin sapUiContentPadding"
             >
                 <!-- Feedback Button -->
+                <!--Gaat voorlopig niet meer omdat je geen titel meegeeft? -->
                 <Button
                     id="_IDGenButton5"
                     text="{i18n>feedbackButton}"
@@ -157,6 +138,13 @@
                     text="{i18n>viewAllSessions}"
                     icon="sap-icon://detail-view"
                     press="onViewAllSessionsPress"
+                    class="sapUiSmallMarginEnd viewAllSessionsButton"
+                />
+                <Button
+                    id="viewAllSessionsButton2"
+                    text="{i18n>viewUpcomingSessions}"
+                    icon="sap-icon://detail-view"
+                    press="onViewUpcomingSessionsPress"
                     class="sapUiSmallMarginEnd viewAllSessionsButton"
                 />
             </FlexBox>
@@ -251,12 +239,7 @@
                                     />
                                 </HBox>
                             </VBox>
-
-                            <FlexBox
-                                id="_IDGenFlexBox3"
-                                class="sapUiSmallMarginEnd"
-                            >
-                                <Button
+                                <!-- <Button
                                     id="FeedbackDirect"
                                     text="{i18n>GeefFeedback}"
                                     icon="sap-icon://add-favorite"
@@ -267,7 +250,7 @@
                                     id="SchrijfUit"
                                     text="{i18n>SchrijfUit}"
                                     icon="sap-icon://decline"
-                                    press="goToSchrijfUit"
+                                    press="onLeaveSession"
                                     class="sapUiSmallMarginEnd outlookButton"
                                 />
                                 <Button
@@ -276,8 +259,11 @@
                                     icon="sap-icon://add-calendar"
                                     press="onExportToOutlookPress"
                                     class="sapUiSmallMarginEnd outlookButton"
-                                />
-                            </FlexBox>
+                                /> -->
+                                <VBox id="sessionDescriptionVbox">
+                                    <Label id="lebelSessionDescription2" text="Description:"/>
+                                    <Text id="sessionDescription" text="{imageModel>description}" class="sessionDescription"/>
+                                </VBox>
                         </FlexBox>
                     </CustomListItem>
                 </List>
@@ -345,28 +331,8 @@
     </Page>
 
     <!-- Popover Definition -->
-    <Popover
-        id="popover"
-        placement="Auto"
-        showArrow="true"
-        title="{i18n>Menu}"
-        contentWidth="auto"
-    >
-        <content>
-            <VBox id="_IDGenVBox3">
-                <Button
-                    id="_IDGenButton9"
-                    text="{i18n>EN}"
-                    press="onSwitchToEnglish"
-                    width="100%"
-                />
-                <Button
-                    id="_IDGenButton10"
-                    text="{i18n>NL}"
-                    press="onSwitchToDutch"
-                    width="100%"
-                />
-            </VBox>
-        </content>
-    </Popover>
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

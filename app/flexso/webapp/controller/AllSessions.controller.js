@@ -13,24 +13,80 @@ sap.ui.define(
         this.fetchAllRegisteredSessions();
       },
 
-      fetchAllRegisteredSessions: function () {
-        var sessionServiceURL =
-          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
+      isSessionInPast: function (endDate) {
+        var today = new Date();
+        var sessionEndDate = new Date(endDate);
+        return sessionEndDate < today;
+      },
+      onSortPress: function (oEvent) {
+        var oTable = this.getView().byId("_IDGenTable1");
+        var oBinding = oTable.getBinding("items");
 
+        // Get the current sorter (if any) from the binding
+        var aSorters = oBinding.aSorters || [];
+
+        // Check if there's already a sorter on the "startDate" field
+        var oDateSorter = aSorters.find(function (sorter) {
+          return sorter.sPath === "startDate";
+        });
+
+        if (oDateSorter) {
+          // If there's already a sorter on the date field, toggle its order
+          oDateSorter.bDescending = !oDateSorter.bDescending;
+        } else {
+          // If there's no sorter on the date field, create one in ascending order
+          oDateSorter = new sap.ui.model.Sorter("startDate");
+          aSorters.push(oDateSorter);
+        }
+
+        // Apply the sorters to the binding
+        oBinding.sort(aSorters);
+      },
+
+      fetchAllRegisteredSessions: function () {
+        // Get the logged-in user's email address from localStorage
+        var userEmail = localStorage.getItem("email");
+
+        // Check if user email is available
+        if (!userEmail) {
+          MessageToast.show("User email not found in localStorage");
+          return;
+        }
+
+        // Construct the service URL with the filter
+        var sessionServiceURL =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=email eq '" +
+          userEmail +
+          "'";
+
+        // Make an AJAX request to fetch the registered sessions data
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
           success: function (data) {
-            // Reverse the order of the sessions
-            var reversedSessions = data.value.reverse();
+            // Check if data is available
+            if (data && data.value && data.value.length > 0) {
+              // Filter out upcoming sessions
+              var pastSessions = data.value.filter(function (session) {
+                return this.isSessionInPast(session.endDate);
+              }, this);
 
-            // Update the model with all registered sessions data
-            var oModel = new JSONModel(reversedSessions);
-            this.getView().setModel(oModel, "allSessionsModel");
+              // Reverse the fetched sessions data
+              var reversedData = pastSessions.reverse();
+              // Update the model with the reversed fetched sessions for the logged-in user
+              var oModel = new JSONModel(reversedData);
+              this.getView().setModel(oModel, "allSessionsModel");
+            } else {
+              // No sessions found for the logged-in user
+              MessageToast.show(
+                "No registered sessions found for the logged-in user"
+              );
+            }
           }.bind(this),
           error: function (xhr, status, error) {
+            // Handle error case
             MessageToast.show(
-              "Error fetching all registered sessions data: " + error
+              "Error fetching registered sessions data: " + error
             );
           },
         });
@@ -96,7 +152,7 @@ sap.ui.define(
               sQuery
             ),
             new sap.ui.model.Filter(
-              "location",
+              "room",
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),
@@ -110,11 +166,47 @@ sap.ui.define(
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),
+            new sap.ui.model.Filter(
+              "startTime",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
+            new sap.ui.model.Filter(
+              "endTime",
+              sap.ui.model.FilterOperator.Contains,
+              sQuery
+            ),
           ],
           and: false,
         });
         var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
         oBinding.filter([oFilter]);
+      },
+
+      goToFeedbackDirect: function (oEvent) {
+        var oSelectedItem = oEvent
+          .getSource()
+          .getBindingContext("allSessionsModel")
+          .getObject();
+        var sSessionEndDate = oSelectedItem.endDate;
+        var sSessionEndTime = oSelectedItem.endTime;
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var sCurrentDateTime = new Date();
+
+        var sSessionEndDateTimeString = sSessionEndDate + " " + sSessionEndTime;
+
+        var oSessionEndDateTime = new Date(sSessionEndDateTimeString);
+
+        if (sCurrentDateTime > oSessionEndDateTime) {
+          var sSessionTitle = oSelectedItem.title;
+          oRouter.navTo("feedback", {
+            sessionTitle: sSessionTitle,
+          });
+        } else {
+          sap.m.MessageBox.error(
+            "Feedback submission is only available after the session has ended."
+          );
+        }
       },
     });
   }

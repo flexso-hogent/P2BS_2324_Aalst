@@ -156,8 +156,13 @@
         },
         {
           "name": "feedback",
-          "pattern": "feedback",
+          "pattern": "feedback/{sessionTitle}",
           "target": ["Feedback"]
+        },
+        {
+          "name": "feedback2",
+          "pattern": "feedback2",
+          "target": ["Feedback2"]
         },
         {
           "name": "eventoverview",
@@ -203,6 +208,11 @@
           "name": "allFeedback",
           "pattern": "allFeedback",
           "target": ["allFeedback"]
+        },
+        {
+          "name": "UpcomingEvents",
+          "pattern": "UpcomingEvents",
+          "target": ["UpcomingEvents"]
         }
       ],
       "targets": {
@@ -251,6 +261,11 @@
           "viewId": "feedback",
           "viewLevel": 3
         },
+        "Feedback2": {
+          "viewName": "flexso.view.feedback",
+          "viewId": "feedback",
+          "viewLevel": 3
+        },
         "eventoverview": {
           "viewName": "flexso.view.eventoverview",
           "viewId": "eventoverview",
@@ -294,6 +309,11 @@
         "allFeedback": {
           "viewName": "flexso.view.allFeedback",
           "viewId": "allFeedback",
+          "viewLevel": 3
+        },
+        "UpcomingEvents": {
+          "viewName": "flexso.view.UpcomingEvents",
+          "viewId": "UpcomingEvents",
           "viewLevel": 3
         }
       }
