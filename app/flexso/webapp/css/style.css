@@ -693,3 +693,11 @@
   color: #f4f4f4 !important;
   margin: 0 auto; /* Center the button horizontally */
 }
+/* Stijl voor de achtergrondkleur van de MessageToast */
+.sapMMessageToast {
+  background-color: rgb(0, 114, 135) !important; 
+  color: #ffffff !important; /* Witte tekst */
+  border: 2px solid #ffffff; /* Witte rand */
+  border-radius: 100px; /* Afgeronde hoeken */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Schaduw */
+}

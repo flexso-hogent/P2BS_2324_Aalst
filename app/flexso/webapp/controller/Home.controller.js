@@ -82,7 +82,7 @@ sap.ui.define(
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show(
-              "Error fetching registered sessions data: " + error
+              this.getView().getModel("i18n").getProperty("errorFetchRegisteredSession")  + error
             );
           },
         });
@@ -118,7 +118,7 @@ sap.ui.define(
             oModel.setProperty("/feedbackData", firstTwoFeedback);
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching feedback data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("errorFetchFeedbackdata") + error);
           },
         });
       },
@@ -150,7 +150,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -270,7 +270,7 @@ sap.ui.define(
           });
         } else {
           sap.m.MessageBox.error(
-            "Feedback submission is only available after the session has ended."
+            this.getView().getModel("i18n").getProperty("homefeedback")
           );
         }
       },
@@ -287,7 +287,7 @@ sap.ui.define(
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          "Are you sure you want to leave session '" + sSessionTitle + "'?",
+          this.getView().getModel("i18n").getProperty("homeleavesession") + sSessionTitle + "'?",
           {
             title: "Confirm",
             actions: [
@@ -317,7 +317,7 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/registeredSessionsData", aSessions);
                     }
-                    sap.m.MessageToast.show("Session left successfully");
+                    sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("sessieverlatenhome"));
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
                       window.location.reload();
@@ -326,7 +326,7 @@ sap.ui.define(
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      "Error occurred while leaving session: " + error
+                      this.getView().getModel("i18n").getProperty("sessieonsucverlatenhome") + error
                     );
                   },
                 });

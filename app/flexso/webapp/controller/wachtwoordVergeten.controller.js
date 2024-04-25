@@ -17,9 +17,11 @@ sap.ui.define(
 
         // Validate email format
         if (!this.isValidEmail(userEmail)) {
-          MessageToast.show("Please enter a valid email address.");
+          MessageToast.show(this.getView().getModel("i18n").getProperty("wwvergetenvalidemail"));
           return;
         }
+
+        
 
         // Check if the email exists in the database
         this.checkEmailExists(userEmail, that);
@@ -45,6 +47,9 @@ sap.ui.define(
                 data: JSON.stringify({ userEmail: email }),
                 success: function (response) {
                   MessageToast.show("Password reset email sent to: " + email);
+
+
+              
 
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(

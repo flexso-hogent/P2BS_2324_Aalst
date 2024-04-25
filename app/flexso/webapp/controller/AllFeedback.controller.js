@@ -54,7 +54,7 @@ sap.ui.define(
             this.getView().setModel(oModel, "feedbackModel");
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching feedback data: " + error);
+            MessageToast.show( this.getView().getModel("i18n").getProperty("errorFetchFeedbackdata") + error);
           },
         });
       },
@@ -76,7 +76,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm( this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

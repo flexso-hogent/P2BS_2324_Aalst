@@ -87,7 +87,7 @@ sap.ui.define(
       loadUserData: function () {
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-          MessageToast.show("Logged-in user email not found.");
+          MessageToast.show(this.getView().getModel("i18n").getProperty("profileEmailNotFound"));
           return;
         }
         var userDataUrl =
@@ -108,11 +108,11 @@ sap.ui.define(
               });
               this.getView().setModel(oUserDataModel, "userData");
             } else {
-              MessageToast.show("User data not found.");
+              MessageToast.show( this.getView().getModel("i18n").getProperty("profileUD"));
             }
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show("Failed to fetch user data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
           },
         });
       },
@@ -126,7 +126,7 @@ sap.ui.define(
           this.isUserAlreadyRegistered(oSessionModel.getProperty("/sessionID"))
         ) {
           sap.m.MessageBox.error(
-            "You have already registered for this session"
+            this.getView().getModel("i18n").getProperty("registersessionalready") 
           );
         } else {
           var oRegistrationData = {
@@ -179,7 +179,7 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             sap.m.MessageBox.error(
-              "Failed to fetch registration data: " + error
+              this.getView().getModel("i18n").getProperty("registrationdatafail") + error 
             );
           },
         });
@@ -196,15 +196,14 @@ sap.ui.define(
           data: JSON.stringify(oRegistrationData),
           success: function () {
             // Show a success message
-            MessageToast.show("Session registered successfully");
-
+            MessageToast.show(this.getView().getModel("i18n").getProperty("registrationsucces"));
             // Navigate back to home page after a delay
             setTimeout(function () {
               that.onBackToHome();
             }, 1500);
           },
           error: function (xhr, status, error) {
-            sap.m.MessageBox.error("Failed to register session: " + error);
+            sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("registrationfailed") + error);
           },
         });
       },
@@ -219,7 +218,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

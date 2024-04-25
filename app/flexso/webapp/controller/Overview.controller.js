@@ -85,7 +85,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -158,7 +158,7 @@ sap.ui.define(
           // Adjust layout after showing sessions
           this.adjustLayout("25%");
         } else {
-          MessageToast.show("EventID is not defined.");
+          MessageToast.show( this.getView().getModel("i18n").getProperty("EventIDundefined"));
         }
       },
       adjustLayout: function (sessionsWidth) {
@@ -208,7 +208,7 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching data: " + error);
+            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdate") + error);
           },
         });
       },
@@ -249,7 +249,7 @@ sap.ui.define(
             oSessionInfoBox.setVisible(true);
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching session data: " + error);
+            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
           },
         });
       },
@@ -321,7 +321,7 @@ sap.ui.define(
           var oRouter = UIComponent.getRouterFor(this);
           oRouter.navTo("Registersession");
         } else {
-          MessageToast.show("Select a session to register.");
+          MessageToast.show( this.getView().getModel("i18n").getProperty("selectSessionRegister"));
         }
       },
     });

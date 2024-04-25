@@ -49,7 +49,7 @@ sap.ui.define(
 
         // Check if user email is available
         if (!userEmail) {
-          MessageToast.show("User email not found in localStorage");
+          MessageToast.show( this.getView().getModel("i18n").getProperty("UPeventEmailLocalStorage"));
           return;
         }
 
@@ -79,14 +79,14 @@ sap.ui.define(
             } else {
               // No sessions found for the logged-in user
               MessageToast.show(
-                "No registered sessions found for the logged-in user"
+                this.getView().getModel("i18n").getProperty("noRegisteredSessions")
               );
             }
           }.bind(this),
           error: function (xhr, status, error) {
             // Handle error case
             MessageToast.show(
-              "Error fetching registered sessions data: " + error
+              this.getView().getModel("i18n").getProperty("errorFetchRegisteredSession") + error
             );
           },
         });
@@ -107,7 +107,7 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm( this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -204,7 +204,7 @@ sap.ui.define(
           });
         } else {
           sap.m.MessageBox.error(
-            "Feedback submission is only available after the session has ended."
+            this.getView().getModel("i18n").getProperty("feedbackSubmission")
           );
         }
       },
