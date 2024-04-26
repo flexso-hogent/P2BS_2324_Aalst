@@ -54,28 +54,34 @@ sap.ui.define(
       fetchRegisteredSessionsData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
-
+    
         // Replace this with your actual service URL
         var sessionServiceURL =
           "http://localhost:4004/odata/v4/catalog/registerdOnASession";
-
+    
         // Construct the filter based on the logged-in user's email
         var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
-
+    
         // Append the filter to the service URL
         sessionServiceURL += filter;
-
+    
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
           success: function (data) {
             // Assuming the response data is an array of registered session objects
+            // Filter out sessions that have already occurred
+            var currentTimestamp = new Date().getTime();
+            var upcomingSessions = data.value.filter(function(session) {
+              return new Date(session.startDate).getTime() > currentTimestamp;
+            });
+    
             // Reverse the order of the sessions
-            var reversedSessions = data.value.reverse();
-
+            var reversedSessions = upcomingSessions.reverse();
+    
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
-
+    
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
             oModel.setProperty("/registeredSessionsData", firstTwoSessions);
@@ -87,33 +93,25 @@ sap.ui.define(
           },
         });
       },
-
+    
       fetchFeedbackData: function () {
-        // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
 
-        // Replace this with your actual service URL
         var feedbackServiceURL =
           "http://localhost:4004/odata/v4/catalog/Feedback";
 
-        // Construct the filter based on the logged-in user's email
         var filter = "$filter=Username eq '" + loggedInUserEmail + "'";
 
-        // Append the filter to the service URL
         feedbackServiceURL += "?" + filter;
 
         $.ajax({
           url: feedbackServiceURL,
           type: "GET",
           success: function (data) {
-            // Assuming the response data is an array of feedback objects
-            // Reverse the order of the feedback entries
             var reversedFeedback = data.value.reverse();
 
-            // Take the first two feedback entries
             var firstTwoFeedback = reversedFeedback.slice(0, 2);
 
-            // Update the model with the fetched feedback data
             var oModel = this.getView().getModel("imageModel");
             oModel.setProperty("/feedbackData", firstTwoFeedback);
           }.bind(this),
