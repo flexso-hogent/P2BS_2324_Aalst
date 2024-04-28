@@ -21,7 +21,7 @@
         </headerContent>
         <content>
             <VBox
-                id="createSessionContent"
+                id="createSessionConten"
                 class="createSessionBox"
                 width="100%"
             >
