@@ -38,7 +38,7 @@ sap.ui.define(
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-          MessageToast.show("Logged-in user email not found.");
+          MessageToast.show(this.getView().getModel("i18n").getProperty("profileEmailNotFound"));
           return;
         }
         var userDataUrl =
@@ -69,11 +69,11 @@ sap.ui.define(
               });
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
-              MessageToast.show("User data not found.");
+              MessageToast.show(this.getView().getModel("i18n").getProperty("profileUD"));
             }
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Failed to fetch user data: " + error);
+            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
           },
         });
       },
@@ -107,7 +107,7 @@ sap.ui.define(
           title: "Confirm",
           type: "Message",
           content: new sap.m.Text({
-            text: "Are you sure you want to update your profile?",
+            text:  this.getView().getModel("i18n").getProperty("profileUpdateProfile"),
           }),
           beginButton: new sap.m.Button({
             text: "Yes",
@@ -136,13 +136,13 @@ sap.ui.define(
                     userId = data.value[0].userID;
                   } else {
                     MessageToast.show(
-                      "User not found with the provided email address"
+                      this.getView().getModel("i18n").getProperty("userNotFound")
                     );
                     return;
                   }
                 },
                 error: function (xhr, status, error) {
-                  MessageToast.show("Failed to retrieve user data: " + error);
+                  MessageToast.show( this.getView().getModel("i18n").getProperty("profileRetrieve") + error);
                   return;
                 },
               });
@@ -154,11 +154,11 @@ sap.ui.define(
                 contentType: "application/json",
                 data: JSON.stringify(updatedUserData),
                 success: function () {
-                  MessageToast.show("Profile updated successfully");
+                  MessageToast.show( this.getView().getModel("i18n").getProperty("profileUpdateSucces"));
                   that.loadUserData();
                 },
                 error: function (xhr, status, error) {
-                  MessageToast.show("Failed to update profile: " + error);
+                  MessageToast.show( this.getView().getModel("i18n").getProperty("profileUpdateUnsucces") + error);
                 },
               });
               dialog.close();
@@ -229,7 +229,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

@@ -79,7 +79,7 @@ sap.ui.define(
             var hashedPassword = await this.sha256(password);
 
             if (user.password === hashedPassword) {
-              MessageToast.show("Login successful");
+              MessageToast.show(this.getView().getModel("i18n").getProperty("loginsucc"));
 
               // Store user information in local storage
               localStorage.setItem("userID", user.userID);
@@ -105,15 +105,15 @@ sap.ui.define(
                 window.location.reload(); // Reload homepage
               }, 1000);
             } else {
-              MessageToast.show("User or password is wrong. Please try again.");
+              MessageToast.show(this.getView().getModel("i18n").getProperty("loginunsucc"));
             }
           } else {
             MessageToast.show(
-              "User or password is wrong. Please register first."
+              this.getView().getModel("i18n").getProperty("loginunsuccgebruiker")
             );
           }
         } catch (error) {
-          MessageToast.show("Error checking user existence: " + error);
+          MessageToast.show(this.getView().getModel("i18n").getProperty("loginerror") + error);
         }
       },
       sha256: function (message) {

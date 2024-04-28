@@ -65,7 +65,9 @@ sap.ui.define(
           !oEventData.location ||
           !oEventData.description
         ) {
-          sap.m.MessageBox.error("Please fill in all fields.");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackCreateEvent")
+          );
           return;
         }
 
@@ -94,25 +96,25 @@ sap.ui.define(
           success: function (data) {
             if (data.results && data.results.length > 0) {
               sap.m.MessageBox.error(
-                "Event registration failed! Event already exists."
-              );
+                this.getView().getModel("i18n").getProperty("feedbackCreateEventFailed")
+              );            
             } else {
               oDataModel.create("/Events", oEventData, {
                 success: function () {
-                  MessageToast.show("Event registration successful!");
+                  MessageToast.show(this.getView().getModel("i18n").getProperty("eventRegsitrationsucces"));
                   setTimeout(function () {
                     that.navigateToHome();
                   }, 1000);
                 },
                 error: function (error) {
-                  MessageToast.show("Event registration failed: ");
+                  MessageToast.show(this.getView().getModel("i18n").getProperty("eventRegsitrationfailed"));
                 },
               });
             }
           },
           error: function (xhr, status, error) {
             sap.m.MessageBox.error(
-              "Error checking event existence: " + error.responseText
+              this.getView().getModel("i18n").getProperty("eventRegsitrationError") + error.responseText
             );
           },
         });
@@ -142,7 +144,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm( this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

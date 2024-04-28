@@ -37,7 +37,7 @@ sap.ui.define(
         if (!Number.isInteger(Number(sValue))) {
           // If not an integer, reset the value or show an error message
           oInput.setValueState("Error");
-          oInput.setValueStateText("Please enter a valid integer value.");
+          oInput.setValueStateText(this.getView().getModel("i18n").getProperty("validinteger"));
         } else {
           // If valid, remove any validation state
           oInput.setValueState("None");
@@ -65,7 +65,7 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            sap.MessageBox.error("Error fetching data: " + error);
+            sap.MessageBox.error(this.getView().getModel("i18n").getProperty("fetchdate") + error);
           },
         });
       },
@@ -87,9 +87,10 @@ sap.ui.define(
         var selectedEvent = oView.byId("eventSelect").getSelectedItem();
 
         if (!selectedEvent) {
-          sap.m.MessageBox.error("Please select an event.");
+          sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("feedbackSelectEvent"));
           return;
         }
+
 
         // Extract the event ID from the selected event
         var eventID = selectedEvent
@@ -132,10 +133,16 @@ sap.ui.define(
             // Check if any required field is empty
             for (var key in oSessionData) {
               if (oSessionData.hasOwnProperty(key) && !oSessionData[key]) {
-                sap.m.MessageBox.error("Please fill in all fields correctly.");
+                // Get the i18n model and retrieve the error message
+                var i18nModel = that.getView().getModel("i18n");
+                var errorMessage = i18nModel.getProperty("feedbackCreateSession");
+                // Show the error message
+                sap.m.MessageBox.error(errorMessage);
                 return; // Exit the function if any required field is empty
               }
             }
+
+
             // Post the new session data to the backend
             jQuery.ajax({
               url: "http://localhost:4004/odata/v4/catalog/Sessions",
@@ -143,19 +150,19 @@ sap.ui.define(
               contentType: "application/json",
               data: JSON.stringify(oSessionData),
               success: function () {
-                MessageToast.show("Session creation successful!");
+                MessageToast.show(this.getView().getModel("i18n").getProperty("sessieCreate"));
                 setTimeout(function () {
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
                   oRouter.navTo("home");
                 }, 1000);
               },
               error: function () {
-                sap.MessageBox.error("Error creating session");
+                sap.MessageBox.error(this.getView().getModel("i18n").getProperty("sessieCreateError"));
               },
             });
           },
           error: function () {
-            sap.MessageBox.error("Error fetching session data");
+            sap.MessageBox.error(this.getView().getModel("i18n").getProperty("sessieCreateFetchError"));
           },
         });
       },
@@ -213,7 +220,7 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
