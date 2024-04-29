@@ -70,55 +70,59 @@ sap.ui.define(
           type: "GET",
           success: function (data) {
             // Assuming the response data is an array of registered session objects
+            // Filter out sessions that have already occurred
+            var currentTimestamp = new Date().getTime();
+            var upcomingSessions = data.value.filter(function (session) {
+              return new Date(session.startDate).getTime() > currentTimestamp;
+            });
+
             // Reverse the order of the sessions
-            var reversedSessions = data.value.reverse();
+            var reversedSessions = upcomingSessions.reverse();
 
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
 
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
-            oModel.setProperty("/registeredSessionsData", firstTwoSessions);
+            oModel.setProperty("/registeredSessionsData", upcomingSessions);
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show(
-              "Error fetching registered sessions data: " + error
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchRegisteredSession") + error
             );
           },
         });
       },
 
       fetchFeedbackData: function () {
-        // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
 
-        // Replace this with your actual service URL
         var feedbackServiceURL =
           "http://localhost:4004/odata/v4/catalog/Feedback";
 
-        // Construct the filter based on the logged-in user's email
         var filter = "$filter=Username eq '" + loggedInUserEmail + "'";
 
-        // Append the filter to the service URL
         feedbackServiceURL += "?" + filter;
 
         $.ajax({
           url: feedbackServiceURL,
           type: "GET",
           success: function (data) {
-            // Assuming the response data is an array of feedback objects
-            // Reverse the order of the feedback entries
             var reversedFeedback = data.value.reverse();
 
-            // Take the first two feedback entries
             var firstTwoFeedback = reversedFeedback.slice(0, 2);
 
-            // Update the model with the fetched feedback data
             var oModel = this.getView().getModel("imageModel");
             oModel.setProperty("/feedbackData", firstTwoFeedback);
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching feedback data: " + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedbackdata") + error
+            );
           },
         });
       },
@@ -150,16 +154,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onGoToOverviewEventPress: function () {
@@ -172,7 +179,9 @@ sap.ui.define(
       },
       onGoToCreateSessionPress: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("createSession");
+        var oEventName = localStorage.getItem("");
+        oRouter.navTo("createSession", { oEventName: oEventName });
+        window.location.reload();
       },
 
       onGoToEventRegistrationOverview: function () {
@@ -270,7 +279,7 @@ sap.ui.define(
           });
         } else {
           sap.m.MessageBox.error(
-            "Feedback submission is only available after the session has ended."
+            this.getView().getModel("i18n").getProperty("homefeedback")
           );
         }
       },
@@ -287,7 +296,9 @@ sap.ui.define(
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          "Are you sure you want to leave session '" + sSessionTitle + "'?",
+          this.getView().getModel("i18n").getProperty("homeleavesession") +
+            sSessionTitle +
+            "'?",
           {
             title: "Confirm",
             actions: [
@@ -317,7 +328,11 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/registeredSessionsData", aSessions);
                     }
-                    sap.m.MessageToast.show("Session left successfully");
+                    sap.m.MessageToast.show(
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("sessieverlatenhome")
+                    );
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
                       window.location.reload();
@@ -326,7 +341,9 @@ sap.ui.define(
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      "Error occurred while leaving session: " + error
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("sessieonsucverlatenhome") + error
                     );
                   },
                 });

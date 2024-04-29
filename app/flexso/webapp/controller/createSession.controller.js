@@ -11,6 +11,10 @@ sap.ui.define(
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
         this.loadData();
+        var oEventName = localStorage.getItem("eventName");
+        this.getView().byId("searchEvent").setValue(oEventName);
+        this.getView().byId("eventComboBox").setValue(oEventName);
+        sap.ui.getCore().applyChanges();
 
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",
@@ -37,11 +41,18 @@ sap.ui.define(
         if (!Number.isInteger(Number(sValue))) {
           // If not an integer, reset the value or show an error message
           oInput.setValueState("Error");
-          oInput.setValueStateText("Please enter a valid integer value.");
+          oInput.setValueStateText(
+            this.getView().getModel("i18n").getProperty("validinteger")
+          );
         } else {
           // If valid, remove any validation state
           oInput.setValueState("None");
         }
+      },
+      onEditPress: function () {
+        var oInput = this.getView().byId("eventComboBox");
+        var bCurrentEditable = oInput.getEditable();
+        oInput.setEditable(!bCurrentEditable);
       },
 
       loadData: function () {
@@ -65,7 +76,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            sap.MessageBox.error("Error fetching data: " + error);
+            sap.MessageBox.error(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -83,18 +96,36 @@ sap.ui.define(
         var oView = this.getView();
         var that = this;
 
-        // Get selected event data from the select box
-        var selectedEvent = oView.byId("eventSelect").getSelectedItem();
+        // Get selected event data
+        var sSelectedEvent = oView.byId("eventComboBox").getValue();
+        var oTable = oView.byId("_IDGenTable1");
+        var oSelectedItem = oTable.getSelectedItem();
 
-        if (!selectedEvent) {
-          sap.m.MessageBox.error("Please select an event.");
-          return;
+        var eventID;
+
+        // Check if an event is selected from the table
+        if (oSelectedItem) {
+          eventID = oSelectedItem
+            .getBindingContext("eventModel")
+            .getProperty("eventID");
+        } else if (sSelectedEvent) {
+          // Check if an event is selected from the input field
+          var oEventModel = oView.getModel("eventModel");
+          var aEvents = oEventModel.getProperty("/");
+          var oEvent = aEvents.find(function (event) {
+            return event.Name === sSelectedEvent;
+          });
+          if (oEvent) {
+            eventID = oEvent.eventID;
+          }
         }
 
-        // Extract the event ID from the selected event
-        var eventID = selectedEvent
-          .getBindingContext("eventModel")
-          .getProperty("eventID");
+        if (!eventID) {
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackSelectEvent")
+          );
+          return;
+        }
 
         // Proceed with session creation
         // Fetch the latest session ID from the backend
@@ -132,10 +163,17 @@ sap.ui.define(
             // Check if any required field is empty
             for (var key in oSessionData) {
               if (oSessionData.hasOwnProperty(key) && !oSessionData[key]) {
-                sap.m.MessageBox.error("Please fill in all fields correctly.");
+                // Get the i18n model and retrieve the error message
+                var i18nModel = that.getView().getModel("i18n");
+                var errorMessage = i18nModel.getProperty(
+                  "feedbackCreateSession"
+                );
+                // Show the error message
+                sap.m.MessageBox.error(errorMessage);
                 return; // Exit the function if any required field is empty
               }
             }
+
             // Post the new session data to the backend
             jQuery.ajax({
               url: "http://localhost:4004/odata/v4/catalog/Sessions",
@@ -143,21 +181,54 @@ sap.ui.define(
               contentType: "application/json",
               data: JSON.stringify(oSessionData),
               success: function () {
-                MessageToast.show("Session creation successful!");
+                MessageToast.show(
+                  that.getView().getModel("i18n").getProperty("sessieCreate")
+                );
                 setTimeout(function () {
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
                   oRouter.navTo("home");
                 }, 1000);
               },
               error: function () {
-                sap.MessageBox.error("Error creating session");
+                sap.MessageBox.error(
+                  that
+                    .getView()
+                    .getModel("i18n")
+                    .getProperty("sessieCreateError")
+                );
               },
             });
           },
           error: function () {
-            sap.MessageBox.error("Error fetching session data");
+            sap.MessageBox.error(
+              that
+                .getView()
+                .getModel("i18n")
+                .getProperty("sessieCreateFetchError")
+            );
           },
         });
+      },
+
+      onSearchLiveChange: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        this.filterEvents(sQuery);
+      },
+
+      filterEvents: function (sQuery) {
+        var oTable = this.getView().byId("_IDGenTable1");
+        var oBinding = oTable.getBinding("items");
+        var oFilter;
+
+        if (sQuery) {
+          oFilter = new sap.ui.model.Filter(
+            "Name",
+            sap.ui.model.FilterOperator.Contains,
+            sQuery
+          );
+        }
+
+        oBinding.filter(oFilter);
       },
 
       formatTime: function (timeString) {
@@ -213,16 +284,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
     });
   }
