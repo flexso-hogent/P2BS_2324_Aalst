@@ -11,8 +11,8 @@ sap.ui.define(
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
         this.loadData();
-        var sessionTitle = localStorage.getItem("sessionTitle");
-        this.getView().byId("searchEvent").setValue(sessionTitle);
+        var oEventName = localStorage.getItem("sessionTitle");
+        this.getView().byId("searchEvent").setValue(oEventName);
 
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",

@@ -298,15 +298,16 @@ sap.ui.define(
       voegSessieToe: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
-        // Verkrijg de waarde van sessionModel>title
-        var oSessionTitle = this.getView()
+        // Haal de naam op uit het eventmodel
+        var oEventName = this.getView()
           .getModel("eventModel")
-          .getProperty("/name");
+          .getProperty("/Name");
 
-        // Sla de sessietitel op in de lokale opslag
-        localStorage.setItem("eventModel", oSessionTitle);
+        // Sla de naam op in localStorage
+        localStorage.setItem("eventName", oEventName);
 
-        oRouter.navTo("createSession", {});
+        // Geef de naam door als een parameter in de navTo functie
+        oRouter.navTo("createSession", { eventName: oEventName });
       },
       onRegisterPress: function (oEvent) {
         var oSessionContext = oEvent

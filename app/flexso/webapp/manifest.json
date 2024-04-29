@@ -175,7 +175,12 @@
           "target": ["createEvent"]
         },
         {
-          "pattern": "createSession",
+          "pattern": "createSession2",
+          "name": "createSession2",
+          "target": ["createSession2"]
+        },
+        {
+          "pattern": "createSession/{eventName}",
           "name": "createSession",
           "target": ["createSession"]
         },
