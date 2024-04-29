@@ -11,8 +11,10 @@ sap.ui.define(
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
         this.loadData();
-        var oEventName = localStorage.getItem("sessionTitle");
+        var oEventName = localStorage.getItem("eventName");
         this.getView().byId("searchEvent").setValue(oEventName);
+        this.getView().byId("eventComboBox").setValue(oEventName);
+        sap.ui.getCore().applyChanges();
 
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",
@@ -46,6 +48,11 @@ sap.ui.define(
           // If valid, remove any validation state
           oInput.setValueState("None");
         }
+      },
+      onEditPress: function () {
+        var oInput = this.getView().byId("eventComboBox");
+        var bCurrentEditable = oInput.getEditable();
+        oInput.setEditable(!bCurrentEditable);
       },
 
       loadData: function () {

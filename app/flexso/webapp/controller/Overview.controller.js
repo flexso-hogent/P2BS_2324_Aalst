@@ -152,6 +152,16 @@ sap.ui.define(
         var eventID = oEventModel.eventID;
         var oSessionsBox = this.getView().byId("sessionsBox");
 
+        // Save the event name
+        var eventName = oEventModel.Name;
+        localStorage.setItem("eventName", eventName);
+        var oSelectedListItem = oEvent.getSource().getParent();
+        var oEventModel = oSelectedListItem
+          .getBindingContext("eventModel")
+          .getObject();
+        var eventID = oEventModel.eventID;
+        var oSessionsBox = this.getView().byId("sessionsBox");
+
         if (eventID) {
           this.loadSessions(eventID);
           oSessionsBox.setVisible(true);
@@ -298,16 +308,10 @@ sap.ui.define(
       voegSessieToe: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
-        // Haal de naam op uit het eventmodel
-        var oEventName = this.getView()
-          .getModel("eventModel")
-          .getProperty("/Name");
+        // Get the event name from localStorage
+        var eventName = localStorage.getItem("eventName");
 
-        // Sla de naam op in localStorage
-        localStorage.setItem("eventName", oEventName);
-
-        // Geef de naam door als een parameter in de navTo functie
-        oRouter.navTo("createSession", { eventName: oEventName });
+        oRouter.navTo("createSession", { eventName: eventName });
       },
       onRegisterPress: function (oEvent) {
         var oSessionContext = oEvent

@@ -70,24 +70,23 @@
 
                     <Label
                         id="_IDGenLabel1"
-                        text="{i18n>SelectEvent}"
+                        text="{i18n>thisIsTheEvent}"
                         class="LabelCreateSession"
+                        
                     />
-                    <ComboBox
+
+                    <Button id="button1" icon="sap-icon://edit" press="onEditPress"></Button>
+                    <Input
                         id="eventComboBox"
-                        items="{eventModel>/}"
                         width="50%"
                         class="InputCreateSession"
                         required="true"
-                        placeholder="{i18n>SelectEvent}"
-                        change="onEventSelectionChange"
+                        placeholder="{i18n>thisIsTheEvent}"
+                        editable="false"
+                        
                     >
-                        <core:Item
-                            id="_IDGenItem1"
-                            key="{eventModel>eventID}"
-                            text="{eventModel>Name}"
-                        />
-                    </ComboBox>
+            
+                    </Input>
 
                     <Label
                         id="_IDGenLabel2"
