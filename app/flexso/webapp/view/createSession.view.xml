@@ -52,21 +52,25 @@
                         liveChange="onSearchLiveChange" 
                         class="InputCreateSession"
                         suggest="onSuggestEvent"
-                        placeholder="{i18n>SearchEvent}"
+                        placeholder="{i18n>phSearch1}"
                     ></SearchField>
 
-                  <Table id="_IDGenTable1" width="50%" class="InputCreateSession" items="{eventModel>/}" growing="true" growingThreshold="3" selectionChange="onSelectionChange">
-                        <columns>
-                            <Column id="_IDGenColumn1">
-                                <Text id="_IDGenText1" text="{i18n>eventName}" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem id="_IDGenColumnListItem1" >
-                                <Text id="_IDGenText2" text="{eventModel>Name}" />
-                            </ColumnListItem>
-                        </items>
-                    </Table>
+                
+                <Table id="_IDGenTable1" width="50%" itemPress="onItemPress" class="InputCreateSession" items="{eventModel>/}" growing="true" growingThreshold="3" selectionChange="onSelectionChange">
+    <columns>
+        <Column id="_IDGenColumn1" width="45%">
+            <Text id="_IDGenText1" text="{i18n>eventName}" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" type="Navigation" press="onSessionSelect">
+            <cells>
+                <Text id="_IDGenText7" text="{eventModel>Name}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
 
                     <Label
                         id="_IDGenLabel1"

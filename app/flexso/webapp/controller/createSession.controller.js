@@ -32,6 +32,16 @@ sap.ui.define(
 
         this.getView().setModel(oImageModel, "imageModel");
       },
+      onItemPress: function (oEvent) {
+        var oClickedItem = oEvent.getParameter("listItem");
+        var oClickedItemContext = oClickedItem.getBindingContext("eventModel");
+        var sClickedItemName = oClickedItemContext.getProperty("Name");
+
+        var oComboBox = this.getView().byId("eventComboBox");
+        if (oComboBox) {
+          oComboBox.setValue(sClickedItemName);
+        }
+      },
 
       onTotalSeatsChange: function (oEvent) {
         var oInput = oEvent.getSource();
