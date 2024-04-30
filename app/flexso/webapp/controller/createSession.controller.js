@@ -10,15 +10,42 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
-        var that = this; // Sla de huidige scope op in een variabele
-      
-        this.loadData(); // Gebruik 'this' voor lokale functies
-      
+        this.loadData();
+        this.getView().byId("searchEvent").setValue(oEventName);
+
+        var oEventName = localStorage.getItem("eventName");
+        var oSearchEvent = this.getView().byId("searchEvent");
+        oSearchEvent.setValue(oEventName);
+
+        sap.ui.getCore().applyChanges();
+
+        var oTable = this.getView().byId("_IDGenTable1");
+        if (oEventName && oTable) {
+          oTable.setVisible(false);
+        }
+
+        sap.ui.getCore().applyChanges();
+
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",
           "/images/Flexso.png"
         );
-      
+
+        var oSearchField = this.getView().byId("searchEvent");
+        if (oSearchField) {
+          oSearchField.attachSearch(
+            function (oEvent) {
+              var sQuery = oEvent.getParameter("query");
+              if (!sQuery) {
+                var oTable = this.getView().byId("_IDGenTable1");
+                if (oTable) {
+                  oTable.setVisible(true);
+                }
+              }
+            }.bind(this)
+          );
+        }
+
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -91,7 +118,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel"); // Gebruik 'that' om de juiste scope te behouden
           },
           error: function (xhr, status, error) {
-            sap.MessageBox.error(that.getView().getModel("i18n").getProperty("fetchdate") + error); // Gebruik 'that' om de juiste scope te behouden
+            sap.MessageBox.error(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -192,19 +221,24 @@ sap.ui.define(
               contentType: "application/json",
               data: JSON.stringify(oSessionData),
               success: function () {
-                MessageToast.show(that.getView().getModel("i18n").getProperty("sessieCreate"));
+                MessageToast.show(this.getView().getModel("i18n").getProperty("sessieCreate"));
                 setTimeout(function () {
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
                   oRouter.navTo("home");
                 }, 1000);
               },
               error: function () {
-                sap.MessageBox.error(that.getView().getModel("i18n").getProperty("sessieCreateError"));
+                sap.MessageBox.error(
+                  that
+                    .getView()
+                    .getModel("i18n")
+                    .getProperty("sessieCreateError")
+                );
               },
             });
           },
           error: function () {
-            sap.MessageBox.error(that.getView().getModel("i18n").getProperty("sessieCreateFetchError"));
+            sap.MessageBox.error(this.getView().getModel("i18n").getProperty("sessieCreateFetchError"));
           },
         });
       },
