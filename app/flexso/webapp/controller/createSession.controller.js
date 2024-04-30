@@ -11,8 +11,18 @@ sap.ui.define(
     return Controller.extend("flexso.controller.CreateSession", {
       onInit: function () {
         this.loadData();
-        var oEventName = localStorage.getItem("eventName");
         this.getView().byId("searchEvent").setValue(oEventName);
+
+        var oEventName = localStorage.getItem("eventName");
+        var oSearchEvent = this.getView().byId("searchEvent");
+        oSearchEvent.setValue(oEventName);
+
+        sap.ui.getCore().applyChanges();
+
+        var oTable = this.getView().byId("_IDGenTable1");
+        if (oEventName && oTable) {
+          oTable.setVisible(false);
+        }
 
         sap.ui.getCore().applyChanges();
 
@@ -20,6 +30,21 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
+
+        var oSearchField = this.getView().byId("searchEvent");
+        if (oSearchField) {
+          oSearchField.attachSearch(
+            function (oEvent) {
+              var sQuery = oEvent.getParameter("query");
+              if (!sQuery) {
+                var oTable = this.getView().byId("_IDGenTable1");
+                if (oTable) {
+                  oTable.setVisible(true);
+                }
+              }
+            }.bind(this)
+          );
+        }
 
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
