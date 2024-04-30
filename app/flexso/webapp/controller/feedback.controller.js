@@ -72,7 +72,7 @@ sap.ui.define(
       },
 
       fetchFeedbackSessions: function () {
-        // Fetch feedback sessions for the current user from the server
+        // Fetch feedback sessions for the current user from the server.
         var loggedInUserEmail = localStorage.getItem("email");
         // Replace this with your actual service URL
         var feedbackSessionsURL =

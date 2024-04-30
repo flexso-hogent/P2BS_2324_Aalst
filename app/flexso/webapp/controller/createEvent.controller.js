@@ -55,9 +55,12 @@ sap.ui.define(
         console.log("Register button clicked");
         var oViewModel = this.getView().getModel();
         var oEventData = oViewModel.getData();
-
+      
+        console.log("oEventData.startDate:", oEventData.startDate); // Console-log toegevoegd
+        console.log("oEventData.endDate:", oEventData.endDate); // Console-log toegevoegd
+      
         var that = this;
-
+      
         if (
           !oEventData.name ||
           !oEventData.startDate ||
@@ -70,21 +73,21 @@ sap.ui.define(
           );
           return;
         }
-
+      
         if (oEventData.startDate) {
           oEventData.startDate = this.formatDate(oEventData.startDate);
         }
         if (oEventData.endDate) {
           oEventData.endDate = this.formatDate(oEventData.endDate);
         }
-
+      
         var oDataModel = new ODataModel(
           "http://localhost:4004/odata/v2/catalog/",
           {
             json: true,
           }
         );
-
+      
         oDataModel.read("/Events", {
           filters: [
             new sap.ui.model.Filter(
@@ -96,29 +99,30 @@ sap.ui.define(
           success: function (data) {
             if (data.results && data.results.length > 0) {
               sap.m.MessageBox.error(
-                this.getView().getModel("i18n").getProperty("feedbackCreateEventFailed")
-              );            
+                that.getView().getModel("i18n").getProperty("feedbackCreateEventFailed")
+              );
             } else {
               oDataModel.create("/Events", oEventData, {
                 success: function () {
-                  MessageToast.show(this.getView().getModel("i18n").getProperty("eventRegsitrationsucces"));
+                  MessageToast.show(that.getView().getModel("i18n").getProperty("eventRegsitrationsucces"));
                   setTimeout(function () {
                     that.navigateToHome();
                   }, 1000);
                 },
                 error: function (error) {
-                  MessageToast.show(this.getView().getModel("i18n").getProperty("eventRegsitrationfailed"));
+                  MessageToast.show(that.getView().getModel("i18n").getProperty("eventRegsitrationfailed"));
                 },
               });
             }
           },
           error: function (xhr, status, error) {
             sap.m.MessageBox.error(
-              this.getView().getModel("i18n").getProperty("eventRegsitrationError") + error.responseText
+              that.getView().getModel("i18n").getProperty("eventRegsitrationError") + error.responseText
             );
           },
         });
       },
+      
 
       navigateToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
@@ -134,13 +138,11 @@ sap.ui.define(
       },
 
       formatDate: function (dateString) {
-        var date = new Date(dateString);
-        var year = date.getFullYear();
-        var month = String(date.getMonth() + 1).padStart(2, "0");
-        var day = String(date.getDate()).padStart(2, "0");
-        var formattedDate = year + "-" + month + "-" + day;
+        var parts = dateString.split("-"); // Splits de datum op in dag, maand en jaar
+        var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0]; // Formateer de datum naar "yyyy-mm-dd"
         return formattedDate;
       },
+      
 
       onLogoutPress: function () {
         var that = this;

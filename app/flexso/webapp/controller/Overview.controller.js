@@ -152,6 +152,16 @@ sap.ui.define(
         var eventID = oEventModel.eventID;
         var oSessionsBox = this.getView().byId("sessionsBox");
 
+        // Save the event name
+        var eventName = oEventModel.Name;
+        localStorage.setItem("eventName", eventName);
+        var oSelectedListItem = oEvent.getSource().getParent();
+        var oEventModel = oSelectedListItem
+          .getBindingContext("eventModel")
+          .getObject();
+        var eventID = oEventModel.eventID;
+        var oSessionsBox = this.getView().byId("sessionsBox");
+
         if (eventID) {
           this.loadSessions(eventID);
           oSessionsBox.setVisible(true);
@@ -292,14 +302,18 @@ sap.ui.define(
           aFilters.push(oLocationFilter);
         }
 
-        // Apply combined filters to the table binding
+        // Apply combined filters to the table binding.
         oBinding.filter(aFilters);
       },
       voegSessieToe: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("createSession", {});
-      },
 
+        // Get the event name from localStorage
+        var eventName = localStorage.getItem("eventName");
+
+        oRouter.navTo("createSession", { eventName: eventName });
+        window.location.reload();
+      },
       onRegisterPress: function (oEvent) {
         var oSessionContext = oEvent
           .getSource()

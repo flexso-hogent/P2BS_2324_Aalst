@@ -9,7 +9,7 @@ sap.ui.define(
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
-   */
+   **/
   function (
     Controller,
     JSONModel,

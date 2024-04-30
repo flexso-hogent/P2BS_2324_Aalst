@@ -102,7 +102,7 @@ sap.ui.define(
                 oSessionSelect.addItem(oItem);
               });
 
-              // Selecteer de eerste sessie automatisch
+              // Selecteer de eerste sessie automatisch.
               oSessionSelect.setSelectedItem(oSessionSelect.getItems()[0]);
 
               // Laad de gegevens van de automatisch geselecteerde sessie

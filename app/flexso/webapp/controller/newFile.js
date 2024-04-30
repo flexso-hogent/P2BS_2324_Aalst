@@ -37,7 +37,7 @@ sap.ui.define(
         var bEventTableVisible = oEventTable.getVisible();
         var bSessionsListVisible = oSessionsList.getVisible();
 
-        // Toggle visibility
+        // Toggle visibility.
         oEventTable.setVisible(!bEventTableVisible);
         oSessionsList.setVisible(!bSessionsListVisible);
 

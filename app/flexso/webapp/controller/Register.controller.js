@@ -67,7 +67,6 @@ sap.ui.define(
           firstname,
           lastname,
           company,
-          // role,
           bdate,
           password,
           passwordRepeat,

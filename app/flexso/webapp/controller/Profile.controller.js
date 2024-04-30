@@ -97,7 +97,7 @@ sap.ui.define(
           this.getView().byId("phoneInput").getValue()
         );
         var updatedBdate = this.getView().byId("bdateInput").getDateValue();
-        // Convert date to string in the format YYYY-MM-DD
+        // Convert date to string in the format YYYY-MM-DD.
         var formattedBdate = updatedBdate
           ? updatedBdate.toISOString().split("T")[0]
           : null;

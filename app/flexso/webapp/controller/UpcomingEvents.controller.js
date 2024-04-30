@@ -291,7 +291,7 @@ sap.ui.define(
         return icalContent;
       },
 
-      // Download ICS file
+      // Download ICS file.
       downloadICSFile: function (content, filename) {
         var blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
         var url = window.URL.createObjectURL(blob);

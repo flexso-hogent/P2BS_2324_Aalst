@@ -159,7 +159,7 @@ sap.ui.define(
                   },
                 });
               } else {
-                // User canceled, do nothing
+                // User canceled, do nothing.
               }
             },
           }

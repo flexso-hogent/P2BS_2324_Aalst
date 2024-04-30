@@ -42,24 +42,39 @@
                         class="registerImage"
                     />
                     <Label
-                        id="_IDGenLabel1"
+                        id="_IDGenLabel11"
                         text="{i18n>SelectEvent}"
                         class="LabelCreateSession"
                     />
-                    <Select
-                        id="eventSelect"
-                        items="{eventModel>/}"
-                        width="50%"
+                    <SearchField
+                        width="50%" 
+                        id="searchEvent" 
+                        liveChange="onSearchLiveChange" 
                         class="InputCreateSession"
-                        required="true"
-                    >
-                        <core:Item
-                            id="_IDGenItem1"
-                            key="{eventModel>eventID}"
-                            text="{eventModel>Name}"
-                        />
-                    </Select>
-                    
+                        suggest="onSuggestEvent"
+                        placeholder="{i18n>phSearch1}"
+                    ></SearchField>
+
+                
+                <Table id="_IDGenTable1" width="50%" itemPress="onItemPress" class="InputCreateSession" items="{eventModel>/}" growing="true" growingThreshold="3" selectionChange="onSelectionChange">
+    <columns>
+        <Column id="_IDGenColumn1" width="45%">
+            <Text id="_IDGenText1" text="{i18n>eventName}" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" type="Navigation" press="onSessionSelect">
+            <cells>
+                <Text id="_IDGenText7" text="{eventModel>Name}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
+
+          
+                   
+
                     <Label
                         id="_IDGenLabel2"
                         text="{i18n>Title}"

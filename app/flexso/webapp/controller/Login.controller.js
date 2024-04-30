@@ -119,7 +119,7 @@ sap.ui.define(
       sha256: function (message) {
         // Convert message to ArrayBuffer
         var buffer = new TextEncoder().encode(message);
-        // Hash the ArrayBuffer
+        // Hash the ArrayBuffer.
         return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
           return Array.prototype.map
             .call(new Uint8Array(hash), function (x) {
