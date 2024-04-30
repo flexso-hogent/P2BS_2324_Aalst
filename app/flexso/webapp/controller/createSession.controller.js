@@ -13,7 +13,7 @@ sap.ui.define(
         this.loadData();
         var oEventName = localStorage.getItem("eventName");
         this.getView().byId("searchEvent").setValue(oEventName);
-        this.getView().byId("eventComboBox").setValue(oEventName);
+
         sap.ui.getCore().applyChanges();
 
         var oRootPath = jQuery.sap.getModulePath(
@@ -37,9 +37,15 @@ sap.ui.define(
         var oClickedItemContext = oClickedItem.getBindingContext("eventModel");
         var sClickedItemName = oClickedItemContext.getProperty("Name");
 
-        var oComboBox = this.getView().byId("eventComboBox");
+        var oComboBox = this.getView().byId("searchEvent");
         if (oComboBox) {
           oComboBox.setValue(sClickedItemName);
+        }
+
+        // Hide the table
+        var oTable = this.getView().byId("_IDGenTable1"); // replace "yourTableId" with the actual id of your table
+        if (oTable) {
+          oTable.setVisible(false);
         }
       },
 
@@ -107,7 +113,7 @@ sap.ui.define(
         var that = this;
 
         // Get selected event data
-        var sSelectedEvent = oView.byId("eventComboBox").getValue();
+        var sSelectedEvent = oView.byId("searchEvent").getValue();
         var oTable = oView.byId("_IDGenTable1");
         var oSelectedItem = oTable.getSelectedItem();
 

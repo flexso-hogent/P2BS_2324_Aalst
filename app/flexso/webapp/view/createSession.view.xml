@@ -72,25 +72,8 @@
 </Table>
 
 
-                    <Label
-                        id="_IDGenLabel1"
-                        text="{i18n>thisIsTheEvent}"
-                        class="LabelCreateSession"
-                        
-                    />
-
-                    <Button id="button1" icon="sap-icon://edit" press="onEditPress"></Button>
-                    <Input
-                        id="eventComboBox"
-                        width="50%"
-                        class="InputCreateSession"
-                        required="true"
-                        placeholder="{i18n>thisIsTheEvent}"
-                        editable="false"
-                        
-                    >
-            
-                    </Input>
+          
+                   
 
                     <Label
                         id="_IDGenLabel2"
