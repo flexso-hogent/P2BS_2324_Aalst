@@ -72,13 +72,13 @@ sap.ui.define(
             // Assuming the response data is an array of registered session objects
             // Filter out sessions that have already occurred
             var currentTimestamp = new Date().getTime();
-            var upcomingSessions = data.value.filter(function(session) {
+            var upcomingSessions = data.value.filter(function (session) {
               return new Date(session.startDate).getTime() > currentTimestamp;
             });
-    
+
             // Reverse the order of the sessions
             var reversedSessions = upcomingSessions.reverse();
-    
+
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
     
@@ -88,7 +88,9 @@ sap.ui.define(
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show(
-              this.getView().getModel("i18n").getProperty("errorFetchRegisteredSession")  + error
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchRegisteredSession") + error
             );
           },
         });
@@ -116,7 +118,11 @@ sap.ui.define(
             oModel.setProperty("/feedbackData", firstTwoFeedback);
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("errorFetchFeedbackdata") + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedbackdata") + error
+            );
           },
         });
       },
@@ -148,16 +154,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onGoToOverviewEventPress: function () {
@@ -170,7 +179,9 @@ sap.ui.define(
       },
       onGoToCreateSessionPress: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-        oRouter.navTo("createSession");
+        var oEventName = localStorage.getItem("");
+        oRouter.navTo("createSession", { oEventName: oEventName });
+        window.location.reload();
       },
 
       onGoToEventRegistrationOverview: function () {
@@ -285,7 +296,9 @@ sap.ui.define(
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          this.getView().getModel("i18n").getProperty("homeleavesession") + sSessionTitle + "'?",
+          this.getView().getModel("i18n").getProperty("homeleavesession") +
+            sSessionTitle +
+            "'?",
           {
             title: "Confirm",
             actions: [
@@ -315,7 +328,11 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/registeredSessionsData", aSessions);
                     }
-                    sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("sessieverlatenhome"));
+                    sap.m.MessageToast.show(
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("sessieverlatenhome")
+                    );
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
                       window.location.reload();
@@ -324,7 +341,9 @@ sap.ui.define(
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      this.getView().getModel("i18n").getProperty("sessieonsucverlatenhome") + error
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("sessieonsucverlatenhome") + error
                     );
                   },
                 });
