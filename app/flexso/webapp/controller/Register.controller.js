@@ -53,12 +53,12 @@ sap.ui.define(
         }
 
         if (!isValidEmail(email)) {
-          MessageToast.show("Invalid email address!");
+          MessageToast.show( this.getView().getModel("i18n").getProperty("Invalidmail"));
           return;
         }
 
         if (password !== passwordRepeat) {
-          MessageToast.show("Passwords do not match!");
+          MessageToast.show(this.getView().getModel("i18n").getProperty("Invalidpass")); 
           return;
         }
 
@@ -67,7 +67,6 @@ sap.ui.define(
           firstname,
           lastname,
           company,
-          // role,
           bdate,
           password,
           passwordRepeat,
@@ -80,10 +79,10 @@ sap.ui.define(
           gender,
         ];
         if (requiredFields.some((field) => !field)) {
-          MessageToast.show("Please fill in all fields!");
+          MessageToast.show( this.getView().getModel("i18n").getProperty("fillinallfields"));
           return;
         }
-
+       
         try {
           // Hash the password using SHA-256
           var hashedPassword = await this.sha256(password);
@@ -114,7 +113,8 @@ sap.ui.define(
           });
 
           if (data.results && data.results.length > 0) {
-            MessageToast.show("Registration failed! User already exists.");
+            MessageToast.show(this.getView().getModel("i18n").getProperty("registrationfaileduser"));
+            
           } else {
             // Format the date to YYYY-MM-DD format
             var formattedBdate = bdate.toISOString().split("T")[0];
@@ -138,7 +138,7 @@ sap.ui.define(
             await new Promise((resolve, reject) => {
               oDataModel.create("/Users", requestData, {
                 success: function () {
-                  MessageToast.show("Registration successful!");
+                  MessageToast.show(that.getView().getModel("i18n").getProperty("regsucces"));
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(that);
                     oRouter.navTo("login");
@@ -147,7 +147,7 @@ sap.ui.define(
                 },
                 error: function (error) {
                   MessageToast.show(
-                    "Registration failed: " + error.responseText
+                    this.getView().getModel("i18n").getProperty("regfailed") + error.responseText
                   );
                   reject(error);
                 },
@@ -155,7 +155,8 @@ sap.ui.define(
             });
           }
         } catch (error) {
-          MessageToast.show("Error during registration: " + error);
+          MessageToast.show(this.getView().getModel("i18n").getProperty("regerror")  + error);
+          
         }
       },
 

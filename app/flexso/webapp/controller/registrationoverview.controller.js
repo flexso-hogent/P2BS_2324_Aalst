@@ -53,7 +53,7 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             console.error("Error fetching event data:", error);
-            MessageToast.show("Error fetching event data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdateevent") + error);
           },
         });
       },
@@ -102,7 +102,7 @@ sap.ui.define(
                 oSessionSelect.addItem(oItem);
               });
 
-              // Selecteer de eerste sessie automatisch
+              // Selecteer de eerste sessie automatisch.
               oSessionSelect.setSelectedItem(oSessionSelect.getItems()[0]);
 
               // Laad de gegevens van de automatisch geselecteerde sessie
@@ -113,7 +113,7 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             console.error("Error fetching session data:", error);
-            MessageToast.show("Error fetching session data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
           },
         });
       },
@@ -229,7 +229,7 @@ sap.ui.define(
                 },
                 error: function (xhr, status, error) {
                   console.error("Error fetching user data:", error);
-                  MessageToast.show("Error fetching user data: " + error);
+                  MessageToast.show(this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
                 },
               });
             } else {
@@ -242,7 +242,7 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             console.error("Error fetching participant data:", error);
-            MessageToast.show("Error fetching participant data: " + error);
+            MessageToast.show( this.getView().getModel("i18n").getProperty("errorFetchParticipantData") + error);
           },
         });
       },
@@ -332,7 +332,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

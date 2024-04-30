@@ -97,7 +97,8 @@ sap.ui.define(
       },
 
       loadData: function () {
-        var that = this;
+        var that = this; // Sla de huidige scope op in een variabele
+
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Events",
           dataType: "json",
@@ -114,7 +115,7 @@ sap.ui.define(
             });
 
             var eventModel = new JSONModel(filteredEvents);
-            that.getView().setModel(eventModel, "eventModel");
+            that.getView().setModel(eventModel, "eventModel"); // Gebruik 'that' om de juiste scope te behouden
           },
           error: function (xhr, status, error) {
             sap.MessageBox.error(
@@ -132,7 +133,6 @@ sap.ui.define(
         var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
       },
-
       onCreateSession: function () {
         var oView = this.getView();
         var that = this;
@@ -242,8 +242,7 @@ sap.ui.define(
           },
           error: function () {
             sap.MessageBox.error(
-              that
-                .getView()
+              this.getView()
                 .getModel("i18n")
                 .getProperty("sessieCreateFetchError")
             );

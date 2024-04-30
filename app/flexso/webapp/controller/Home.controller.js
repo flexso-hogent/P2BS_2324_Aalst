@@ -54,17 +54,17 @@ sap.ui.define(
       fetchRegisteredSessionsData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
-
+    
         // Replace this with your actual service URL
         var sessionServiceURL =
           "http://localhost:4004/odata/v4/catalog/registerdOnASession";
-
+    
         // Construct the filter based on the logged-in user's email
         var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
-
+    
         // Append the filter to the service URL
         sessionServiceURL += filter;
-
+    
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
@@ -81,7 +81,7 @@ sap.ui.define(
 
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
-
+    
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
             oModel.setProperty("/registeredSessionsData", upcomingSessions);
@@ -95,7 +95,7 @@ sap.ui.define(
           },
         });
       },
-
+    
       fetchFeedbackData: function () {
         var loggedInUserEmail = localStorage.getItem("email");
 
@@ -339,7 +339,7 @@ sap.ui.define(
                     }, 500);
                   },
                   error: function (xhr, status, error) {
-                    // Handle error
+                    // Handle error.
                     sap.m.MessageToast.show(
                       this.getView()
                         .getModel("i18n")

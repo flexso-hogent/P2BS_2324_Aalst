@@ -92,9 +92,11 @@ sap.ui.define(
 
         // Check if user email is available
         if (!userEmail) {
-          MessageToast.show("User email not found in localStorage");
+          MessageToast.show(this.getView().getModel("i18n").getProperty("UPeventEmailLocalStorage"));
           return;
         }
+
+        
 
         // Construct the service URL with the filter
         var sessionServiceURL =
@@ -120,18 +122,21 @@ sap.ui.define(
             } else {
               // No sessions found for the logged-in user
               MessageToast.show(
-                "No registered upcoming sessions found for the logged-in user"
+                this.getView().getModel("i18n").getProperty("UPeventNoRegistered")
               );
+
+
             }
           }.bind(this),
           error: function (xhr, status, error) {
             // Handle error case
             MessageToast.show(
-              "Error fetching upcoming registered sessions data: " + error
+              this.getView().getModel("i18n").getProperty("fetchuserdateSess") + error
             );
           },
         });
       },
+
 
       isSessionInPast: function (endDate) {
         var today = new Date();
@@ -178,7 +183,7 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -201,7 +206,9 @@ sap.ui.define(
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          "Are you sure you want to leave session '" + sSessionTitle + "'?",
+          this.getView().getModel("i18n").getProperty("UPeventLeaveSess") + sSessionTitle + "'?",
+
+          
           {
             title: "Confirm",
             actions: [
@@ -231,7 +238,8 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/", aSessions);
                     }
-                    sap.m.MessageToast.show("Session left successfully");
+                    sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("UPeventLeaveSessSucc"));
+                    
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
                       window.location.reload();
@@ -240,8 +248,9 @@ sap.ui.define(
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      "Error occurred while leaving session: " + error
+                      this.getView().getModel("i18n").getProperty("UPeventErrorSess") + error
                     );
+                    
                   },
                 });
               }
@@ -282,7 +291,7 @@ sap.ui.define(
         return icalContent;
       },
 
-      // Download ICS file
+      // Download ICS file.
       downloadICSFile: function (content, filename) {
         var blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
         var url = window.URL.createObjectURL(blob);

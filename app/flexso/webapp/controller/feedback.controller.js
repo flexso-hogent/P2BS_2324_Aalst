@@ -72,7 +72,7 @@ sap.ui.define(
       },
 
       fetchFeedbackSessions: function () {
-        // Fetch feedback sessions for the current user from the server
+        // Fetch feedback sessions for the current user from the server.
         var loggedInUserEmail = localStorage.getItem("email");
         // Replace this with your actual service URL
         var feedbackSessionsURL =
@@ -90,7 +90,7 @@ sap.ui.define(
             });
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching feedback sessions: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("errorFetchFeedbacksessions") + error);
           },
         });
       },
@@ -118,7 +118,7 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -153,7 +153,7 @@ sap.ui.define(
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
         if (this.feedbackSessions.includes(sessie)) {
           sap.m.MessageBox.error(
-            "You have already given feedback for this session."
+            this.getView().getModel("i18n").getProperty("feedbackalready")
           );
           return; // Exit the function if feedback already given
         }
@@ -193,7 +193,7 @@ sap.ui.define(
             contentType: "application/json",
             data: JSON.stringify(feedbackData),
             success: function (data) {
-              MessageToast.show("Bedankt voor uw feedback!");
+              MessageToast.show(this.getView().getModel("i18n").getProperty("Thankyoufeedback"));
               setTimeout(
                 function () {
                   var oRouter = UIComponent.getRouterFor(this);

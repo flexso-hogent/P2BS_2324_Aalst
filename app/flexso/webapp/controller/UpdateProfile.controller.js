@@ -41,7 +41,7 @@ sap.ui.define(
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-          sap.m.MessageBox.error("Logged-in user email not found.");
+          sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("profileEmailNotFound"));
           return;
         }
         var userDataUrl =
@@ -68,19 +68,22 @@ sap.ui.define(
               });
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
-              sap.m.MessageBox.error("User data not found.");
+              sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("profileUD"));
             }
           },
           error: function (xhr, status, error) {
-            sap.m.MessageBox.error("Failed to fetch user data: " + error);
+            sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
           },
         });
       },
+
+      
+
       onUpdateProfilePress: function () {
         var that = this;
 
         sap.m.MessageBox.confirm(
-          "Are you sure you want to update your profile?",
+          this.getView().getModel("i18n").getProperty("profileUpdateProfile"),
           {
             title: "Confirmation",
             onClose: function (oAction) {
@@ -106,6 +109,8 @@ sap.ui.define(
                     .split("T")[0],
                 };
 
+                
+
                 var userId;
                 $.ajax({
                   url: "http://localhost:4004/odata/v4/catalog/Users",
@@ -117,14 +122,14 @@ sap.ui.define(
                       userId = data.value[0].userID;
                     } else {
                       sap.m.MessageBox.error(
-                        "User not found with the provided email address"
+                        this.getView().getModel("i18n").getProperty("profileEmailNotFound")
                       );
                       return;
                     }
                   },
                   error: function (xhr, status, error) {
                     sap.m.MessageBox.error(
-                      "Failed to retrieve user data: " + error
+                      this.getView().getModel("i18n").getProperty("fetchuserdate") + error
                     );
                     return;
                   },
@@ -140,7 +145,7 @@ sap.ui.define(
                   contentType: "application/json",
                   data: JSON.stringify(updatedUserData),
                   success: function () {
-                    MessageToast.show("Profile updated successfully");
+                    MessageToast.show(this.getView().getModel("i18n").getProperty("profileUpdateSucces"));
                     setTimeout(function () {
                       that.loadUserData();
 
@@ -150,22 +155,22 @@ sap.ui.define(
                     }, 1500); // 1.5 seconds delay
                   },
                   error: function (xhr, status, error) {
-                    sap.m.MessageBox.error(
-                      "Failed to update profile, make sure your changes are correct. "
-                    );
+                    sap.m.MessageBox.error(that.getView().getModel("i18n").getProperty("profileFailed"));
                   },
                 });
               } else {
-                // User canceled, do nothing
+                // User canceled, do nothing.
               }
             },
           }
         );
       },
 
+      
+
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -187,7 +192,7 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {

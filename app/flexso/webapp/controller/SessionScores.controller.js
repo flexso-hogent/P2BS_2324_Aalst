@@ -9,7 +9,7 @@ sap.ui.define(
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
-   */
+   **/
   function (
     Controller,
     JSONModel,
@@ -67,7 +67,7 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm("Are you sure you want to log out?", {
+        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
           title: "Confirm",
           onClose: function (oAction) {
             if (oAction === sap.m.MessageBox.Action.OK) {
@@ -142,7 +142,7 @@ sap.ui.define(
         var oCurrentDate = new Date();
 
         if (sEndDate > oCurrentDate) {
-          sap.m.MessageToast.show("event is not yet finished");
+          sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("SessionScoresEventNotFinisched"));
         } else {
           var oSearchField = this.getView().byId("eventZoekenInput");
           oSearchField.setValue(sTitel);
@@ -181,7 +181,8 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdate") + error);
+            
           },
         });
       },
@@ -258,11 +259,12 @@ sap.ui.define(
                 // oSessionsBox.setVisible(true);
               })
               .catch(function (error) {
-                MessageToast.show("Error fetching session data: " + error);
+                MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+                
               });
           },
           error: function (xhr, status, error) {
-            MessageToast.show("Error fetching session data: " + error);
+            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
           },
         });
       },
