@@ -54,7 +54,7 @@ sap.ui.define(
           path: oRootPath,
           profileImagePath: oProfileImagePath,
         });
-      
+
         this.getView().setModel(oImageModel, "imageModel");
       },
       onItemPress: function (oEvent) {
@@ -98,7 +98,7 @@ sap.ui.define(
 
       loadData: function () {
         var that = this; // Sla de huidige scope op in een variabele
-      
+
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Events",
           dataType: "json",
@@ -113,7 +113,7 @@ sap.ui.define(
                 description: event.description,
               };
             });
-      
+
             var eventModel = new JSONModel(filteredEvents);
             that.getView().setModel(eventModel, "eventModel"); // Gebruik 'that' om de juiste scope te behouden
           },
@@ -126,11 +126,13 @@ sap.ui.define(
       },
 
       formatDate: function (dateString) {
-        var parts = dateString.split("-"); // Splits de datum op in dag, maand en jaar
-        var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0]; // Formateer de datum naar "yyyy-mm-dd"
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = String(date.getMonth() + 1).padStart(2, "0");
+        var day = String(date.getDate()).padStart(2, "0");
+        var formattedDate = year + "-" + month + "-" + day;
         return formattedDate;
       },
-
       onCreateSession: function () {
         var oView = this.getView();
         var that = this;
@@ -165,7 +167,6 @@ sap.ui.define(
           );
           return;
         }
-
 
         // Proceed with session creation
         // Fetch the latest session ID from the backend
@@ -221,7 +222,9 @@ sap.ui.define(
               contentType: "application/json",
               data: JSON.stringify(oSessionData),
               success: function () {
-                MessageToast.show(that.getView().getModel("i18n").getProperty("sessieCreate"));
+                MessageToast.show(
+                  that.getView().getModel("i18n").getProperty("sessieCreate")
+                );
                 setTimeout(function () {
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
                   oRouter.navTo("home");
@@ -238,7 +241,11 @@ sap.ui.define(
             });
           },
           error: function () {
-            sap.MessageBox.error(this.getView().getModel("i18n").getProperty("sessieCreateFetchError"));
+            sap.MessageBox.error(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("sessieCreateFetchError")
+            );
           },
         });
       },
