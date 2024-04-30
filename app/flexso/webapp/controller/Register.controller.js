@@ -138,7 +138,7 @@ sap.ui.define(
             await new Promise((resolve, reject) => {
               oDataModel.create("/Users", requestData, {
                 success: function () {
-                  MessageToast.show(this.getView().getModel("i18n").getProperty("regsucces"));
+                  MessageToast.show(that.getView().getModel("i18n").getProperty("regsucces"));
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(that);
                     oRouter.navTo("login");

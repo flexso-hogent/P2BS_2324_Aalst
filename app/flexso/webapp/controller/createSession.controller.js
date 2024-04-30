@@ -221,7 +221,7 @@ sap.ui.define(
               contentType: "application/json",
               data: JSON.stringify(oSessionData),
               success: function () {
-                MessageToast.show(this.getView().getModel("i18n").getProperty("sessieCreate"));
+                MessageToast.show(that.getView().getModel("i18n").getProperty("sessieCreate"));
                 setTimeout(function () {
                   var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
                   oRouter.navTo("home");
