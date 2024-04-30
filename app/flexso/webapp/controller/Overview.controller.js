@@ -312,6 +312,7 @@ sap.ui.define(
         var eventName = localStorage.getItem("eventName");
 
         oRouter.navTo("createSession", { eventName: eventName });
+        window.location.reload();
       },
       onRegisterPress: function (oEvent) {
         var oSessionContext = oEvent
