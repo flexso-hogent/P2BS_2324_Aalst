@@ -821,3 +821,16 @@
 .mobileButton {
   width: 50%;
 }
+
+.descriptionButton,
+.descriptionButton.sapMBtnBase,
+.descriptionButton .sapMBtnHoverable {
+  background-color: rgb(65, 61, 59) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+
+.descriptionButton .sapUiIcon {
+  color: white !important; /* Set icon color to white */
+}

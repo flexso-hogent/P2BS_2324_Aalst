@@ -157,10 +157,10 @@
 
                                 <Button
                                     id="descriptionButton"
-                                    class="descriptionButton"
                                     icon="sap-icon://message-information"
                                     press="onShowFullDescription"
                                     visible="{= ${upcomingSessionsModel>description}.length > 20}"
+                                    class="descriptionButton"
                                 />
                             </HBox>
 
