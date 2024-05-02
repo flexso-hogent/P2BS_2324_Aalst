@@ -265,9 +265,9 @@
                                     id="lebelSessionDescription2"
                                     text="Description:"
                                 />
-                                <Text
+                                <FormattedText
                                     id="sessionDescription"
-                                    text="{= ${imageModel>description}.length > 60 ? ${imageModel>description}.substring(0, 60) + '...' : ${imageModel>description}}"
+                                    htmlText="{= ${imageModel>description}}"
                                     class="sessionDescription"
                                 />
                                 <Button

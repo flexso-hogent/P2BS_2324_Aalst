@@ -33,6 +33,16 @@ sap.ui.define(
         oImageModel.attachPropertyChange(this.onRoleChange, this);
       },
 
+      formatImageUrl: function (description) {
+        // Extract the image URL from the description
+        var urlMatch = description.match(/src="([^"]*)"/);
+        if (urlMatch && urlMatch.length > 1) {
+          return urlMatch[1];
+        } else {
+          return ""; // Return empty string if no match found
+        }
+      },
+
       onRoleChange: function (oEvent) {
         if (oEvent.getParameter("path") === "/role") {
           this.computeCreateButtonsVisibility();

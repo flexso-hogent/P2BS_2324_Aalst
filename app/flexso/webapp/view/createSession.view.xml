@@ -5,6 +5,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
     displayBlock="true"
+    xmlns:rte="sap.ui.richtexteditor"
     class="backgroundFlexso"
 >
     <Page
@@ -203,7 +204,7 @@
                         text="{i18n>Description}"
                         class="LabelCreateSessionPage"
                     />
-                    <TextArea
+                    <!-- <TextArea
                         id="_IDGenInput3"
                         value="{sessionModel>/description}"
                         placeholder="{i18n>Description}"
@@ -211,7 +212,16 @@
                         rows="5"
                         class="InputCreateSession"
                         required="true"
+                    /> -->
+
+                    <rte:RichTextEditor
+                        id="_IDGenInput3"
+                        value="{sessionModel>/description}"
+                        width="50%"
+                        class="InputCreateSession"
+                        required="true"
                     />
+
                     <Button
                         id="_IDGenButton"
                         text="{i18n>CreateSession}"
