@@ -27,7 +27,7 @@
                 <VBox
                     id="_IDGenVBox1"
                     class="feedbackBox"
-                    width="100%"
+                    width="1000px"
                 >
                     <Title
                         id="_IDGenTitle1"
@@ -200,14 +200,14 @@
                     <Button
                         id="sendFeedback"
                         text="{i18n>sendFeedback}"
-                        width="100%"
+                        width="50%"
                         press="onFeedback"
                         class="sapUiSmallMarginTop updateProfileButton"
                     />
                     <Button
                         id="sendFeedback2"
                         text="{i18n>backToHomeButton}"
-                        width="100%"
+                        width="50%"
                         press="onBackToHome"
                         class="sapUiSmallMarginTop updateProfileButton"
                     />

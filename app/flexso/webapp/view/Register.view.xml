@@ -389,7 +389,7 @@
                 text="{i18n>registerButton}"
                 press="onRegister"
                 class="registerButton"
-                type="Accept"
+                width="20%"
             />
         </content>
     </Page>
