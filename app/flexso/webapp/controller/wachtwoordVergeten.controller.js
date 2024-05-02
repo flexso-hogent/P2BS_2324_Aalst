@@ -164,7 +164,7 @@ sap.ui.define(
                             });
                           });
                       } else {
-                        MessageToast.show(
+                        MessageBox.error(
                           that
                             .getView()
                             .getModel("i18n")
