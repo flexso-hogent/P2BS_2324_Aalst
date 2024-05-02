@@ -53,16 +53,18 @@ sap.ui.define(
         }
 
         if (!isValidEmail(email)) {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("Invalidmail"));
-          return;
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("Invalidmail")
+          );
         }
 
         if (password !== passwordRepeat) {
-          MessageToast.show(this.getView().getModel("i18n").getProperty("Invalidpass")); 
-          return;
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("passwordmatch")
+          );
         }
 
-        if (!this.isPasswordStrong(password)){
+        if (!this.isPasswordStrong(password)) {
           sap.m.MessageBox.error(
             this.getView().getModel("i18n").getProperty("weakPassword")
           );
@@ -86,10 +88,11 @@ sap.ui.define(
           gender,
         ];
         if (requiredFields.some((field) => !field)) {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("fillinallfields"));
-          return;
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("fillinallfields")
+          );
         }
-       
+
         try {
           // Hash the password using SHA-256
           var hashedPassword = await this.sha256(password);
@@ -120,8 +123,11 @@ sap.ui.define(
           });
 
           if (data.results && data.results.length > 0) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("registrationfaileduser"));
-            
+            sap.m.MessageBox.error(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("registrationfaileduser")
+            );
           } else {
             // Format the date to YYYY-MM-DD format
             var formattedBdate = bdate.toISOString().split("T")[0];
@@ -145,7 +151,9 @@ sap.ui.define(
             await new Promise((resolve, reject) => {
               oDataModel.create("/Users", requestData, {
                 success: function () {
-                  MessageToast.show(that.getView().getModel("i18n").getProperty("regsucces"));
+                  MessageToast.show(
+                    that.getView().getModel("i18n").getProperty("regsucces")
+                  );
                   setTimeout(function () {
                     var oRouter = UIComponent.getRouterFor(that);
                     oRouter.navTo("login");
@@ -154,7 +162,8 @@ sap.ui.define(
                 },
                 error: function (error) {
                   MessageToast.show(
-                    this.getView().getModel("i18n").getProperty("regfailed") + error.responseText
+                    this.getView().getModel("i18n").getProperty("regfailed") +
+                      error.responseText
                   );
                   reject(error);
                 },
@@ -162,8 +171,9 @@ sap.ui.define(
             });
           }
         } catch (error) {
-          MessageToast.show(this.getView().getModel("i18n").getProperty("regerror")  + error);
-          
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("regerror") + error
+          );
         }
       },
 
@@ -223,7 +233,7 @@ sap.ui.define(
         }
 
         return true;
-      }
+      },
     });
   }
 );
