@@ -41,7 +41,7 @@
                         id="titleEventsChoose"
                         text="{i18n>ChooseAnEvent}"
                     />
-                    <Select
+                    <ComboBox
                         id="sessionEventSelect"
                         change="onEventSelectChange"
                     />
@@ -54,16 +54,10 @@
                         id="titleSessionChoose"
                         text="{i18n>ChooseASession}"
                     />
-                    <Select
+                    <ComboBox
                         id="sessionSelect1"
                         change="onSessionSelectChange"
-                    >
-                        <core:Item
-                            id="_IDGenItem1"
-                            key="{sessionModel>sessionID}"
-                            text="{sessionModel>title}"
-                        />
-                    </Select>
+                    />
                 </VBox>
 
                 <!-- Zoekbalk -->

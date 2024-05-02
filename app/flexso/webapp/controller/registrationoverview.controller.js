@@ -53,20 +53,22 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             console.error("Error fetching event data:", error);
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdateevent") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdateevent") +
+                error
+            );
           },
         });
       },
 
       onSessionSelectChange: function (oEvent) {
-        console.log("Session selection changed...");
         var selectedSessionId = oEvent.getParameter("selectedItem").getKey();
         this.loadRegisteredParticipants(selectedSessionId);
       },
 
       onEventSelectChange: function (oEvent) {
         var selectedEventId = oEvent.getParameter("selectedItem").getKey();
-        this.loadSessions(selectedEventId);
+        this.loadSessions(selectedEventId); // Call loadSessions with selected event ID
       },
 
       loadSessions: function (eventID) {
@@ -91,38 +93,33 @@ sap.ui.define(
             that.getView().setModel(sessionModel, "sessionModel");
 
             var oSessionSelect = that.getView().byId("sessionSelect1");
-            // Alleen items toevoegen als er sessies zijn
-            if (sessions.length > 0) {
-              oSessionSelect.removeAllItems();
-              sessions.forEach(function (session) {
-                var oItem = new sap.ui.core.Item({
+            oSessionSelect.removeAllItems();
+            // Add sessions to the second ComboBox
+            sessions.forEach(function (session) {
+              oSessionSelect.addItem(
+                new sap.ui.core.Item({
                   key: session.sessionID,
                   text: session.title,
-                });
-                oSessionSelect.addItem(oItem);
-              });
-
-              // Selecteer de eerste sessie automatisch.
-              oSessionSelect.setSelectedItem(oSessionSelect.getItems()[0]);
-
-              // Laad de gegevens van de automatisch geselecteerde sessie
-              that.loadRegisteredParticipants(
-                oSessionSelect.getItems()[0].getKey()
+                })
               );
+            });
+
+            // Load registered participants for the first session by default
+            if (sessions.length > 0) {
+              that.loadRegisteredParticipants(sessions[0].sessionID);
             }
           },
           error: function (xhr, status, error) {
             console.error("Error fetching session data:", error);
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+            MessageToast.show(
+              that.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
           },
         });
       },
 
       loadRegisteredParticipants: function (sessionID) {
-        console.log(
-          "Loading registered participants for session ID:",
-          sessionID
-        );
         var that = this;
 
         jQuery.ajax({
@@ -229,7 +226,11 @@ sap.ui.define(
                 },
                 error: function (xhr, status, error) {
                   console.error("Error fetching user data:", error);
-                  MessageToast.show(this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
+                  MessageToast.show(
+                    this.getView()
+                      .getModel("i18n")
+                      .getProperty("fetchuserdate") + error
+                  );
                 },
               });
             } else {
@@ -242,7 +243,11 @@ sap.ui.define(
           },
           error: function (xhr, status, error) {
             console.error("Error fetching participant data:", error);
-            MessageToast.show( this.getView().getModel("i18n").getProperty("errorFetchParticipantData") + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchParticipantData") + error
+            );
           },
         });
       },
@@ -332,16 +337,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
     });
   }
