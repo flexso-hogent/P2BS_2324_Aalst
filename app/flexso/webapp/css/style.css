@@ -798,8 +798,6 @@
   margin-bottom: 2%;
 }
 
-
-
 .addSessieButton,
 .addSessieButton.sapMBtnBase,
 .addSessieButton .sapMBtnHoverable {
@@ -810,4 +808,16 @@
   width: 80%;
   margin: 0 auto; /* Center the button horizontally */
   align-items: center;
+}
+.wideSearchField {
+  width: 50%;
+}
+.fullWidthSearchField {
+  width: 100%;
+}
+.wideButton {
+  width: 10%;
+}
+.mobileButton {
+  width: 50%;
 }

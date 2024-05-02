@@ -3,6 +3,7 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
+    displayBlock="true"
 >
     <Page
         id="_IDGenPage1"
@@ -19,88 +20,126 @@
         <HBox
             id="_IDGenHBox1"
             class="barAll"
+            width="100%"
         >
             <SearchField
                 id="_IDGenSearchField"
                 placeholder="{i18n>Search}"
                 liveChange="onSearch"
-                width="100%"
+                class="{= ${device>/isPhone} ? 'fullWidthSearchField' : 'wideSearchField'}"
             />
+
             <Button
                 id="_IDGenButton1"
                 icon="sap-icon://sort"
                 press="onSortPress"
+                visible="{device>/isPhone}"
             />
         </HBox>
 
-        <!-- Table to display all registered sessions -->
+        <!-- Table for displaying all registered sessions -->
         <Table
             id="_IDGenTable1"
             items="{
-        path: 'allSessionsModel>/',
-        filters: [
-            {
-                path: 'endDate',
-                operator: 'GT',
-                value1: '{path: \'today\', formatter: \'flexso.controller.AllSessions.formatDate\'}'
-            }
-        ]
-    }"
+                path: 'allSessionsModel>/',
+                filters: [
+                    {
+                        path: 'endDate',
+                        operator: 'GT',
+                        value1: '{path: \'today\', formatter: \'flexso.controller.AllSessions.formatDate\'}'
+                    }
+                ]
+            }"
             class="all-sessions-table"
+            mode="{device>/isPhone ? 'SingleSelectMaster' : 'MultiSelect'}"
+            inset="{device>/isPhone}"
             selectionChange="onDelete"
         >
-            <!-- Your table columns and items -->
-
             <columns>
-                <Column id="_IDGenColumn1">
+                <Column
+                    id="_IDGenColumn1"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    popinDisplay="Inline"
+                >
                     <Text
                         id="_IDGenText1"
                         text="{i18n>Title}"
                     />
                 </Column>
-                <Column id="_IDGenColumn2">
+                <Column
+                    id="_IDGenColumn2"
+                    demandPopin="true"
+                    popinDisplay="Inline"
+                    minScreenWidth="Desktop"
+                >
                     <Text
                         id="_IDGenText2"
                         text="{i18n>StartDate}"
                     />
                 </Column>
-                <Column id="_IDGenColumn3">
+                <Column
+                    id="_IDGenColumn3"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    popinDisplay="Inline"
+                >
                     <Text
                         id="_IDGenText3"
                         text="{i18n>EndDate}"
                     />
                 </Column>
-                <Column id="_IDGenColumn">
+                <Column
+                    id="_IDGenColumn"
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                >
                     <Text
                         id="_IDGenText"
                         text="{i18n>StartTime}"
                     />
                 </Column>
-                <Column id="_IDGenColumn11">
+                <Column
+                    id="_IDGenColumn11"
+                    minScreenWidth="Desktop"
+                    demandPopin="true"
+                >
                     <Text
-                        id="_IDGenTex11"
+                        id="_IDGenText121"
                         text="{i18n>EndTime}"
                     />
                 </Column>
-                <Column id="_IDGenColumn4">
+                <Column
+                    id="_IDGenColumn4"
+                    minScreenWidth="Desktop"
+                >
                     <Text
                         id="_IDGenText4"
                         text="{i18n>Room}"
                     />
                 </Column>
-                <Column id="_IDGenColumn5">
+                <Column
+                    id="_IDGenColumn5"
+                    minScreenWidth="Desktop"
+                >
                     <Text
                         id="_IDGenText5"
                         text="{i18n>Speaker}"
                     />
                 </Column>
-                <Column id="_IDGenColumn6">
+                <Column
+                    id="_IDGenColumn6"
+                    minScreenWidth="Desktop"
+                >
                     <Text
                         id="_IDGenText6"
                         text="{i18n>TotalSeats}"
                     />
                 </Column>
-                <Column id="_IDGenColumn7">
+                <Column
+                    id="_IDGenColumn7"
+                    minScreenWidth="Desktop"
+                >
                     <Text
                         id="_IDGenText7"
                         text="{i18n>Description}"
@@ -140,7 +179,6 @@
                             id="_IDGenText11"
                             text="{allSessionsModel>room}"
                         />
-
                         <Text
                             id="_IDGenText12"
                             text="{allSessionsModel>speaker}"
@@ -158,6 +196,7 @@
                             icon="sap-icon://add-favorite"
                             press="goToFeedbackDirect"
                             class="sapUiSmallMarginEnd outlookButton1"
+                            width="{= ${device>/isPhone} ? '10%' : '50%'}"
                         />
                     </cells>
                 </ColumnListItem>

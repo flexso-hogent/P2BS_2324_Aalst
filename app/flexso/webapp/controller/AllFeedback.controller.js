@@ -11,6 +11,14 @@ sap.ui.define(
       onInit: function () {
         // Fetch feedback data
         this.fetchFeedbackData();
+        var oDeviceModel = new sap.ui.model.json.JSONModel({
+          isTouch: sap.ui.Device.support.touch,
+          isNoTouch: !sap.ui.Device.support.touch,
+          isPhone: sap.ui.Device.system.phone,
+          isNoPhone: !sap.ui.Device.system.phone,
+        });
+        oDeviceModel.setDefaultBindingMode("OneWay");
+        this.getView().setModel(oDeviceModel, "device");
       },
       onSearch: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
@@ -54,7 +62,11 @@ sap.ui.define(
             this.getView().setModel(oModel, "feedbackModel");
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show( this.getView().getModel("i18n").getProperty("errorFetchFeedbackdata") + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedbackdata") + error
+            );
           },
         });
       },
@@ -76,16 +88,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm( this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onBackToHome: function () {

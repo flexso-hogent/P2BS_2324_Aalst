@@ -11,6 +11,12 @@ sap.ui.define(
       onInit: function () {
         // Fetch all registered sessions data
         this.fetchAllRegisteredSessions();
+        var oDeviceModel = new sap.ui.model.json.JSONModel({
+          isPhone: sap.ui.Device.system.phone,
+          isDesktop: sap.ui.Device.system.desktop,
+        });
+        oDeviceModel.setDefaultBindingMode("OneWay");
+        this.getView().setModel(oDeviceModel, "device");
       },
 
       isSessionInPast: function (endDate) {
@@ -49,7 +55,11 @@ sap.ui.define(
 
         // Check if user email is available
         if (!userEmail) {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("UPeventEmailLocalStorage"));
+          MessageToast.show(
+            this.getView()
+              .getModel("i18n")
+              .getProperty("UPeventEmailLocalStorage")
+          );
           return;
         }
 
@@ -79,14 +89,18 @@ sap.ui.define(
             } else {
               // No sessions found for the logged-in user
               MessageToast.show(
-                this.getView().getModel("i18n").getProperty("noRegisteredSessions")
+                this.getView()
+                  .getModel("i18n")
+                  .getProperty("noRegisteredSessions")
               );
             }
           }.bind(this),
           error: function (xhr, status, error) {
             // Handle error case
             MessageToast.show(
-              this.getView().getModel("i18n").getProperty("errorFetchRegisteredSession") + error
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchRegisteredSession") + error
             );
           },
         });
@@ -107,16 +121,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm( this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onBackToHome: function () {
