@@ -1,0 +1,38 @@
+.loginInput,
+.loginButton,
+.registerButton {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .loginBox {
+    padding: 10px;
+  }
+
+  .loginLayout {
+    width: 100%;
+    margin: auto;
+  }
+
+  .profileImage {
+    width: 100px;
+    height: auto;
+  }
+
+  .loginTitle,
+  .loginLabel {
+    font-size: 16px;
+  }
+
+  .sapUiSmallMarginEnd {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginInput,
+  .loginButton,
+  .registerButton {
+    width: 100%;
+  }
+}
