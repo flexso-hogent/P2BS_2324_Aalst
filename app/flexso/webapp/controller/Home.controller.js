@@ -54,17 +54,17 @@ sap.ui.define(
       fetchRegisteredSessionsData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
-    
+
         // Replace this with your actual service URL
         var sessionServiceURL =
           "http://localhost:4004/odata/v4/catalog/registerdOnASession";
-    
+
         // Construct the filter based on the logged-in user's email
         var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
-    
+
         // Append the filter to the service URL
         sessionServiceURL += filter;
-    
+
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
@@ -81,7 +81,7 @@ sap.ui.define(
 
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
-    
+
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
             oModel.setProperty("/registeredSessionsData", upcomingSessions);
@@ -95,7 +95,7 @@ sap.ui.define(
           },
         });
       },
-    
+
       fetchFeedbackData: function () {
         var loggedInUserEmail = localStorage.getItem("email");
 
@@ -282,6 +282,29 @@ sap.ui.define(
             this.getView().getModel("i18n").getProperty("homefeedback")
           );
         }
+      },
+      onShowFullDescription: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var sDescription = oButton
+          .getBindingContext("imageModel")
+          .getProperty("description");
+
+        var oDialog = new sap.m.Dialog({
+          title: this.getView().getModel("i18n").getProperty("description"),
+          content: new sap.m.Text({
+            text: sDescription,
+          }),
+          buttons: [
+            new sap.m.Button({
+              text: this.getView().getModel("i18n").getProperty("close"),
+              press: function () {
+                oDialog.close();
+              },
+            }),
+          ],
+        });
+
+        oDialog.open();
       },
 
       onLeaveSession: function (oEvent) {

@@ -239,7 +239,7 @@
                                     />
                                 </HBox>
                             </VBox>
-                                <!-- <Button
+                            <!-- <Button
                                     id="FeedbackDirect"
                                     text="{i18n>GeefFeedback}"
                                     icon="sap-icon://add-favorite"
@@ -260,10 +260,23 @@
                                     press="onExportToOutlookPress"
                                     class="sapUiSmallMarginEnd outlookButton"
                                 /> -->
-                                <VBox id="sessionDescriptionVbox">
-                                    <Label id="lebelSessionDescription2" text="Description:"/>
-                                    <Text id="sessionDescription" text="{imageModel>description}" class="sessionDescription"/>
-                                </VBox>
+                            <VBox id="sessionDescriptionVbox">
+                                <Label
+                                    id="lebelSessionDescription2"
+                                    text="Description:"
+                                />
+                                <Text
+                                    id="sessionDescription"
+                                    text="{= ${imageModel>description}.length > 60 ? ${imageModel>description}.substring(0, 60) + '...' : ${imageModel>description}}"
+                                    class="sessionDescription"
+                                />
+                                <Button
+                                    id="_IDGenButton7"
+                                    text="{i18n>more}"
+                                    press="onShowFullDescription"
+                                    visible="{= ${imageModel>description}.length > 60 }"
+                                />
+                            </VBox>
                         </FlexBox>
                     </CustomListItem>
                 </List>

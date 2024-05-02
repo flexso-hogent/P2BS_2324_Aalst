@@ -14,6 +14,32 @@ sap.ui.define(
         this.fetchUpcomingRegisteredSessions();
       },
 
+      onShowFullDescription: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oContext = oButton.getBindingContext("upcomingSessionsModel"); // Corrected model name
+
+        if (oContext) {
+          var sDescription = oContext.getProperty("description");
+
+          var oDialog = new sap.m.Dialog({
+            title: this.getView().getModel("i18n").getProperty("description"),
+            content: new sap.m.Text({
+              text: sDescription,
+            }),
+            buttons: [
+              new sap.m.Button({
+                text: this.getView().getModel("i18n").getProperty("close"),
+                press: function () {
+                  oDialog.close();
+                },
+              }),
+            ],
+          });
+
+          oDialog.open();
+        }
+      },
+
       onSortPress: function (oEvent) {
         var oTable = this.getView().byId("upcomingEventsTable");
         var oBinding = oTable.getBinding("items");
@@ -92,11 +118,13 @@ sap.ui.define(
 
         // Check if user email is available
         if (!userEmail) {
-          MessageToast.show(this.getView().getModel("i18n").getProperty("UPeventEmailLocalStorage"));
+          MessageToast.show(
+            this.getView()
+              .getModel("i18n")
+              .getProperty("UPeventEmailLocalStorage")
+          );
           return;
         }
-
-        
 
         // Construct the service URL with the filter
         var sessionServiceURL =
@@ -122,21 +150,21 @@ sap.ui.define(
             } else {
               // No sessions found for the logged-in user
               MessageToast.show(
-                this.getView().getModel("i18n").getProperty("UPeventNoRegistered")
+                this.getView()
+                  .getModel("i18n")
+                  .getProperty("UPeventNoRegistered")
               );
-
-
             }
           }.bind(this),
           error: function (xhr, status, error) {
             // Handle error case
             MessageToast.show(
-              this.getView().getModel("i18n").getProperty("fetchuserdateSess") + error
+              this.getView().getModel("i18n").getProperty("fetchuserdateSess") +
+                error
             );
           },
         });
       },
-
 
       isSessionInPast: function (endDate) {
         var today = new Date();
@@ -183,16 +211,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
       onLeaveSession: function (oEvent) {
         var oSelectedItem = oEvent
@@ -206,9 +237,10 @@ sap.ui.define(
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          this.getView().getModel("i18n").getProperty("UPeventLeaveSess") + sSessionTitle + "'?",
+          this.getView().getModel("i18n").getProperty("UPeventLeaveSess") +
+            sSessionTitle +
+            "'?",
 
-          
           {
             title: "Confirm",
             actions: [
@@ -238,8 +270,12 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/", aSessions);
                     }
-                    sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("UPeventLeaveSessSucc"));
-                    
+                    sap.m.MessageToast.show(
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("UPeventLeaveSessSucc")
+                    );
+
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
                       window.location.reload();
@@ -248,9 +284,10 @@ sap.ui.define(
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      this.getView().getModel("i18n").getProperty("UPeventErrorSess") + error
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("UPeventErrorSess") + error
                     );
-                    
                   },
                 });
               }

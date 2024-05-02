@@ -149,10 +149,20 @@
                                 id="upcomingText20"
                                 text="{upcomingSessionsModel>totalSeats}"
                             />
-                            <Text
-                                id="upcomingText21"
-                                text="{upcomingSessionsModel>description}"
-                            />
+                            <HBox id="_IDGenHBox2">
+                                <Text
+                                    id="upcomingText21"
+                                    text="{= ${upcomingSessionsModel>description}.length > 20 ? ${upcomingSessionsModel>description}.substring(0, 20) + '...' : ${upcomingSessionsModel>description}}"
+                                />
+
+                                <Button
+                                    id="descriptionButton"
+                                    class="descriptionButton"
+                                    icon="sap-icon://message-information"
+                                    press="onShowFullDescription"
+                                    visible="{= ${upcomingSessionsModel>description}.length > 20}"
+                                />
+                            </HBox>
 
                             <Button
                                 id="upcomingButton2"

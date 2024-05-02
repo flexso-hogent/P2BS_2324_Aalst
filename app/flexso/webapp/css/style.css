@@ -800,7 +800,7 @@
 
 .addSessieButton,
 .addSessieButton.sapMBtnBase,
-.addSessieButton .sapMBtnHoverable {
+.addSessieButton.sapMBtnHoverable {
   background-color: rgb(0, 178, 221) !important;
   border: none !important;
   border-radius: 5px !important;
