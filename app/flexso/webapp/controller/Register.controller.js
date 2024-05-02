@@ -62,6 +62,13 @@ sap.ui.define(
           return;
         }
 
+        if (!this.isPasswordStrong(password)){
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("weakPassword")
+          );
+          return;
+        }
+
         var requiredFields = [
           email,
           firstname,
@@ -201,6 +208,22 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("login");
       },
+
+      isPasswordStrong: function (password) {
+        if (password.length < 8) {
+          return false;
+        }
+
+        if (!/[A-Z]/.test(password)) {
+          return false;
+        }
+
+        if (!/[^A-Za-z0-9]/.test(password)) {
+          return false;
+        }
+
+        return true;
+      }
     });
   }
 );
