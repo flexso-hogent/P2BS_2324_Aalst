@@ -15,6 +15,14 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
+        var oDeviceModel = new sap.ui.model.json.JSONModel({
+          isTouch: sap.ui.Device.support.touch,
+          isNoTouch: !sap.ui.Device.support.touch,
+          isPhone: sap.ui.Device.system.phone,
+          isNoPhone: !sap.ui.Device.system.phone,
+        });
+        oDeviceModel.setDefaultBindingMode("OneWay");
+        this.getView().setModel(oDeviceModel, "device");
 
         var oImageModel = new JSONModel({
           path: oRootPath,

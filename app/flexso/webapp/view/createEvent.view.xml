@@ -8,7 +8,7 @@
     <Page
         id="_IDGenPage1"
         title="{i18n>Flexso}"
-        enableScrolling="false"
+        enableScrolling="true"
         class="createPages"
     >
         <headerContent>
@@ -25,7 +25,7 @@
             <l:VerticalLayout
                 id="_IDGenVerticalLayout2"
                 class="createSessionLayout"
-                width="100%"
+                width="{= ${device>/isPhone} ? 'auto' : '100%'}"
             >
                 <Title
                     id="_IDGenTitle1"
@@ -46,7 +46,7 @@
                     id="_IDGenInput1"
                     value="{path: '/name', type: 'sap.ui.model.type.String'}"
                     required="true"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                     placeholder="{i18n>eventName}"
                 />
                 <Label
@@ -57,7 +57,7 @@
                     id="_IDGenDatePicker1"
                     value="{path: '/startDate'}"
                     required="true"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                 />
                 <Label
                     id="_IDGenLabel3"
@@ -67,7 +67,7 @@
                     id="_IDGenDatePicker2"
                     value="{path: '/endDate'}"
                     required="true"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                 />
                 <Label
                     id="_IDGenLabel4"
@@ -77,7 +77,7 @@
                     id="_IDGenInput2"
                     value="{path: '/location', type: 'sap.ui.model.type.String'}"
                     required="true"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                     placeholder="{i18n>location}"
                 />
                 <Label
@@ -88,7 +88,7 @@
                     id="_IDGenTextArea1"
                     value="{path: '/description'}"
                     required="true"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                     rows="5"
                     placeholder="{i18n>description}"
                 />
@@ -97,14 +97,14 @@
                     text="{i18n>EventAanmakenButton}"
                     class="sapUiSmallMarginTop createEventButtons"
                     press="onRegisterPress"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                 />
                 <Button
                     id="_IDGenButton2"
                     text="{i18n>backToHomeButton}"
                     class="sapUiSmallMarginTop createEventButtons"
                     press="onBackToHome"
-                    width="30%"
+                    width="{= ${device>/isPhone} ? 'auto' : '30%'}"
                 />
             </l:VerticalLayout>
         </VBox>

@@ -13,6 +13,15 @@ sap.ui.define(
         this.loadData();
         this.getView().byId("searchEvent").setValue(oEventName);
 
+        var oDeviceModel = new sap.ui.model.json.JSONModel({
+          isTouch: sap.ui.Device.support.touch,
+          isNoTouch: !sap.ui.Device.support.touch,
+          isPhone: sap.ui.Device.system.phone,
+          isNoPhone: !sap.ui.Device.system.phone,
+        });
+        oDeviceModel.setDefaultBindingMode("OneWay");
+        this.getView().setModel(oDeviceModel, "device");
+
         var oEventName = localStorage.getItem("eventName");
         var oSearchEvent = this.getView().byId("searchEvent");
         oSearchEvent.setValue(oEventName);
