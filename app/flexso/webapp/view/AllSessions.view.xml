@@ -33,96 +33,131 @@
             />
         </HBox>
 
-        <!-- Responsive Table for mobile devices -->
+        <!-- Table to display all registered sessions -->
         <Table
             id="_IDGenTable1"
-            inset="false"
             items="{
-                path: 'allSessionsModel>/',
-                filters: [
-                    {
-                        path: 'endDate',
-                        operator: 'GT',
-                        value1: '{path: \'today\', formatter: \'flexso.controller.AllSessions.formatDate\'}'
-                    }
-                ]
-            }"
+        path: 'allSessionsModel>/',
+        filters: [
+            {
+                path: 'endDate',
+                operator: 'GT',
+                value1: '{path: \'today\', formatter: \'flexso.controller.AllSessions.formatDate\'}'
+            }
+        ]
+    }"
             class="all-sessions-table"
             selectionChange="onDelete"
-            mode="SingleSelect"
-            noDataText="{i18n>noDataText}"
         >
-            <!-- Responsive columns setup -->
+            <!-- Your table columns and items -->
+
             <columns>
-                <Column
-                    id="_IDGenColumn1"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    popinDisplay="Inline"
-                    hAlign="Center"
-                >
+                <Column id="_IDGenColumn1">
                     <Text
                         id="_IDGenText1"
                         text="{i18n>Title}"
                     />
                 </Column>
-                <Column
-                    id="_IDGenColumn2"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    popinDisplay="Inline"
-                >
+                <Column id="_IDGenColumn2">
                     <Text
                         id="_IDGenText2"
                         text="{i18n>StartDate}"
                     />
                 </Column>
-                <!-- More columns with similar responsive settings -->
-                <Column
-                    id="_IDGenColumn3"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    popinDisplay="Block"
-                >
+                <Column id="_IDGenColumn3">
                     <Text
                         id="_IDGenText3"
+                        text="{i18n>EndDate}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn">
+                    <Text
+                        id="_IDGenText"
+                        text="{i18n>StartTime}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn11">
+                    <Text
+                        id="_IDGenTex11"
+                        text="{i18n>EndTime}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn4">
+                    <Text
+                        id="_IDGenText4"
+                        text="{i18n>Room}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn5">
+                    <Text
+                        id="_IDGenText5"
+                        text="{i18n>Speaker}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn6">
+                    <Text
+                        id="_IDGenText6"
+                        text="{i18n>TotalSeats}"
+                    />
+                </Column>
+                <Column id="_IDGenColumn7">
+                    <Text
+                        id="_IDGenText7"
                         text="{i18n>Description}"
                     />
                 </Column>
-                <Column
-                    id="_IDGenColumn4"
-                    hAlign="Center"
-                >
+                <Column id="_IDGenColumnFeedback">
                     <Text
-                        id="_IDGenText4"
+                        id="_IDGenText16"
                         text="{i18n>Feedback}"
                     />
                 </Column>
             </columns>
             <items>
-                <ColumnListItem
-                    id="_IDGenColumnListItem1"
-                    type="Navigation"
-                    press="onItemPress"
-                >
+                <ColumnListItem id="_IDGenColumnListItem1">
                     <cells>
                         <Text
-                            id="_IDGenText5"
+                            id="_IDGenText8"
                             text="{allSessionsModel>title}"
                         />
                         <Text
-                            id="_IDGenText6"
+                            id="_IDGenText9"
                             text="{allSessionsModel>startDate}"
                         />
-                        <!-- More text bindings for other details -->
                         <Text
-                            id="_IDGenText7"
+                            id="_IDGenText10"
+                            text="{allSessionsModel>endDate}"
+                        />
+                        <Text
+                            id="_IDGenText111"
+                            text="{allSessionsModel>startTime}"
+                        />
+                        <Text
+                            id="_IDGenText1111"
+                            text="{allSessionsModel>endTime}"
+                        />
+                        <Text
+                            id="_IDGenText11"
+                            text="{allSessionsModel>room}"
+                        />
+
+                        <Text
+                            id="_IDGenText12"
+                            text="{allSessionsModel>speaker}"
+                        />
+                        <Text
+                            id="_IDGenText13"
+                            text="{allSessionsModel>totalSeats}"
+                        />
+                        <Text
+                            id="_IDGenText14"
                             text="{allSessionsModel>description}"
                         />
                         <Button
-                            id="_IDGenButton2"
+                            id="_IDGenButton11"
                             icon="sap-icon://add-favorite"
                             press="goToFeedbackDirect"
+                            class="sapUiSmallMarginEnd outlookButton1"
                         />
                     </cells>
                 </ColumnListItem>

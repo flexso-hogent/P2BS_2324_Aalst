@@ -3,133 +3,93 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
-    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
-    <f:DynamicPage
-        id="_IDGenDynamicPage1"
+    <Page
+        id="_IDGenPage1"
         title="{i18n>titleFeedbackPage}"
+        enableScrolling="true"
+        class="backgroundEventCreate"
     >
-        <f:title>
-            <f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
-                <f:heading>
-                    <Title
-                        id="_IDGenTitle1"
-                        text="{i18n>titleFeedbackPage}"
-                    />
-                </f:heading>
-                <f:actions>
-                    <Button
-                        id="_IDGenButton1"
-                        icon="sap-icon://action"
-                        press="onActionPress"
-                    />
-                </f:actions>
-            </f:DynamicPageTitle>
-        </f:title>
-        <f:content>
-            <IconTabBar
-                id="_IDGenIconTabBar1"
-                class="sapUiResponsiveContentPadding"
+        <headerContent>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
+        </headerContent>
+
+        <content>
+            <VBox
+                id="_IDGenVBox4"
+                class="sapUiSmallMarginBegin feedbackItemContainer"
             >
-                <items>
-                    <IconTabFilter
-                        id="_IDGenIconTabFilter1"
-                        text="{i18n>Feedback}"
-                    >
-                        <VBox id="_IDGenVBox1">
-                            <SearchField
-                                id="_IDGenSearchField"
-                                placeholder="{i18n>SearchFeedback}"
-                                liveChange="onSearch"
-                                width="100%"
+                <HBox
+                    id="_IDGenHBox1"
+                    class="barAll"
+                >
+                    <SearchField
+                        id="_IDGenSearchField"
+                        placeholder="{i18n>SearchFeedback}"
+                        liveChange="onSearch"
+                        width="100%"
+                    />
+                    <Button
+                        id="_IDGenButton11"
+                        icon="sap-icon://sort"
+                        press="onSortPress"
+                    />
+                </HBox>
+                <Table
+                    id="_IDGenTable1"
+                    items="{feedbackModel>/}"
+                    noDataText="{i18n>noDataText}"
+                    class="Nodata"
+                >
+                    <columns>
+                        <Column id="_IDGenColumn1">
+                            <Label
+                                id="_IDGenLabel1"
+                                text="{i18n>SessionTitle}"
                             />
-                            <Button
-                                id="_IDGenButton11"
-                                icon="sap-icon://sort"
-                                press="onSortPress"
+                        </Column>
+                        <Column id="_IDGenColumn2">
+                            <Label
+                                id="_IDGenLabel2"
+                                text="{i18n>Rating}"
                             />
-                            <Table
-                                id="_IDGenTable1"
-                                items="{feedbackModel>/}"
-                                noDataText="{i18n>noDataText}"
-                                mode="SingleSelectMaster"
-                            >
-                                <headerToolbar>
-                                    <Toolbar id="_IDGenToolbar1">
-                                        <Title
-                                            id="_IDGenTitle2"
-                                            text="{i18n>FeedbackList}"
-                                        />
-                                        <ToolbarSpacer
-                                            id="_IDGenToolbarSpacer1"
-                                        />
-                                        <Button
-                                            id="_IDGenButton2"
-                                            icon="sap-icon://add"
-                                            press="onAddFeedback"
-                                        />
-                                    </Toolbar>
-                                </headerToolbar>
-                                <columns>
-                                    <Column
-                                        id="_IDGenColumn1"
-                                        width="12em"
-                                    >
-                                        <Text
-                                            id="_IDGenText1"
-                                            text="{i18n>SessionTitle}"
-                                        />
-                                    </Column>
-                                    <Column
-                                        id="_IDGenColumn2"
-                                        minScreenWidth="Tablet"
-                                        demandPopin="true"
-                                        popinDisplay="Inline"
-                                    >
-                                        <Text
-                                            id="_IDGenText2"
-                                            text="{i18n>Rating}"
-                                        />
-                                    </Column>
-                                    <Column
-                                        id="_IDGenColumn3"
-                                        minScreenWidth="Tablet"
-                                        demandPopin="true"
-                                        popinDisplay="Block"
-                                    >
-                                        <Text
-                                            id="_IDGenText3"
-                                            text="{i18n>Review}"
-                                        />
-                                    </Column>
-                                </columns>
-                                <items>
-                                    <ColumnListItem id="_IDGenColumnListItem1">
-                                        <cells>
-                                            <Text
-                                                id="_IDGenText4"
-                                                text="{feedbackModel>SessionTitle}"
-                                            />
-                                            <Text
-                                                id="_IDGenText5"
-                                                text="{= '⭐'.repeat(${feedbackModel>Rating})}"
-                                            />
-                                            <Text
-                                                id="_IDGenText6"
-                                                text="{feedbackModel>Review}"
-                                            />
-                                        </cells>
-                                    </ColumnListItem>
-                                </items>
-                            </Table>
-                        </VBox>
-                    </IconTabFilter>
-                </items>
-            </IconTabBar>
-        </f:content>
-    </f:DynamicPage>
+                        </Column>
+                        <Column id="_IDGenColumn3">
+                            <Label
+                                id="_IDGenLabel3"
+                                text="{i18n>Review}"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="_IDGenColumnListItem1">
+                            <cells>
+                                <Text
+                                    id="_IDGenText1"
+                                    text="{feedbackModel>SessionTitle}"
+                                />
+                                <Text
+                                    id="_IDGenText2"
+                                    text="{= '⭐'.repeat(${feedbackModel>Rating}) }"
+                                />
+                                <Text
+                                    id="_IDGenText3"
+                                    text="{feedbackModel>Review}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+
     <!-- Popover Definition -->
     <core:Fragment
         fragmentName="flexso.fragment.Popover"
