@@ -138,6 +138,7 @@
                     press="voegSessieToe"
                     width="100%"
                     text="{i18n>ADDSESSIE}"
+                    class="addSessieButton"
                 />
                 <List
                     id="sessionsList"

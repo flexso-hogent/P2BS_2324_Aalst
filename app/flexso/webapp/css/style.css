@@ -797,4 +797,17 @@
   font-size: x-large;
   margin-bottom: 2%;
 }
-/*test*/
+
+
+
+.addSessieButton,
+.addSessieButton.sapMBtnBase,
+.addSessieButton .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+  width: 80%;
+  margin: 0 auto; /* Center the button horizontally */
+  align-items: center;
+}
