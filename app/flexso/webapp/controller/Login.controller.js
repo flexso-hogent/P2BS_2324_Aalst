@@ -79,7 +79,9 @@ sap.ui.define(
             var hashedPassword = await this.sha256(password);
 
             if (user.password === hashedPassword) {
-              MessageToast.show(this.getView().getModel("i18n").getProperty("loginsucc"));
+              MessageToast.show(
+                this.getView().getModel("i18n").getProperty("loginsucc")
+              );
 
               // Store user information in local storage
               localStorage.setItem("userID", user.userID);
@@ -105,15 +107,21 @@ sap.ui.define(
                 window.location.reload(); // Reload homepage
               }, 1000);
             } else {
-              MessageToast.show(this.getView().getModel("i18n").getProperty("loginunsucc"));
+              sap.m.MessageBox.error(
+                this.getView().getModel("i18n").getProperty("loginunsucc")
+              );
             }
           } else {
-            MessageToast.show(
-              this.getView().getModel("i18n").getProperty("loginunsuccgebruiker")
+            sap.m.MessageBox.error(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("loginunsuccgebruiker")
             );
           }
         } catch (error) {
-          MessageToast.show(this.getView().getModel("i18n").getProperty("loginerror") + error);
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("loginerror") + error
+          );
         }
       },
       sha256: function (message) {
@@ -150,6 +158,16 @@ sap.ui.define(
         oResourceModel.sLocale = "nl";
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
+      },
+
+      togglePasswordVisibility: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oInput = oButton.getParent().getItems()[0]; // Get the input field
+        var bVisible = oInput.getType() === "Password";
+
+        // Toggle visibility
+        oInput.setType(bVisible ? "Text" : "Password");
+        oButton.setIcon(bVisible ? "sap-icon://hide" : "sap-icon://show");
       },
     });
   }

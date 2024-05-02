@@ -35,4 +35,25 @@
   .registerButton {
     width: 100%;
   }
+} /* Style for MessageToast */
+.sapMMessageToast {
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the close button */
+.sapMMessageToastCloseButton {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Hover effect for the close button */
+.sapMMessageToastCloseButton:hover {
+  color: #ccc;
 }

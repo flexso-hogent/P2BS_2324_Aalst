@@ -64,14 +64,25 @@
                         class="loginLabel"
                     />
                     <!-- Password Input -->
-                    <Input
-                        id="passwordInput"
-                        type="Password"
-                        value="FlexsoAdmin"
-                        placeholder="{i18n>passwordPlaceholder}"
-                        width="100%"
-                        class="loginInput"
-                    />
+                    <HBox
+                        id="_IDGenHBox"
+                        class="passwordLook"
+                    >
+                        <Input
+                            id="passwordInput"
+                            type="Password"
+                            value="FlexsoAdmin"
+                            placeholder="{i18n>passwordPlaceholder}"
+                            width="100%"
+                            class="loginInput"
+                        />
+
+                        <Button
+                            id="_IDGenButton4"
+                            icon="sap-icon://show"
+                            press="togglePasswordVisibility"
+                        />
+                    </HBox>
 
                     <!-- Stay Logged In Checkbox -->
                     <CheckBox

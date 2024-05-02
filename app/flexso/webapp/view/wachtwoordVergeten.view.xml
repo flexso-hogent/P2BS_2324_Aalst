@@ -81,32 +81,54 @@
                             id="id2"
                             text="{i18n>oldPassword}"
                         />
-                        <Input
-                            id="oldPasswordInput"
-                            type="Password"
-                            placeholder="{i18n>oldPassword}"
-                            width="100%"
-                        />
+                        <HBox id="_IDGenHBox1">
+                            <Input
+                                id="oldPasswordInput"
+                                type="Password"
+                                placeholder="{i18n>oldPassword}"
+                                width="90%"
+                            />
+                            <Button
+                                id="_IDGenButton2"
+                                icon="sap-icon://show"
+                                press="togglePasswordVisibility"
+                            />
+                        </HBox>
                         <Label
                             id="id3"
                             text="{i18n>newPassword}"
                         />
-                        <Input
-                            id="newPasswordInput"
-                            type="Password"
-                            placeholder="{i18n>newPassword}"
-                            width="100%"
-                        />
+                        <HBox id="_IDGenHBox2">
+                            <Input
+                                id="newPasswordInput"
+                                type="Password"
+                                placeholder="{i18n>newPassword}"
+                                width="90%"
+                            />
+                            <Button
+                                id="_IDGenButton3"
+                                icon="sap-icon://show"
+                                press="togglePasswordVisibility"
+                            />
+                        </HBox>
                         <Label
                             id="id4"
                             text="{i18n>confirmPassword}"
                         />
-                        <Input
-                            id="confirmPasswordInput"
-                            type="Password"
-                            placeholder="{i18n>confirmPassword}"
-                            width="100%"
-                        />
+                        <HBox id="_IDGenHBox3">
+                            <Input
+                                id="confirmPasswordInput"
+                                type="Password"
+                                placeholder="{i18n>confirmPassword}"
+                                width="90%"
+                            />
+                            <Button
+                                id="_IDGenButton4"
+                                icon="sap-icon://show"
+                                press="togglePasswordVisibility"
+                            />
+                        </HBox>
+
                         <Button
                             id="_IDGenButton1"
                             text="{i18n>sendPasswordResetEmail}"

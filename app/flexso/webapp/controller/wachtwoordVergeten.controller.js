@@ -2,22 +2,58 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
+    "sap/m/MessageBox",
     "sap/ui/core/UIComponent",
     "sap/ui/core/Fragment",
   ],
-  function (Controller, MessageToast, UIComponent, Fragment) {
+  function (Controller, MessageToast, MessageBox, UIComponent, Fragment) {
     "use strict";
 
     return Controller.extend("flexso.controller.PasswordReset", {
       onInit: function () {},
 
+      togglePasswordVisibility: function (oEvent) {
+        var sButtonId = oEvent.getSource().getId();
+        var sInputId = "";
+
+        // Determine which input field corresponds to the pressed button
+        switch (sButtonId) {
+          case this.getView().createId("_IDGenButton2"):
+            sInputId = this.getView().createId("oldPasswordInput");
+            break;
+          case this.getView().createId("_IDGenButton3"):
+            sInputId = this.getView().createId("newPasswordInput");
+            break;
+          case this.getView().createId("_IDGenButton4"):
+            sInputId = this.getView().createId("confirmPasswordInput");
+            break;
+          default:
+            break;
+        }
+
+        // Get the corresponding input field
+        var oInput = this.byId(sInputId);
+        if (!oInput) {
+          return;
+        }
+
+        // Toggle password visibility
+        var sType = oInput.getType();
+        if (sType === "Password") {
+          oInput.setType("Text");
+          oEvent.getSource().setIcon("sap-icon://hide");
+        } else {
+          oInput.setType("Password");
+          oEvent.getSource().setIcon("sap-icon://show");
+        }
+      },
       onSendPasswordResetEmail: function () {
         var that = this;
 
         sap.m.MessageBox.confirm(
-          "Are you sure you want to reset your password?",
+          this.getView().getModel("i18n").getProperty("confirmResetPassword"),
           {
-            title: "Confirmation",
+            title: this.getView().getModel("i18n").getProperty("confirmation"),
             onClose: function (oAction) {
               if (oAction === sap.m.MessageBox.Action.OK) {
                 var email = that.getView().byId("emailInput").getValue();
@@ -40,26 +76,45 @@ sap.ui.define(
                   !newPassword ||
                   !confirmPassword
                 ) {
-                  MessageToast.show("Please fill in all fields.");
-                  return;
-                }
-
-                if (!that.isValidEmail(email)) {
-                  MessageToast.show("Please enter a valid email address.");
-                  return;
-                }
-
-                // Check if new password and confirm password match
-                if (newPassword !== confirmPassword) {
-                  MessageToast.show(
-                    "New password and confirm password do not match."
+                  MessageBox.error(
+                    that
+                      .getView()
+                      .getModel("i18n")
+                      .getProperty("feedbackCreateSession")
                   );
                   return;
                 }
 
-                // Hash the old password using SHA-256
+                if (!that.isValidEmail(email)) {
+                  MessageBox.error(
+                    that.getView().getModel("i18n").getProperty("Invalidmail")
+                  );
+                  return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                  MessageBox.error(
+                    that.getView().getModel("i18n").getProperty("Invalidpass")
+                  );
+                  return;
+                }
+
+                // Check if the password contains at least one uppercase letter and one special character
+                if (
+                  !/(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{8,}/.test(
+                    newPassword
+                  )
+                ) {
+                  MessageBox.error(
+                    that
+                      .getView()
+                      .getModel("i18n")
+                      .getProperty("passwordRequirementsNotMet")
+                  );
+                  return;
+                }
+
                 that.sha256(oldPassword).then(function (hashedOldPassword) {
-                  // Retrieve user data from the database
                   var userDataUrl =
                     "http://localhost:4004/odata/v4/catalog/Users?$filter=email eq '" +
                     email +
@@ -71,13 +126,11 @@ sap.ui.define(
                     type: "GET",
                     success: function (data) {
                       if (data.value.length > 0) {
-                        // User found, update the password
                         var userId = data.value[0].userID;
                         var updateUserUrl =
                           "http://localhost:4004/odata/v4/catalog/Users(" +
                           userId +
                           ")";
-                        // Hash the new password using SHA-256
                         that
                           .sha256(newPassword)
                           .then(function (hashedNewPassword) {
@@ -90,7 +143,10 @@ sap.ui.define(
                               }),
                               success: function () {
                                 MessageToast.show(
-                                  "Password updated successfully"
+                                  that
+                                    .getView()
+                                    .getModel("i18n")
+                                    .getProperty("passwordUpdatedSuccessfully")
                                 );
                                 setTimeout(function () {
                                   var oRouter = UIComponent.getRouterFor(that);
@@ -98,19 +154,30 @@ sap.ui.define(
                                 }, 1000);
                               },
                               error: function (xhr, status, error) {
-                                sap.m.MessageBox.error(
-                                  "Failed to update password: " + error
+                                MessageBox.error(
+                                  that
+                                    .getView()
+                                    .getModel("i18n")
+                                    .getProperty("passwordUpdateFailed") + error
                                 );
                               },
                             });
                           });
                       } else {
-                        MessageToast.show("Error check your input.");
+                        MessageToast.show(
+                          that
+                            .getView()
+                            .getModel("i18n")
+                            .getProperty("errorCheckInput")
+                        );
                       }
                     },
                     error: function (xhr, status, error) {
-                      sap.m.MessageBox.error(
-                        "Failed to retrieve user data: " + error
+                      MessageBox.error(
+                        that
+                          .getView()
+                          .getModel("i18n")
+                          .getProperty("userDataRetrievalFailed") + error
                       );
                     },
                   });
@@ -126,11 +193,8 @@ sap.ui.define(
         return emailRegex.test(email);
       },
 
-      // Function to hash the password using SHA-256
       sha256: function (message) {
-        // Convert message to ArrayBuffer
         var buffer = new TextEncoder().encode(message);
-        // Hash the ArrayBuffer
         return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
           return Array.prototype.map
             .call(new Uint8Array(hash), function (x) {
@@ -163,6 +227,7 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
+
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("login");
