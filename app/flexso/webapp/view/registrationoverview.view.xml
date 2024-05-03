@@ -98,6 +98,7 @@
                     <ComboBox
                         id="sessionSelect1"
                         change="onSessionSelectChange"
+                        width="25%"
                     >
                         <core:Item
                             id="_IDGenItem1"
