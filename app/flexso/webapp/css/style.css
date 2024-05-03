@@ -200,6 +200,13 @@
   display: block; /* For margin auto to work, display block is needed */
 }
 
+.profileImage1 {
+  width: 80px;
+  height: 80px;
+  margin: auto; /* Center horizontally */
+  display: block; /* For margin auto to work, display block is needed */
+}
+
 .updateProfileButton,
 .logoutButton {
   display: block;

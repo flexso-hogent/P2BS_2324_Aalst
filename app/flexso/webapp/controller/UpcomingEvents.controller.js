@@ -11,6 +11,15 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.UpcomingEvents", {
       onInit: function () {
+        var oProfileImagePath = jQuery.sap.getModulePath(
+          "flexso",
+          "/images/profile.jpg"
+        );
+        var oImageModel = new JSONModel({
+          profileImagePath: oProfileImagePath,
+        });
+
+        this.getView().setModel(oImageModel, "imageModel");
         // Fetch upcoming registered sessions data
         this.fetchUpcomingRegisteredSessions();
       },
