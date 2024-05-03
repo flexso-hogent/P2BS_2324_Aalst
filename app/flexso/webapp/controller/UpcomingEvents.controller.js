@@ -4,14 +4,48 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
+    "sap/m/MessageBox",
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent) {
+  function (Controller, JSONModel, MessageToast, UIComponent, MessageBox) {
     "use strict";
 
     return Controller.extend("flexso.controller.UpcomingEvents", {
       onInit: function () {
         // Fetch upcoming registered sessions data
         this.fetchUpcomingRegisteredSessions();
+      },
+
+      onShowMap: function (oEvent) {
+        var screenWidth = window.screen.width;
+        var screenHeight = window.screen.height;
+        var popupWidth = 600;
+        var popupHeight = 400;
+        var popupLeft = (screenWidth - popupWidth) / 2;
+        var popupTop = (screenHeight - popupHeight) / 2;
+
+        var oSelectedItem = oEvent
+          .getSource()
+          .getParent()
+          .getBindingContext("upcomingSessionsModel")
+          .getObject();
+        var roomName = oSelectedItem.room; // Assuming you have the room name in your model
+
+        // Construct the Google Maps search URL with the room name as the query parameter
+        var googleMapsUrl =
+          "https://www.google.com/maps/search/?api=1&query=" +
+          encodeURIComponent(roomName);
+
+        // Open Google Maps in a new window with specific dimensions and position
+        var newWindow = window.open(
+          googleMapsUrl,
+          "_blank",
+          "width=600,height=400,left=" + popupLeft + ",top=" + popupTop
+        );
+        if (newWindow) {
+          newWindow.focus();
+        } else {
+          alert("Popup blocked. Please allow popups to open the map.");
+        }
       },
 
       onShowFullDescription: function (oEvent) {

@@ -64,7 +64,7 @@
                 >
                     <Text
                         id="_IDGenText1"
-                        text="{i18n>Title}"
+                        text="{i18n>titleSession}"
                     />
                 </Column>
                 <Column
@@ -75,7 +75,7 @@
                 >
                     <Text
                         id="_IDGenText2"
-                        text="{i18n>StartDate}"
+                        text="{i18n>StartDate1}"
                     />
                 </Column>
                 <Column
@@ -86,7 +86,7 @@
                 >
                     <Text
                         id="_IDGenText3"
-                        text="{i18n>EndDate}"
+                        text="{i18n>EndDate1}"
                     />
                 </Column>
                 <Column
@@ -96,7 +96,7 @@
                 >
                     <Text
                         id="_IDGenText"
-                        text="{i18n>StartTime}"
+                        text="{i18n>StartTime1}"
                     />
                 </Column>
                 <Column
@@ -106,7 +106,7 @@
                 >
                     <Text
                         id="_IDGenText121"
-                        text="{i18n>EndTime}"
+                        text="{i18n>EndTime1}"
                     />
                 </Column>
                 <Column
@@ -115,7 +115,7 @@
                 >
                     <Text
                         id="_IDGenText4"
-                        text="{i18n>Room}"
+                        text="{i18n>Room1}"
                     />
                 </Column>
                 <Column
@@ -124,7 +124,7 @@
                 >
                     <Text
                         id="_IDGenText5"
-                        text="{i18n>Speaker}"
+                        text="{i18n>Speaker1}"
                     />
                 </Column>
                 <Column
@@ -133,7 +133,7 @@
                 >
                     <Text
                         id="_IDGenText6"
-                        text="{i18n>TotalSeats}"
+                        text="{i18n>TotalSeats1}"
                     />
                 </Column>
                 <Column
@@ -142,7 +142,7 @@
                 >
                     <Text
                         id="_IDGenText7"
-                        text="{i18n>Description}"
+                        text="{i18n>Description1}"
                     />
                 </Column>
                 <Column id="_IDGenColumnFeedback">
