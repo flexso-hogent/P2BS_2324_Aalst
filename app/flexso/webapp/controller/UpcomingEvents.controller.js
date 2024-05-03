@@ -24,6 +24,13 @@ sap.ui.define(
         this.fetchUpcomingRegisteredSessions();
       },
 
+      extractImageURL: function (sHTML) {
+        var oParser = new DOMParser();
+        var oDoc = oParser.parseFromString(sHTML, "text/html");
+        var oImg = oDoc.querySelector("img");
+        return oImg ? oImg.src : "";
+      },
+
       onShowMap: function (oEvent) {
         var screenWidth = window.screen.width;
         var screenHeight = window.screen.height;

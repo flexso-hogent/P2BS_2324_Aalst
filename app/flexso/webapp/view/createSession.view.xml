@@ -6,6 +6,7 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
     class="backgroundFlexso"
+    xmlns:richtexteditor="sap.ui.richtexteditor"
 >
     <Page
         id="_IDGenPage1"
@@ -175,10 +176,10 @@
                         text="{i18n>Speaker}"
                         class="LabelCreateSessionPage"
                     />
-                    <Input
+
+                    <richtexteditor:RichTextEditor
                         id="_IDGenInput4"
                         value="{sessionModel>/speaker}"
-                        placeholder="{i18n>Speaker}"
                         width="{= ${device>/isPhone} ? 'auto' : '50%'}"
                         class="InputCreateSession"
                         required="true"
