@@ -250,47 +250,52 @@ sap.ui.define(
 
       loadSessions: function (eventID) {
         var that = this;
+        var currentDate = new Date(); // Huidige datum en tijd ophalen
+    
         jQuery.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Sessions",
-          dataType: "json",
-          success: function (data) {
-            var filteredSessions = data.value.filter(function (session) {
-              return session.eventID === eventID;
-            });
-
-            var sessions = filteredSessions.map(function (session) {
-              return {
-                sessionID: session.sessionID,
-                title: session.title,
-                startDate: session.startDate,
-                startTime: session.startTime,
-                endDate: session.endDate,
-                endTime: session.endTime,
-                room: session.room,
-                speaker: session.speaker,
-                totalSeats: session.totalSeats,
-                description: session.description,
-              };
-            });
-
-            var sessionModel = new JSONModel(sessions);
-            that.getView().setModel(sessionModel, "sessionModel");
-
-            // Show sessions box after data is loaded
-            var oSessionsBox = that.getView().byId("sessionsBox");
-            oSessionsBox.setVisible(true);
-
-            var oSessionInfoBox = that.getView().byId("sessionInfoBox");
-            oSessionInfoBox.setVisible(true);
-          },
-          error: function (xhr, status, error) {
-            MessageToast.show(
-              this.getView().getModel("i18n").getProperty("fetchdatesession") +
-                error
-            );
-          },
+            url: "http://localhost:4004/odata/v4/catalog/Sessions",
+            dataType: "json",
+            success: function (data) {
+                var filteredSessions = data.value.filter(function (session) {
+                    // Datumcontrole (datumcheck)
+                    var sessionStartDate = new Date(session.startDate);
+                    return session.eventID === eventID && sessionStartDate >= currentDate; 
+                });
+    
+                var sessions = filteredSessions.map(function (session) {
+                    return {
+                        sessionID: session.sessionID,
+                        title: session.title,
+                        startDate: session.startDate,
+                        startTime: session.startTime,
+                        endDate: session.endDate,
+                        endTime: session.endTime,
+                        room: session.room,
+                        speaker: session.speaker,
+                        totalSeats: session.totalSeats,
+                        description: session.description,
+                    };
+                });
+    
+                var sessionModel = new JSONModel(sessions);
+                that.getView().setModel(sessionModel, "sessionModel");
+    
+                // Show sessions box after data is loaded
+                var oSessionsBox = that.getView().byId("sessionsBox");
+                oSessionsBox.setVisible(true);
+    
+                var oSessionInfoBox = that.getView().byId("sessionInfoBox");
+                oSessionInfoBox.setVisible(true);
+            },
+            error: function (xhr, status, error) {
+                MessageToast.show(
+                    this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                    error
+                );
+            },
         });
-      },
+    },
+    
       // Search field for session name
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
