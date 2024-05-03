@@ -36,13 +36,6 @@ sap.ui.define(
         oImageModel.attachPropertyChange(this.onRoleChange, this);
       },
 
-      extractImageURL: function (sHTML) {
-        var oParser = new DOMParser();
-        var oDoc = oParser.parseFromString(sHTML, "text/html");
-        var oImg = oDoc.querySelector("img");
-        return oImg ? oImg.src : "";
-      },
-
       onRoleChange: function (oEvent) {
         if (oEvent.getParameter("path") === "/role") {
           this.computeCreateButtonsVisibility();
@@ -240,7 +233,6 @@ sap.ui.define(
                 location: event.location,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
-                naam: event.naam,
                 description: event.description,
               };
             });
@@ -258,12 +250,18 @@ sap.ui.define(
 
       loadSessions: function (eventID) {
         var that = this;
+        var currentDate = new Date(); // Huidige datum en tijd ophalen
+
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Sessions",
           dataType: "json",
           success: function (data) {
             var filteredSessions = data.value.filter(function (session) {
-              return session.eventID === eventID;
+              // Datumcontrole (datumcheck)
+              var sessionStartDate = new Date(session.startDate);
+              return (
+                session.eventID === eventID && sessionStartDate >= currentDate
+              );
             });
 
             var sessions = filteredSessions.map(function (session) {
@@ -276,7 +274,6 @@ sap.ui.define(
                 endTime: session.endTime,
                 room: session.room,
                 speaker: session.speaker,
-                naam: session.naam,
                 totalSeats: session.totalSeats,
                 description: session.description,
               };
@@ -300,6 +297,7 @@ sap.ui.define(
           },
         });
       },
+
       // Search field for session name
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
@@ -364,7 +362,6 @@ sap.ui.define(
           localStorage.setItem("endTime", oSessionData.endTime);
           localStorage.setItem("room", oSessionData.room);
           localStorage.setItem("speaker", oSessionData.speaker);
-          localStorage.setItem("naam", oSessionData.naam);
           localStorage.setItem("totalSeats", oSessionData.totalSeats);
           localStorage.setItem("description", oSessionData.description);
           localStorage.setItem("sessionID", oSessionData.sessionID);
