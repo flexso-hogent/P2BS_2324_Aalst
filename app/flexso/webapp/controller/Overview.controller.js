@@ -21,6 +21,7 @@ sap.ui.define(
         );
         var oImageModel = new JSONModel({
           profileImagePath: oProfileImagePath,
+          role: localStorage.getItem("role"), // Retrieve the role from local storage
         });
 
         this.getView().setModel(oImageModel, "imageModel");
@@ -28,6 +29,23 @@ sap.ui.define(
         // Verberg de sessies standaard
         var oSessionsBox = this.getView().byId("sessionsBox");
         oSessionsBox.setVisible(false);
+
+        this.computeCreateButtonsVisibility();
+
+        // Add listener for changes to the role property
+        oImageModel.attachPropertyChange(this.onRoleChange, this);
+      },
+
+      onRoleChange: function (oEvent) {
+        if (oEvent.getParameter("path") === "/role") {
+          this.computeCreateButtonsVisibility();
+        }
+      },
+      computeCreateButtonsVisibility: function () {
+        var oImageModel = this.getView().getModel("imageModel");
+        var role = oImageModel.getProperty("/role");
+        var isAdmin = role === "admin";
+        oImageModel.setProperty("/isAdmin", isAdmin);
       },
       onToggleHalfScreen: function () {
         var oEventTable = this.byId("eventTable");
@@ -85,16 +103,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
       onSort: function (oEvent) {
         // Waarden van zoekvelden ophalen en opslaan in controller-variabelen
@@ -168,7 +189,9 @@ sap.ui.define(
           // Adjust layout after showing sessions
           this.adjustLayout("25%");
         } else {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("EventIDundefined"));
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("EventIDundefined")
+          );
         }
       },
       adjustLayout: function (sessionsWidth) {
@@ -218,7 +241,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdate") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -259,7 +284,10 @@ sap.ui.define(
             oSessionInfoBox.setVisible(true);
           },
           error: function (xhr, status, error) {
-            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
           },
         });
       },
@@ -335,7 +363,9 @@ sap.ui.define(
           var oRouter = UIComponent.getRouterFor(this);
           oRouter.navTo("Registersession");
         } else {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("selectSessionRegister"));
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("selectSessionRegister")
+          );
         }
       },
     });

@@ -139,6 +139,7 @@
                     width="100%"
                     text="{i18n>ADDSESSIE}"
                     class="addSessieButton"
+                    visible="{imageModel>/isAdmin}"
                 />
                 <List
                     id="sessionsList"
