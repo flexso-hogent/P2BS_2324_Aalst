@@ -61,14 +61,61 @@ sap.ui.define(
         });
       },
 
-      onSessionSelectChange: function (oEvent) {
-        var selectedSessionId = oEvent.getParameter("selectedItem").getKey();
-        this.loadRegisteredParticipants(selectedSessionId);
+      onEventSelectChange: function (oEvent) {
+        var oModel = this.getView().getModel("eventModel");
+        var sValue = oEvent.getParameter("newValue");
+
+        // Update the selectedEvent property in the model
+        oModel.setProperty("/selectedEvent", sValue);
+
+        // Filter the events based on the user's input
+        var oFilter = new sap.ui.model.Filter(
+          "eventName",
+          sap.ui.model.FilterOperator.Contains,
+          sValue
+        );
+        this.byId("sessionEventSelect").getBinding("items").filter([oFilter]);
+
+        // Make the sessionsBox visible if the selectedEvent is not empty
+        if (sValue !== "") {
+          this.byId("sessionsBox").setVisible(true);
+        } else {
+          this.byId("sessionsBox").setVisible(false);
+        }
       },
 
       onEventSelectChange: function (oEvent) {
-        var selectedEventId = oEvent.getParameter("selectedItem").getKey();
-        this.loadSessions(selectedEventId); // Call loadSessions with selected event ID
+        var oModel = this.getView().getModel("eventModel");
+        var sValue = oEvent.getParameter("newValue");
+
+        // Update the selectedEvent property in the model
+        oModel.setProperty("/selectedEvent", sValue);
+
+        var oFilter = new sap.ui.model.Filter(
+          "eventName",
+          sap.ui.model.FilterOperator.Contains,
+          sValue
+        );
+        this.byId("sessionEventSelect").getBinding("items").filter([oFilter]);
+
+        // Make the sessionsBox visible if the selectedEvent is not empty
+        if (sValue !== "") {
+          this.byId("sessionsBox").setVisible(true);
+        } else {
+          this.byId("sessionsBox").setVisible(false);
+        }
+      },
+      onItemPress: function (oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oContext = oItem.getBindingContext("eventModel");
+        var sName = oContext.getProperty("Name");
+
+        // Update the value in the SearchField with the name of the pressed item
+        this.byId("sessionEventSelect").setValue(sName);
+
+        // Hide the table
+        this.byId("_IDGenTable1").setVisible(false);
+        this.byId("sessionsBox").setVisible(true);
       },
 
       loadSessions: function (eventID) {

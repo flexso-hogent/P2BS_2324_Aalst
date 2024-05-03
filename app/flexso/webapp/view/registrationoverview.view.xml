@@ -41,26 +41,104 @@
                         id="titleEventsChoose"
                         text="{i18n>ChooseAnEvent}"
                     />
-                    <ComboBox
+                    <SearchField
                         id="sessionEventSelect"
-                        change="onEventSelectChange"
+                        liveChange="onEventSelectChange"
+                        value="{eventModel>/selectedEvent}"
+                        width="25%"
                     />
+                    <Table
+                        id="_IDGenTable1"
+                        width="25%"
+                        itemPress="onItemPress"
+                        items="{eventModel>/}"
+                        growing="true"
+                        growingThreshold="3"
+                        selectionChange="onSelectionChange"
+                    >
+                        <columns>
+                            <Column
+                                id="_IDGenColumn12"
+                                width="45%"
+                            >
+                                <Text
+                                    id="_IDGenText145"
+                                    text="{i18n>eventName}"
+                                />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                id="_IDGenColumnListItem12"
+                                vAlign="Middle"
+                                type="Navigation"
+                                press="onSessionSelect"
+                            >
+                                <cells>
+                                    <Text
+                                        id="_IDGenText78"
+                                        text="{eventModel>Name}"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
                 </VBox>
 
                 <!-- TITLE: CHOOSE A SESSION-->
-                <VBox id="sessionsBox">
+                <VBox
+                    id="sessionsBox"
+                    visible="false"
+                >
                     <Title
                         class="titleEventsChoose"
                         id="titleSessionChoose"
                         text="{i18n>ChooseASession}"
                     />
-                    <ComboBox
+                    <SearchField
                         id="sessionSelect1"
-                        change="onSessionSelectChange"
+                        liveChange="onSessionSelectChange"
+                        width="25%"
                     />
+                    <Table
+                        id="_IDGenTable2"
+                        width="25%"
+                        itemPress="onItemPress"
+                        items="{sessionModel>/}"
+                        growing="true"
+                        growingThreshold="3"
+                        selectionChange="onSelectionChange"
+                    >
+                        <columns>
+                            <Column
+                                id="_IDGenColumn121"
+                                width="45%"
+                            >
+                                <Text
+                                    id="_IDGenText1451"
+                                    text="{i18n>eventName}"
+                                />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                id="_IDGenColumnListItem122"
+                                vAlign="Middle"
+                                type="Navigation"
+                                press="onSessionSelect"
+                            >
+                                <cells>
+                                    <Text
+                                        id="_IDGenText7878"
+                                        text="{sessionModel>title}"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
                 </VBox>
-
                 <!-- Zoekbalk -->
+
                 <SearchField
                     class="searchbarregister"
                     id="searchField"
