@@ -113,6 +113,7 @@ entity PasswordReset {
 
 entity registerdOnASession  {
     sessionID : Integer;
+    key sessionID2 : Integer;
     userID    : Integer;
     firstname     : String;
     lastname      : String;

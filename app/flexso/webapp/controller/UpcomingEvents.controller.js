@@ -264,17 +264,14 @@ sap.ui.define(
           .getSource()
           .getBindingContext("upcomingSessionsModel")
           .getObject();
-        var sSessionId = oSelectedItem.sessionID; // Assuming the property name is sessionID
+        var sSessionId = oSelectedItem.sessionID2; // Assuming the property name is sessionID
         var sSessionTitle = oSelectedItem.title; // Assuming the property name is title
 
         var that = this; // Preserve reference to the controller
 
         // Confirmation dialog
         sap.m.MessageBox.confirm(
-          this.getView().getModel("i18n").getProperty("UPeventLeaveSess") +
-            sSessionTitle +
-            "'?",
-
+          "Are you sure you want to leave session '" + sSessionTitle + "'?",
           {
             title: "Confirm",
             actions: [
@@ -304,23 +301,18 @@ sap.ui.define(
                       aSessions.splice(nIndex, 1);
                       oModel.setProperty("/", aSessions);
                     }
-                    sap.m.MessageToast.show(
-                      this.getView()
-                        .getModel("i18n")
-                        .getProperty("UPeventLeaveSessSucc")
-                    );
-
+                    sap.m.MessageToast.show("Session left successfully");
                     // Reload the page after 1.5 seconds (1500 milliseconds)
                     setTimeout(function () {
+                      var oRouter = UIComponent.getRouterFor(that);
+                      oRouter.navTo("home"); // Replace "homepage" with the name of your homepage route
                       window.location.reload();
                     }, 500);
                   },
                   error: function (xhr, status, error) {
                     // Handle error
                     sap.m.MessageToast.show(
-                      this.getView()
-                        .getModel("i18n")
-                        .getProperty("UPeventErrorSess") + error
+                      "Error occurred while leaving session: " + error
                     );
                   },
                 });
