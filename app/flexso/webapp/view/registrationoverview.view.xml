@@ -95,47 +95,16 @@
                         id="titleSessionChoose"
                         text="{i18n>ChooseASession}"
                     />
-                    <SearchField
+                    <ComboBox
                         id="sessionSelect1"
-                        liveChange="onSessionSelectChange"
-                        width="25%"
-                    />
-                    <Table
-                        id="_IDGenTable2"
-                        width="25%"
-                        itemPress="onItemPress"
-                        items="{sessionModel>/}"
-                        growing="true"
-                        growingThreshold="3"
-                        selectionChange="onSelectionChange"
+                        change="onSessionSelectChange"
                     >
-                        <columns>
-                            <Column
-                                id="_IDGenColumn121"
-                                width="45%"
-                            >
-                                <Text
-                                    id="_IDGenText1451"
-                                    text="{i18n>eventName}"
-                                />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem
-                                id="_IDGenColumnListItem122"
-                                vAlign="Middle"
-                                type="Navigation"
-                                press="onSessionSelect"
-                            >
-                                <cells>
-                                    <Text
-                                        id="_IDGenText7878"
-                                        text="{sessionModel>title}"
-                                    />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="{sessionModel>sessionID}"
+                            text="{sessionModel>title}"
+                        />
+                    </ComboBox>
                 </VBox>
                 <!-- Zoekbalk -->
 

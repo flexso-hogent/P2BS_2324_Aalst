@@ -81,7 +81,8 @@ sap.ui.define(
                 " with ID: " +
                 selectedEvent.eventID
             );
-            this.loadSessions(selectedEvent.eventID);
+            var selectedEventId = oEvent.getParameter("selectedItem").getKey();
+            this.loadSessions(selectedEventId);
             oSessionsBox.setVisible(true);
             oEventTable.setVisible(false);
           } else {
@@ -133,39 +134,61 @@ sap.ui.define(
         // Hide the table
         this.byId("_IDGenTable1").setVisible(false);
         this.byId("sessionsBox").setVisible(true);
+
+        // Load sessions related to the selected event
+        var selectedEventId = oItem
+          .getBindingContext("eventModel")
+          .getProperty("eventID");
+        this.loadSessions(selectedEventId);
       },
 
       loadSessions: function (eventID) {
+        console.log("Loading sessions for event ID:", eventID);
         var that = this;
-        console.log("Fetching sessions for eventID:", eventID);
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Sessions",
           dataType: "json",
-          data: { $filter: "eventID eq '" + eventID + "'" }, // Ensure correct OData filter syntax
+          data: {
+            $filter: "eventID eq '" + eventID + "'",
+          },
           success: function (data) {
-            console.log("Sessions loaded:", data.value);
-            if (data.value.length > 0) {
-              var sessionModel = new JSONModel(data.value);
-              that.getView().setModel(sessionModel, "sessionModel");
-              that.byId("_IDGenTable2").setVisible(true); // Make sure the session table is visible
-              that.byId("sessionsBox").setVisible(true); // Ensure the sessions box is visible
-            } else {
-              console.log("No sessions found for eventID:", eventID);
-              that.byId("_IDGenTable2").setVisible(false);
-              that.byId("sessionsBox").setVisible(false); // Hide the sessions box if no sessions found
-              MessageToast.show(
-                that.getView().getModel("i18n").getProperty("NoSessionsFound")
+            console.log("Sessions loaded successfully:", data);
+            var sessions = data.value.map(function (session) {
+              return {
+                sessionID: session.sessionID,
+                title: session.title,
+              };
+            });
+
+            var sessionModel = new JSONModel(sessions);
+            that.getView().setModel(sessionModel, "sessionModel");
+
+            var oSessionSelect = that.getView().byId("sessionSelect1");
+            // Alleen items toevoegen als er sessies zijn
+            if (sessions.length > 0) {
+              oSessionSelect.removeAllItems();
+              sessions.forEach(function (session) {
+                var oItem = new sap.ui.core.Item({
+                  key: session.sessionID,
+                  text: session.title,
+                });
+                oSessionSelect.addItem(oItem);
+              });
+
+              // Selecteer de eerste sessie automatisch.
+              oSessionSelect.setSelectedItem(oSessionSelect.getItems()[0]);
+
+              // Laad de gegevens van de automatisch geselecteerde sessie
+              that.loadRegisteredParticipants(
+                oSessionSelect.getItems()[0].getKey()
               );
             }
           },
           error: function (xhr, status, error) {
-            console.error("Failed to load sessions:", error);
-            that.byId("sessionsBox").setVisible(false);
+            console.error("Error fetching session data:", error);
             MessageToast.show(
-              that
-                .getView()
-                .getModel("i18n")
-                .getProperty("ErrorLoadingSessions")
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
             );
           },
         });
