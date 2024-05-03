@@ -150,18 +150,14 @@
 
                             <HBox id="_IDGenHBox111">
                                 <VBox id="_IDGenVBox1">
-                                    <Text
-                                        id="upcomingText19"
-                                        text="{upcomingSessionsModel>speaker}"
-                                    />
-                                    <!-- 
                                     <Image
-                                        id="test"
-                                        src="{imageModel>/profileImagePath}"
+                                        id="sessionImage"
+                                        src="{path: 'upcomingSessionsModel>speaker', formatter: '.extractImageURL'}"
                                         class="profileImage1"
-                                    /> -->
+                                    />
                                 </VBox>
                             </HBox>
+
                             <Text
                                 id="upcomingText20"
                                 text="{upcomingSessionsModel>totalSeats}"
