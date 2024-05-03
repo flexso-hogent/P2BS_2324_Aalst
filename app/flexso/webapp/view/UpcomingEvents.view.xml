@@ -154,12 +154,12 @@
                                         id="upcomingText19"
                                         text="{upcomingSessionsModel>speaker}"
                                     />
-                                    <!-- 
+
                                     <Image
                                         id="test"
                                         src="{imageModel>/profileImagePath}"
                                         class="profileImage1"
-                                    /> -->
+                                    />
                                 </VBox>
                             </HBox>
                             <Text
