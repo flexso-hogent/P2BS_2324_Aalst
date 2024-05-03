@@ -61,14 +61,85 @@ sap.ui.define(
         });
       },
 
-      onSessionSelectChange: function (oEvent) {
-        var selectedSessionId = oEvent.getParameter("selectedItem").getKey();
-        this.loadRegisteredParticipants(selectedSessionId);
+      onEventSelectChange: function (oEvent) {
+        var sValue = oEvent.getParameter("newValue").trim();
+        var oSessionsBox = this.getView().byId("sessionsBox");
+        var oEventTable = this.getView().byId("_IDGenTable1");
+
+        // Check if any value is entered in the event selection field
+        if (sValue) {
+          var oModel = this.getView().getModel("eventModel");
+          var selectedEvent = oModel
+            .getData()
+            .find((event) => event.Name.includes(sValue));
+
+          if (selectedEvent) {
+            // If an event is selected, load its sessions and update visibility
+            console.log(
+              "Event selected: " +
+                selectedEvent.Name +
+                " with ID: " +
+                selectedEvent.eventID
+            );
+            var selectedEventId = oEvent.getParameter("selectedItem").getKey();
+            this.loadSessions(selectedEventId);
+            oSessionsBox.setVisible(true);
+            oEventTable.setVisible(false);
+          } else {
+            // If no matching event is found, inform the user and hide sessions box
+            console.log("No event found with the name: " + sValue);
+            oSessionsBox.setVisible(false);
+            oEventTable.setVisible(true);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("EventNotFound")
+            );
+          }
+        } else {
+          // If the input is cleared, show the event table and hide the sessions box
+          oSessionsBox.setVisible(false);
+          oEventTable.setVisible(true);
+          console.log("Input cleared - no event selected.");
+        }
       },
 
-      onEventSelectChange: function (oEvent) {
-        var selectedEventId = oEvent.getParameter("selectedItem").getKey();
-        this.loadSessions(selectedEventId); // Call loadSessions with selected event ID
+      loadSessionsFromEventName: function (eventName) {
+        var that = this;
+        // Implement AJAX call to fetch sessions related to the event name
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          data: {
+            $filter: "eventName eq '" + eventName + "'",
+          },
+          success: function (data) {
+            // Assuming sessionModel is set up to take these entries
+            var sessionModel = new JSONModel(data.value);
+            that.getView().setModel(sessionModel, "sessionModel");
+            that.byId("_IDGenTable2").setVisible(true);
+          },
+          error: function () {
+            that.byId("sessionsBox").setVisible(false);
+          },
+        });
+      },
+
+      onItemPress: function (oEvent) {
+        var oItem = oEvent.getParameter("listItem");
+        var oContext = oItem.getBindingContext("eventModel");
+        var sName = oContext.getProperty("Name");
+
+        // Update the value in the SearchField with the name of the pressed item
+        this.byId("sessionEventSelect").setValue(sName);
+
+        // Hide the table
+        this.byId("_IDGenTable1").setVisible(false);
+        this.byId("sessionsBox").setVisible(true);
+
+        // Load sessions related to the selected event
+        var selectedEventId = oItem
+          .getBindingContext("eventModel")
+          .getProperty("eventID");
+        this.loadSessions(selectedEventId);
       },
 
       loadSessions: function (eventID) {
@@ -93,30 +164,47 @@ sap.ui.define(
             that.getView().setModel(sessionModel, "sessionModel");
 
             var oSessionSelect = that.getView().byId("sessionSelect1");
-            oSessionSelect.removeAllItems();
-            // Add sessions to the second ComboBox
-            sessions.forEach(function (session) {
-              oSessionSelect.addItem(
-                new sap.ui.core.Item({
+            // Alleen items toevoegen als er sessies zijn
+            if (sessions.length > 0) {
+              oSessionSelect.removeAllItems();
+              sessions.forEach(function (session) {
+                var oItem = new sap.ui.core.Item({
                   key: session.sessionID,
                   text: session.title,
-                })
-              );
-            });
+                });
+                oSessionSelect.addItem(oItem);
+              });
 
-            // Load registered participants for the first session by default
-            if (sessions.length > 0) {
-              that.loadRegisteredParticipants(sessions[0].sessionID);
+              // Selecteer de eerste sessie automatisch.
+              oSessionSelect.setSelectedItem(oSessionSelect.getItems()[0]);
+
+              // Laad de gegevens van de automatisch geselecteerde sessie
+              that.loadRegisteredParticipants(
+                oSessionSelect.getItems()[0].getKey()
+              );
             }
           },
           error: function (xhr, status, error) {
             console.error("Error fetching session data:", error);
             MessageToast.show(
-              that.getView().getModel("i18n").getProperty("fetchdatesession") +
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
                 error
             );
           },
         });
+      },
+
+      onSessionSelectChange: function (oEvent) {
+        var sValue = oEvent.getParameter("newValue");
+        var oModel = this.getView().getModel("sessionModel");
+        oModel.setProperty("/selectedSession", sValue);
+
+        if (sValue !== "") {
+          this.loadRegisteredParticipants(sValue);
+          this.byId("_IDGenVBox3").setVisible(true);
+        } else {
+          this.byId("_IDGenVBox3").setVisible(false);
+        }
       },
 
       loadRegisteredParticipants: function (sessionID) {
