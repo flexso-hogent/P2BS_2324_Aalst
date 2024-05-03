@@ -62,49 +62,66 @@ sap.ui.define(
       },
 
       onEventSelectChange: function (oEvent) {
-        var oModel = this.getView().getModel("eventModel");
-        var sValue = oEvent.getParameter("newValue");
+        var sValue = oEvent.getParameter("newValue").trim();
+        var oSessionsBox = this.getView().byId("sessionsBox");
+        var oEventTable = this.getView().byId("_IDGenTable1");
 
-        // Update the selectedEvent property in the model
-        oModel.setProperty("/selectedEvent", sValue);
+        // Check if any value is entered in the event selection field
+        if (sValue) {
+          var oModel = this.getView().getModel("eventModel");
+          var selectedEvent = oModel
+            .getData()
+            .find((event) => event.Name.includes(sValue));
 
-        // Filter the events based on the user's input
-        var oFilter = new sap.ui.model.Filter(
-          "eventName",
-          sap.ui.model.FilterOperator.Contains,
-          sValue
-        );
-        this.byId("sessionEventSelect").getBinding("items").filter([oFilter]);
-
-        // Make the sessionsBox visible if the selectedEvent is not empty
-        if (sValue !== "") {
-          this.byId("sessionsBox").setVisible(true);
+          if (selectedEvent) {
+            // If an event is selected, load its sessions and update visibility
+            console.log(
+              "Event selected: " +
+                selectedEvent.Name +
+                " with ID: " +
+                selectedEvent.eventID
+            );
+            this.loadSessions(selectedEvent.eventID);
+            oSessionsBox.setVisible(true);
+            oEventTable.setVisible(false);
+          } else {
+            // If no matching event is found, inform the user and hide sessions box
+            console.log("No event found with the name: " + sValue);
+            oSessionsBox.setVisible(false);
+            oEventTable.setVisible(true);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("EventNotFound")
+            );
+          }
         } else {
-          this.byId("sessionsBox").setVisible(false);
+          // If the input is cleared, show the event table and hide the sessions box
+          oSessionsBox.setVisible(false);
+          oEventTable.setVisible(true);
+          console.log("Input cleared - no event selected.");
         }
       },
 
-      onEventSelectChange: function (oEvent) {
-        var oModel = this.getView().getModel("eventModel");
-        var sValue = oEvent.getParameter("newValue");
-
-        // Update the selectedEvent property in the model
-        oModel.setProperty("/selectedEvent", sValue);
-
-        var oFilter = new sap.ui.model.Filter(
-          "eventName",
-          sap.ui.model.FilterOperator.Contains,
-          sValue
-        );
-        this.byId("sessionEventSelect").getBinding("items").filter([oFilter]);
-
-        // Make the sessionsBox visible if the selectedEvent is not empty
-        if (sValue !== "") {
-          this.byId("sessionsBox").setVisible(true);
-        } else {
-          this.byId("sessionsBox").setVisible(false);
-        }
+      loadSessionsFromEventName: function (eventName) {
+        var that = this;
+        // Implement AJAX call to fetch sessions related to the event name
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          data: {
+            $filter: "eventName eq '" + eventName + "'",
+          },
+          success: function (data) {
+            // Assuming sessionModel is set up to take these entries
+            var sessionModel = new JSONModel(data.value);
+            that.getView().setModel(sessionModel, "sessionModel");
+            that.byId("_IDGenTable2").setVisible(true);
+          },
+          error: function () {
+            that.byId("sessionsBox").setVisible(false);
+          },
+        });
       },
+
       onItemPress: function (oEvent) {
         var oItem = oEvent.getParameter("listItem");
         var oContext = oItem.getBindingContext("eventModel");
@@ -119,51 +136,52 @@ sap.ui.define(
       },
 
       loadSessions: function (eventID) {
-        console.log("Loading sessions for event ID:", eventID);
         var that = this;
+        console.log("Fetching sessions for eventID:", eventID);
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Sessions",
           dataType: "json",
-          data: {
-            $filter: "eventID eq '" + eventID + "'",
-          },
+          data: { $filter: "eventID eq '" + eventID + "'" }, // Ensure correct OData filter syntax
           success: function (data) {
-            console.log("Sessions loaded successfully:", data);
-            var sessions = data.value.map(function (session) {
-              return {
-                sessionID: session.sessionID,
-                title: session.title,
-              };
-            });
-
-            var sessionModel = new JSONModel(sessions);
-            that.getView().setModel(sessionModel, "sessionModel");
-
-            var oSessionSelect = that.getView().byId("sessionSelect1");
-            oSessionSelect.removeAllItems();
-            // Add sessions to the second ComboBox
-            sessions.forEach(function (session) {
-              oSessionSelect.addItem(
-                new sap.ui.core.Item({
-                  key: session.sessionID,
-                  text: session.title,
-                })
+            console.log("Sessions loaded:", data.value);
+            if (data.value.length > 0) {
+              var sessionModel = new JSONModel(data.value);
+              that.getView().setModel(sessionModel, "sessionModel");
+              that.byId("_IDGenTable2").setVisible(true); // Make sure the session table is visible
+              that.byId("sessionsBox").setVisible(true); // Ensure the sessions box is visible
+            } else {
+              console.log("No sessions found for eventID:", eventID);
+              that.byId("_IDGenTable2").setVisible(false);
+              that.byId("sessionsBox").setVisible(false); // Hide the sessions box if no sessions found
+              MessageToast.show(
+                that.getView().getModel("i18n").getProperty("NoSessionsFound")
               );
-            });
-
-            // Load registered participants for the first session by default
-            if (sessions.length > 0) {
-              that.loadRegisteredParticipants(sessions[0].sessionID);
             }
           },
           error: function (xhr, status, error) {
-            console.error("Error fetching session data:", error);
+            console.error("Failed to load sessions:", error);
+            that.byId("sessionsBox").setVisible(false);
             MessageToast.show(
-              that.getView().getModel("i18n").getProperty("fetchdatesession") +
-                error
+              that
+                .getView()
+                .getModel("i18n")
+                .getProperty("ErrorLoadingSessions")
             );
           },
         });
+      },
+
+      onSessionSelectChange: function (oEvent) {
+        var sValue = oEvent.getParameter("newValue");
+        var oModel = this.getView().getModel("sessionModel");
+        oModel.setProperty("/selectedSession", sValue);
+
+        if (sValue !== "") {
+          this.loadRegisteredParticipants(sValue);
+          this.byId("_IDGenVBox3").setVisible(true);
+        } else {
+          this.byId("_IDGenVBox3").setVisible(false);
+        }
       },
 
       loadRegisteredParticipants: function (sessionID) {

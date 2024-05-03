@@ -223,20 +223,9 @@
                         </ColumnListItem>
                     </items>
                 </Table>
-
-                <!-- Button terug naar home page-->
-                <VBox
-                    class="boxbutton"
-                    id="_IDGenVBox"
-                >
-                    <Button
-                        class="buttonregistrationoverview"
-                        id="_IDGenButton6S"
-                        text="{i18n>BackToHome}"
-                        press="onBackToHome"
-                    />
-                </VBox>
             </VBox>
+
+            <!-- Button terug naar home page-->
         </content>
     </Page>
     <!-- Popover Definition -->
