@@ -237,9 +237,11 @@ sap.ui.define(
           dataType: "json",
           data: { $filter: "sessionID eq " + sessionID },
           success: function (data) {
+            var participants = data.value;
             console.log("Participants loaded successfully:", data);
             var participantModel = new JSONModel(data.value);
             that.getView().setModel(participantModel, "participantModel");
+            that.getView().getModel("participantModel").refresh();
 
             // Create a counter to track the completion of user data fetching
             var usersFetched = 0;
