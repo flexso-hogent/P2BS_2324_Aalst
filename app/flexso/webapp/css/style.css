@@ -841,7 +841,6 @@
 .descriptionButton .sapUiIcon {
   color: white !important; /* Set icon color to white */
 }
-
 .passwordLook {
   display: flex; /* Gebruik flexbox-layout */
   justify-content: space-between; /* Verdeel de ruimte tussen de items */
@@ -850,4 +849,14 @@
 
 .passwordButton {
   flex: 0 0 auto; /* Zorgt ervoor dat de knop zijn oorspronkelijke breedte behoudt */
+}
+.profileImageRegister {
+  width: 100px;
+  height: auto;
+}
+
+.overviewProfileImage {
+  margin-left: 45%;
+  width: 50px;
+  height: auto;
 }

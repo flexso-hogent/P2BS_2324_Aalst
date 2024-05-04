@@ -83,7 +83,12 @@
                     />
                     <Text
                         id="_IDGenText5"
-                        text="{sessionModel>/speaker}"
+                        text="{sessionModel>/naam}"
+                    />
+                    <Image
+                        id="sessionImage"
+                        src="{path: 'sessionModel>/speaker', formatter: '.extractImageURL'}"
+                        class="profileImageRegister"
                     />
                 </VBox>
                 <VBox id="_IDGenVBox6">

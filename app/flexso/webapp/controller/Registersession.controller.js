@@ -23,6 +23,13 @@ sap.ui.define(
         oRouter.attachRoutePatternMatched(this.onRoutePatternMatched, this);
       },
 
+      extractImageURL: function (sHTML) {
+        var oParser = new DOMParser();
+        var oDoc = oParser.parseFromString(sHTML, "text/html");
+        var oImg = oDoc.querySelector("img");
+        return oImg ? oImg.src : "";
+      },
+
       onRoutePatternMatched: function (oEvent) {
         var sRouteName = oEvent.getParameter("name");
         if (sRouteName === "Registersession") {
@@ -46,6 +53,7 @@ sap.ui.define(
         var endDate = localStorage.getItem("endDate");
         var location = localStorage.getItem("room");
         var speaker = localStorage.getItem("speaker");
+        var naam = localStorage.getItem("naam");
         var totalSeats = parseInt(localStorage.getItem("totalSeats"));
         var description = localStorage.getItem("description");
         var startTime = localStorage.getItem("startTime");
@@ -66,6 +74,7 @@ sap.ui.define(
           startDate: startDate,
           endDate: endDate,
           location: location,
+          naam: naam,
           speaker: speaker,
           totalSeats: totalSeats,
           description: description,
@@ -148,6 +157,7 @@ sap.ui.define(
             room: oSessionModel.getProperty("/room"),
             description: oSessionModel.getProperty("/description"),
             speaker: oSessionModel.getProperty("/speaker"),
+            naam: oSessionModel.getProperty("/naam"),
             totalSeats: oSessionModel.getProperty("/totalSeats"),
             eventID: oSessionModel.getProperty("/eventID"),
             firstname: oUserDataModel.getProperty("/firstname"),
@@ -280,6 +290,7 @@ sap.ui.define(
         localStorage.removeItem("endDate");
         localStorage.removeItem("location");
         localStorage.removeItem("speaker");
+        localStorage.removeItem("naam");
         localStorage.removeItem("totalSeats");
         localStorage.removeItem("description");
         localStorage.removeItem("startTime");

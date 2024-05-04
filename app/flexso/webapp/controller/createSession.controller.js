@@ -205,6 +205,7 @@ sap.ui.define(
               ),
               room: oView.byId("_IDGenInput2").getValue(),
               description: oView.byId("_IDGenInput3").getValue(),
+              naam: oView.byId("_IDGenInput").getValue(),
               speaker: oView.byId("_IDGenInput4").getValue(),
               totalSeats: parseInt(oView.byId("_IDGenInput5").getValue()),
               eventID: eventID, // Use the selected event ID

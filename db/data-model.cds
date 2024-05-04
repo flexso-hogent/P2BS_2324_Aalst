@@ -84,6 +84,7 @@ entity Sessions {
         room        : String;
         description : String;
         speaker     : String;
+        naam       : String;
         totalSeats  : Integer;
         eventID     : String; // Association to Events;
 }
@@ -126,5 +127,6 @@ entity registerdOnASession  {
     room        : String;
     description : String;
     speaker     : String;
+    naam       : String;
     totalSeats  : Integer;
 }
