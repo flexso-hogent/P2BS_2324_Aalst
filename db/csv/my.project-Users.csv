@@ -1,3 +1,13 @@
 userID;firstname;lastname;email;password;company;role;bdate;street;hnumber;city;country;zip;phone;gender
 1;Sophie; Dupont;t@gmail.com;6cbefd8960d511540f34779628ef4e5a55b758d3be5749cd8878a09b348c052b;BelgiumTech;admin;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Female
 2;Flexso;Admin;Admin.flexso@flexso.com;fecfd612a07a341206537e4c40fe77d15afddc4c76ae8b6d09b563c16fc6d98d;Flexso;admin;1990-05-15;Rue de la Révolution;25;Brussels;Belgium;1000;3212345678;Male
+1001;John;Doe;johndoe@techmail.com;JD2024!;TechWave;Developer;1984-06-15;Main St;100;Springfield;USA;01101;555-0100;Male
+1002;Alice;Smith;alicesmith@techmail.com;AS2024!;Innovatech;Project Manager;1990-09-22;Oak Ave;205;Centerville;USA;02202;555-0200;Female
+1003;Michael;Johnson;michaeljohnson@techmail.com;MJ2024!;NetGiant;Systems Analyst;1982-03-05;Pine Rd;350;Lakeview;USA;03303;555-0300;Male
+1004;Emily;Brown;emilybrown@techmail.com;EB2024!;TechWave;Designer;1989-07-19;Maple St;500;Ridgewood;USA;04404;555-0400;Female
+1005;David;Wilson;davidwilson@techmail.com;DW2024!;Innovatech;Engineer;1975-11-25;Elm Dr;600;Brookfield;USA;05505;555-0500;Male
+1006;Sarah;Martinez;sarahmartinez@techmail.com;SM2024!;NetGiant;Marketing Specialist;1988-01-30;Cedar Ln;780;Cliffside;USA;06606;555-0600;Female
+1007;James;Robinson;jamesrobinson@techmail.com;JR2024!;TechWave;Consultant;1972-05-17;Spruce Path;880;Eastwood;USA;07707;555-0700;Male
+1008;Emma;Lee;emmalee@techmail.com;EL2024!;Innovatech;HR Manager;1995-12-12;Birch Pl;975;Northtown;USA;08808;555-0800;Female
+1009;Daniel;Clark;danielclark@techmail.com;DC2024!;NetGiant;Data Analyst;1981-10-09;Willow Way;1050;Southgate;USA;09909;555-0900;Male
+1010;Olivia;Hill;oliviahill@techmail.com;OH2024!;TechWave;Sales Director;1986-04-26;Redwood Ct;1115;Westfield;USA;10010;555-1000;Female
