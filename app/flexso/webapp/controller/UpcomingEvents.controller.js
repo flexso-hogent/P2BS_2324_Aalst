@@ -124,7 +124,7 @@ sap.ui.define(
               sQuery
             ),
             new sap.ui.model.Filter(
-              "speaker",
+              "naam",
               sap.ui.model.FilterOperator.Contains,
               sQuery
             ),

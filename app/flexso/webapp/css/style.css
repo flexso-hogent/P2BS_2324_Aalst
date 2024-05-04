@@ -841,3 +841,14 @@
 .descriptionButton .sapUiIcon {
   color: white !important; /* Set icon color to white */
 }
+
+.profileImageRegister {
+  width: 100px;
+  height: auto;
+}
+
+.overviewProfileImage {
+  margin-left: 45%;
+  width: 50px;
+  height: auto;
+}

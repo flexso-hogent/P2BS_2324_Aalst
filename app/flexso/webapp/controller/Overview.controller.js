@@ -36,6 +36,13 @@ sap.ui.define(
         oImageModel.attachPropertyChange(this.onRoleChange, this);
       },
 
+      extractImageURL: function (sHTML) {
+        var oParser = new DOMParser();
+        var oDoc = oParser.parseFromString(sHTML, "text/html");
+        var oImg = oDoc.querySelector("img");
+        return oImg ? oImg.src : "";
+      },
+
       onRoleChange: function (oEvent) {
         if (oEvent.getParameter("path") === "/role") {
           this.computeCreateButtonsVisibility();
@@ -233,6 +240,7 @@ sap.ui.define(
                 location: event.location,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
+                naam: event.naam,
                 description: event.description,
               };
             });
@@ -268,6 +276,7 @@ sap.ui.define(
                 endTime: session.endTime,
                 room: session.room,
                 speaker: session.speaker,
+                naam: session.naam,
                 totalSeats: session.totalSeats,
                 description: session.description,
               };
@@ -355,6 +364,7 @@ sap.ui.define(
           localStorage.setItem("endTime", oSessionData.endTime);
           localStorage.setItem("room", oSessionData.room);
           localStorage.setItem("speaker", oSessionData.speaker);
+          localStorage.setItem("naam", oSessionData.naam);
           localStorage.setItem("totalSeats", oSessionData.totalSeats);
           localStorage.setItem("description", oSessionData.description);
           localStorage.setItem("sessionID", oSessionData.sessionID);

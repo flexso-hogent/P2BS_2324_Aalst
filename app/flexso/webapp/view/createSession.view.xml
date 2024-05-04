@@ -176,6 +176,14 @@
                         text="{i18n>Speaker}"
                         class="LabelCreateSessionPage"
                     />
+                    <Input
+                        id="_IDGenInput"
+                        value="{sessionModel>/naam}"
+                        placeholder="{i18n>speaker}"
+                        width="{= ${device>/isPhone} ? 'auto' : '50%'}"
+                        class="InputCreateSession"
+                        required="true"
+                    />
 
                     <richtexteditor:RichTextEditor
                         id="_IDGenInput4"
