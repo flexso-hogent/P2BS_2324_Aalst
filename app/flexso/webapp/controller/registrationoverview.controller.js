@@ -1,4 +1,5 @@
-sap.ui.define([
+sap.ui.define(
+  [
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
@@ -64,39 +65,38 @@ sap.ui.define([
         var sValue = oEvent.getParameter("newValue").trim();
         var oSessionsBox = this.getView().byId("sessionsBox");
         var oEventTable = this.getView().byId("_IDGenTable1");
+        var oParticipantTable = this.getView().byId("participantsTable");
 
-        // Check if any value is entered in the event selection field
         if (sValue) {
           var oModel = this.getView().getModel("eventModel");
           var selectedEvent = oModel
             .getData()
             .find((event) => event.Name.includes(sValue));
-
           if (selectedEvent) {
-            // If an event is selected, load its sessions and update visibility
             console.log(
-              "Event selected: " +
-                selectedEvent.Name +
-                " with ID: " +
-                selectedEvent.eventID
+              "Event selected:",
+              selectedEvent.Name,
+              "with ID:",
+              selectedEvent.eventID
             );
-            var selectedEventId = oEvent.getParameter("selectedItem").getKey();
-            this.loadSessions(selectedEventId);
+            this.loadSessions(selectedEvent.eventID);
             oSessionsBox.setVisible(true);
             oEventTable.setVisible(false);
+            // Clear participant model when a new event is selected
+            this.getView().setModel(new JSONModel([]), "participantModel");
           } else {
-            // If no matching event is found, inform the user and hide sessions box
-            console.log("No event found with the name: " + sValue);
+            console.log("No event found with the name:", sValue);
             oSessionsBox.setVisible(false);
             oEventTable.setVisible(true);
+            this.getView().setModel(new JSONModel([]), "participantModel");
             MessageToast.show(
               this.getView().getModel("i18n").getProperty("EventNotFound")
             );
           }
         } else {
-          // If the input is cleared, show the event table and hide the sessions box
           oSessionsBox.setVisible(false);
           oEventTable.setVisible(true);
+          this.getView().setModel(new JSONModel([]), "participantModel");
           console.log("Input cleared - no event selected.");
         }
       },
@@ -149,7 +149,7 @@ sap.ui.define([
         var sBdate = oContext.getProperty("bdate");
         var sPhone = oContext.getProperty("phone");
         var sGender = oContext.getProperty("gender");
-    
+
         // Update de waarden in de tabel
         this.byId("_IDGenText8").setText(sFirstname + " " + sLastname);
         this.byId("_IDGenText9").setText(sEmail);
@@ -212,122 +212,102 @@ sap.ui.define([
       },
 
       onSessionSelectChange: function (oEvent) {
-        var sValue = oEvent.getParameter("newValue");
-        var oModel = this.getView().getModel("sessionModel");
-        oModel.setProperty("/selectedSession", sValue);
+        var selectedSessionID = oEvent.getSource().getSelectedKey();
+        var oVBox = this.getView().byId("_IDGenVBox3");
+        var oParticipantTable = this.getView().byId("participantsTable");
 
-        if (sValue !== "") {
-          this.loadRegisteredParticipants(sValue);
-          this.byId("_IDGenVBox3").setVisible(true);
+        if (selectedSessionID) {
+          this.loadRegisteredParticipants(selectedSessionID);
+          oVBox.setVisible(true);
+          // Clear participant model when a new session is selected
+          this.getView().setModel(new JSONModel([]), "participantModel");
         } else {
-          this.byId("_IDGenVBox3").setVisible(false);
+          oVBox.setVisible(false);
+          // Clear the table when there is no session selected
+          this.getView().setModel(new JSONModel([]), "participantModel");
         }
       },
 
-    
-
-      loadRegisteredParticipants: function(sessionID) {
-        // Laad de geregistreerde deelnemers voor de geselecteerde sessie 
-        //"http://localhost:4004/odata/v4/catalog/registerdOnASession": hieruit hebben we hun email, firstname, lastname nodig
-        // en uit
-        //"http://localhost:4004/odata/v4/catalog/Users": hieruit hebben we company, bdate, phone, gender nodig
-        // beide tabellen zijn verbonden met userID, zo kan je dus de juist gegevens van elkaar halen 
-        // je moet dus uit beide tabellen gegevens halen
-        // alles in deze fucntie uitvoeren
-
+      loadRegisteredParticipants: function (sessionID) {
         var that = this;
         console.log("Loading participants for session ID:", sessionID);
+
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/registerdOnASession",
           dataType: "json",
-          data: {
-            $filter: "sessionID eq " + sessionID,
-          },
+          data: { $filter: "sessionID eq " + sessionID },
           success: function (data) {
             console.log("Participants loaded successfully:", data);
-            var participants = data.value.map(function (participant) {
-              return {
-                userID: participant.userID,
-              };
-            });
-
-            var participantModel = new JSONModel(participants);
+            var participantModel = new JSONModel(data.value);
             that.getView().setModel(participantModel, "participantModel");
 
-            var oParticipantsTable = that.getView().byId("participantsTable");
-            oParticipantsTable.setVisible(true);
+            // Create a counter to track the completion of user data fetching
+            var usersFetched = 0;
+
+            participants.forEach(function (participant) {
+              var filter =
+                "$filter=firstname eq '" +
+                encodeURIComponent(participant.firstname) +
+                "' and lastname eq '" +
+                encodeURIComponent(participant.lastname) +
+                "'";
+              jQuery.ajax({
+                url: "http://localhost:4004/odata/v4/catalog/Users",
+                dataType: "json",
+                data: filter,
+                success: function (userData) {
+                  if (userData.value && userData.value.length > 0) {
+                    var user = userData.value[0];
+
+                    // Combine participant and user data
+                    participant.company = user.company;
+                    participant.bdate = user.bdate;
+                    participant.phone = user.phone;
+                    participant.gender = user.gender;
+                  }
+
+                  // Increment the counter
+                  usersFetched++;
+                  if (usersFetched === participants.length) {
+                    // All users are fetched, now update the model
+                    var participantModel = new JSONModel(participants);
+                    that
+                      .getView()
+                      .setModel(participantModel, "participantModel");
+                  }
+                },
+                error: function () {
+                  console.error(
+                    "Error fetching user details for",
+                    participant.firstname,
+                    participant.lastname
+                  );
+                  usersFetched++;
+                  if (usersFetched === participants.length) {
+                    var participantModel = new JSONModel(participants);
+                    that
+                      .getView()
+                      .setModel(participantModel, "participantModel");
+                  }
+                },
+              });
+            });
           },
           error: function (xhr, status, error) {
             console.error("Error fetching participant data:", error);
-            MessageToast.show(
-              this.getView().getModel("i18n").getProperty("fetchdateparticipant") +
-                error
-            );
+            MessageToast.show("Error fetching data: " + error);
           },
         });
-
-        // Haal de gegevens van de deelnemers op
-        var that = this;
-        console.log("Loading participant data...");
-        jQuery.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Users",
-          dataType: "json",
-          success: function (data) {
-            console.log("Data loaded successfully:", data);
-            var participants = data.value.map(function (participant) {
-              return {
-                userID: participant.userID,
-                firstname: participant.firstname,
-                lastname: participant.lastname,
-                company: participant.company,
-                email: participant.email,
-                bdate: participant.bdate,
-                phone: participant.phone
-              };
-            });
-
-            var participantModel = new JSONModel(participants);
-            that.getView().setModel(participantModel, "participantModel");
-
-            var oParticipantsTable = that.getView().byId("participantsTable");
-            oParticipantsTable.setVisible(true);
-          }
-        });
-
-        // Combineer de gegevens van de deelnemers en de geregistreerde deelnemers
-        var combinedData = [];
-        var participants = that.getView().getModel("participantModel").getData();
-        var registeredParticipants = that.getView().getModel("participantModel").getData();
-        participants.forEach(function (participant) {
-          var registeredParticipant = registeredParticipants.find(
-            (registeredParticipant) => registeredParticipant.userID === participant.userID
-          );
-          if (registeredParticipant) {
-            combinedData.push({
-              userID: participant.userID,
-              firstname: participant.firstname,
-              lastname: participant.lastname,
-              company: participant.company,
-              email: participant.email,
-              bdate: participant.bdate,
-              phone: participant.phone
-            });
-          }
-        });
-
-        // Update de tabel met de gecombineerde gegevens
-        that.updateParticipantsTable(combinedData);
-      
       },
 
-    updateParticipantsTable: function(combinedData) {
+      updateParticipantsTable: function (combinedData) {
         // Maak een JSON-model aan met de gecombineerde gegevens
         var participantModel = new sap.ui.model.json.JSONModel(combinedData);
         // Stel het model in op de tabel
         this.getView().setModel(participantModel, "participantModel");
-    },
-    
-    onLiveSearch: function (oEvent) {
+      },
+
+      onLiveSearch: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
         var oFilter = new sap.ui.model.Filter({
           filters: [
@@ -363,54 +343,54 @@ sap.ui.define([
           .byId("participantsTable")
           .getBinding("items");
         oBinding.filter([oFilter]);
-    },
+      },
 
-    onSwitchToEnglish: function () {
+      onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
         sap.ui.getCore().getConfiguration().setLanguage("en");
         this.getView().getModel("i18n").refresh();
-    },
+      },
 
-    onSwitchToDutch: function () {
+      onSwitchToDutch: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "nl";
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
-    },
+      },
 
-    formatter: {
+      formatter: {
         formatDate: function (date) {
-            if (!date) {
-                return null;
-            }
-            var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-                pattern: "dd MMM yyyy",
-            });
-            return oDateFormat.format(date);
+          if (!date) {
+            return null;
+          }
+          var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+            pattern: "dd MMM yyyy",
+          });
+          return oDateFormat.format(date);
         },
-    },
+      },
 
-    onBackToHome: function () {
+      onBackToHome: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("home");
-    },
-    onProfileButtonClick: function () {
+      },
+      onProfileButtonClick: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
-    },
+      },
 
-    onDropdownPress: function (oEvent) {
+      onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
         if (!oPopover.isOpen()) {
-            oPopover.openBy(oButton);
+          oPopover.openBy(oButton);
         } else {
-            oPopover.close();
+          oPopover.close();
         }
-    },
+      },
 
-    onLogoutPress: function () {
+      onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm(
           this.getView().getModel("i18n").getProperty("logout"),
@@ -429,6 +409,3 @@ sap.ui.define([
     });
   }
 );
-    },
-  });
-});
