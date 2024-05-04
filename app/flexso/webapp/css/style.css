@@ -841,3 +841,13 @@
 .descriptionButton .sapUiIcon {
   color: white !important; /* Set icon color to white */
 }
+
+.passwordLook {
+  display: flex; /* Gebruik flexbox-layout */
+  justify-content: space-between; /* Verdeel de ruimte tussen de items */
+  align-items: center; /* Centreer de items verticaal */
+}
+
+.passwordButton {
+  flex: 0 0 auto; /* Zorgt ervoor dat de knop zijn oorspronkelijke breedte behoudt */
+}

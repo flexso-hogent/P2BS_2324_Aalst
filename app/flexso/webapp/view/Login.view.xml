@@ -67,13 +67,14 @@
                     <HBox
                         id="_IDGenHBox"
                         class="passwordLook"
+                        alignItems="Center" 
                     >
                         <Input
                             id="passwordInput"
                             type="Password"
                             value="FlexsoAdmin"
                             placeholder="{i18n>passwordPlaceholder}"
-                            width="100%"
+                            width="145%"
                             class="loginInput"
                         />
 
@@ -81,8 +82,10 @@
                             id="_IDGenButton4"
                             icon="sap-icon://show"
                             press="togglePasswordVisibility"
+                            class="passwordButton" 
                         />
                     </HBox>
+
 
                     <!-- Stay Logged In Checkbox -->
                     <CheckBox
