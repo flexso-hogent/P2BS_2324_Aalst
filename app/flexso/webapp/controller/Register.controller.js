@@ -234,6 +234,27 @@ sap.ui.define(
 
         return true;
       },
+
+      togglePasswordVisibility: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oInput = this.getView().byId("passwordInput");
+        var bVisible = oInput.getType() === "Password";
+    
+        // Toggle visibility
+        oInput.setType(bVisible ? "Text" : "Password");
+        oButton.setIcon(bVisible ? "sap-icon://hide" : "sap-icon://show");
+      },
+
+      togglePasswordVisibility2: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oInput = this.getView().byId("confirmPasswordInput");
+        var bVisible = oInput.getType() === "Password";
+    
+        // Toggle visibility
+        oInput.setType(bVisible ? "Text" : "Password");
+        oButton.setIcon(bVisible ? "sap-icon://hide" : "sap-icon://show");
+      },
+    
     });
   }
 );

@@ -358,6 +358,13 @@
                                     required="true"
                                     value="test123"
                                 />
+
+                                <Button
+                                    id="_IDGenButton4"
+                                    icon="sap-icon://show"
+                                    press="togglePasswordVisibility"
+                                    class="passwordButton" 
+                                />
                             </FlexBox>
 
                             <!-- Confirm Password -->
@@ -377,6 +384,13 @@
                                     class="registerInput"
                                     required="true"
                                     value="test123"
+                                />
+
+                                <Button
+                                    id="_IDGenButton5"
+                                    icon="sap-icon://show"
+                                    press="togglePasswordVisibility2"
+                                    class="passwordButton" 
                                 />
                             </FlexBox>
                         </l:VerticalLayout>
