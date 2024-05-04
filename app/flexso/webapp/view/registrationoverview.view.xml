@@ -41,14 +41,55 @@
                         id="titleEventsChoose"
                         text="{i18n>ChooseAnEvent}"
                     />
-                    <ComboBox
+                    <SearchField
                         id="sessionEventSelect"
-                        change="onEventSelectChange"
+                        liveChange="onEventSelectChange"
+                        value="{eventModel>/selectedEvent}"
+                        width="25%"
                     />
+                    <Table
+                        id="_IDGenTable1"
+                        width="25%"
+                        itemPress="onItemPress"
+                        items="{eventModel>/}"
+                        growing="true"
+                        growingThreshold="3"
+                        selectionChange="onSelectionChange"
+                    >
+                        <columns>
+                            <Column
+                                id="_IDGenColumn12"
+                                width="45%"
+                            >
+                                <Text
+                                    id="_IDGenText145"
+                                    text="{i18n>eventName}"
+                                />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                id="_IDGenColumnListItem12"
+                                vAlign="Middle"
+                                type="Navigation"
+                                press="onSessionSelect"
+                            >
+                                <cells>
+                                    <Text
+                                        id="_IDGenText78"
+                                        text="{eventModel>Name}"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
                 </VBox>
 
                 <!-- TITLE: CHOOSE A SESSION-->
-                <VBox id="sessionsBox">
+                <VBox
+                    id="sessionsBox"
+                    visible="false"
+                >
                     <Title
                         class="titleEventsChoose"
                         id="titleSessionChoose"
@@ -57,10 +98,17 @@
                     <ComboBox
                         id="sessionSelect1"
                         change="onSessionSelectChange"
-                    />
+                        width="25%"
+                    >
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="{sessionModel>sessionID}"
+                            text="{sessionModel>title}"
+                        />
+                    </ComboBox>
                 </VBox>
-
                 <!-- Zoekbalk -->
+
                 <SearchField
                     class="searchbarregister"
                     id="searchField"
@@ -145,20 +193,9 @@
                         </ColumnListItem>
                     </items>
                 </Table>
-
-                <!-- Button terug naar home page-->
-                <VBox
-                    class="boxbutton"
-                    id="_IDGenVBox"
-                >
-                    <Button
-                        class="buttonregistrationoverview"
-                        id="_IDGenButton6S"
-                        text="{i18n>BackToHome}"
-                        press="onBackToHome"
-                    />
-                </VBox>
             </VBox>
+
+            <!-- Button terug naar home page-->
         </content>
     </Page>
     <!-- Popover Definition -->
