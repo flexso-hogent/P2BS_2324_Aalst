@@ -22,7 +22,9 @@ sap.ui.define(
         var oImageModel = new JSONModel({
           profileImagePath: oProfileImagePath,
           role: localStorage.getItem("role"), // Retrieve the role from local storage
+
           role: localStorage.getItem("role"), // Retrieve the role from local storage
+
         });
 
         this.getView().setModel(oImageModel, "imageModel");
@@ -48,6 +50,7 @@ sap.ui.define(
         var isAdmin = role === "admin";
         oImageModel.setProperty("/isAdmin", isAdmin);
 
+
         this.computeCreateButtonsVisibility();
 
         // Add listener for changes to the role property
@@ -71,6 +74,7 @@ sap.ui.define(
         var role = oImageModel.getProperty("/role");
         var isAdmin = role === "admin";
         oImageModel.setProperty("/isAdmin", isAdmin);
+
       },
       onToggleHalfScreen: function () {
         var oEventTable = this.byId("eventTable");
@@ -141,6 +145,7 @@ sap.ui.define(
             },
           }
         );
+
         sap.m.MessageBox.confirm(
           this.getView().getModel("i18n").getProperty("logout"),
           {
@@ -154,6 +159,7 @@ sap.ui.define(
             },
           }
         );
+
       },
       onSort: function (oEvent) {
         // Waarden van zoekvelden ophalen en opslaan in controller-variabelen
@@ -230,9 +236,11 @@ sap.ui.define(
           MessageToast.show(
             this.getView().getModel("i18n").getProperty("EventIDundefined")
           );
+
           MessageToast.show(
             this.getView().getModel("i18n").getProperty("EventIDundefined")
           );
+
         }
       },
       adjustLayout: function (sessionsWidth) {
@@ -285,9 +293,11 @@ sap.ui.define(
             MessageToast.show(
               this.getView().getModel("i18n").getProperty("fetchdate") + error
             );
+
             MessageToast.show(
               this.getView().getModel("i18n").getProperty("fetchdate") + error
             );
+
           },
         });
       },
@@ -417,9 +427,11 @@ sap.ui.define(
           MessageToast.show(
             this.getView().getModel("i18n").getProperty("selectSessionRegister")
           );
+
           MessageToast.show(
             this.getView().getModel("i18n").getProperty("selectSessionRegister")
           );
+
         }
       },
     });
