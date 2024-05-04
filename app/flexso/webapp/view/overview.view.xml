@@ -209,8 +209,14 @@
                                 />
                                 <Text
                                     id="text1"
-                                    text="{sessionModel>speaker}"
+                                    text="{sessionModel>naam}"
                                     class="makeBlack"
+                                />
+
+                                <Image
+                                    id="sessionImage"
+                                    src="{path: 'sessionModel>speaker', formatter: '.extractImageURL'}"
+                                    class="overviewProfileImage"
                                 />
                             </HBox>
                         </VBox>

@@ -54,6 +54,13 @@ sap.ui.define(
         oImageModel.attachPropertyChange(this.onRoleChange, this);
       },
 
+      extractImageURL: function (sHTML) {
+        var oParser = new DOMParser();
+        var oDoc = oParser.parseFromString(sHTML, "text/html");
+        var oImg = oDoc.querySelector("img");
+        return oImg ? oImg.src : "";
+      },
+
       onRoleChange: function (oEvent) {
         if (oEvent.getParameter("path") === "/role") {
           this.computeCreateButtonsVisibility();
@@ -267,6 +274,7 @@ sap.ui.define(
                 location: event.location,
                 totalSeats: event.totalSeats,
                 speaker: event.speaker,
+                naam: event.naam,
                 description: event.description,
               };
             });
@@ -287,10 +295,6 @@ sap.ui.define(
 
       loadSessions: function (eventID) {
         var that = this;
-        var currentDate = new Date(); // Huidige datum en tijd ophalen
-
-        var currentDate = new Date(); // Huidige datum en tijd ophalen
-
         jQuery.ajax({
           url: "http://localhost:4004/odata/v4/catalog/Sessions",
           dataType: "json",
@@ -414,9 +418,47 @@ sap.ui.define(
                 error
             );
           },
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          success: function (data) {
+            var filteredSessions = data.value.filter(function (session) {
+              return session.eventID === eventID;
+            });
+
+            var sessions = filteredSessions.map(function (session) {
+              return {
+                sessionID: session.sessionID,
+                title: session.title,
+                startDate: session.startDate,
+                startTime: session.startTime,
+                endDate: session.endDate,
+                endTime: session.endTime,
+                room: session.room,
+                speaker: session.speaker,
+                naam: session.naam,
+                totalSeats: session.totalSeats,
+                description: session.description,
+              };
+            });
+
+            var sessionModel = new JSONModel(sessions);
+            that.getView().setModel(sessionModel, "sessionModel");
+
+            // Show sessions box after data is loaded
+            var oSessionsBox = that.getView().byId("sessionsBox");
+            oSessionsBox.setVisible(true);
+
+            var oSessionInfoBox = that.getView().byId("sessionInfoBox");
+            oSessionInfoBox.setVisible(true);
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
+          },
         });
       },
-
       // Search field for session name
       onSearchLiveChange: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue");
@@ -481,6 +523,7 @@ sap.ui.define(
           localStorage.setItem("endTime", oSessionData.endTime);
           localStorage.setItem("room", oSessionData.room);
           localStorage.setItem("speaker", oSessionData.speaker);
+          localStorage.setItem("naam", oSessionData.naam);
           localStorage.setItem("totalSeats", oSessionData.totalSeats);
           localStorage.setItem("description", oSessionData.description);
           localStorage.setItem("sessionID", oSessionData.sessionID);
