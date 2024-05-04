@@ -1,4 +1,4 @@
-sessionID;sessionID2;userID;firstname;lastname;email;title;startDate;endDate;startTime;endTime;room;description;speaker;naam;totalSeats
+sessionID;sessionID2;userID;firstname;lastname;email;title;startDate;endDate;startTime;endTime;room;description;speaker;naam;totalSeats;
 1;1;1001;John;Doe;johndoe@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
 1;2;1002;Alice;Smith;alicesmith@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
 1;3;1003;Michael;Johnson;michaeljohnson@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
