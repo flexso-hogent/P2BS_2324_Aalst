@@ -188,7 +188,9 @@ sap.ui.define(
 
         // Check if start date is before end date
         if (new Date(startDate) > new Date(endDate)) {
-          sap.m.MessageBox.error("End date must be after start date.");
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("feedbackDate")
+          );
           return;
         }
 
@@ -221,24 +223,10 @@ sap.ui.define(
               room: oView.byId("_IDGenInput2").getValue(),
               description: oView.byId("_IDGenInput3").getValue(),
               naam: oView.byId("_IDGenInput").getValue(),
-              speaker: oView.byId("_IDGenInput4").getValue(),
+              speaker: oView.byId("_IDGenInput4").getValue() || "", // Making speaker field optional
               totalSeats: parseInt(oView.byId("_IDGenInput5").getValue()),
               eventID: eventID, // Use the selected event ID
             };
-
-            // Check if any required field is empty
-            for (var key in oSessionData) {
-              if (oSessionData.hasOwnProperty(key) && !oSessionData[key]) {
-                // Get the i18n model and retrieve the error message
-                var i18nModel = that.getView().getModel("i18n");
-                var errorMessage = i18nModel.getProperty(
-                  "feedbackCreateSession"
-                );
-                // Show the error message
-                sap.m.MessageBox.error(errorMessage);
-                return; // Exit the function if any required field is empty
-              }
-            }
 
             // Post the new session data to the backend
             jQuery.ajax({
