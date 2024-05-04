@@ -81,51 +81,55 @@
                             id="id2"
                             text="{i18n>oldPassword}"
                         />
-                        <HBox id="_IDGenHBox1">
+                        <HBox id="_IDGenHBox1" class="passwordLook">
                             <Input
                                 id="oldPasswordInput"
                                 type="Password"
                                 placeholder="{i18n>oldPassword}"
-                                width="90%"
+                                width="135%"
                             />
                             <Button
                                 id="_IDGenButton2"
                                 icon="sap-icon://show"
                                 press="togglePasswordVisibility"
+                                class="passwordButton"
                             />
                         </HBox>
                         <Label
                             id="id3"
                             text="{i18n>newPassword}"
                         />
-                        <HBox id="_IDGenHBox2">
+                        <HBox id="_IDGenHBox2" class="passwordLook">
                             <Input
                                 id="newPasswordInput"
                                 type="Password"
                                 placeholder="{i18n>newPassword}"
-                                width="90%"
+                                width="135%"
+                                class="loginInput"
                             />
                             <Button
                                 id="_IDGenButton3"
                                 icon="sap-icon://show"
                                 press="togglePasswordVisibility"
+                                class="passwordButton"
                             />
                         </HBox>
                         <Label
                             id="id4"
                             text="{i18n>confirmPassword}"
                         />
-                        <HBox id="_IDGenHBox3">
+                        <HBox id="_IDGenHBox3" class="passwordLook">
                             <Input
                                 id="confirmPasswordInput"
                                 type="Password"
                                 placeholder="{i18n>confirmPassword}"
-                                width="90%"
+                                width="135%"
                             />
                             <Button
                                 id="_IDGenButton4"
                                 icon="sap-icon://show"
                                 press="togglePasswordVisibility"
+                                class="passwordButton"
                             />
                         </HBox>
 
