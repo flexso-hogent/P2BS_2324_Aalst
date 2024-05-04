@@ -177,6 +177,21 @@ sap.ui.define(
           return;
         }
 
+        // Validate start date and end date
+        var startDate = oView.byId("_IDGenDatePicker1").getValue();
+        var endDate = oView.byId("_IDGenDatePicker2").getValue();
+
+        if (!startDate || !endDate) {
+          sap.m.MessageBox.error("Please select both start date and end date.");
+          return;
+        }
+
+        // Check if start date is before end date
+        if (new Date(startDate) > new Date(endDate)) {
+          sap.m.MessageBox.error("End date must be after start date.");
+          return;
+        }
+
         // Proceed with session creation
         // Fetch the latest session ID from the backend
         jQuery.ajax({
