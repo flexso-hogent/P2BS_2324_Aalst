@@ -185,12 +185,17 @@
                         required="true"
                     />
 
+                    <Label
+                        id="_IDGenLabel19"
+                        text="{i18n>naamSpeaker}"
+                        class="LabelCreateSessionPage"
+                    />
+
                     <richtexteditor:RichTextEditor
                         id="_IDGenInput4"
                         value="{sessionModel>/speaker}"
                         width="{= ${device>/isPhone} ? 'auto' : '50%'}"
                         class="InputCreateSession"
-                        required="true"
                     />
                     <Label
                         id="_IDGenLabel9"
