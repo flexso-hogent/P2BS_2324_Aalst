@@ -367,15 +367,15 @@ sap.ui.define(
         this.getView().setModel(participantModel, "participantModel");
       },
       onLiveSearchCompany: function (oEvent) {
-        var sQuery = oEvent.getParameter("newValue").trim().toLowerCase();
+        var sQuery2 = oEvent.getParameter("newValue").trim().toLowerCase();
         this._aGlobalFilters = this._aGlobalFilters.filter(
           (f) => f.sPath !== "company"
         );
-        if (sQuery) {
+        if (sQuery2) {
           var oCompanyFilter = new sap.ui.model.Filter(
             "company",
             sap.ui.model.FilterOperator.Contains,
-            sQuery
+            sQuery2
           );
           this._aGlobalFilters.push(oCompanyFilter);
         }
@@ -394,27 +394,32 @@ sap.ui.define(
       },
 
       onLiveSearch: function (oEvent) {
-        var sQuery = oEvent.getParameter("newValue").trim().toLowerCase();
+        var sQuery3 = oEvent.getParameter("newValue").trim().toLowerCase();
         this._aGlobalFilters = this._aGlobalFilters.filter(
           (f) => f.sPath !== "name"
         );
-        if (sQuery) {
+        if (sQuery3) {
           var oNameFilter = new sap.ui.model.Filter({
             filters: [
               new sap.ui.model.Filter(
                 "firstname",
                 sap.ui.model.FilterOperator.Contains,
-                sQuery
+                sQuery3
               ),
               new sap.ui.model.Filter(
                 "lastname",
                 sap.ui.model.FilterOperator.Contains,
-                sQuery
+                sQuery3
               ),
             ],
             and: false,
           });
           this._aGlobalFilters.push(oNameFilter);
+        } else {
+          // If the search query is empty, reset the table
+          var oTable = this.getView().byId("participantsTable");
+          var oBinding = oTable.getBinding("items");
+          oBinding.filter([]);
         }
         this._applyAllFilters();
       },
@@ -434,8 +439,17 @@ sap.ui.define(
           );
           var oGenderFilter = new sap.ui.model.Filter(aGenderFilters, false); // 'Or' condition for multiple genders
           this._aGlobalFilters.push(oGenderFilter);
+          this._applyAllFilters();
+        } else {
+          // If no genders are selected, reset the table
+          // reset the filter
+          this._aGlobalFilters = this._aGlobalFilters.filter(function (filter) {
+            return filter.sPath !== "gender";
+          });
+          var oTable = this.getView().byId("participantsTable");
+          var oBinding = oTable.getBinding("items");
+          oBinding.filter([]);
         }
-        this._applyAllFilters();
       },
 
       onSwitchToEnglish: function () {
