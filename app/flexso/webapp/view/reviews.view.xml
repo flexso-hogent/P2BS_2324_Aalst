@@ -1,0 +1,37 @@
+<mvc:View
+    controllerName="myApp.controller.Reviews"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+>
+    <Page
+        id="_IDGenPage1"
+        title="Reviews"
+    >
+        <content>
+            <List
+                id="reviewsList"
+                items="{path: 'reviews>/'}"
+            >
+                <items>
+                    <CustomListItem id="_IDGenCustomListItem1">
+                        <VBox id="_IDGenVBox1">
+                            <Text
+                                id="_IDGenText1"
+                                text="{reviews>reviewerName}"
+                            />
+                            <Text
+                                id="_IDGenText2"
+                                text="{reviews>reviewText}"
+                            />
+                            <Text
+                                id="_IDGenText3"
+                                text="{reviews>date}"
+                            />
+                        </VBox>
+                    </CustomListItem>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

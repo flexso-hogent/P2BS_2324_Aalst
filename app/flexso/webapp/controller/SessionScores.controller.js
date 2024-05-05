@@ -92,6 +92,10 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
+      onShowreviews: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("reviews");
+      },
 
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
@@ -135,6 +139,7 @@ sap.ui.define(
           oSessionsList.setVisible(false);
         }
       },
+      // implement this press="onShowreviews"
 
       onSessionSelect: function (oEvent) {
         var oSelectedItem = oEvent.getSource();

@@ -151,6 +151,12 @@
           "target": ["Profile"]
         },
         {
+          "name": "reviews",
+          "pattern": "reviews",
+          "target": ["reviews"]
+        },
+
+        {
           "name": "home",
           "pattern": "home",
           "target": ["Home"]
