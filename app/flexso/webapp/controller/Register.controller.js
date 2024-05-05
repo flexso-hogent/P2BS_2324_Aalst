@@ -176,6 +176,12 @@ sap.ui.define(
           );
         }
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
@@ -239,7 +245,7 @@ sap.ui.define(
         var oButton = oEvent.getSource();
         var oInput = this.getView().byId("passwordInput");
         var bVisible = oInput.getType() === "Password";
-    
+
         // Toggle visibility
         oInput.setType(bVisible ? "Text" : "Password");
         oButton.setIcon(bVisible ? "sap-icon://hide" : "sap-icon://show");
@@ -249,12 +255,11 @@ sap.ui.define(
         var oButton = oEvent.getSource();
         var oInput = this.getView().byId("confirmPasswordInput");
         var bVisible = oInput.getType() === "Password";
-    
+
         // Toggle visibility
         oInput.setType(bVisible ? "Text" : "Password");
         oButton.setIcon(bVisible ? "sap-icon://hide" : "sap-icon://show");
       },
-    
     });
   }
 );

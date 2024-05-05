@@ -29,6 +29,12 @@ sap.ui.define(
         var oSessionsBox = this.getView().byId("sessionsBox");
         oSessionsBox.setVisible(false);
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
       onToggleHalfScreen: function () {
         var oEventTable = this.byId("eventTable");
         var oSessionsList = this.byId("sessionsList");
@@ -85,16 +91,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
       onSort: function (oEvent) {
         this.bDescending = !this.bDescending;
@@ -138,7 +147,9 @@ sap.ui.define(
           // Adjust layout after showing sessions
           this.adjustLayout("25%");
         } else {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("EventIDundefined"));
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("EventIDundefined")
+          );
         }
       },
       adjustLayout: function (sessionsWidth) {
@@ -187,7 +198,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdate") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -228,7 +241,10 @@ sap.ui.define(
             oSessionInfoBox.setVisible(true);
           },
           error: function (xhr, status, error) {
-            MessageToast.show( this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
           },
         });
       },
@@ -304,7 +320,9 @@ sap.ui.define(
           var oRouter = UIComponent.getRouterFor(this);
           oRouter.navTo("Registersession");
         } else {
-          MessageToast.show( this.getView().getModel("i18n").getProperty("selectSessionRegister"));
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("selectSessionRegister")
+          );
         }
       },
     });

@@ -55,6 +55,12 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("en");
         this.getView().getModel("i18n").refresh();
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
@@ -67,16 +73,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onSwitchToDutch: function () {
@@ -142,7 +151,11 @@ sap.ui.define(
         var oCurrentDate = new Date();
 
         if (sEndDate > oCurrentDate) {
-          sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("SessionScoresEventNotFinisched"));
+          sap.m.MessageToast.show(
+            this.getView()
+              .getModel("i18n")
+              .getProperty("SessionScoresEventNotFinisched")
+          );
         } else {
           var oSearchField = this.getView().byId("eventZoekenInput");
           oSearchField.setValue(sTitel);
@@ -181,8 +194,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdate") + error);
-            
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -259,12 +273,18 @@ sap.ui.define(
                 // oSessionsBox.setVisible(true);
               })
               .catch(function (error) {
-                MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
-                
+                MessageToast.show(
+                  this.getView()
+                    .getModel("i18n")
+                    .getProperty("fetchdatesession") + error
+                );
               });
           },
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
           },
         });
       },

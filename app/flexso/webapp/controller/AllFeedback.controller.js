@@ -121,6 +121,12 @@ sap.ui.define(
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
       onBackToHome: function () {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("home");

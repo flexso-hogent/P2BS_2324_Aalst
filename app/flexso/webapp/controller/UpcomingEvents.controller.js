@@ -23,6 +23,12 @@ sap.ui.define(
         // Fetch upcoming registered sessions data
         this.fetchUpcomingRegisteredSessions();
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       extractImageURL: function (sHTML) {
         var oParser = new DOMParser();

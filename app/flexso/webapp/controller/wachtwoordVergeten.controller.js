@@ -47,6 +47,12 @@ sap.ui.define(
           oEvent.getSource().setIcon("sap-icon://show");
         }
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
       onSendPasswordResetEmail: function () {
         var that = this;
 

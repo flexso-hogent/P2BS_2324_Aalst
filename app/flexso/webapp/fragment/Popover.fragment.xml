@@ -24,6 +24,12 @@
                     press="onSwitchToDutch"
                     width="100%"
                 />
+                <Button
+                    id="_IDGenButton11"
+                    text="{i18n>FR}"
+                    press="onSwitchToFrench"
+                    width="100%"
+                />
             </VBox>
         </content>
     </Popover>

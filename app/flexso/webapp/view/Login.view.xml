@@ -67,7 +67,7 @@
                     <HBox
                         id="_IDGenHBox"
                         class="passwordLook"
-                        alignItems="Center" 
+                        alignItems="Center"
                     >
                         <Input
                             id="passwordInput"
@@ -82,10 +82,9 @@
                             id="_IDGenButton4"
                             icon="sap-icon://show"
                             press="togglePasswordVisibility"
-                            class="passwordButton" 
+                            class="passwordButton"
                         />
                     </HBox>
-
 
                     <!-- Stay Logged In Checkbox -->
                     <CheckBox
@@ -142,6 +141,12 @@
                     id="_IDGenButton10"
                     text="{i18n>NL}"
                     press="onSwitchToDutch"
+                    width="100%"
+                />
+                <Button
+                    id="_IDGenButton11"
+                    text="{i18n>FR}"
+                    press="onSwitchToFrench"
                     width="100%"
                 />
             </VBox>

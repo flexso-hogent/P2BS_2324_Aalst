@@ -496,6 +496,12 @@ sap.ui.define(
                 oRouter.navTo("login");
               }
             },
+            onSwitchToFrench: function () {
+              var oResourceModel = this.getView().getModel("i18n");
+              oResourceModel.sLocale = "fr";
+              sap.ui.getCore().getConfiguration().setLanguage("fr");
+              this.getView().getModel("i18n").refresh();
+            },
           }
         );
       },

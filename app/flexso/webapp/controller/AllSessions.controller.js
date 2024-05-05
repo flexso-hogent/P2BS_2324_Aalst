@@ -18,6 +18,12 @@ sap.ui.define(
         oDeviceModel.setDefaultBindingMode("OneWay");
         this.getView().setModel(oDeviceModel, "device");
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       isSessionInPast: function (endDate) {
         var today = new Date();

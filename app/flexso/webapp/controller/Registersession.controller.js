@@ -44,6 +44,12 @@ sap.ui.define(
         });
         return oDateFormat.format(new Date(dateString));
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       loadSessionData: function () {
         // Retrieve session data from localStorage

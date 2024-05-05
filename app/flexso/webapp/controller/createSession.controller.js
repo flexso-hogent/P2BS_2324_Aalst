@@ -82,6 +82,12 @@ sap.ui.define(
           oTable.setVisible(false);
         }
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       onTotalSeatsChange: function (oEvent) {
         var oInput = oEvent.getSource();

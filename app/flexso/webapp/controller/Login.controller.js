@@ -32,6 +32,12 @@ sap.ui.define(
           this.getView().byId("stayLoggedInCheckbox").setSelected(true);
         }
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
@@ -42,7 +48,6 @@ sap.ui.define(
           oPopover.close();
         }
       },
-
       onLoginPress: async function () {
         var username = this.getView().byId("usernameInput").getValue();
         var password = this.getView().byId("passwordInput").getValue();

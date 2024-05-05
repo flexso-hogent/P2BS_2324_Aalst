@@ -56,6 +56,12 @@ sap.ui.define(
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.getRoute("feedback").attachMatched(this._onRouteMatched, this);
       },
+      onSwitchToFrench: function () {
+        var oResourceModel = this.getView().getModel("i18n");
+        oResourceModel.sLocale = "fr";
+        sap.ui.getCore().getConfiguration().setLanguage("fr");
+        this.getView().getModel("i18n").refresh();
+      },
 
       _onRouteMatched: function (oEvent) {
         var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
@@ -90,7 +96,11 @@ sap.ui.define(
             });
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("errorFetchFeedbacksessions") + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedbacksessions") + error
+            );
           },
         });
       },
@@ -118,16 +128,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onSwitchToDutch: function () {
@@ -193,7 +206,9 @@ sap.ui.define(
             contentType: "application/json",
             data: JSON.stringify(feedbackData),
             success: function (data) {
-              MessageToast.show(this.getView().getModel("i18n").getProperty("Thankyoufeedback"));
+              MessageToast.show(
+                this.getView().getModel("i18n").getProperty("Thankyoufeedback")
+              );
               setTimeout(
                 function () {
                   var oRouter = UIComponent.getRouterFor(this);
