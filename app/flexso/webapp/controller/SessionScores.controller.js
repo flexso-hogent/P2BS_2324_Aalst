@@ -67,16 +67,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onSwitchToDutch: function () {
@@ -142,7 +145,11 @@ sap.ui.define(
         var oCurrentDate = new Date();
 
         if (sEndDate > oCurrentDate) {
-          sap.m.MessageToast.show(this.getView().getModel("i18n").getProperty("SessionScoresEventNotFinisched"));
+          sap.m.MessageToast.show(
+            this.getView()
+              .getModel("i18n")
+              .getProperty("SessionScoresEventNotFinisched")
+          );
         } else {
           var oSearchField = this.getView().byId("eventZoekenInput");
           oSearchField.setValue(sTitel);
@@ -181,8 +188,9 @@ sap.ui.define(
             that.getView().setModel(eventModel, "eventModel");
           },
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdate") + error);
-            
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdate") + error
+            );
           },
         });
       },
@@ -197,7 +205,6 @@ sap.ui.define(
               return session.eventID === eventID;
             });
 
-            // Aanvullende code om feedbackgegevens op te halen en het gemiddelde van de rating te berekenen
             var promises = filteredSessions.map(function (session) {
               return new Promise(function (resolve, reject) {
                 jQuery.ajax({
@@ -208,8 +215,9 @@ sap.ui.define(
                   },
                   success: function (feedbackData) {
                     var totalRating = 0;
+                    var feedbackCount = feedbackData.value.length; // Store feedback count
                     var maxScore = 5;
-                    if (feedbackData.value.length > 0) {
+                    if (feedbackCount > 0) {
                       totalRating = feedbackData.value.reduce(function (
                         accumulator,
                         currentValue
@@ -218,12 +226,12 @@ sap.ui.define(
                       },
                       0);
                       session.averageRating = Math.round(
-                        (totalRating / feedbackData.value.length / maxScore) *
-                          100
+                        (totalRating / feedbackCount / maxScore) * 100
                       );
                     } else {
                       session.averageRating = 0;
                     }
+                    session.feedbackCount = feedbackCount; // Add feedback count to session
                     resolve(session);
                   },
                   error: function (xhr, status, error) {
@@ -247,24 +255,27 @@ sap.ui.define(
                     speaker: session.speaker,
                     totalSeats: session.totalSeats,
                     description: session.description,
-                    averageRating: session.averageRating, // Nieuw toegevoegd attribuut voor het gemiddelde
+                    averageRating: session.averageRating,
+                    feedbackCount: session.feedbackCount, // Include feedback count
                   };
                 });
 
                 var sessionModel = new JSONModel(sessions);
                 that.getView().setModel(sessionModel, "sessionModel");
-
-                // Toon sessies box nadat data is geladen
-                var oSessionsBox = that.getView().byId("sessionsBox");
-                // oSessionsBox.setVisible(true);
               })
               .catch(function (error) {
-                MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
-                
+                MessageToast.show(
+                  this.getView()
+                    .getModel("i18n")
+                    .getProperty("fetchdatesession") + error
+                );
               });
           },
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("fetchdatesession") + error);
+            MessageToast.show(
+              this.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
           },
         });
       },

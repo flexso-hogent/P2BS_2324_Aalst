@@ -157,29 +157,24 @@
                                 class="sessionsboxen"
                             >
                                 <VBox id="scoresvbox">
-                                    <!-- Weergave van de titel -->
                                     <Label
                                         id="sessionID"
                                         text="{sessionModel>title}"
                                     />
-
-                                    <!-- Weergave van de startdatum en einddatum -->
                                     <Text
                                         id="sessionDates"
                                         text="{sessionModel>startDate} - {sessionModel>endDate}"
                                     />
-
-                                    <!-- Weergave van de beschrijving -->
                                     <Text
                                         id="SessionDescription"
                                         text="{sessionModel>description}"
                                     />
                                 </VBox>
                                 <VBox id="percentageVbox">
-                                    <!-- ProgressIndicator -->
                                     <HBox
                                         id="percentagehbox"
                                         alignItems="Center"
+                                        justifyContent="SpaceBetween"
                                     >
                                         <ProgressIndicator
                                             id="progressIndicator"
@@ -191,12 +186,19 @@
                                             showValue="false"
                                             class="ratingpercentage"
                                         />
-                                        <!-- Weergave van het percentage -->
-                                        <Text
-                                            id="rating"
-                                            text="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} + '%' : ${i18n>noReviewsGivenLabel}}"
-                                            class="{= ${sessionModel>averageRating} >= 50 ? 'GoodRating' : 'PoorRating'}"
-                                        />
+                                        <VBox id="_IDGenVBox2">
+                                            <Text
+                                                id="rating"
+                                                text="{= ${sessionModel>averageRating} > 0 ? ${sessionModel>averageRating} + '%' : ${i18n>noReviewsGivenLabel}}"
+                                                class="{= ${sessionModel>averageRating} >= 50 ? 'GoodRating' : 'PoorRating'}"
+                                            />
+                                            <Text
+                                                id="feedbackCountText"
+                                                text="{= ${sessionModel>feedbackCount} === 1 ? ${sessionModel>feedbackCount} + ' ' + ${i18n>feedbackGivenLabel} : ${sessionModel>feedbackCount} + ' ' + ${i18n>feedbacksGivenLabel}}"
+                                                class="feedbackCountText"
+                                                visible="{= ${sessionModel>feedbackCount} > 0 }"
+                                            />
+                                        </VBox>
                                     </HBox>
                                 </VBox>
                             </FlexBox>
