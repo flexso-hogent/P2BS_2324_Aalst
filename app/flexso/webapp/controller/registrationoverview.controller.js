@@ -11,9 +11,11 @@ sap.ui.define(
       onInit: function () {
         console.log("Initialization of registration overview page...");
         this.loadData();
+        this.loadGenderData();
         // Maak de tabel standaard zichtbaar
         var oParticipantsTable = this.getView().byId("participantsTable");
         oParticipantsTable.setVisible(true);
+        this._bSortDescending = true;
       },
 
       loadData: function () {
@@ -57,6 +59,30 @@ sap.ui.define(
               this.getView().getModel("i18n").getProperty("fetchdateevent") +
                 error
             );
+          },
+        });
+      },
+      loadGenderData: function () {
+        var that = this;
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Users",
+          method: "GET",
+          success: function (data) {
+            var uniqueGenders = {};
+            data.value.forEach(function (user) {
+              if (!uniqueGenders[user.gender]) {
+                uniqueGenders[user.gender] = true; // Store unique genders
+              }
+            });
+            var genderModel = new sap.ui.model.json.JSONModel({
+              genders: Object.keys(uniqueGenders).map(function (gender) {
+                return { key: gender, text: gender }; // Create model data
+              }),
+            });
+            that.getView().setModel(genderModel, "genderModel");
+          },
+          error: function () {
+            sap.m.MessageToast.show("Failed to load gender data.");
           },
         });
       },
@@ -307,6 +333,57 @@ sap.ui.define(
         var participantModel = new sap.ui.model.json.JSONModel(combinedData);
         // Stel het model in op de tabel
         this.getView().setModel(participantModel, "participantModel");
+      },
+      onLiveSearchCompany: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue").trim().toLowerCase();
+        var oFilter = new sap.ui.model.Filter({
+          path: "company",
+          operator: sap.ui.model.FilterOperator.Contains,
+          value1: sQuery,
+        });
+        var oBinding = this.getView()
+          .byId("participantsTable")
+          .getBinding("items");
+        oBinding.filter(oFilter);
+      },
+
+      onSortBdate: function () {
+        var oBinding = this.getView()
+          .byId("participantsTable")
+          .getBinding("items");
+        var oSorter = new sap.ui.model.Sorter("bdate", this._bSortDescending);
+        oBinding.sort(oSorter);
+
+        // Toggle the sort order for the next call
+        this._bSortDescending = !this._bSortDescending;
+      },
+
+      onChooseGender: function () {
+        var aSelectedKeys = this.getView()
+          .byId("genderSelect")
+          .getSelectedKeys();
+        var aFilters = aSelectedKeys.map(function (key) {
+          return new sap.ui.model.Filter(
+            "gender",
+            sap.ui.model.FilterOperator.EQ,
+            key
+          );
+        });
+
+        var oFilter;
+        if (aFilters.length > 0) {
+          oFilter = new sap.ui.model.Filter({
+            filters: aFilters,
+            and: false, // 'Or' condition for multiple genders
+          });
+        } else {
+          oFilter = []; // No filter applied if no gender is selected
+        }
+
+        var oBinding = this.getView()
+          .byId("participantsTable")
+          .getBinding("items");
+        oBinding.filter(oFilter);
       },
 
       onLiveSearch: function (oEvent) {

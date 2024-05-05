@@ -109,13 +109,41 @@
                 </VBox>
                 <!-- Zoekbalk -->
 
-                <SearchField
-                    class="searchbarregister"
-                    id="searchField"
-                    width="100%"
-                    liveChange="onLiveSearch"
-                    placeholder="{i18n>searchbarparticipants}"
-                />
+                <HBox id="_IDGenHBox2">
+                    <SearchField
+                        class="searchbarregister"
+                        id="searchField"
+                        liveChange="onLiveSearch"
+                        placeholder="{i18n>searchbarparticipants}"
+                    />
+                    <SearchField
+                        class="searchbarregister"
+                        id="searchFieldCompany"
+                        liveChange="onLiveSearchCompany"
+                        placeholder="{i18n>searchbarparticipantsCompany}"
+                    />
+
+                    <Button
+                        id="sortBdate"
+                        icon="sap-icon://sort"
+                        press="onSortBdate"
+                        text="{i18n>sortBdate}"
+                    />
+
+                    <MultiComboBox
+                        id="genderSelect"
+                        width="auto"
+                        items="{genderModel>/genders}"
+                        placeholder="{i18n>chooseGender}"
+                        selectionChange="onChooseGender"
+                    >
+                        <core:Item
+                            id="_IDGenItem2"
+                            key="{genderModel>key}"
+                            text="{genderModel>text}"
+                        />
+                    </MultiComboBox>
+                </HBox>
 
                 <!-- Lijst met deelnemers -->
                 <Table
