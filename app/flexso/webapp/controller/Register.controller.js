@@ -5,11 +5,14 @@ sap.ui.define(
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
     "sap/ui/model/odata/v2/ODataModel",
+    "sap/m/MessageBox"
   ],
-  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel) {
+  function (Controller, JSONModel, MessageToast, UIComponent, ODataModel, MessageBox) {
     "use strict";
 
     return Controller.extend("flexso.controller.Register", {
+      errorMessages: [], // Array to store error messages
+
       onInit: function () {
         var oRootPath = jQuery.sap.getModulePath(
           "flexso",
@@ -26,8 +29,24 @@ sap.ui.define(
 
         this.getView().setModel(oImageModel, "imageModel");
       },
+
+      // Function to display error message
+      displayErrorMessage: function (message) {
+        if (!this.errorMessages.includes(message)) {
+          this.errorMessages.push(message);
+          if (this.errorMessages.length === 1) {
+            MessageBox.error(message, {
+              onClose: function () {
+                this.errorMessages.shift(); // Remove the displayed message from the array
+              }.bind(this)
+            });
+          }
+        }
+      },
+
       onRegister: async function () {
         var that = this;
+        this.errorMessages = []; // Reset error messages array
         var email = this.getView().byId("emailInput").getValue();
         var firstname = this.getView().byId("firstnameInput").getValue();
         var lastname = this.getView().byId("lastnameInput").getValue();
@@ -53,22 +72,24 @@ sap.ui.define(
         }
 
         if (!isValidEmail(email)) {
-          sap.m.MessageBox.error(
+          this.displayErrorMessage(
             this.getView().getModel("i18n").getProperty("Invalidmail")
           );
+          return; // Return to prevent further processing
         }
 
         if (password !== passwordRepeat) {
-          sap.m.MessageBox.error(
+          this.displayErrorMessage(
             this.getView().getModel("i18n").getProperty("passwordmatch")
           );
+          return; // Return to prevent further processing
         }
 
         if (!this.isPasswordStrong(password)) {
-          sap.m.MessageBox.error(
+          this.displayErrorMessage(
             this.getView().getModel("i18n").getProperty("weakPassword")
           );
-          return;
+          return; // Return to prevent further processing
         }
 
         var requiredFields = [
@@ -88,9 +109,10 @@ sap.ui.define(
           gender,
         ];
         if (requiredFields.some((field) => !field)) {
-          sap.m.MessageBox.error(
+          this.displayErrorMessage(
             this.getView().getModel("i18n").getProperty("fillinallfields")
           );
+          return; // Return to prevent further processing
         }
 
         try {
@@ -123,7 +145,7 @@ sap.ui.define(
           });
 
           if (data.results && data.results.length > 0) {
-            sap.m.MessageBox.error(
+            this.displayErrorMessage(
               this.getView()
                 .getModel("i18n")
                 .getProperty("registrationfaileduser")
