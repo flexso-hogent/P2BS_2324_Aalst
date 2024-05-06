@@ -151,6 +151,12 @@
           "target": ["Profile"]
         },
         {
+          "name": "reviews",
+          "pattern": "reviews/{sessionTitle}",
+          "target": ["reviews"]
+        },
+
+        {
           "name": "home",
           "pattern": "home",
           "target": ["Home"]
@@ -325,6 +331,11 @@
         "UpcomingEvents": {
           "viewName": "flexso.view.UpcomingEvents",
           "viewId": "UpcomingEvents",
+          "viewLevel": 3
+        },
+        "reviews": {
+          "viewName": "flexso.view.reviews",
+          "viewId": "reviews",
           "viewLevel": 3
         }
       }

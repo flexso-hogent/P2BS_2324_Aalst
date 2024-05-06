@@ -170,6 +170,7 @@
                                         text="{sessionModel>description}"
                                     />
                                 </VBox>
+
                                 <VBox id="percentageVbox">
                                     <HBox
                                         id="percentagehbox"
@@ -197,6 +198,14 @@
                                                 text="{= ${sessionModel>feedbackCount} === 1 ? ${sessionModel>feedbackCount} + ' ' + ${i18n>feedbackGivenLabel} : ${sessionModel>feedbackCount} + ' ' + ${i18n>feedbacksGivenLabel}}"
                                                 class="feedbackCountText"
                                                 visible="{= ${sessionModel>feedbackCount} > 0 }"
+                                            />
+                                            <Button
+                                                id="_IDGenButton1"
+                                                text="{= ${sessionModel>feedbackCount} === 1 ? ${i18n>buttonreview} :  ${i18n>buttonreviews}}"
+                                                visible="{= ${sessionModel>averageRating} > 0 ? true : false }"
+                                                class="sapUiSmallMarginEnd outlookButton1"
+                                                width="10rem"
+                                                press="onShowreviews"
                                             />
                                         </VBox>
                                     </HBox>

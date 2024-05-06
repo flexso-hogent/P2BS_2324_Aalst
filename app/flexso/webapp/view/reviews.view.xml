@@ -1,0 +1,97 @@
+<mvc:View
+    controllerName="flexso.controller.Reviews"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+>
+    <Page
+        id="_IDGenPage1"
+        title="Flexso"
+        class="backgroundFlexso"
+    >
+        <headerContent>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
+        </headerContent>
+        <content>
+            <VBox 
+                id="_IDGenVBox4"
+                class = "sapUiSmallMarginBegin feedbackItemContainer"
+                width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+            >
+                <HBox 
+                    id="_IDGenHBox1"
+                    class = "barAll"
+                    width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+                >
+                    <SearchField
+                        id="_IDGenSearchField"
+                        placeholder="{i18n>SearchUser}"
+                        liveChange="onSearch"
+                        width="100%"
+                    />
+                    <Button
+                        id="_IDGenButton11"
+                        icon="sap-icon://sort"
+                        press="onSortPress"
+                    />
+                </HBox>
+                <Table
+                    id="_IDGenTable1"
+                    items="{reviews>/}"
+                    noDataText="{i18n>noDataText}"
+                    class="Nodata"
+                    width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+                >
+                    <columns>
+                        <Column id="emailColumn">
+                            <Text
+                                id="emailText"
+                                text="{i18n>Email}"
+                            />
+                        </Column>
+                        <Column id="ratingColumn">
+                            <Text
+                                id="ratingText"
+                                text="{i18n>Rating}"
+                            />
+                        </Column>
+                        <Column id="reviewColumn">
+                            <Text
+                                id="reviewText"
+                                text="{i18n>review}"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="reviewItem">
+                            <cells>
+                                <Text
+                                    id="emailCell"
+                                    text="{reviews>UserEmail}"
+                                />
+                                <Text
+                                    id="_IDGenText2"
+                                    text="{= '⭐'.repeat(${reviews>Rating}) }"
+                                />
+                                <Text
+                                    id="reviewCell"
+                                    text="{reviews>Review}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
+</mvc:View>

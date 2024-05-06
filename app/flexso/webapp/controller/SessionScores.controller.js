@@ -92,7 +92,23 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
-
+      onShowreviews: function(oEvent) {
+        var oSelectedItem = oEvent.getSource().getParent().getParent();
+        console.log("Selected Item: " + oSelectedItem);
+        var oBindingContext = oSelectedItem.getBindingContext("sessionModel");
+        console.log("Binding Context: " + oBindingContext);
+        var sSessionTitle = oBindingContext.getProperty("title");
+        console.log("Session Title: " + sSessionTitle);
+        var oComponent = this.getOwnerComponent();
+        console.log("Session Title: " + sSessionTitle);
+        oComponent.getRouter().navTo("reviews", {
+            sessionTitle: sSessionTitle
+        });
+      },
+    
+    
+    
+    
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
@@ -135,6 +151,7 @@ sap.ui.define(
           oSessionsList.setVisible(false);
         }
       },
+      // implement this press="onShowreviews"
 
       onSessionSelect: function (oEvent) {
         var oSelectedItem = oEvent.getSource();
