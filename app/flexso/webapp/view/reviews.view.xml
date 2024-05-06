@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="myApp.controller.Reviews"
+    controllerName="flexso.controller.Reviews"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true"

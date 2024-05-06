@@ -3,7 +3,7 @@ sap.ui.define(
   function (Controller, JSONModel) {
     "use strict";
 
-    return Controller.extend("myApp.controller.Reviews", {
+    return Controller.extend("flexso.controller.Reviews", {
       onInit: function () {
         var oModel = new JSONModel({
           reviews: [
