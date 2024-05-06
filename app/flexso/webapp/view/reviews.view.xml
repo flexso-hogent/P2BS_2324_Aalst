@@ -2,36 +2,52 @@
     controllerName="flexso.controller.Reviews"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
     displayBlock="true"
 >
     <Page
         id="_IDGenPage1"
         title="Reviews"
     >
+        <headerContent>
+            <core:Fragment
+                fragmentName="flexso.fragment.Toolbar"
+                type="XML"
+            />
+        </headerContent>
         <content>
-            <List
-                id="reviewsList"
-                items="{path: 'reviews>/'}"
-            >
+            <Table id="reviewsTable" items="{reviews>/}">
+                <columns>
+                    <Column id="nameColumn">
+                        <Text id="nameText" text="Name"/>
+                    </Column>
+                    <Column id="emailColumn">
+                        <Text id="emailText" text="Email"/>
+                    </Column>
+                    <Column id="ratingColumn">
+                        <Text id="ratingText" text="Rating"/>
+                    </Column>
+                    <Column id="reviewColumn">
+                        <Text id="reviewText" text="Review"/>
+                    </Column>
+                </columns>
                 <items>
-                    <CustomListItem id="_IDGenCustomListItem1">
-                        <VBox id="_IDGenVBox1">
-                            <Text
-                                id="_IDGenText1"
-                                text="{reviews>reviewerName}"
-                            />
-                            <Text
-                                id="_IDGenText2"
-                                text="{reviews>reviewText}"
-                            />
-                            <Text
-                                id="_IDGenText3"
-                                text="{reviews>date}"
-                            />
-                        </VBox>
-                    </CustomListItem>
+                    <ColumnListItem id="reviewItem">
+                        <cells>
+                            <Text id="nameCell" text="{reviews>Username}"/>
+                            <Text id="emailCell" text="{reviews>UserEmail}"/>
+                            <Text id="ratingCell" text="{reviews>Rating}"/>
+                            <Text id="reviewCell" text="{reviews>Review}"/>
+                        </cells>
+                    </ColumnListItem>
                 </items>
-            </List>
+            </Table>
         </content>
     </Page>
+    <core:Fragment
+        fragmentName="flexso.fragment.Popover"
+        type="XML"
+    />
 </mvc:View>

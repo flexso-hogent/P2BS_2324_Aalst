@@ -94,7 +94,11 @@ sap.ui.define(
       },
       onShowreviews: function () {
         var oRouter = UIComponent.getRouterFor(this);
-        oRouter.navTo("reviews");
+        var oSelectedItem = this.getView().byId("sessionsList").getSelectedItem();
+        var sSessionID = oSelectedItem.getBindingContext("sessionModel").getProperty("sessionID");
+        oRouter.navTo("reviews", {
+            sessionID: sSessionID
+        });
       },
 
       onProfileButtonClick: function () {

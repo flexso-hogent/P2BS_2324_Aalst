@@ -152,7 +152,7 @@
         },
         {
           "name": "reviews",
-          "pattern": "reviews",
+          "pattern": "reviews/{sessionID}",
           "target": ["reviews"]
         },
 
@@ -331,6 +331,11 @@
         "UpcomingEvents": {
           "viewName": "flexso.view.UpcomingEvents",
           "viewId": "UpcomingEvents",
+          "viewLevel": 3
+        },
+        "reviews": {
+          "viewName": "flexso.view.reviews",
+          "viewId": "reviews",
           "viewLevel": 3
         }
       }
