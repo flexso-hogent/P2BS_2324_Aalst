@@ -124,6 +124,7 @@
                     />
 
                     <Button
+                        class="sortbuttonregister"
                         id="sortBdate"
                         icon="sap-icon://sort"
                         press="onSortBdate"
@@ -132,6 +133,7 @@
 
                     <MultiComboBox
                         id="genderSelect"
+                        class="genderSelectregister"
                         width="auto"
                         items="{genderModel>/genders}"
                         placeholder="{i18n>chooseGender}"
