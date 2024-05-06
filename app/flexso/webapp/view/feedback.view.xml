@@ -162,7 +162,7 @@
                                     />
                                     <Text
                                         id="txtSessionSpeaker"
-                                        text="{speaker}"
+                                        text="{naam}"
                                     />
                                 </cells>
                             </ColumnListItem>
