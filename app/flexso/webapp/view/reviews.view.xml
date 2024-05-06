@@ -18,28 +18,45 @@
             />
         </headerContent>
         <content>
-            <Table id="reviewsTable" items="{reviews>/}">
+            <Table
+                id="reviewsTable"
+                items="{reviews>/}"
+            >
                 <columns>
-                    <Column id="nameColumn">
-                        <Text id="nameText" text="Name"/>
-                    </Column>
                     <Column id="emailColumn">
-                        <Text id="emailText" text="Email"/>
+                        <Text
+                            id="emailText"
+                            text="Email"
+                        />
                     </Column>
                     <Column id="ratingColumn">
-                        <Text id="ratingText" text="Rating"/>
+                        <Text
+                            id="ratingText"
+                            text="Rating"
+                        />
                     </Column>
                     <Column id="reviewColumn">
-                        <Text id="reviewText" text="Review"/>
+                        <Text
+                            id="reviewText"
+                            text="Review"
+                        />
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="reviewItem">
                         <cells>
-                            <Text id="nameCell" text="{reviews>Username}"/>
-                            <Text id="emailCell" text="{reviews>UserEmail}"/>
-                            <Text id="ratingCell" text="{reviews>Rating}"/>
-                            <Text id="reviewCell" text="{reviews>Review}"/>
+                            <Text
+                                id="emailCell"
+                                text="{reviews>UserEmail}"
+                            />
+                            <Text
+                                id="_IDGenText2"
+                                text="{= '⭐'.repeat(${reviews>Rating}) }"
+                            />
+                            <Text
+                                id="reviewCell"
+                                text="{reviews>Review}"
+                            />
                         </cells>
                     </ColumnListItem>
                 </items>

@@ -1,6 +1,6 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller", 
+    "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
@@ -8,8 +8,8 @@ sap.ui.define(
     "sap/ui/model/FilterOperator",
   ],
   function (
-    Controller, 
-    JSONModel, 
+    Controller,
+    JSONModel,
     MessageToast,
     UIComponent,
     Filter,
@@ -26,11 +26,11 @@ sap.ui.define(
       _onRouteMatched: function (oEvent) {
         var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
         console.log("Session title:", sSessionTitle);
-    
+
         // Voer de logica uit om beoordelingen op te halen voor de sessie met de sessie-ID
         this._fetchReviews(sSessionTitle);
       },
-    
+
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
         oResourceModel.sLocale = "en";
@@ -50,16 +50,19 @@ sap.ui.define(
 
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onSwitchToDutch: function () {
@@ -80,62 +83,40 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
       },
-
       _fetchReviews: function (sSessionTitle) {
         var that = this;
         var aReviewsData = [];
 
         console.log("Fetching reviews for session title: " + sSessionTitle);
-    
+
         // Fetch reviews for the selected session
         jQuery.ajax({
-            url: "http://localhost:4004/odata/v4/catalog/Feedback",
-            dataType: "json",
-            data: {
-                $filter: "SessionTitle eq '" + sSessionTitle + "'",
-            },
-            success: function (data) {
-                console.log("Received reviews data:", data);
-                var aFeedbacks = data.value;
-                var promises = [];
-    
-                // Iterate through each feedback to fetch user details
-                aFeedbacks.forEach(function (feedback) {
-                    var promise = new Promise(function (resolve, reject) {
-                        jQuery.ajax({
-                            url: "http://localhost:4004/odata/v4/catalog/Users(" + feedback.userID + ")",
-                            dataType: "json",
-                            success: function (userData) {
-                                var reviewData = {
-                                    Username: userData.firstname + " " + userData.lastname,
-                                    UserEmail: userData.email,
-                                    Rating: feedback.Rating,
-                                    Review: feedback.Review,
-                                };
-                                aReviewsData.push(reviewData);
-                                resolve();
-                            },
-                            error: function (xhr, status, error) {
-                                reject(error);
-                            },
-                        });
-                    });
-                    promises.push(promise);
-                });
-    
-                // Once all user details are fetched, set the reviews model
-                Promise.all(promises)
-                    .then(function () {
-                        var oReviewsModel = new sap.ui.model.json.JSONModel(aReviewsData);
-                        that.getView().setModel(oReviewsModel, "reviews");
-                    })
-                    .catch(function (error) {
-                        sap.m.MessageToast.show("Failed to fetch user details: " + error);
-                    });
-            },
-            error: function (xhr, status, error) {
-                sap.m.MessageToast.show("Failed to fetch reviews: " + error);
-            },
+          url: "http://localhost:4004/odata/v4/catalog/Feedback",
+          dataType: "json",
+          data: {
+            $filter: "SessionTitle eq '" + sSessionTitle + "'",
+          },
+          success: function (data) {
+            console.log("Received reviews data:", data);
+            var aFeedbacks = data.value;
+
+            // Iterate through each feedback and push it to the reviews data array
+            aFeedbacks.forEach(function (feedback) {
+              var reviewData = {
+                UserEmail: feedback.Username,
+                Rating: feedback.Rating,
+                Review: feedback.Review,
+              };
+              aReviewsData.push(reviewData);
+            });
+
+            // Set the reviews model with the collected data
+            var oReviewsModel = new sap.ui.model.json.JSONModel(aReviewsData);
+            that.getView().setModel(oReviewsModel, "reviews");
+          },
+          error: function (xhr, status, error) {
+            sap.m.MessageToast.show("Failed to fetch reviews: " + error);
+          },
         });
       },
     });
