@@ -394,53 +394,70 @@ sap.ui.define(
       },
 
       onLiveSearch: function (oEvent) {
-        var sQuery = oEvent.getParameter("newValue");
+        var sQuery = oEvent.getParameter("newValue").trim();
         var aFilters = [];
-        
-        // Filter voor zoekopdracht
-        if (sQuery) {
-            var oSearchFilter = new sap.ui.model.Filter({
+    
+        // Split de zoektekst op spaties en filter lege strings
+        var searchTerms = sQuery.split(" ").filter(function(term) {
+            return term !== "";
+        });
+    
+        // Maak een filter voor elk zoekterm
+        var termFilters = searchTerms.map(function(term) {
+            return new sap.ui.model.Filter({
                 filters: [
                     new sap.ui.model.Filter(
                         "firstname",
                         sap.ui.model.FilterOperator.Contains,
-                        sQuery
+                        term
                     ),
                     new sap.ui.model.Filter(
                         "lastname",
                         sap.ui.model.FilterOperator.Contains,
-                        sQuery
+                        term
                     ),
                     new sap.ui.model.Filter(
                         "company",
                         sap.ui.model.FilterOperator.Contains,
-                        sQuery
+                        term
                     ),
                     new sap.ui.model.Filter(
                         "email",
                         sap.ui.model.FilterOperator.Contains,
-                        sQuery
+                        term
                     ),
                     new sap.ui.model.Filter(
                         "bdate",
                         sap.ui.model.FilterOperator.Contains,
-                        sQuery
+                        term
                     ),
                 ],
                 and: false,
             });
-            aFilters.push(oSearchFilter);
-        }
-        
+        });
+    
+        // Voeg alle zoekfilters samen
+        var oSearchFilter = new sap.ui.model.Filter({
+            filters: termFilters,
+            and: true,
+        });
+    
         // Voeg de geslachtsfilters toe
         this._aGlobalFilters.forEach(function (filter) {
             aFilters.push(filter);
         });
     
+        // Voeg het zoekfilter toe aan de lijst met filters
+        if (searchTerms.length > 0) {
+            aFilters.push(oSearchFilter);
+        }
+    
         // Pas alle filters toe
         var oBinding = this.getView().byId("participantsTable").getBinding("items");
         oBinding.filter(aFilters);
     },
+    
+    
     
     
     onChooseGender: function (oEvent) {
