@@ -107,7 +107,7 @@ sap.ui.define(
       },
     
     
-    
+
     
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
