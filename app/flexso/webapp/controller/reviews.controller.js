@@ -119,6 +119,41 @@ sap.ui.define(
           },
         });
       },
+
+      onSortPress: function () {
+        var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
+        var oSorter = oBinding.aSorters || [];
+
+        var bDescending = !oSorter[0] || !oSorter[0].bDescending;
+
+        oBinding.sort(
+          new sap.ui.model.Sorter({
+            path: "Rating",
+            descending: bDescending,
+            sorter: function (a, b){
+              var aRating = a.getProperty("Rating");
+              var bRating = b.getProperty("Rating");
+              return bRating - aRating;
+            },
+          })
+        );
+      },
+
+      onSearch: function (oEvent) {
+        var sQuery = oEvent.getParameter("newValue");
+        var oFilter = new Filter({
+          filters: [
+            new Filter(
+              "UserEmail",
+              FilterOperator.Contains,
+              sQuery
+            ),
+          ],
+          and: false,
+        });
+        var oBinding = this.getView().byId("_IDGenTable1").getBinding("items");
+        oBinding.filter([oFilter]);
+      },
     });
   }
 );

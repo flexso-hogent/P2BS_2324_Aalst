@@ -9,7 +9,8 @@
 >
     <Page
         id="_IDGenPage1"
-        title="Reviews"
+        title="Flexso"
+        class="backgroundFlexso"
     >
         <headerContent>
             <core:Fragment
@@ -18,49 +19,75 @@
             />
         </headerContent>
         <content>
-            <Table
-                id="reviewsTable"
-                items="{reviews>/}"
+            <VBox 
+                id="_IDGenVBox4"
+                class = "sapUiSmallMarginBegin feedbackItemContainer"
+                width="{= ${device>/isPhone} ? 'auto' : '100%'}"
             >
-                <columns>
-                    <Column id="emailColumn">
-                        <Text
-                            id="emailText"
-                            text="Email"
-                        />
-                    </Column>
-                    <Column id="ratingColumn">
-                        <Text
-                            id="ratingText"
-                            text="Rating"
-                        />
-                    </Column>
-                    <Column id="reviewColumn">
-                        <Text
-                            id="reviewText"
-                            text="Review"
-                        />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="reviewItem">
-                        <cells>
+                <HBox 
+                    id="_IDGenHBox1"
+                    class = "barAll"
+                    width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+                >
+                    <SearchField
+                        id="_IDGenSearchField"
+                        placeholder="{i18n>SearchUser}"
+                        liveChange="onSearch"
+                        width="100%"
+                    />
+                    <Button
+                        id="_IDGenButton11"
+                        icon="sap-icon://sort"
+                        press="onSortPress"
+                    />
+                </HBox>
+                <Table
+                    id="_IDGenTable1"
+                    items="{reviews>/}"
+                    noDataText="{i18n>noDataText}"
+                    class="Nodata"
+                    width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+                >
+                    <columns>
+                        <Column id="emailColumn">
                             <Text
-                                id="emailCell"
-                                text="{reviews>UserEmail}"
+                                id="emailText"
+                                text="{i18n>Email}"
                             />
+                        </Column>
+                        <Column id="ratingColumn">
                             <Text
-                                id="_IDGenText2"
-                                text="{= '⭐'.repeat(${reviews>Rating}) }"
+                                id="ratingText"
+                                text="{i18n>Rating}"
                             />
+                        </Column>
+                        <Column id="reviewColumn">
                             <Text
-                                id="reviewCell"
-                                text="{reviews>Review}"
+                                id="reviewText"
+                                text="{i18n>review}"
                             />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="reviewItem">
+                            <cells>
+                                <Text
+                                    id="emailCell"
+                                    text="{reviews>UserEmail}"
+                                />
+                                <Text
+                                    id="_IDGenText2"
+                                    text="{= '⭐'.repeat(${reviews>Rating}) }"
+                                />
+                                <Text
+                                    id="reviewCell"
+                                    text="{reviews>Review}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
         </content>
     </Page>
     <core:Fragment
