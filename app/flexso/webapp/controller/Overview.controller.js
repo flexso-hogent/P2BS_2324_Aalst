@@ -299,6 +299,7 @@ sap.ui.define(
 
       loadSessions: function (eventID) {
         var that = this;
+        //Comment deze lijn uit om de datumcontrole uit te schakelen en de verleden sessies te zien
         var currentDate = new Date(); // Huidige datum en tijd ophalen
 
         jQuery.ajax({
@@ -309,7 +310,8 @@ sap.ui.define(
               // Datumcontrole (datumcheck)
               var sessionStartDate = new Date(session.startDate);
               return (
-                session.eventID === eventID && sessionStartDate >= currentDate
+                session.eventID === eventID && // comment de && om de datumcontrole uit te schakelen
+                sessionStartDate >= currentDate
               );
             });
 
