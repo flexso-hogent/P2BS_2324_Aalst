@@ -152,7 +152,7 @@
         },
         {
           "name": "reviews",
-          "pattern": "reviews/{sessionID}",
+          "pattern": "reviews/{sessionTitle}",
           "target": ["reviews"]
         },
 

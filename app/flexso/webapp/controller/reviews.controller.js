@@ -19,71 +19,16 @@ sap.ui.define(
 
     return Controller.extend("flexso.controller.Reviews", {
       onInit: function () {
-        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var oRouter = this.getOwnerComponent().getRouter();
         oRouter.getRoute("reviews").attachMatched(this._onRouteMatched, this);
       },
 
       _onRouteMatched: function (oEvent) {
-        var oArgs = oEvent.getParameter("arguments");
-        var sSessionID = oArgs.sessionID;
+        var sSessionTitle = oEvent.getParameter("arguments").sessionTitle;
+        console.log("Session title:", sSessionTitle);
     
-        // Fetch reviews for the selected session
-        this._fetchReviews(sSessionID);
-      },
-
-      _fetchReviews: function (sSessionID) {
-        var that = this;
-        var aReviewsData = [];
-    
-        // Fetch reviews for the selected session
-        jQuery.ajax({
-            url: "http://localhost:4004/odata/v4/catalog/Feedback",
-            dataType: "json",
-            data: {
-                $filter: "SessionID eq '" + sSessionID + "'",
-            },
-            success: function (data) {
-                var aFeedbacks = data.value;
-                var promises = [];
-    
-                // Iterate through each feedback to fetch user details
-                aFeedbacks.forEach(function (feedback) {
-                    var promise = new Promise(function (resolve, reject) {
-                        jQuery.ajax({
-                            url: "http://localhost:4004/odata/v4/catalog/Users(" + feedback.userID + ")",
-                            dataType: "json",
-                            success: function (userData) {
-                                var reviewData = {
-                                    Username: userData.firstname + " " + userData.lastname,
-                                    UserEmail: userData.email,
-                                    Rating: feedback.Rating,
-                                    Review: feedback.Review,
-                                };
-                                aReviewsData.push(reviewData);
-                                resolve();
-                            },
-                            error: function (xhr, status, error) {
-                                reject(error);
-                            },
-                        });
-                    });
-                    promises.push(promise);
-                });
-    
-                // Once all user details are fetched, set the reviews model
-                Promise.all(promises)
-                    .then(function () {
-                        var oReviewsModel = new sap.ui.model.json.JSONModel(aReviewsData);
-                        that.getView().setModel(oReviewsModel, "reviews");
-                    })
-                    .catch(function (error) {
-                        sap.m.MessageToast.show("Failed to fetch user details: " + error);
-                    });
-            },
-            error: function (xhr, status, error) {
-                sap.m.MessageToast.show("Failed to fetch reviews: " + error);
-            },
-        });
+        // Voer de logica uit om beoordelingen op te halen voor de sessie met de sessie-ID
+        this._fetchReviews(sSessionTitle);
       },
     
       onSwitchToEnglish: function () {
@@ -134,6 +79,64 @@ sap.ui.define(
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
+      },
+
+      _fetchReviews: function (sSessionTitle) {
+        var that = this;
+        var aReviewsData = [];
+
+        console.log("Fetching reviews for session title: " + sSessionTitle);
+    
+        // Fetch reviews for the selected session
+        jQuery.ajax({
+            url: "http://localhost:4004/odata/v4/catalog/Feedback",
+            dataType: "json",
+            data: {
+                $filter: "SessionTitle eq '" + sSessionTitle + "'",
+            },
+            success: function (data) {
+                console.log("Received reviews data:", data);
+                var aFeedbacks = data.value;
+                var promises = [];
+    
+                // Iterate through each feedback to fetch user details
+                aFeedbacks.forEach(function (feedback) {
+                    var promise = new Promise(function (resolve, reject) {
+                        jQuery.ajax({
+                            url: "http://localhost:4004/odata/v4/catalog/Users(" + feedback.userID + ")",
+                            dataType: "json",
+                            success: function (userData) {
+                                var reviewData = {
+                                    Username: userData.firstname + " " + userData.lastname,
+                                    UserEmail: userData.email,
+                                    Rating: feedback.Rating,
+                                    Review: feedback.Review,
+                                };
+                                aReviewsData.push(reviewData);
+                                resolve();
+                            },
+                            error: function (xhr, status, error) {
+                                reject(error);
+                            },
+                        });
+                    });
+                    promises.push(promise);
+                });
+    
+                // Once all user details are fetched, set the reviews model
+                Promise.all(promises)
+                    .then(function () {
+                        var oReviewsModel = new sap.ui.model.json.JSONModel(aReviewsData);
+                        that.getView().setModel(oReviewsModel, "reviews");
+                    })
+                    .catch(function (error) {
+                        sap.m.MessageToast.show("Failed to fetch user details: " + error);
+                    });
+            },
+            error: function (xhr, status, error) {
+                sap.m.MessageToast.show("Failed to fetch reviews: " + error);
+            },
+        });
       },
     });
   }
