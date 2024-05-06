@@ -19,6 +19,13 @@ sap.ui.define(
         this.getView().setModel(oDeviceModel, "device");
       },
 
+      extractImageURL: function (sHTML) {
+        var oParser = new DOMParser();
+        var oDoc = oParser.parseFromString(sHTML, "text/html");
+        var oImg = oDoc.querySelector("img");
+        return oImg ? oImg.src : "";
+      },
+
       isSessionInPast: function (endDate) {
         var today = new Date();
         var sessionEndDate = new Date(endDate);

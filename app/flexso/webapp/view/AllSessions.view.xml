@@ -28,6 +28,11 @@
                 liveChange="onSearch"
                 class="{= ${device>/isPhone} ? 'fullWidthSearchField' : 'wideSearchField'}"
             />
+            <Button
+                id="_IDGenButton"
+                icon="sap-icon://sort"
+                press="onSortPress"
+            />
 
             <Button
                 id="_IDGenButton1"
@@ -179,10 +184,19 @@
                             id="_IDGenText11"
                             text="{allSessionsModel>room}"
                         />
-                        <Text
-                            id="_IDGenText12"
-                            text="{allSessionsModel>speaker}"
-                        />
+                        <HBox id="_IDGenHBox111">
+                            <VBox id="_IDGenVBox1">
+                                <Text
+                                    id="upcomingText19"
+                                    text="{allSessionsModel>naam}"
+                                />
+                                <Image
+                                    id="sessionImage"
+                                    src="{path: 'allSessionsModel>speaker', formatter: '.extractImageURL'}"
+                                    class="profileImage1"
+                                />
+                            </VBox>
+                        </HBox>
                         <Text
                             id="_IDGenText13"
                             text="{allSessionsModel>totalSeats}"
