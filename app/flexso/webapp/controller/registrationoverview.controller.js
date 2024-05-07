@@ -96,6 +96,7 @@ sap.ui.define(
         );
         oBinding.filter(oCombinedFilter);
       },
+      //test
 
       onEventSelectChange: function (oEvent) {
         var sValue = oEvent.getParameter("newValue").trim();
@@ -396,96 +397,92 @@ sap.ui.define(
       onLiveSearch: function (oEvent) {
         var sQuery = oEvent.getParameter("newValue").trim();
         var aFilters = [];
-    
+
         // Split de zoektekst op spaties en filter lege strings
-        var searchTerms = sQuery.split(" ").filter(function(term) {
-            return term !== "";
+        var searchTerms = sQuery.split(" ").filter(function (term) {
+          return term !== "";
         });
-    
+
         // Maak een filter voor elk zoekterm
-        var termFilters = searchTerms.map(function(term) {
-            return new sap.ui.model.Filter({
-                filters: [
-                    new sap.ui.model.Filter(
-                        "firstname",
-                        sap.ui.model.FilterOperator.Contains,
-                        term
-                    ),
-                    new sap.ui.model.Filter(
-                        "lastname",
-                        sap.ui.model.FilterOperator.Contains,
-                        term
-                    ),
-                    new sap.ui.model.Filter(
-                        "company",
-                        sap.ui.model.FilterOperator.Contains,
-                        term
-                    ),
-                    new sap.ui.model.Filter(
-                        "email",
-                        sap.ui.model.FilterOperator.Contains,
-                        term
-                    ),
-                    new sap.ui.model.Filter(
-                        "bdate",
-                        sap.ui.model.FilterOperator.Contains,
-                        term
-                    ),
-                ],
-                and: false,
-            });
+        var termFilters = searchTerms.map(function (term) {
+          return new sap.ui.model.Filter({
+            filters: [
+              new sap.ui.model.Filter(
+                "firstname",
+                sap.ui.model.FilterOperator.Contains,
+                term
+              ),
+              new sap.ui.model.Filter(
+                "lastname",
+                sap.ui.model.FilterOperator.Contains,
+                term
+              ),
+              new sap.ui.model.Filter(
+                "company",
+                sap.ui.model.FilterOperator.Contains,
+                term
+              ),
+              new sap.ui.model.Filter(
+                "email",
+                sap.ui.model.FilterOperator.Contains,
+                term
+              ),
+              new sap.ui.model.Filter(
+                "bdate",
+                sap.ui.model.FilterOperator.Contains,
+                term
+              ),
+            ],
+            and: false,
+          });
         });
-    
+
         // Voeg alle zoekfilters samen
         var oSearchFilter = new sap.ui.model.Filter({
-            filters: termFilters,
-            and: true,
+          filters: termFilters,
+          and: true,
         });
-    
+
         // Voeg de geslachtsfilters toe
         this._aGlobalFilters.forEach(function (filter) {
-            aFilters.push(filter);
+          aFilters.push(filter);
         });
-    
+
         // Voeg het zoekfilter toe aan de lijst met filters
         if (searchTerms.length > 0) {
-            aFilters.push(oSearchFilter);
+          aFilters.push(oSearchFilter);
         }
-    
+
         // Pas alle filters toe
-        var oBinding = this.getView().byId("participantsTable").getBinding("items");
+        var oBinding = this.getView()
+          .byId("participantsTable")
+          .getBinding("items");
         oBinding.filter(aFilters);
-    },
-    
-    
-    
-    
-    onChooseGender: function (oEvent) {
-      var aSelectedKeys = oEvent.getSource().getSelectedKeys();
-      this._aGlobalFilters = []; // Reset alle geslachtsfilters
-  
-      if (aSelectedKeys.length > 0) {
+      },
+
+      onChooseGender: function (oEvent) {
+        var aSelectedKeys = oEvent.getSource().getSelectedKeys();
+        this._aGlobalFilters = this._aGlobalFilters.filter(function (f) {
+          return f.sPath !== "gender"; // Verwijder oude geslachtsfilters
+        });
+
+        if (aSelectedKeys.length > 0) {
           var aGenderFilters = aSelectedKeys.map(function (key) {
-              return new sap.ui.model.Filter(
-                  "gender",
-                  sap.ui.model.FilterOperator.EQ,
-                  key
-              );
+            return new sap.ui.model.Filter(
+              "gender",
+              sap.ui.model.FilterOperator.EQ,
+              key
+            );
           });
           var oCombinedGenderFilter = new sap.ui.model.Filter({
-              filters: aGenderFilters,
-              and: false // 'Or' condition for multiple genders
+            filters: aGenderFilters,
+            and: false, // 'Or' conditie voor meerdere geslachten
           });
           this._aGlobalFilters.push(oCombinedGenderFilter);
-      }
-  
-      // Pas alle filters toe, inclusief de bijgewerkte geslachtsfilter
-      this._applyAllFilters();
-  },
-  
-  
-  
-  
+        }
+
+        this._applyAllFilters(); // Pas alle filters samen toe, inclusief de zoekfilters
+      },
 
       onSwitchToEnglish: function () {
         var oResourceModel = this.getView().getModel("i18n");
