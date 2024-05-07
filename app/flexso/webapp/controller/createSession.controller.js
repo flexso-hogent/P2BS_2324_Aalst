@@ -150,19 +150,18 @@ sap.ui.define(
         var sSelectedEvent = oView.byId("searchEvent").getValue();
         var oTable = oView.byId("_IDGenTable1");
         var oSelectedItem = oTable.getSelectedItem();
+        var oEventModel = oView.getModel("eventModel");
 
-        var eventID;
-
-        // Check if an event is selected from the table
+        var eventID, oEvent;
         if (oSelectedItem) {
           eventID = oSelectedItem
             .getBindingContext("eventModel")
             .getProperty("eventID");
+          oEvent = oEventModel.getProperty("/").find(function (event) {
+            return event.eventID === eventID;
+          });
         } else if (sSelectedEvent) {
-          // Check if an event is selected from the input field
-          var oEventModel = oView.getModel("eventModel");
-          var aEvents = oEventModel.getProperty("/");
-          var oEvent = aEvents.find(function (event) {
+          oEvent = oEventModel.getProperty("/").find(function (event) {
             return event.Name === sSelectedEvent;
           });
           if (oEvent) {
@@ -170,7 +169,7 @@ sap.ui.define(
           }
         }
 
-        if (!eventID) {
+        if (!eventID || !oEvent) {
           sap.m.MessageBox.error(
             this.getView().getModel("i18n").getProperty("feedbackSelectEvent")
           );
@@ -180,6 +179,8 @@ sap.ui.define(
         // Validate start date and end date
         var startDate = oView.byId("_IDGenDatePicker1").getValue();
         var endDate = oView.byId("_IDGenDatePicker2").getValue();
+        var formattedStartDate = this.formatDate(startDate);
+        var formattedEndDate = this.formatDate(endDate);
 
         if (!startDate || !endDate) {
           sap.m.MessageBox.error("Please select both start date and end date.");
@@ -187,9 +188,27 @@ sap.ui.define(
         }
 
         // Check if start date is before end date
-        if (new Date(startDate) > new Date(endDate)) {
+        if (new Date(formattedStartDate) > new Date(formattedEndDate)) {
           sap.m.MessageBox.error(
             this.getView().getModel("i18n").getProperty("feedbackDate")
+          );
+          return;
+        }
+
+        // Additional validation: session dates must be within the event dates
+        if (
+          new Date(formattedStartDate) <
+            new Date(this.formatDate(oEvent.SDate)) ||
+          new Date(formattedEndDate) > new Date(this.formatDate(oEvent.EDate))
+        ) {
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("sessionDateError") +
+              " " +
+              this.formatDate(oEvent.SDate) +
+              " " +
+              this.getView().getModel("i18n").getProperty("between") +
+              " " +
+              this.formatDate(oEvent.EDate)
           );
           return;
         }

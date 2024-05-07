@@ -81,6 +81,15 @@ sap.ui.define(
           );
           return;
         }
+        if (new Date(oEventData.endDate) < new Date(oEventData.startDate)) {
+          sap.m.MessageBox.error(
+            that
+              .getView()
+              .getModel("i18n")
+              .getProperty("endDateBeforeStartDate")
+          );
+          return;
+        }
 
         if (oEventData.startDate) {
           oEventData.startDate = this.formatDate(oEventData.startDate);
