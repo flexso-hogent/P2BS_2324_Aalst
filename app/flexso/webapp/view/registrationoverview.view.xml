@@ -151,6 +151,8 @@
                 <Table
                     id="participantsTable"
                     items="{participantModel>/}"
+                    growing="true"
+                    growingThreshold="5"
                 >
                     <columns>
                         <Column id="_IDGenColumn1">
