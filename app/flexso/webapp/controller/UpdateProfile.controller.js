@@ -41,7 +41,9 @@ sap.ui.define(
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-          sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("profileEmailNotFound"));
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("profileEmailNotFound")
+          );
           return;
         }
         var userDataUrl =
@@ -68,16 +70,19 @@ sap.ui.define(
               });
               that.getView().setModel(oUserDataModel, "userInfo");
             } else {
-              sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("profileUD"));
+              sap.m.MessageBox.error(
+                this.getView().getModel("i18n").getProperty("profileUD")
+              );
             }
           },
           error: function (xhr, status, error) {
-            sap.m.MessageBox.error(this.getView().getModel("i18n").getProperty("fetchuserdate") + error);
+            sap.m.MessageBox.error(
+              this.getView().getModel("i18n").getProperty("fetchuserdate") +
+                error
+            );
           },
         });
       },
-
-      
 
       onUpdateProfilePress: function () {
         var that = this;
@@ -109,8 +114,6 @@ sap.ui.define(
                     .split("T")[0],
                 };
 
-                
-
                 var userId;
                 $.ajax({
                   url: "http://localhost:4004/odata/v4/catalog/Users",
@@ -122,14 +125,18 @@ sap.ui.define(
                       userId = data.value[0].userID;
                     } else {
                       sap.m.MessageBox.error(
-                        this.getView().getModel("i18n").getProperty("profileEmailNotFound")
+                        this.getView()
+                          .getModel("i18n")
+                          .getProperty("profileEmailNotFound")
                       );
                       return;
                     }
                   },
                   error: function (xhr, status, error) {
                     sap.m.MessageBox.error(
-                      this.getView().getModel("i18n").getProperty("fetchuserdate") + error
+                      this.getView()
+                        .getModel("i18n")
+                        .getProperty("fetchuserdate") + error
                     );
                     return;
                   },
@@ -145,7 +152,12 @@ sap.ui.define(
                   contentType: "application/json",
                   data: JSON.stringify(updatedUserData),
                   success: function () {
-                    MessageToast.show(this.getView().getModel("i18n").getProperty("profileUpdateSucces"));
+                    MessageToast.show(
+                      that
+                        .getView()
+                        .getModel("i18n")
+                        .getProperty("profileUpdateSucces")
+                    );
                     setTimeout(function () {
                       that.loadUserData();
 
@@ -155,7 +167,12 @@ sap.ui.define(
                     }, 1500); // 1.5 seconds delay
                   },
                   error: function (xhr, status, error) {
-                    sap.m.MessageBox.error(that.getView().getModel("i18n").getProperty("profileFailed"));
+                    sap.m.MessageBox.error(
+                      that
+                        .getView()
+                        .getModel("i18n")
+                        .getProperty("profileFailed")
+                    );
                   },
                 });
               } else {
@@ -166,20 +183,21 @@ sap.ui.define(
         );
       },
 
-      
-
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
@@ -190,19 +208,7 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
       },
-      onLogoutPress: function () {
-        var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
-      },
+
       onDropdownPress: function (oEvent) {
         var oButton = oEvent.getSource();
         var oPopover = this.getView().byId("popover");
