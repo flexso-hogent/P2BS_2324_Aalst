@@ -140,6 +140,12 @@
           "pattern": "wachtwoordVergeten",
           "target": ["wachtwoordVergeten"]
         },
+
+        {
+          "pattern": "EditEvent",
+          "name": "EditEvent",
+          "target": "EditEvent"
+        },
         {
           "name": "list",
           "pattern": "list",
@@ -237,6 +243,11 @@
           "viewName": "flexso.view.App",
           "viewId": "app",
           "viewLevel": 1
+        },
+        "EditEvent": {
+          "viewId": "EditEvent",
+          "viewName": "EditEvent",
+          "viewLevel": 2
         },
         "Login": {
           "viewName": "flexso.view.Login",

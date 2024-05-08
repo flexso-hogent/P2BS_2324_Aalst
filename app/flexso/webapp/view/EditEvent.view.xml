@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="flexso.controller.EditEvent"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page
+        id="_IDGenPage1"
+        title="{i18n>editEvent}"
+    >
+        <Button
+            id="_IDGenButton1"
+            text="{i18n>saveChanges}"
+            press="onSaveEvent"
+        />
+        <Button
+            id="_IDGenButton2"
+            text="{i18n>deleteEvent}"
+            press="onDeleteEvent"
+        />
+    </Page>
+</mvc:View>

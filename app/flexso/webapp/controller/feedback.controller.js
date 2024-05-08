@@ -72,28 +72,43 @@ sap.ui.define(
       },
 
       fetchFeedbackSessions: function () {
-        // Fetch feedback sessions for the current user from the server.
-        var loggedInUserEmail = localStorage.getItem("email");
-        // Replace this with your actual service URL
+        var loggedInUserEmail = localStorage.getItem("email"); // Ensure this is securely managed in real applications
+
+        // Assuming your service endpoint URL is correct and set up to return sessions
         var feedbackSessionsURL =
-          "http://localhost:4004/odata/v4/catalog/Feedback?$filter=Username eq '" +
-          loggedInUserEmail +
-          "'";
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
 
         $.ajax({
           url: feedbackSessionsURL,
           type: "GET",
           success: function (data) {
-            // Store the session titles for which the user has already given feedback
-            this.feedbackSessions = data.value.map(function (feedback) {
-              return feedback.SessionTitle;
+            // Filter sessions to find those associated with the logged-in user and which are in the past
+            var today = new Date();
+            today.setHours(0, 0, 0, 0); // Reset time part for date comparison
+
+            var relevantSessions = data.value.filter(function (session) {
+              var sessionEndDate = new Date(
+                session.endDate + "T" + session.endTime
+              );
+              return (
+                session.email === loggedInUserEmail && sessionEndDate < today
+              );
             });
+
+            // Update the model with the relevant past sessions
+            var oModel = new JSONModel(relevantSessions);
+            this.getView().setModel(oModel, "Sessions");
           }.bind(this),
           error: function (xhr, status, error) {
-            MessageToast.show(this.getView().getModel("i18n").getProperty("errorFetchFeedbacksessions") + error);
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedbacksessions") + error
+            );
           },
         });
       },
+
       onAfterRendering: function () {
         // Filter de tabel op afgelopen sessies na het renderen van de view
         console.log("onAfterRendering");
@@ -118,16 +133,19 @@ sap.ui.define(
       },
       onLogoutPress: function () {
         var that = this;
-        sap.m.MessageBox.confirm(this.getView().getModel("i18n").getProperty("logout"), {
-          title: "Confirm",
-          onClose: function (oAction) {
-            if (oAction === sap.m.MessageBox.Action.OK) {
-              localStorage.clear();
-              var oRouter = UIComponent.getRouterFor(that);
-              oRouter.navTo("login");
-            }
-          },
-        });
+        sap.m.MessageBox.confirm(
+          this.getView().getModel("i18n").getProperty("logout"),
+          {
+            title: "Confirm",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                localStorage.clear();
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("login");
+              }
+            },
+          }
+        );
       },
 
       onSwitchToDutch: function () {
@@ -193,7 +211,9 @@ sap.ui.define(
             contentType: "application/json",
             data: JSON.stringify(feedbackData),
             success: function (data) {
-              MessageToast.show(this.getView().getModel("i18n").getProperty("Thankyoufeedback"));
+              MessageToast.show(
+                this.getView().getModel("i18n").getProperty("Thankyoufeedback")
+              );
               setTimeout(
                 function () {
                   var oRouter = UIComponent.getRouterFor(this);

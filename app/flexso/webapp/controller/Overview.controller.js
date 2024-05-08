@@ -296,6 +296,14 @@ sap.ui.define(
           },
         });
       },
+      enEditEventPress: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+
+        // Navigate to the editEvent route with the eventId parameter
+        oRouter.navTo("EditEvent", {
+          eventId: sEventId,
+        });
+      },
 
       loadSessions: function (eventID) {
         var that = this;
