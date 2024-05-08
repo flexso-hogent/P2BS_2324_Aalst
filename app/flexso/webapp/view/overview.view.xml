@@ -87,6 +87,15 @@
                             text="{i18n>EventSessions}"
                         />
                     </Column>
+                    <Column
+                        id="_IDGenColumn7"
+                        visible="{imageModel>/isAdmin}"
+                    >
+                        <Text
+                            id="_IDGenText78"
+                            text="{i18n>editEvent}"
+                        />
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem1">
@@ -117,6 +126,14 @@
                                 press="onViewSessionsPress"
                                 class="expandSessionsButton"
                                 width="45%"
+                            />
+                            <Button
+                                id="deleteEventButton"
+                                icon="sap-icon://edit"
+                                press="enEditEventPress"
+                                class="expandSessionsButton"
+                                width="45%"
+                                visible="{imageModel>/isAdmin}"
                             />
                         </cells>
                     </ColumnListItem>
