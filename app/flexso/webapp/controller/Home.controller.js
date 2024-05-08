@@ -84,6 +84,13 @@ sap.ui.define(
 
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
+
+            // Adjust time format for each session
+            firstTwoSessions.forEach(function(session) {
+              session.startTime = session.startTime.split(':').slice(0, 2).join(':'); // Remove seconds from start time
+              session.endTime = session.endTime.split(':').slice(0, 2).join(':'); // Remove seconds from end time
+            });
+
             oModel.setProperty("/registeredSessionsData", firstTwoSessions);
           }.bind(this),
           error: function (xhr, status, error) {
