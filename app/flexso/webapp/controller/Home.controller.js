@@ -84,7 +84,7 @@ sap.ui.define(
 
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
-            oModel.setProperty("/registeredSessionsData", upcomingSessions);
+            oModel.setProperty("/registeredSessionsData", firstTwoSessions);
           }.bind(this),
           error: function (xhr, status, error) {
             MessageToast.show(
