@@ -95,17 +95,38 @@ sap.ui.define(
             }
           },
 
-          // setTimeout(
-          //   function () {
-          //     var oRouter = UIComponent.getRouterFor(that);
-          //     oRouter.navTo("overview", {}, true /*without history*/);
-          //   }.bind(that),
-          //   1500
-          // );
-
           error: function (xhr, status, error) {
             console.error("Error updating session:", error);
             MessageBox.error("Error updating session");
+          },
+        });
+      },
+      onDeletePress: function () {
+        var sessionID = this.getView()
+          .getModel("sessionModel")
+          .getProperty("/sessionID");
+
+        var that = this;
+        // Send the DELETE request
+        $.ajax({
+          url:
+            "http://localhost:4004/odata/v4/catalog/Sessions(" +
+            sessionID +
+            ")",
+          type: "DELETE",
+          contentType: "application/json",
+          success: function () {
+            MessageBox.success("Session deleted successfully", {
+              onClose: function () {
+                var oRouter = UIComponent.getRouterFor(that);
+                oRouter.navTo("overview", {}, true);
+                window.location.reload();
+              },
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("Error deleting session:", error);
+            MessageBox.error("Error deleting session");
           },
         });
       },

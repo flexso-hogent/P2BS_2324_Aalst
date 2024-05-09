@@ -9,7 +9,7 @@
     <Page
         id="editSessionPage"
         title="{i18n>Flexso}"
-        enableScrolling="false"
+        enableScrolling="true"
         class="sapUiResponsiveContentWidth"
     >
         <headerContent>
@@ -19,113 +19,138 @@
             />
         </headerContent>
         <content>
-            <Label
-                id="label1"
-                text="{i18n>Title}"
+            <Title
+                id="_IDGenTitle1"
+                text="{i18n>EditSession}"
+                level="H2"
+                class="editSessionTitle"
             />
-            <Input
-                id="_IDGenInput1"
-                value="{sessionModel>/title}"
-                placeholder="{i18n>Title}"
-            />
-            <Label
-                id="label2"
-                text="{i18n>StartDate}"
-            />
-            <DatePicker
-                id="_IDGenDatePicker1"
-                value="{sessionModel>/startDate}"
-                placeholder="{i18n>StartDate}"
-            />
-
-            <Label
-                id="label3"
-                text="{i18n>EndDate}"
-            />
-            <DatePicker
-                id="_IDGenDatePicker2"
-                value="{sessionModel>/endDate}"
-                placeholder="{i18n>EndDate}"
-            />
-            <VBox id="_IDGenVBox1">
+            <VBox
+                id="_IDGenVBox2"
+                class="editSessionVBox"
+            >
                 <Label
-                    id="_IDGenLabel1"
-                    text="{i18n>StartTime}"
+                    id="label1"
+                    text="{i18n>Title}"
                 />
-
-                <TimePicker
-                    id="_IDGenTimePicker1"
-                    value="{sessionModel>/startTime}"
-                    placeholder="{i18n>StartTime}"
+                <Input
+                    id="_IDGenInput1"
+                    value="{sessionModel>/title}"
+                    placeholder="{i18n>Title}"
+                />
+                <Label
+                    id="label2"
+                    text="{i18n>StartDate}"
+                />
+                <DatePicker
+                    id="_IDGenDatePicker1"
+                    value="{sessionModel>/startDate}"
+                    placeholder="{i18n>StartDate}"
                 />
 
                 <Label
-                    id="label"
-                    text="{i18n>EndTime}"
+                    id="label3"
+                    text="{i18n>EndDate}"
                 />
-                <TimePicker
-                    id="_IDGenTimePicker2"
-                    value="{sessionModel>/endTime}"
-                    placeholder="{i18n>EndTime}"
+                <DatePicker
+                    id="_IDGenDatePicker2"
+                    value="{sessionModel>/endDate}"
+                    placeholder="{i18n>EndDate}"
                 />
+                <VBox id="_IDGenVBox1">
+                    <Label
+                        id="_IDGenLabel1"
+                        text="{i18n>StartTime}"
+                    />
+
+                    <TimePicker
+                        id="_IDGenTimePicker1"
+                        value="{sessionModel>/startTime}"
+                        placeholder="{i18n>StartTime}"
+                    />
+
+                    <Label
+                        id="label"
+                        text="{i18n>EndTime}"
+                    />
+                    <TimePicker
+                        id="_IDGenTimePicker2"
+                        value="{sessionModel>/endTime}"
+                        placeholder="{i18n>EndTime}"
+                    />
+                </VBox>
+                <Label
+                    id="label4"
+                    text="{i18n>Room}"
+                />
+                <Input
+                    id="_IDGenInput2"
+                    value="{sessionModel>/room}"
+                    placeholder="{i18n>Location}"
+                />
+
+                <Label
+                    id="label5"
+                    text="{i18n>nameLabel}"
+                />
+
+                <Input
+                    id="_IDGenInput4"
+                    value="{sessionModel>/naam}"
+                    placeholder="{i18n>naam}"
+                />
+
+                <Label
+                    id="label6"
+                    text="{i18n>image}"
+                />
+                <Input
+                    id="_IDGenInput5"
+                    value="{sessionModel>/speaker}"
+                    placeholder="{i18n>speaker}"
+                />
+
+                <Label
+                    id="label7"
+                    text="{i18n>TotalSeats}"
+                />
+
+                <Input
+                    id="_IDGenInput6"
+                    value="{sessionModel>/totalSeats}"
+                    placeholder="{i18n>TotalSeats}"
+                />
+
+                <Label
+                    id="label8"
+                    text="{i18n>description}"
+                />
+                <Input
+                    id="_IDGenInput"
+                    value="{sessionModel>/description}"
+                    placeholder="{i18n>Description}"
+                />
+
+                <HBox
+                    id="_IDGenHBox1"
+                    class="buttonbox center-buttons"
+                >
+                    <Button
+                        id="_IDGenButton"
+                        icon="sap-icon://save"
+                        press="onSavePress"
+                        class="editSessionButtons"
+                    />
+
+                    <Button
+                        id="_IDGenButton1"
+                        icon="sap-icon://delete"
+                        press="onDeletePress"
+                        type="Reject"
+                        class="editSessionButtons"
+                    />
+                </HBox>
             </VBox>
-            <Label
-                id="label4"
-                text="{i18n>Room}"
-            />
-            <Input
-                id="_IDGenInput2"
-                value="{sessionModel>/room}"
-                placeholder="{i18n>Location}"
-            />
-
-            <Label
-                id="label5"
-                text="{i18n>nameLabel}"
-            />
-
-            <Input
-                id="_IDGenInput4"
-                value="{sessionModel>/naam}"
-                placeholder="{i18n>naam}"
-            />
-
-            <Label
-                id="label6"
-                text="{i18n>Speaker}"
-            />
-            <Input
-                id="_IDGenInput5"
-                value="{sessionModel>/speaker}"
-                placeholder="{i18n>speaker}"
-            />
-
-            <Label
-                id="label7"
-                text="{i18n>TotalSeats}"
-            />
-
-            <Input
-                id="_IDGenInput6"
-                value="{sessionModel>/totalSeats}"
-                placeholder="{i18n>TotalSeats}"
-            />
-
-            <Label
-                id="label8"
-                text="{i18n>description}"
-            />
-            <Input
-                id="_IDGenInput"
-                value="{sessionModel>/description}"
-                placeholder="{i18n>Description}"
-            />
-
-            <Button
-                id="_IDGenButton1"
-                text="{i18n>Save}"
-                press="onSavePress"
-            />
         </content>
     </Page>
     <core:Fragment
