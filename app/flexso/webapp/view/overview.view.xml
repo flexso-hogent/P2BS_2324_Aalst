@@ -226,6 +226,15 @@
                             press="onRegisterPress"
                             class="registerButton"
                         />
+
+                        <Button
+                            id="buttonEditSessie"
+                            icon="sap-icon://edit"
+                            press="EditSessie"
+                            width="100%"
+                            class="addSessieButton"
+                            visible="{imageModel>/isAdmin}"
+                        />
                     </CustomListItem>
                 </List>
             </VBox>

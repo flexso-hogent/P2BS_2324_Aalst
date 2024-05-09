@@ -432,6 +432,41 @@ sap.ui.define(
           );
         }
       },
+
+      EditSessie: function (oEvent) {
+        // Get the selected session context
+        var oSessionContext = oEvent
+          .getSource()
+          .getBindingContext("sessionModel");
+
+        if (oSessionContext) {
+          // Retrieve the session data
+          var oSessionData = oSessionContext.getObject();
+
+          // Store session data in local storage
+          localStorage.setItem("sessionID", oSessionData.sessionID);
+          localStorage.setItem("title", oSessionData.title);
+          localStorage.setItem("startDate", oSessionData.startDate);
+          localStorage.setItem("endDate", oSessionData.endDate);
+          localStorage.setItem("startTime", oSessionData.startTime);
+          localStorage.setItem("endTime", oSessionData.endTime);
+          localStorage.setItem("room", oSessionData.room);
+          localStorage.setItem("speaker", oSessionData.speaker);
+          localStorage.setItem("totalSeats", oSessionData.totalSeats);
+          localStorage.setItem("description", oSessionData.description);
+          localStorage.setItem("naam", oSessionData.naam);
+
+          // Navigate to the edit session page
+          var oRouter = UIComponent.getRouterFor(this);
+          oRouter.navTo("EditSession", {
+            sessionID: oSessionData.sessionID,
+          });
+        } else {
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("selectSessionEdit")
+          );
+        }
+      },
     });
   }
 );
