@@ -54,17 +54,17 @@ sap.ui.define(
       fetchRegisteredSessionsData: function () {
         // Get the logged-in user's email address
         var loggedInUserEmail = localStorage.getItem("email");
-
+    
         // Replace this with your actual service URL
         var sessionServiceURL =
           "http://localhost:4004/odata/v4/catalog/registerdOnASession";
-
+    
         // Construct the filter based on the logged-in user's email
         var filter = "?$filter=email eq '" + loggedInUserEmail + "'";
-
+    
         // Append the filter to the service URL
         sessionServiceURL += filter;
-
+    
         $.ajax({
           url: sessionServiceURL,
           type: "GET",
@@ -75,22 +75,22 @@ sap.ui.define(
             var upcomingSessions = data.value.filter(function (session) {
               return new Date(session.startDate).getTime() > currentTimestamp;
             });
-
+    
             // Reverse the order of the sessions
             var reversedSessions = upcomingSessions.reverse();
-
+    
             // Take the first two sessions
             var firstTwoSessions = reversedSessions.slice(0, 2);
-
+    
             // Update the model with the fetched registered session data
             var oModel = this.getView().getModel("imageModel");
-
-            // Adjust time format for each session
+            
+            // Adjust time format and add AM/PM for each session
             firstTwoSessions.forEach(function(session) {
-              session.startTime = session.startTime.split(':').slice(0, 2).join(':'); // Remove seconds from start time
-              session.endTime = session.endTime.split(':').slice(0, 2).join(':'); // Remove seconds from end time
-            });
-
+              session.startTime = this.convertTo12HourFormat(session.startTime);
+              session.endTime = this.convertTo12HourFormat(session.endTime);
+            }.bind(this));
+            
             oModel.setProperty("/registeredSessionsData", firstTwoSessions);
           }.bind(this),
           error: function (xhr, status, error) {
@@ -101,6 +101,15 @@ sap.ui.define(
             );
           },
         });
+      },
+
+      convertTo12HourFormat: function(time) {
+        var splitTime = time.split(":");
+        var hours = parseInt(splitTime[0], 10);
+        var minutes = splitTime[1];
+        var meridiem = hours < 12 ? "AM" : "PM";
+        hours = hours % 12 || 12;
+        return hours + ":" + minutes + " " + meridiem;
       },
 
       fetchFeedbackData: function () {
