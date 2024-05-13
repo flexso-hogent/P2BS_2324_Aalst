@@ -226,6 +226,12 @@
                             press="onRegisterPress"
                             class="registerButton"
                         />
+                        <Button
+                            id="_IDGenButton"
+                            text="Details"
+                            press="onRegisterPress"
+                            class="registerButton"
+                        />
 
                         <Button
                             id="buttonEditSessie"
