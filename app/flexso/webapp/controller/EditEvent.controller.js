@@ -1,10 +1,27 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent"],
-  function (Controller, UIComponent) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/UIComponent",
+    "sap/ui/model/json/JSONModel",
+  ],
+  function (Controller, UIComponent, JSONModel) {
     "use strict";
 
     return Controller.extend("flexso.controller.Editevent", {
-      onInit: function () {},
+      onInit: function () {
+        var Event = {
+          eventID: localStorage.getItem("eventID"),
+          title: localStorage.getItem("title"),
+          startDate: localStorage.getItem("startDate"),
+          endDate: localStorage.getItem("endDate"),
+          location: localStorage.getItem("location"),
+          description: localStorage.getItem("description"),
+        };
+
+        // Create a JSON model and set session data
+        var eventModel = new JSONModel(Event);
+        this.getView().setModel(eventModel, "eventModel");
+      },
 
       onBackToHome: function () {
         var oRouter = UIComponent.getRouterFor(this);
@@ -66,6 +83,50 @@ sap.ui.define(
             },
           }
         );
+      },
+
+      onSavePress: function () {
+        var eventID = this.getView()
+          .getModel("eventModel")
+          .getProperty("/eventID");
+        var updatedEventData = {
+          title: this.getView().getModel("eventModel").getProperty("/title"),
+          startDate: this.getView()
+            .getModel("eventModel")
+            .getProperty("/startDate"),
+          endDate: this.getView()
+            .getModel("eventModel")
+            .getProperty("/endDate"),
+
+          description: this.getView()
+            .getModel("eventModel")
+            .getProperty("/description"),
+        };
+
+        var that = this;
+        // Send the PATCH request
+        $.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Events(" + eventID + ")",
+          type: "PATCH",
+          contentType: "application/json",
+          data: JSON.stringify(updatedEventData),
+          success: function (response) {
+            if (response) {
+              MessageBox.success("Event updated successfully", {
+                onClose: function () {
+                  var oRouter = UIComponent.getRouterFor(that);
+                  oRouter.navTo("overview", {}, true /*without history*/);
+                  window.location.reload();
+                },
+              });
+            }
+          },
+
+          error: function (xhr, status, error) {
+            console.error("Error updating event:", error);
+            MessageBox.error("Error updating event");
+          },
+        });
       },
     });
   }

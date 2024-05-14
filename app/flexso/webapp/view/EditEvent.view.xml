@@ -9,8 +9,9 @@
 >
     <Page
         id="editEventPage"
-        title="{i18n>editEventTitle}"
+        title="{i18n>Flexso}"
         enableScrolling="true"
+        class="sapUiResponsiveContentWidth"
     >
         <headerContent>
             <core:Fragment
@@ -18,15 +19,90 @@
                 type="XML"
             />
         </headerContent>
+        <content>
+            <Title
+                id="_IDGenTitle1"
+                text="{i18n>EditEvent}"
+                level="H2"
+                class="editSessionTitle"
+            />
+            <VBox
+                id="_IDGenVBox2"
+                class="editSessionVBox"
+            >
+                <Label
+                    id="label1"
+                    text="{i18n>Title}"
+                />
+                <Input
+                    id="_IDGenInput1"
+                    value="{eventModel>/title}"
+                    placeholder="{i18n>Title}"
+                />
 
-        <Title
-            id="_IDGenTitle1"
-            text="TEST"
-        />
+                <Label
+                    id="label2"
+                    text="{i18n>StartDate}"
+                />
+                <DatePicker
+                    id="_IDGenDatePicker1"
+                    value="{eventModel>/startDate}"
+                    placeholder="{i18n>StartDate}"
+                />
 
-        <content />
+                <Label
+                    id="label3"
+                    text="{i18n>EndDate}"
+                />
+                <DatePicker
+                    id="_IDGenDatePicker2"
+                    value="{eventModel>/endDate}"
+                    placeholder="{i18n>EndDate}"
+                />
+
+                <Label
+                    id="label4"
+                    text="{i18n>Location}"
+                />
+
+                <Input
+                    id="_IDGenInput2"
+                    value="{eventModel>/location}"
+                    placeholder="{i18n>Location}"
+                />
+
+                <Label
+                    id="label5"
+                    text="{i18n>Description}"
+                />
+                <Input
+                    id="_IDGenTextArea1"
+                    value="{eventModel>/description}"
+                    placeholder="{i18n>Description}"
+                />
+
+                <HBox
+                    id="_IDGenHBox1"
+                    class="buttonbox center-buttons"
+                >
+                    <Button
+                        id="_IDGenButto"
+                        icon="sap-icon://save"
+                        press="onSavePress"
+                        class="editSessionButtons"
+                    />
+                    <Button
+                        id="_IDGenButton"
+                        icon="sap-icon://delete"
+                        press="onDeletePress"
+                        type="Reject"
+                        class="editSessionButtons"
+                    />
+                </HBox>
+            </VBox>
+        </content>
     </Page>
-    <!-- Popover Definition -->
+    <!-- Include popover fragments if needed -->
     <core:Fragment
         fragmentName="flexso.fragment.Popover"
         type="XML"

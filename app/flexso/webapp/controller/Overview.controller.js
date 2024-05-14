@@ -296,23 +296,6 @@ sap.ui.define(
           },
         });
       },
-      enEditEventPress: function (oEvent) {
-        var oSelectedListItem = oEvent.getSource().getParent();
-        console.log("Selected List Item:", oSelectedListItem);
-        var oEventModel = oSelectedListItem.getBindingContext("eventModel");
-        console.log("Binding Context:", oEventModel);
-        if (oEventModel) {
-          oEventModel = oEventModel.getObject();
-          var eventID = oEventModel.eventID;
-
-          var oRouter = UIComponent.getRouterFor(this);
-          oRouter.navTo("Editevent", {
-            eventId: eventID,
-          });
-        } else {
-          console.error("Binding Context for eventModel not found");
-        }
-      },
 
       loadSessions: function (eventID) {
         var that = this;
@@ -482,6 +465,30 @@ sap.ui.define(
           MessageToast.show(
             this.getView().getModel("i18n").getProperty("selectSessionEdit")
           );
+        }
+      },
+      enEditEventPress: function (oEvent) {
+        var oSelectedListItem = oEvent.getSource().getParent();
+
+        var oEventModel = oSelectedListItem.getBindingContext("eventModel");
+
+        if (oEventModel) {
+          oEventModel = oEventModel.getObject();
+          localStorage.setItem("eventID", oEventModel.eventID);
+          localStorage.setItem("title", oEventModel.Name);
+          localStorage.setItem("startDate", oEventModel.SDate);
+          localStorage.setItem("endDate", oEventModel.EDate);
+          localStorage.setItem("location", oEventModel.location);
+          localStorage.setItem("description", oEventModel.description);
+          var eventID = oEventModel.eventID;
+          var oRouter = UIComponent.getRouterFor(this);
+          oRouter.navTo("Editevent", {
+            eventId: eventID,
+          });
+
+          window.location.reload();
+        } else {
+          console.error("Binding Context for eventModel not found");
         }
       },
     });
