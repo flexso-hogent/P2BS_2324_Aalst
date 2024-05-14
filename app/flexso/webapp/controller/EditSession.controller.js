@@ -44,18 +44,18 @@ sap.ui.define(
           .getProperty("/sessionID");
         var updatedSessionData = {
           title: this.getView().getModel("sessionModel").getProperty("/title"),
-          startDate: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/startDate"),
-          endDate: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/endDate"),
-          startTime: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/startTime"),
-          endTime: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/endTime"),
+          startDate: formatDate(
+            this.getView().getModel("sessionModel").getProperty("/startDate")
+          ),
+          endDate: formatDate(
+            this.getView().getModel("sessionModel").getProperty("/endDate")
+          ),
+          startTime: formatTime(
+            this.getView().getModel("sessionModel").getProperty("/startTime")
+          ),
+          endTime: formatTime(
+            this.getView().getModel("sessionModel").getProperty("/endTime")
+          ),
           room: this.getView().getModel("sessionModel").getProperty("/room"),
           description: this.getView()
             .getModel("sessionModel")
@@ -72,6 +72,31 @@ sap.ui.define(
             .getModel("sessionModel")
             .getProperty("/eventID"),
         };
+
+        // Function to format date to YYYY-MM-DD
+        function formatDate(dateString) {
+          var date = new Date(dateString);
+          var year = date.getFullYear();
+          var month = String(date.getMonth() + 1).padStart(2, "0");
+          var day = String(date.getDate()).padStart(2, "0");
+          var formattedDate = year + "-" + month + "-" + day;
+          return formattedDate;
+        }
+
+        // Function to format time to hh:mm:ss.s
+        function formatTime(timeString) {
+          // Split the time string into hours, minutes, and seconds
+          var timeComponents = timeString.split(":");
+          // Create a new Date object and set the time components
+          var time = new Date();
+          time.setHours(parseInt(timeComponents[0], 10));
+          time.setMinutes(parseInt(timeComponents[1], 10));
+          // Add seconds and milliseconds (assuming they are always 0)
+          time.setSeconds(0);
+          time.setMilliseconds(0);
+          // Format the time as hh:mm:ss.s
+          return time.toTimeString().split(" ")[0];
+        }
 
         var that = this;
         // Send the PATCH request to update session
@@ -113,22 +138,30 @@ sap.ui.define(
                   .getView()
                   .getModel("sessionModel")
                   .getProperty("/title"),
-                startDate: that
-                  .getView()
-                  .getModel("sessionModel")
-                  .getProperty("/startDate"),
-                endDate: that
-                  .getView()
-                  .getModel("sessionModel")
-                  .getProperty("/endDate"),
-                startTime: that
-                  .getView()
-                  .getModel("sessionModel")
-                  .getProperty("/startTime"),
-                endTime: that
-                  .getView()
-                  .getModel("sessionModel")
-                  .getProperty("/endTime"),
+                startDate: formatDate(
+                  that
+                    .getView()
+                    .getModel("sessionModel")
+                    .getProperty("/startDate")
+                ),
+                endDate: formatDate(
+                  that
+                    .getView()
+                    .getModel("sessionModel")
+                    .getProperty("/endDate")
+                ),
+                startTime: formatTime(
+                  that
+                    .getView()
+                    .getModel("sessionModel")
+                    .getProperty("/startTime")
+                ),
+                endTime: formatTime(
+                  that
+                    .getView()
+                    .getModel("sessionModel")
+                    .getProperty("/endTime")
+                ),
                 room: that
                   .getView()
                   .getModel("sessionModel")
@@ -154,6 +187,28 @@ sap.ui.define(
                 ),
               };
 
+              // Function to format date to YYYY-MM-DD
+              function formatDate(dateString) {
+                var date = new Date(dateString);
+                var year = date.getFullYear();
+                var month = String(date.getMonth() + 1).padStart(2, "0");
+                var day = String(date.getDate()).padStart(2, "0");
+                var formattedDate = year + "-" + month + "-" + day;
+                return formattedDate;
+              }
+              function formatTime(timeString) {
+                // Split the time string into hours, minutes, and seconds
+                var timeComponents = timeString.split(":");
+                // Create a new Date object and set the time components
+                var time = new Date();
+                time.setHours(parseInt(timeComponents[0], 10));
+                time.setMinutes(parseInt(timeComponents[1], 10));
+                // Add seconds and milliseconds (assuming they are always 0)
+                time.setSeconds(0);
+                time.setMilliseconds(0);
+                // Format the time as hh:mm:ss.s
+                return time.toTimeString().split(" ")[0];
+              }
               // Send PATCH request to update each registered user
               $.ajax({
                 url:
