@@ -64,7 +64,6 @@
                     id="label4"
                     text="{i18n>Location}"
                 />
-
                 <Input
                     id="_IDGenInput2"
                     value="{eventModel>/location}"
@@ -86,23 +85,35 @@
                     class="buttonbox center-buttons"
                 >
                     <Button
-                        id="_IDGenButto"
+                        id="_IDGenButton1"
                         icon="sap-icon://save"
                         press="onSavePress"
                         class="editSessionButtons"
                     />
                     <Button
-                        id="_IDGenButton"
+                        id="_IDGenButton2"
                         icon="sap-icon://delete"
                         press="onDeletePress"
                         type="Reject"
                         class="editSessionButtons"
                     />
                 </HBox>
+
+                <HBox
+                    id="_IDGenHBox2"
+                    class="buttonbox center-buttons"
+                >
+                    <Button
+                        id="button1"
+                        icon="sap-icon://nav-back"
+                        text="{i18n>goBack}"
+                        press="onBackPress"
+                        class="editSessionButtons2"
+                    />
+                </HBox>
             </VBox>
         </content>
     </Page>
-    <!-- Include popover fragments if needed -->
     <core:Fragment
         fragmentName="flexso.fragment.Popover"
         type="XML"

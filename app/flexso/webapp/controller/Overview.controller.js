@@ -470,25 +470,49 @@ sap.ui.define(
       enEditEventPress: function (oEvent) {
         var oSelectedListItem = oEvent.getSource().getParent();
 
+        // Get the event model from the binding context, assuming 'eventModel' is the named model used in your list
         var oEventModel = oSelectedListItem.getBindingContext("eventModel");
 
         if (oEventModel) {
+          // Get the actual event object
           oEventModel = oEventModel.getObject();
-          localStorage.setItem("eventID", oEventModel.eventID);
+
+          // Debug logging to check what is being retrieved before conversion
+          console.log("Retrieved Event Model:", oEventModel);
+
+          // Check if eventID is an integer and convert it if necessary
+          var eventId = parseInt(oEventModel.eventID, 10);
+          if (isNaN(eventId)) {
+            console.error(
+              "Failed to convert eventID to integer:",
+              oEventModel.eventID
+            );
+            MessageBox.error("Invalid event ID. Please select a valid event.");
+            return; // Stop execution if eventID is not a valid integer
+          }
+
+          // Store event details in localStorage
+          localStorage.setItem("eventID", eventId.toString()); // Store as string to avoid any potential type issues
           localStorage.setItem("title", oEventModel.Name);
           localStorage.setItem("startDate", oEventModel.SDate);
           localStorage.setItem("endDate", oEventModel.EDate);
           localStorage.setItem("location", oEventModel.location);
           localStorage.setItem("description", oEventModel.description);
-          var eventID = oEventModel.eventID;
+
+          // Navigate to the Editevent view with the eventID as a parameter
           var oRouter = UIComponent.getRouterFor(this);
           oRouter.navTo("Editevent", {
-            eventId: eventID,
+            eventId: eventId, // Pass as a numeric parameter if your route and view are set up to handle it correctly
           });
 
-          window.location.reload();
+          // Reloading the entire window is usually not recommended in single-page applications as it defeats the purpose of SPA efficiency
+          // Consider removing this if your app doesn't specifically need it
+          // window.location.reload();
         } else {
           console.error("Binding Context for eventModel not found");
+          MessageBox.error(
+            "Failed to retrieve event details. Please try again."
+          );
         }
       },
     });
