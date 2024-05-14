@@ -192,6 +192,11 @@ sap.ui.define(
           }
         );
       },
+
+      onBackPress: function () {
+        var oRouter = UIComponent.getRouterFor(this);
+        oRouter.navTo("overview", {}, true);
+      },
     });
   }
 );

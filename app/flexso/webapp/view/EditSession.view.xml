@@ -150,6 +150,19 @@
                         class="editSessionButtons"
                     />
                 </HBox>
+
+                <HBox
+                    id="_IDGenHBox2"
+                    class="buttonbox center-buttons"
+                >
+                    <Button
+                        id="button1"
+                        icon="sap-icon://nav-back"
+                        text="{i18n>goBack}"
+                        press="onBackPress"
+                        class="editSessionButtons2"
+                    />
+                </HBox>
             </VBox>
         </content>
     </Page>
