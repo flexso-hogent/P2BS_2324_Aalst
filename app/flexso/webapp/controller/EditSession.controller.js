@@ -74,7 +74,7 @@ sap.ui.define(
         };
 
         var that = this;
-        // Send the PATCH request
+        // Send the PATCH request to update session
         $.ajax({
           url:
             "http://localhost:4004/odata/v4/catalog/Sessions(" +
@@ -85,22 +85,117 @@ sap.ui.define(
           data: JSON.stringify(updatedSessionData),
           success: function (response) {
             if (response) {
-              MessageBox.success("Session updated successfully", {
-                onClose: function () {
-                  var oRouter = UIComponent.getRouterFor(that);
-                  oRouter.navTo("overview", {}, true /*without history*/);
-                  window.location.reload();
-                },
-              });
+              // Update registered users after updating session
+              that.updateRegisteredUsers(sessionID);
             }
           },
-
           error: function (xhr, status, error) {
             console.error("Error updating session:", error);
             MessageBox.error("Error updating session");
           },
         });
       },
+
+      updateRegisteredUsers: function (sessionID) {
+        var that = this;
+        // Fetch registered users for this session
+        $.ajax({
+          url:
+            "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=sessionID eq " +
+            sessionID,
+          type: "GET",
+          success: function (usersData) {
+            // Iterate through each registered user and update them
+            usersData.value.forEach(function (user) {
+              var updatedUserData = {
+                // Update user data as needed
+                title: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/title"),
+                startDate: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/startDate"),
+                endDate: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/endDate"),
+                startTime: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/startTime"),
+                endTime: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/endTime"),
+                room: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/room"),
+                description: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/description"),
+                speaker: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/speaker"),
+                naam: that
+                  .getView()
+                  .getModel("sessionModel")
+                  .getProperty("/naam"),
+                totalSeats: parseInt(
+                  that
+                    .getView()
+                    .getModel("sessionModel")
+                    .getProperty("/totalSeats"),
+                  10
+                ),
+              };
+
+              // Send PATCH request to update each registered user
+              $.ajax({
+                url:
+                  "http://localhost:4004/odata/v4/catalog/registerdOnASession(" +
+                  user.sessionID2 +
+                  ")",
+                type: "PATCH",
+                contentType: "application/json",
+                data: JSON.stringify(updatedUserData),
+                success: function (data) {
+                  console.log("Updated user successfully");
+                },
+                error: function (xhr, status, error) {
+                  // Handle error
+                  console.error(
+                    "Error occurred while updating registered user: " + error
+                  );
+                },
+              });
+            });
+            // Show success message and navigate after users are updated
+            MessageBox.success(
+              "Updated session and registered users successfully",
+              {
+                onClose: function () {
+                  var oRouter = that.getOwnerComponent().getRouter();
+                  oRouter.navTo("overview", {}, true);
+                  window.location.reload();
+                },
+              }
+            );
+          },
+          error: function (xhr, status, error) {
+            // Handle error fetching users
+            console.error(
+              "Error occurred while fetching registered users: " + error
+            );
+            MessageBox.error("Error fetching registered users");
+          },
+        });
+      },
+
       onDeletePress: function () {
         var sessionID = this.getView()
           .getModel("sessionModel")
