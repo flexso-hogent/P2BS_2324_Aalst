@@ -142,9 +142,9 @@
         },
 
         {
-          "pattern": "EditEvent",
-          "name": "EditEvent",
-          "target": "EditEvent"
+          "name": "Editevent",
+          "pattern": "Editevent/{eventId}",
+          "target": "Editevent"
         },
         {
           "name": "list",
@@ -244,11 +244,7 @@
           "viewId": "app",
           "viewLevel": 1
         },
-        "EditEvent": {
-          "viewId": "EditEvent",
-          "viewName": "EditEvent",
-          "viewLevel": 2
-        },
+
         "Login": {
           "viewName": "flexso.view.Login",
           "viewId": "login",
@@ -347,6 +343,11 @@
         "reviews": {
           "viewName": "flexso.view.reviews",
           "viewId": "reviews",
+          "viewLevel": 3
+        },
+        "Editevent": {
+          "viewName": "flexso.view.Editevent",
+          "viewId": "Editevent",
           "viewLevel": 3
         }
       }

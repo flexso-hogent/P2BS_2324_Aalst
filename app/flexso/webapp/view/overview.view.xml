@@ -128,7 +128,7 @@
                                 width="45%"
                             />
                             <Button
-                                id="deleteEventButton"
+                                id="editButton"
                                 icon="sap-icon://edit"
                                 press="enEditEventPress"
                                 class="expandSessionsButton"
