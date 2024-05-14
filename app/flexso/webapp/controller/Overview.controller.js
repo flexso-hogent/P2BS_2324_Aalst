@@ -296,13 +296,22 @@ sap.ui.define(
           },
         });
       },
-      enEditEventPress: function () {
-        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+      enEditEventPress: function (oEvent) {
+        var oSelectedListItem = oEvent.getSource().getParent();
+        console.log("Selected List Item:", oSelectedListItem);
+        var oEventModel = oSelectedListItem.getBindingContext("eventModel");
+        console.log("Binding Context:", oEventModel);
+        if (oEventModel) {
+          oEventModel = oEventModel.getObject();
+          var eventID = oEventModel.eventID;
 
-        // Navigate to the editEvent route with the eventId parameter
-        oRouter.navTo("EditEvent", {
-          eventId: sEventId,
-        });
+          var oRouter = UIComponent.getRouterFor(this);
+          oRouter.navTo("Editevent", {
+            eventId: eventID,
+          });
+        } else {
+          console.error("Binding Context for eventModel not found");
+        }
       },
 
       loadSessions: function (eventID) {
