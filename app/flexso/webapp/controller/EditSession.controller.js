@@ -105,28 +105,88 @@ sap.ui.define(
         var sessionID = this.getView()
           .getModel("sessionModel")
           .getProperty("/sessionID");
-
         var that = this;
-        // Send the DELETE request
+
+        // Confirmation dialog for deleting session
+        sap.m.MessageBox.confirm(
+          "Are you sure you want to delete this session?",
+          {
+            title: "Confirm",
+            actions: [
+              sap.m.MessageBox.Action.OK,
+              sap.m.MessageBox.Action.CANCEL,
+            ],
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                // Send the DELETE request to delete the session
+                $.ajax({
+                  url:
+                    "http://localhost:4004/odata/v4/catalog/Sessions(" +
+                    sessionID +
+                    ")",
+                  type: "DELETE",
+                  contentType: "application/json",
+                  success: function () {
+                    // Once the session is deleted, remove registered users
+                    that.removeRegisteredUsers(sessionID);
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("Error deleting session:", error);
+                    MessageBox.error("Error deleting session");
+                  },
+                });
+              }
+            },
+          }
+        );
+      },
+
+      removeRegisteredUsers: function (sessionID) {
+        var that = this; // Preserve reference to the controller
+
+        // Fetch registered users for this session
         $.ajax({
           url:
-            "http://localhost:4004/odata/v4/catalog/Sessions(" +
-            sessionID +
-            ")",
-          type: "DELETE",
-          contentType: "application/json",
-          success: function () {
-            MessageBox.success("Session deleted successfully", {
-              onClose: function () {
-                var oRouter = UIComponent.getRouterFor(that);
-                oRouter.navTo("overview", {}, true);
-                window.location.reload();
-              },
+            "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=sessionID eq " +
+            sessionID,
+          type: "GET",
+          success: function (usersData) {
+            // Iterate through each registered user and remove them
+            usersData.value.forEach(function (user) {
+              $.ajax({
+                url:
+                  "http://localhost:4004/odata/v4/catalog/registerdOnASession(" +
+                  user.sessionID2 +
+                  ")",
+                type: "DELETE",
+                success: function (data) {
+                  console.log("Registered user removed successfully");
+                },
+                error: function (xhr, status, error) {
+                  // Handle error
+                  console.error(
+                    "Error occurred while removing registered user: " + error
+                  );
+                },
+              });
             });
+            // Show success message and navigate after users are removed
+            MessageBox.success(
+              "Session and registered users deleted successfully",
+              {
+                onClose: function () {
+                  var oRouter = that.getOwnerComponent().getRouter();
+                  oRouter.navTo("overview", {}, true);
+                  window.location.reload();
+                },
+              }
+            );
           },
           error: function (xhr, status, error) {
-            console.error("Error deleting session:", error);
-            MessageBox.error("Error deleting session");
+            // Handle error
+            console.error(
+              "Error occurred while fetching registered users: " + error
+            );
           },
         });
       },
