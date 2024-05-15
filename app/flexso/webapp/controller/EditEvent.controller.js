@@ -32,8 +32,8 @@ sap.ui.define(
         var Event = {
           eventID: iEventId,
           title: localStorage.getItem("title"),
-          startDate: localStorage.getItem("startDate"),
-          endDate: localStorage.getItem("endDate"),
+          startDate: this.formatDate(localStorage.getItem("startDate")),
+          endDate: this.formatDate(localStorage.getItem("endDate")),
           location: localStorage.getItem("location"),
           description: localStorage.getItem("description"),
         };
@@ -49,10 +49,11 @@ sap.ui.define(
 
         var eventModel = this.getView().getModel("eventModel");
         var eventID = eventModel.getProperty("/eventID");
+
         var updatedEventData = {
-          title: eventModel.getProperty("/title"),
-          startDate: eventModel.getProperty("/startDate"),
-          endDate: eventModel.getProperty("/endDate"),
+          name: eventModel.getProperty("/title"),
+          startDate: this.formatDate(eventModel.getProperty("/startDate")),
+          endDate: this.formatDate(eventModel.getProperty("/endDate")),
           location: eventModel.getProperty("/location"),
           description: eventModel.getProperty("/description"),
         };
@@ -75,13 +76,7 @@ sap.ui.define(
                   ")",
                 type: "PATCH",
                 contentType: "application/json",
-                data: JSON.stringify({
-                  name: updatedEventData.title,
-                  startDate: updatedEventData.startDate,
-                  endDate: updatedEventData.endDate,
-                  location: updatedEventData.location,
-                  description: updatedEventData.description,
-                }),
+                data: JSON.stringify(updatedEventData),
                 success: function () {
                   MessageBox.success(seventdelted2, {
                     onClose: function () {
@@ -106,6 +101,9 @@ sap.ui.define(
       },
 
       formatDate: function (dateString) {
+        if (!dateString) {
+          return null;
+        }
         var date = new Date(dateString);
         var year = date.getFullYear();
         var month = String(date.getMonth() + 1).padStart(2, "0");
