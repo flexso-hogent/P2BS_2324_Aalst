@@ -158,7 +158,7 @@ sap.ui.define(
             .getBindingContext("eventModel")
             .getProperty("eventID");
           oEvent = oEventModel.getProperty("/").find(function (event) {
-            return event.eventID === eventID;
+            return event.eventID == eventID;
           });
         } else if (sSelectedEvent) {
           oEvent = oEventModel.getProperty("/").find(function (event) {
@@ -175,6 +175,9 @@ sap.ui.define(
           );
           return;
         }
+
+        // Convert eventID to string
+        eventID = eventID.toString();
 
         // Validate start date and end date
         var startDate = oView.byId("_IDGenDatePicker1").getValue();
@@ -244,7 +247,7 @@ sap.ui.define(
               naam: oView.byId("_IDGenInput").getValue(),
               speaker: oView.byId("_IDGenInput4").getValue() || "", // Making speaker field optional
               totalSeats: parseInt(oView.byId("_IDGenInput5").getValue()),
-              eventID: eventID, // Use the selected event ID
+              eventID: eventID, // Use the selected event ID as string
             };
 
             // Post the new session data to the backend

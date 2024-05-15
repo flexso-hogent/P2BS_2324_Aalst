@@ -18,16 +18,15 @@ sap.ui.define(
 
       _onObjectMatched: function (oEvent) {
         var sEventId = oEvent.getParameter("arguments").eventId;
-        console.log("Raw Event ID from route:", sEventId); // Ensure this log is showing the expected value.
+        console.log("Raw Event ID from route:", sEventId);
 
-        // Convert to integer, log the result to debug conversion issues
         var iEventId = parseInt(sEventId, 10);
         console.log("Converted Event ID:", iEventId);
 
         if (isNaN(iEventId)) {
           console.error("Failed to convert Event ID to integer:", sEventId);
           MessageBox.error("Invalid Event ID provided.");
-          return; // Stop further execution if ID is not valid
+          return;
         }
 
         var Event = {
@@ -44,23 +43,18 @@ sap.ui.define(
       },
 
       onSavePress: function () {
-        var eventID = this.getView()
-          .getModel("eventModel")
-          .getProperty("/eventID");
+        var oBundle = this.getView().getModel("i18n").getResourceBundle();
+        var sConfirmText2 = oBundle.getText("updateeventconfirm");
+        var seventdelted2 = oBundle.getText("updatedevent");
+
+        var eventModel = this.getView().getModel("eventModel");
+        var eventID = eventModel.getProperty("/eventID");
         var updatedEventData = {
-          title: this.getView().getModel("eventModel").getProperty("/title"),
-          startDate: this.getView()
-            .getModel("eventModel")
-            .getProperty("/startDate"),
-          endDate: this.getView()
-            .getModel("eventModel")
-            .getProperty("/endDate"),
-          location: this.getView()
-            .getModel("eventModel")
-            .getProperty("/location"),
-          description: this.getView()
-            .getModel("eventModel")
-            .getProperty("/description"),
+          title: eventModel.getProperty("/title"),
+          startDate: eventModel.getProperty("/startDate"),
+          endDate: eventModel.getProperty("/endDate"),
+          location: eventModel.getProperty("/location"),
+          description: eventModel.getProperty("/description"),
         };
 
         console.log(
@@ -69,34 +63,44 @@ sap.ui.define(
         );
 
         var that = this;
-        $.ajax({
-          url: "http://localhost:4004/odata/v4/catalog/Events(" + eventID + ")",
-          type: "PATCH",
-          contentType: "application/json",
-          data: JSON.stringify({
-            name: updatedEventData.title,
-            startDate: updatedEventData.startDate,
-            endDate: updatedEventData.endDate,
-            location: updatedEventData.location,
-            description: updatedEventData.description,
-          }),
-          success: function (response) {
-            console.log("Event updated successfully:", response);
-            //laat me navigeren naar de overview pagina
-            var oRouter = UIComponent.getRouterFor(that);
-            oRouter.navTo("overview", {});
-            window.location.reload();
-
-            // Additional success handling
-          },
-          error: function (xhr, status, error) {
-            console.error(
-              "Error updating event:",
-              xhr.responseText,
-              status,
-              error
-            );
-            // Additional error handling
+        MessageBox.confirm(sConfirmText2, {
+          title: "Confirm",
+          actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+          onClose: function (oAction) {
+            if (oAction === MessageBox.Action.OK) {
+              $.ajax({
+                url:
+                  "http://localhost:4004/odata/v4/catalog/Events(" +
+                  eventID +
+                  ")",
+                type: "PATCH",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  name: updatedEventData.title,
+                  startDate: updatedEventData.startDate,
+                  endDate: updatedEventData.endDate,
+                  location: updatedEventData.location,
+                  description: updatedEventData.description,
+                }),
+                success: function () {
+                  MessageBox.success(seventdelted2, {
+                    onClose: function () {
+                      var oRouter = UIComponent.getRouterFor(that);
+                      oRouter.navTo("overview", {});
+                      window.location.reload();
+                    },
+                  });
+                },
+                error: function (xhr, status, error) {
+                  console.error(
+                    "Error updating event:",
+                    xhr.responseText,
+                    status,
+                    error
+                  );
+                },
+              });
+            }
           },
         });
       },
@@ -110,12 +114,16 @@ sap.ui.define(
       },
 
       onDeletePress: function () {
+        var oBundle = this.getView().getModel("i18n").getResourceBundle();
+        var sConfirmText = oBundle.getText("deleteeventconfirm");
+        var seventdelted = oBundle.getText("eventdeleted");
         var eventID = this.getView()
           .getModel("eventModel")
           .getProperty("/eventID");
-        console.log("Event ID on delete:", eventID); // Debugging line to check eventID
+        console.log("Event ID on delete:", eventID);
+
         var that = this;
-        MessageBox.confirm("Are you sure you want to delete this event?", {
+        MessageBox.confirm(sConfirmText, {
           title: "Confirm",
           actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
           onClose: function (oAction) {
@@ -128,7 +136,7 @@ sap.ui.define(
                 type: "DELETE",
                 contentType: "application/json",
                 success: function () {
-                  MessageBox.success("Event deleted successfully", {
+                  MessageBox.success(seventdelted, {
                     onClose: function () {
                       var oRouter = UIComponent.getRouterFor(that);
                       oRouter.navTo("overview", {});
@@ -167,15 +175,11 @@ sap.ui.define(
       },
 
       onSwitchToEnglish: function () {
-        var oResourceModel = this.getView().getModel("i18n");
-        oResourceModel.sLocale = "en";
         sap.ui.getCore().getConfiguration().setLanguage("en");
         this.getView().getModel("i18n").refresh();
       },
 
       onSwitchToDutch: function () {
-        var oResourceModel = this.getView().getModel("i18n");
-        oResourceModel.sLocale = "nl";
         sap.ui.getCore().getConfiguration().setLanguage("nl");
         this.getView().getModel("i18n").refresh();
       },

@@ -310,7 +310,7 @@ sap.ui.define(
               // Datumcontrole (datumcheck)
               var sessionStartDate = new Date(session.startDate);
               return (
-                session.eventID === eventID && // comment de && om de datumcontrole uit te schakelen
+                session.eventID == eventID && // comment de && om de datumcontrole uit te schakelen
                 sessionStartDate >= currentDate
               );
             });
