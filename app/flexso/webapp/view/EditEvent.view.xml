@@ -62,7 +62,7 @@
 
                 <Label
                     id="label4"
-                    text="{i18n>Location}"
+                    text="{i18n>LocationEvent}"
                 />
                 <Input
                     id="_IDGenInput2"
