@@ -18,13 +18,9 @@ sap.ui.define(
 
       _onObjectMatched: function (oEvent) {
         var sEventId = oEvent.getParameter("arguments").eventId;
-        console.log("Raw Event ID from route:", sEventId);
-
         var iEventId = parseInt(sEventId, 10);
-        console.log("Converted Event ID:", iEventId);
 
         if (isNaN(iEventId)) {
-          console.error("Failed to convert Event ID to integer:", sEventId);
           MessageBox.error("Invalid Event ID provided.");
           return;
         }
@@ -40,6 +36,57 @@ sap.ui.define(
 
         var eventModel = new JSONModel(Event);
         this.getView().setModel(eventModel, "eventModel");
+
+        this._loadSessions(iEventId);
+      },
+
+      _loadSessions: function (eventID) {
+        var that = this;
+        var currentDate = new Date();
+
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          success: function (data) {
+            var filteredSessions = data.value.filter(function (session) {
+              var sessionStartDate = new Date(session.startDate);
+              return (
+                session.eventID == eventID && sessionStartDate >= currentDate
+              );
+            });
+
+            var sessions = filteredSessions.map(function (session) {
+              return {
+                sessionID: session.sessionID,
+                title: session.title,
+                startDate: session.startDate,
+                startTime: session.startTime,
+                endDate: session.endDate,
+                endTime: session.endTime,
+                room: session.room,
+                naam: session.naam,
+                speaker: session.speaker,
+                totalSeats: session.totalSeats,
+                description: session.description,
+              };
+            });
+
+            var sessionModel = new JSONModel(sessions);
+            that.getView().setModel(sessionModel, "sessionModel");
+
+            var oSessionsBox = that.getView().byId("sessionsBox");
+            oSessionsBox.setVisible(true);
+
+            var oSessionInfoBox = that.getView().byId("sessionInfoBox");
+            oSessionInfoBox.setVisible(true);
+          },
+          error: function (xhr, status, error) {
+            MessageBox.show(
+              that.getView().getModel("i18n").getProperty("fetchdatesession") +
+                error
+            );
+          },
+        });
       },
 
       onSavePress: function () {
@@ -57,11 +104,6 @@ sap.ui.define(
           location: eventModel.getProperty("/location"),
           description: eventModel.getProperty("/description"),
         };
-
-        console.log(
-          "Final data being sent to server:",
-          JSON.stringify(updatedEventData)
-        );
 
         var that = this;
         MessageBox.confirm(sConfirmText2, {
@@ -100,17 +142,6 @@ sap.ui.define(
         });
       },
 
-      formatDate: function (dateString) {
-        if (!dateString) {
-          return null;
-        }
-        var date = new Date(dateString);
-        var year = date.getFullYear();
-        var month = String(date.getMonth() + 1).padStart(2, "0");
-        var day = String(date.getDate()).padStart(2, "0");
-        return year + "-" + month + "-" + day;
-      },
-
       onDeletePress: function () {
         var oBundle = this.getView().getModel("i18n").getResourceBundle();
         var sConfirmText = oBundle.getText("deleteeventconfirm");
@@ -118,7 +149,6 @@ sap.ui.define(
         var eventID = this.getView()
           .getModel("eventModel")
           .getProperty("/eventID");
-        console.log("Event ID on delete:", eventID);
 
         var that = this;
         MessageBox.confirm(sConfirmText, {
@@ -134,6 +164,7 @@ sap.ui.define(
                 type: "DELETE",
                 contentType: "application/json",
                 success: function () {
+                  that._deleteSessionsAndRegistrations(eventID);
                   MessageBox.success(seventdelted, {
                     onClose: function () {
                       var oRouter = UIComponent.getRouterFor(that);
@@ -150,6 +181,85 @@ sap.ui.define(
             }
           },
         });
+      },
+
+      _deleteSessionsAndRegistrations: function (eventID) {
+        var that = this;
+
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/Sessions",
+          dataType: "json",
+          success: function (data) {
+            var sessionsToDelete = data.value.filter(function (session) {
+              return session.eventID == eventID;
+            });
+
+            sessionsToDelete.forEach(function (session) {
+              $.ajax({
+                url:
+                  "http://localhost:4004/odata/v4/catalog/Sessions(" +
+                  session.sessionID +
+                  ")",
+                type: "DELETE",
+                contentType: "application/json",
+                success: function () {
+                  that._deleteRegistrations(session.sessionID);
+                },
+                error: function (xhr, status, error) {
+                  console.error("Error deleting session:", error);
+                },
+              });
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching sessions:", error);
+          },
+        });
+      },
+
+      _deleteRegistrations: function (sessionID) {
+        jQuery.ajax({
+          url: "http://localhost:4004/odata/v4/catalog/registerdOnASession",
+          dataType: "json",
+          success: function (data) {
+            var registrationsToDelete = data.value.filter(function (
+              registration
+            ) {
+              return registration.sessionID == sessionID;
+            });
+
+            registrationsToDelete.forEach(function (registration) {
+              $.ajax({
+                url:
+                  "http://localhost:4004/odata/v4/catalog/registerdOnASession(" +
+                  registration.sessionID2 +
+                  ")",
+                type: "DELETE",
+                contentType: "application/json",
+                success: function () {
+                  console.log("Registration deleted:", registration.sessionID2);
+                },
+                error: function (xhr, status, error) {
+                  console.error("Error deleting registration:", error);
+                },
+              });
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching registrations:", error);
+          },
+        });
+      },
+
+      formatDate: function (dateString) {
+        if (!dateString) {
+          return null;
+        }
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = String(date.getMonth() + 1).padStart(2, "0");
+        var day = String(date.getDate()).padStart(2, "0");
+        return year + "-" + month + "-" + day;
       },
 
       onBackToHome: function () {
