@@ -420,6 +420,8 @@ sap.ui.define(
       },
 
       registerForSession: function (oSessionData) {
+        var sessionID = oSessionData.sessionID;
+        console.log("Session ID: " + sessionID);
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
@@ -429,27 +431,69 @@ sap.ui.define(
             return;
         }
 
-        var registrationData = {
-          sessionID: oSessionData.sessionID,
-          title: oSessionData.title,
-          startDate: oSessionData.startDate,
-          endDate: oSessionData.endDate,
-          startTime: oSessionData.startTime,
-          endTime: oSessionData.endTime,
-          room: oSessionData.room,
-          description: oSessionData.description,
-          speaker: oSessionData.speaker,
-          naam: oSessionData.naam,
-          totalSeats: oSessionData.totalSeats,
-          eventID: oSessionData.eventID,
-          email: loggedInUserEmail,
-          firstname: localStorage.getItem("firstname"),
-          lastname: localStorage.getItem("lastname")
-
-        };
-
-        this.sendRegistrationToBackend(registrationData);
+        if (this.isUserAlreadyRegistered(sessionID)) {
+          sap.m.MessageBox.error(
+              this.getView().getModel("i18n").getProperty("registersessionalready")
+          );
+        } else {
+          var registrationData = {
+            sessionID: oSessionData.sessionID,
+            title: oSessionData.title,
+            startDate: oSessionData.startDate,
+            endDate: oSessionData.endDate,
+            startTime: oSessionData.startTime,
+            endTime: oSessionData.endTime,
+            room: oSessionData.room,
+            description: oSessionData.description,
+            speaker: oSessionData.speaker,
+            naam: oSessionData.naam,
+            totalSeats: oSessionData.totalSeats,
+            eventID: oSessionData.eventID,
+            email: loggedInUserEmail,
+            firstname: localStorage.getItem("firstname"),
+            lastname: localStorage.getItem("lastname")
   
+          };
+  
+          this.sendRegistrationToBackend(registrationData);
+        }
+
+      },
+
+      isUserAlreadyRegistered: function (sessionId) {
+        var loggedInUserEmail = localStorage.getItem("email");
+        if (!loggedInUserEmail) {
+          return false;
+        }
+
+        var registrationDataUrl =
+          "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=sessionID eq " +
+          sessionId +
+          " and email eq '" +
+          loggedInUserEmail +
+          "'";
+        var isUserRegistered = false;
+        var that = this;
+        jQuery.ajax({
+          url: registrationDataUrl,
+          type: "GET",
+          async: false,
+          success: function (data) {
+            if (data && data.value && data.value.length > 0) {
+              isUserRegistered = true;
+            }
+          },
+          error: function (xhr, status, error) {
+            sap.m.MessageBox.error(
+              that
+                .getView()
+                .getModel("i18n")
+                .getProperty("registrationdatafail") + error
+            );
+          },
+        });
+
+        return isUserRegistered;
       },
 
       sendRegistrationToBackend: function (registrationData) {
