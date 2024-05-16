@@ -425,15 +425,17 @@ sap.ui.define(
         var that = this;
         var loggedInUserEmail = localStorage.getItem("email");
         if (!loggedInUserEmail) {
-            MessageToast.show(
-                this.getView().getModel("i18n").getProperty("profileEmailNotFound")
-            );
-            return;
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("profileEmailNotFound")
+          );
+          return;
         }
 
         if (this.isUserAlreadyRegistered(sessionID)) {
           sap.m.MessageBox.error(
-              this.getView().getModel("i18n").getProperty("registersessionalready")
+            this.getView()
+              .getModel("i18n")
+              .getProperty("registersessionalready")
           );
         } else {
           var registrationData = {
@@ -451,13 +453,11 @@ sap.ui.define(
             eventID: oSessionData.eventID,
             email: loggedInUserEmail,
             firstname: localStorage.getItem("firstname"),
-            lastname: localStorage.getItem("lastname")
-  
+            lastname: localStorage.getItem("lastname"),
           };
-  
+
           this.sendRegistrationToBackend(registrationData);
         }
-
       },
 
       isUserAlreadyRegistered: function (sessionId) {
@@ -499,24 +499,27 @@ sap.ui.define(
       sendRegistrationToBackend: function (registrationData) {
         var that = this;
         jQuery.ajax({
-            url: "http://localhost:4004/odata/v4/catalog/registerdOnASession",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(registrationData),
-            success: function () {
-                MessageToast.show(
-                    that.getView().getModel("i18n").getProperty("registrationsucces")
-                );
-                setTimeout(function () {
-                    that.onBackToHome();
-                    window.location.reload();
-                }, 1500);
-            },
-            error: function (xhr, status, error) {
-                sap.m.MessageBox.error(
-                    that.getView().getModel("i18n").getProperty("registrationfailed") + error
-                );
-            },
+          url: "http://localhost:4004/odata/v4/catalog/registerdOnASession",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(registrationData),
+          success: function () {
+            MessageToast.show(
+              that.getView().getModel("i18n").getProperty("registrationsucces")
+            );
+            setTimeout(function () {
+              that.onBackToHome();
+              window.location.reload();
+            }, 1500);
+          },
+          error: function (xhr, status, error) {
+            sap.m.MessageBox.error(
+              that
+                .getView()
+                .getModel("i18n")
+                .getProperty("registrationfailed") + error
+            );
+          },
         });
       },
 
@@ -599,6 +602,38 @@ sap.ui.define(
           console.error("Binding Context for eventModel not found");
           MessageBox.error(
             "Failed to retrieve event details. Please try again."
+          );
+        }
+      },
+
+      onDetailsPress: function (oEvent) {
+        var oSessionContext = oEvent
+          .getSource()
+          .getBindingContext("sessionModel");
+        if (oSessionContext) {
+          var oSessionData = oSessionContext.getObject();
+          localStorage.setItem("title", oSessionData.title);
+          localStorage.setItem("startDate", oSessionData.startDate);
+          localStorage.setItem("endDate", oSessionData.endDate);
+          localStorage.setItem("startTime", oSessionData.startTime);
+          localStorage.setItem("endTime", oSessionData.endTime);
+          localStorage.setItem("room", oSessionData.room);
+          localStorage.setItem("speaker", oSessionData.speaker);
+          localStorage.setItem("totalSeats", oSessionData.totalSeats);
+          localStorage.setItem("description", oSessionData.description);
+          localStorage.setItem("naam", oSessionData.naam);
+          localStorage.setItem("sessionID", oSessionData.sessionID);
+          localStorage.setItem("eventID", oSessionData.eventID);
+
+          var oRouter = UIComponent.getRouterFor(this);
+          oRouter.navTo("Registersession");
+        } else {
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("selectSessionRegister")
+          );
+
+          MessageToast.show(
+            this.getView().getModel("i18n").getProperty("selectSessionRegister")
           );
         }
       },

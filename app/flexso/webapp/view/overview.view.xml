@@ -248,8 +248,8 @@
                         <Button
                             id="_IDGenButton"
                             text="Details"
-                            press="onRegisterPress"
-                            class="registerButton"
+                            press="onDetailsPress"
+                            class="registerButton1"
                         />
 
                         <Button
@@ -257,7 +257,7 @@
                             icon="sap-icon://edit"
                             press="EditSessie"
                             width="100%"
-                            class="addSessieButton"
+                            class="addSessieButton1"
                             visible="{imageModel>/isAdmin}"
                         />
                     </CustomListItem>

@@ -45,6 +45,10 @@
   margin-bottom: 15px;
 }
 
+.registerButton {
+  margin-bottom: 15px;
+}
+
 .emailLabel {
   display: flex;
   justify-content: center;
@@ -129,6 +133,14 @@
   height: 50px;
 }
 
+.registerButton1 {
+  display: block;
+  margin: auto; /* Center horizontally */
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+}
+
 .outerFlexBox {
   display: flex;
   justify-content: center;
@@ -165,6 +177,11 @@
 }
 
 .registerButton {
+  margin-top: 1rem;
+  width: 200px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+}
+.registerButton1 {
   margin-top: 1rem;
   width: 200px; /* Adjust width as needed */
   height: 50px; /* Adjust height as needed */
@@ -325,6 +342,14 @@
 .registerButton.sapMBtnBase,
 .registerButton .sapMBtnHoverable {
   background-color: rgb(239 175 57) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: #f4f4f4 !important;
+}
+.registerButton1,
+.registerButton1.sapMBtnBase,
+.registerButton1 .sapMBtnHoverable {
+  background-color: rgb(0, 178, 221) !important;
   border: none !important;
   border-radius: 5px !important;
   color: #f4f4f4 !important;
@@ -849,10 +874,6 @@
   height: auto;
 }
 
-
-
-
-
 /* Algemene opmaak */
 .registrationoverviewPage {
   font-family: Arial, sans-serif;
@@ -935,6 +956,6 @@
 @media only screen and (max-width: 600px) {
   /* Aanpassingen voor kleinere schermen */
   .registrationoverviewPage {
-      padding: 10px;
+    padding: 10px;
   }
 }
