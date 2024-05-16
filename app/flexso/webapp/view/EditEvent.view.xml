@@ -42,7 +42,7 @@
 
                 <Label
                     id="label2"
-                    text="{i18n>StartDate}"
+                    text="{i18n>startdate2}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker1"
@@ -52,7 +52,7 @@
 
                 <Label
                     id="label3"
-                    text="{i18n>EndDate}"
+                    text="{i18n>enddate2}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker2"

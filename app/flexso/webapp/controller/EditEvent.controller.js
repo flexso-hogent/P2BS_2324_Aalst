@@ -207,6 +207,7 @@ sap.ui.define(
                 },
                 error: function (xhr, status, error) {
                   console.error("Error deleting session:", error);
+                  c;
                 },
               });
             });
