@@ -39,63 +39,55 @@ sap.ui.define(
         this.getView().setModel(sessionModel, "sessionModel");
       },
       onSavePress: function () {
-        var sessionID = this.getView()
-          .getModel("sessionModel")
-          .getProperty("/sessionID");
-        var updatedSessionData = {
-          title: this.getView().getModel("sessionModel").getProperty("/title"),
-          startDate: formatDate(
-            this.getView().getModel("sessionModel").getProperty("/startDate")
-          ),
-          endDate: formatDate(
-            this.getView().getModel("sessionModel").getProperty("/endDate")
-          ),
-          startTime: formatTime(
-            this.getView().getModel("sessionModel").getProperty("/startTime")
-          ),
-          endTime: formatTime(
-            this.getView().getModel("sessionModel").getProperty("/endTime")
-          ),
-          room: this.getView().getModel("sessionModel").getProperty("/room"),
-          description: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/description"),
-          speaker: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/speaker"),
-          naam: this.getView().getModel("sessionModel").getProperty("/naam"),
-          totalSeats: parseInt(
-            this.getView().getModel("sessionModel").getProperty("/totalSeats"),
-            10
-          ),
-          eventID: this.getView()
-            .getModel("sessionModel")
-            .getProperty("/eventID"),
-        };
+        var sessionModel = this.getView().getModel("sessionModel");
+        var sessionID = sessionModel.getProperty("/sessionID");
+        var oBundle = this.getView().getModel("i18n").getResourceBundle();
+        var sErrorStartDateAfterEndDate = oBundle.getText(
+          "errorStartDateAfterEndDate"
+        );
 
         // Function to format date to YYYY-MM-DD
         function formatDate(dateString) {
           var date = new Date(dateString);
+          if (isNaN(date)) return null;
           var year = date.getFullYear();
           var month = String(date.getMonth() + 1).padStart(2, "0");
           var day = String(date.getDate()).padStart(2, "0");
-          var formattedDate = year + "-" + month + "-" + day;
-          return formattedDate;
+          return year + "-" + month + "-" + day;
         }
 
-        // Function to format time to hh:mm:ss.s
+        // Function to format time to hh:mm:ss
         function formatTime(timeString) {
-          // Split the time string into hours, minutes, and seconds
           var timeComponents = timeString.split(":");
-          // Create a new Date object and set the time components
+          if (timeComponents.length < 2) return null;
           var time = new Date();
           time.setHours(parseInt(timeComponents[0], 10));
           time.setMinutes(parseInt(timeComponents[1], 10));
-          // Add seconds and milliseconds (assuming they are always 0)
           time.setSeconds(0);
           time.setMilliseconds(0);
-          // Format the time as hh:mm:ss.s
           return time.toTimeString().split(" ")[0];
+        }
+
+        var updatedSessionData = {
+          title: sessionModel.getProperty("/title"),
+          startDate: formatDate(sessionModel.getProperty("/startDate")),
+          endDate: formatDate(sessionModel.getProperty("/endDate")),
+          startTime: formatTime(sessionModel.getProperty("/startTime")),
+          endTime: formatTime(sessionModel.getProperty("/endTime")),
+          room: sessionModel.getProperty("/room"),
+          description: sessionModel.getProperty("/description"),
+          speaker: sessionModel.getProperty("/speaker"),
+          naam: sessionModel.getProperty("/naam"),
+          totalSeats: parseInt(sessionModel.getProperty("/totalSeats"), 10),
+          eventID: sessionModel.getProperty("/eventID"),
+        };
+
+        // Validate start and end dates
+        var startDate = new Date(updatedSessionData.startDate);
+        var endDate = new Date(updatedSessionData.endDate);
+        if (startDate > endDate) {
+          MessageBox.error(sErrorStartDateAfterEndDate);
+          return;
         }
 
         var that = this;

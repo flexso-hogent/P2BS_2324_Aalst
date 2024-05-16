@@ -93,14 +93,26 @@ sap.ui.define(
         var oBundle = this.getView().getModel("i18n").getResourceBundle();
         var sConfirmText2 = oBundle.getText("updateeventconfirm");
         var seventdelted2 = oBundle.getText("updatedevent");
+        var sErrorStartDateAfterEndDate = oBundle.getText(
+          "errorStartDateAfterEndDate"
+        );
 
         var eventModel = this.getView().getModel("eventModel");
         var eventID = eventModel.getProperty("/eventID");
 
+        var startDate = this.formatDate(eventModel.getProperty("/startDate"));
+        var endDate = this.formatDate(eventModel.getProperty("/endDate"));
+
+        // Validatie: Zorg ervoor dat de startdatum niet na de einddatum is
+        if (new Date(startDate) > new Date(endDate)) {
+          MessageBox.error(sErrorStartDateAfterEndDate);
+          return;
+        }
+
         var updatedEventData = {
           name: eventModel.getProperty("/title"),
-          startDate: this.formatDate(eventModel.getProperty("/startDate")),
-          endDate: this.formatDate(eventModel.getProperty("/endDate")),
+          startDate: startDate,
+          endDate: endDate,
           location: eventModel.getProperty("/location"),
           description: eventModel.getProperty("/description"),
         };
