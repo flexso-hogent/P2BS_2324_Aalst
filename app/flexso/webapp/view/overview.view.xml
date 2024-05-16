@@ -49,6 +49,8 @@
                 id="eventTable"
                 items="{ path: 'eventModel>/' }"
                 noDataText="{i18n>noData}"
+                growing="true"
+                growingThreshold="5"
             >
                 <columns>
                     <Column id="_IDGenColumn1">

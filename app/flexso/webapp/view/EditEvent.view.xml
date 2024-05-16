@@ -32,7 +32,7 @@
             >
                 <Label
                     id="label1"
-                    text="{i18n>Title}"
+                    text="{i18n>Titleevent}"
                 />
                 <Input
                     id="_IDGenInput1"
@@ -42,29 +42,28 @@
 
                 <Label
                     id="label2"
-                    text="{i18n>StartDate}"
+                    text="{i18n>startdate2}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker1"
                     value="{eventModel>/startDate}"
-                    placeholder="{i18n>StartDate}"
+                    placeholder="{i18n>startdate2}"
                 />
 
                 <Label
                     id="label3"
-                    text="{i18n>EndDate}"
+                    text="{i18n>enddate2}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker2"
                     value="{eventModel>/endDate}"
-                    placeholder="{i18n>EndDate}"
+                    placeholder="{i18n>enddate2}"
                 />
 
                 <Label
                     id="label4"
-                    text="{i18n>Location}"
+                    text="{i18n>LocationEvent}"
                 />
-
                 <Input
                     id="_IDGenInput2"
                     value="{eventModel>/location}"
@@ -73,7 +72,7 @@
 
                 <Label
                     id="label5"
-                    text="{i18n>Description}"
+                    text="{i18n>descriptionEvent}"
                 />
                 <Input
                     id="_IDGenTextArea1"
@@ -86,23 +85,35 @@
                     class="buttonbox center-buttons"
                 >
                     <Button
-                        id="_IDGenButto"
+                        id="_IDGenButton1"
                         icon="sap-icon://save"
                         press="onSavePress"
                         class="editSessionButtons"
                     />
                     <Button
-                        id="_IDGenButton"
+                        id="_IDGenButton2"
                         icon="sap-icon://delete"
                         press="onDeletePress"
                         type="Reject"
                         class="editSessionButtons"
                     />
                 </HBox>
+
+                <HBox
+                    id="_IDGenHBox2"
+                    class="buttonbox center-buttons"
+                >
+                    <Button
+                        id="button1"
+                        icon="sap-icon://nav-back"
+                        text="{i18n>goBack}"
+                        press="onBackPress"
+                        class="editSessionButtons2"
+                    />
+                </HBox>
             </VBox>
         </content>
     </Page>
-    <!-- Include popover fragments if needed -->
     <core:Fragment
         fragmentName="flexso.fragment.Popover"
         type="XML"

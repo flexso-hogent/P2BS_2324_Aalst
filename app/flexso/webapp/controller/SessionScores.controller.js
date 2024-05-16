@@ -92,7 +92,7 @@ sap.ui.define(
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("home");
       },
-      onShowreviews: function(oEvent) {
+      onShowreviews: function (oEvent) {
         var oSelectedItem = oEvent.getSource().getParent().getParent();
         console.log("Selected Item: " + oSelectedItem);
         var oBindingContext = oSelectedItem.getBindingContext("sessionModel");
@@ -102,13 +102,10 @@ sap.ui.define(
         var oComponent = this.getOwnerComponent();
         console.log("Session Title: " + sSessionTitle);
         oComponent.getRouter().navTo("reviews", {
-            sessionTitle: sSessionTitle
+          sessionTitle: sSessionTitle,
         });
       },
-    
-    
 
-    
       onProfileButtonClick: function () {
         var oRouter = UIComponent.getRouterFor(this);
         oRouter.navTo("profile");
@@ -219,7 +216,7 @@ sap.ui.define(
           dataType: "json",
           success: function (data) {
             var filteredSessions = data.value.filter(function (session) {
-              return session.eventID === eventID;
+              return session.eventID == eventID;
             });
 
             var promises = filteredSessions.map(function (session) {

@@ -17,7 +17,7 @@ entity Admin {
 }
 
 entity Events {
-    key eventID     : UUID;
+    key eventID     : Integer;
         name        : String;
         startDate   : Date;
         endDate     : Date;
