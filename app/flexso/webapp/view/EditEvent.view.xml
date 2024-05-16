@@ -47,7 +47,7 @@
                 <DatePicker
                     id="_IDGenDatePicker1"
                     value="{eventModel>/startDate}"
-                    placeholder="{i18n>StartDate}"
+                    placeholder="{i18n>startdate2}"
                 />
 
                 <Label
@@ -57,7 +57,7 @@
                 <DatePicker
                     id="_IDGenDatePicker2"
                     value="{eventModel>/endDate}"
-                    placeholder="{i18n>EndDate}"
+                    placeholder="{i18n>enddate2}"
                 />
 
                 <Label
