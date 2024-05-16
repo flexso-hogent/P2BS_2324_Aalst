@@ -164,6 +164,8 @@
                     id="sessionsList"
                     items="{ path: 'sessionModel>/' }"
                     noDataText="{i18n>noData}"
+                    growing="true"
+                    growingThreshold="2"
                 >
                     <CustomListItem
                         id="sessionListItem"
