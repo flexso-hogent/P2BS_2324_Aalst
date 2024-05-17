@@ -108,26 +108,26 @@
                     />
                     <Label
                         id="_IDGenLabel3"
-                        text="{i18n>StartDate}"
+                        text="{i18n>StartDate1}"
                         class="LabelCreateSessionPage"
                     />
                     <DatePicker
                         id="_IDGenDatePicker1"
                         value="{sessionModel>/startDate}"
-                        placeholder="{i18n>StartDate}"
+                        placeholder="{i18n>StartDate1}"
                         width="{= ${device>/isPhone} ? 'auto' : '50%'}"
                         class="InputCreateSession"
                         required="true"
                     />
                     <Label
                         id="_IDGenLabel4"
-                        text="{i18n>EndDate}"
+                        text="{i18n>EndDate1}"
                         class="LabelCreateSessionPage"
                     />
                     <DatePicker
                         id="_IDGenDatePicker2"
                         value="{sessionModel>/endDate}"
-                        placeholder="{i18n>EndDate}"
+                        placeholder="{i18n>EndDate1}"
                         width="{= ${device>/isPhone} ? 'auto' : '50%'}"
                         class="InputCreateSession"
                         required="true"

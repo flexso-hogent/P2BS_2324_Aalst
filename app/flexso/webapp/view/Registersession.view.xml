@@ -45,7 +45,7 @@
                 <VBox id="_IDGenVBox2">
                     <Label
                         id="_IDGenLabel3"
-                        text="{i18n>StartDate}"
+                        text="{i18n>StartDate1}"
                     />
                     <Text
                         id="_IDGenText2"
@@ -57,7 +57,7 @@
                 <VBox id="_IDGenVBox">
                     <Label
                         id="_IDGenLabel4"
-                        text="{i18n>EndDate}"
+                        text="{i18n>EndDate1}"
                     />
                     <Text
                         id="_IDGenText3"

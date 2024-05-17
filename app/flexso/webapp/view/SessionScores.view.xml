@@ -82,19 +82,19 @@
                             <Column id="_IDGenColumn3">
                                 <Text
                                     id="_IDGenText3"
-                                    text="{i18n>StartDate}"
+                                    text="{i18n>StartDate1}"
                                 />
                             </Column>
                             <Column id="_IDGenColumn4">
                                 <Text
                                     id="_IDGenText4"
-                                    text="{i18n>EndDate}"
+                                    text="{i18n>EndDate1}"
                                 />
                             </Column>
                             <Column id="_IDGenColumn5">
                                 <Text
                                     id="_IDGenText5"
-                                    text="{i18n>Description}"
+                                    text="{i18n>Description1}"
                                 />
                             </Column>
                         </columns>

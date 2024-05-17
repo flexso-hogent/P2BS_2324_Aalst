@@ -40,7 +40,7 @@
                 />
                 <Label
                     id="label2"
-                    text="{i18n>StartDate}"
+                    text="{i18n>StartDate1}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker1"
@@ -50,7 +50,7 @@
 
                 <Label
                     id="label3"
-                    text="{i18n>EndDate}"
+                    text="{i18n>EndDate1}"
                 />
                 <DatePicker
                     id="_IDGenDatePicker2"
@@ -60,7 +60,7 @@
                 <VBox id="_IDGenVBox1">
                     <Label
                         id="_IDGenLabel1"
-                        text="{i18n>StartTime}"
+                        text="{i18n>StartTime1}"
                     />
 
                     <TimePicker
@@ -71,7 +71,7 @@
 
                     <Label
                         id="label"
-                        text="{i18n>EndTime}"
+                        text="{i18n>EndTime1}"
                     />
                     <TimePicker
                         id="_IDGenTimePicker2"
