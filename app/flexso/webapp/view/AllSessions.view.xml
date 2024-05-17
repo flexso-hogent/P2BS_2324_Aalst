@@ -58,7 +58,6 @@
             class="all-sessions-table"
             mode="{device>/isPhone ? 'SingleSelectMaster' : 'MultiSelect'}"
             inset="{device>/isPhone}"
-            selectionChange="onDelete"
         >
             <columns>
                 <Column
@@ -205,13 +204,22 @@
                             id="_IDGenText14"
                             text="{allSessionsModel>description}"
                         />
-                        <Button
-                            id="_IDGenButton11"
-                            icon="sap-icon://add-favorite"
-                            press="goToFeedbackDirect"
-                            class="sapUiSmallMarginEnd outlookButton1"
-                            width="{= ${device>/isPhone} ? '10%' : '50%'}"
-                        />
+                        <VBox id="_IDGenVBox2">
+                            <Button
+                                id="_IDGenButton11"
+                                icon="sap-icon://add-favorite"
+                                press="goToFeedbackDirect"
+                                class="sapUiSmallMarginEnd outlookButton1"
+                                width="{= ${device>/isPhone} ? '10%' : '50%'}"
+                                visible="{= !${allSessionsModel>hasFeedback} }"
+                            />
+                            <Text
+                                id="alreadyFeedbackText"
+                                text="{i18n>feedbackGiven}"
+                                visible="{= ${allSessionsModel>hasFeedback} }"
+                                class="feedbackGivenText"
+                            />
+                        </VBox>
                     </cells>
                 </ColumnListItem>
             </items>
