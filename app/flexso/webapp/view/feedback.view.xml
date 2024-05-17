@@ -203,6 +203,7 @@
                         width="50%"
                         press="onFeedback"
                         class="sapUiSmallMarginTop updateProfileButton"
+                        enabled="{= ${sessieZoekenInput>/value} !== ''}"
                     />
                     <Button
                         id="sendFeedback2"

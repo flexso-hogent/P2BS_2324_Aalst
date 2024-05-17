@@ -199,17 +199,30 @@ sap.ui.define(
         oRouter.navTo("profile");
       },
       onFeedback: function () {
-        // Check if the user has already given feedback for the selected session
         var sessie = this.getView().byId("sessieZoekenInput").getValue();
+
+        // Check if the session title is in the list of fetched sessions
+        var allSessions = this.getView().getModel("allSessions").getData();
+        var validSession = allSessions.some(function (session) {
+          return session.title === sessie;
+        });
+
+        if (!validSession) {
+          sap.m.MessageBox.error(
+            this.getView().getModel("i18n").getProperty("invalidSession")
+          );
+          return; // Exit the function if the session is invalid
+        }
+
         if (this.feedbackSessions.includes(sessie)) {
           sap.m.MessageBox.error(
             this.getView().getModel("i18n").getProperty("feedbackalready")
           );
           return; // Exit the function if feedback already given
         }
+
         // Feedback submission logic with AJAX
         var loggedInUserEmail = localStorage.getItem("email");
-        var sessie = this.getView().byId("sessieZoekenInput").getValue();
         var oRatingIndicator = this.getView().byId("feedbackRating");
         var oTextArea = this.getView().byId("reviewTextArea");
 
