@@ -93,9 +93,14 @@ sap.ui.define(
                 var today = new Date();
                 today.setHours(0, 0, 0, 0); // Reset time part for date comparison
 
-                // Filter sessions to exclude those for which the user has already given feedback
+                // Filter sessions to exclude those for which the user has already given feedback and future sessions
                 var relevantSessions = data.value.filter(function (session) {
-                  return !feedbackTitles.includes(session.title);
+                  var sessionEndDate = new Date(session.endDate);
+                  sessionEndDate.setHours(0, 0, 0, 0);
+                  return (
+                    !feedbackTitles.includes(session.title) &&
+                    sessionEndDate < today
+                  );
                 });
 
                 // Update the model with the relevant sessions
@@ -293,7 +298,7 @@ sap.ui.define(
           and: true, // Alle filters moeten waar zijn
         });
 
-        oBinding.filter(pastSessionsFilter);
+        oBinding.filter(combinedFilter); // Use combinedFilter instead of pastSessionsFilter
       },
 
       onSearch: function (oEvent) {

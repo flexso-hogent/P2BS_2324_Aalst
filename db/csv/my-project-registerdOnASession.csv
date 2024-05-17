@@ -9,4 +9,4 @@ sessionID;sessionID2;userID;firstname;lastname;email;title;startDate;endDate;sta
 1;8;1008;Emma;Lee;emmalee@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
 1;9;1009;Daniel;Clark;danielclark@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
 1;10;1010;Olivia;Hill;oliviahill@example.com;Tech Summit 2024 - Session 2;2024-09-15;2024-09-17;09:00:00;12:00:00;Main Hall;Session 2 of Tech Summit 2024;TBD;;100
-25;11;null;Flexso;Admin;Admin.flexso@flexso.com;Cybersecurity Conference - Session 1";2024-03-28;2024-03-30;09:00:00;12:00:00;Main Hall;Session 1 of Cybersecurity Conference;<p><img src="https://i.imgur.com/botGtVj.png/" alt="Test"></p>;Dirk;100
+25;11;null;Flexso;Admin;Admin.flexso@flexso.com;Cybersecurity Conference - Session 1;2024-03-28;2024-03-30;09:00:00;12:00:00;Main Hall;Session 1 of Cybersecurity Conference;<p><img src="https://i.imgur.com/botGtVj.png/" alt="Test"></p>;Dirk;100
