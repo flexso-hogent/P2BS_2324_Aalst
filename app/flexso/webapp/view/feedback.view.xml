@@ -64,7 +64,7 @@
                     <Table
                         id="sessionTable"
                         inset="false"
-                        items="{/Sessions}"
+                        items="{allSessions>/}"
                         width="100%"
                         class="sapUiRespTable"
                     >
@@ -142,27 +142,27 @@
                                 <cells>
                                     <Text
                                         id="txtSessionTitel"
-                                        text="{title}"
+                                        text="{allSessions>title}"
                                     />
                                     <Text
                                         id="txtSessionStartDate"
-                                        text="{startDate}"
+                                        text="{allSessions>startDate}"
                                     />
                                     <Text
                                         id="txtSessionEndDate"
-                                        text="{endDate}"
+                                        text="{allSessions>endDate}"
                                     />
                                     <Text
                                         id="txtSessionStartTime"
-                                        text="{startTime}"
+                                        text="{allSessions>startTime}"
                                     />
                                     <Text
                                         id="txtSessionEndTime"
-                                        text="{endTime}"
+                                        text="{allSessions>endTime}"
                                     />
                                     <Text
                                         id="txtSessionSpeaker"
-                                        text="{naam}"
+                                        text="{allSessions>naam}"
                                     />
                                 </cells>
                             </ColumnListItem>

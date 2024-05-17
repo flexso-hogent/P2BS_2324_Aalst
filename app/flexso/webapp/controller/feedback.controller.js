@@ -7,9 +7,6 @@ sap.ui.define(
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
   ],
-  /**
-   * @param {typeof sap.ui.core.mvc.Controller} Controller
-   */
   function (
     Controller,
     JSONModel,
@@ -30,7 +27,6 @@ sap.ui.define(
           "flexso",
           "/images/Flexso.png"
         );
-
         var oProfileImagePath = jQuery.sap.getModulePath(
           "flexso",
           "/images/profile.jpg"
@@ -53,6 +49,10 @@ sap.ui.define(
         var oModel = new JSONModel(oSession);
         this.getView().setModel(oModel, "form");
 
+        // Voeg model toe voor alle sessies
+        var oSessionsModel = new JSONModel([]);
+        this.getView().setModel(oSessionsModel, "allSessions");
+
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.getRoute("feedback").attachMatched(this._onRouteMatched, this);
       },
@@ -74,39 +74,44 @@ sap.ui.define(
       fetchFeedbackSessions: function () {
         var loggedInUserEmail = localStorage.getItem("email"); // Ensure this is securely managed in real applications
 
-        // Assuming your service endpoint URL is correct and set up to return sessions
-        var feedbackSessionsURL =
-          "http://localhost:4004/odata/v4/catalog/registerdOnASession";
-
-        $.ajax({
-          url: feedbackSessionsURL,
-          type: "GET",
-          success: function (data) {
-            // Filter sessions to find those associated with the logged-in user and which are in the past
-            var today = new Date();
-            today.setHours(0, 0, 0, 0); // Reset time part for date comparison
-
-            var relevantSessions = data.value.filter(function (session) {
-              var sessionEndDate = new Date(
-                session.endDate + "T" + session.endTime
-              );
-              return (
-                session.email === loggedInUserEmail && sessionEndDate < today
-              );
+        this.fetchExistingFeedback(
+          function (existingFeedback) {
+            var feedbackTitles = existingFeedback.map(function (feedback) {
+              return feedback.SessionTitle;
             });
 
-            // Update the model with the relevant past sessions
-            var oModel = new JSONModel(relevantSessions);
-            this.getView().setModel(oModel, "Sessions");
-          }.bind(this),
-          error: function (xhr, status, error) {
-            MessageToast.show(
-              this.getView()
-                .getModel("i18n")
-                .getProperty("errorFetchFeedbacksessions") + error
-            );
-          },
-        });
+            // Assuming your service endpoint URL is correct and set up to return sessions
+            var sessionsURL =
+              "http://localhost:4004/odata/v4/catalog/registerdOnASession?$filter=email eq '" +
+              loggedInUserEmail +
+              "'";
+
+            $.ajax({
+              url: sessionsURL,
+              type: "GET",
+              success: function (data) {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0); // Reset time part for date comparison
+
+                // Filter sessions to exclude those for which the user has already given feedback
+                var relevantSessions = data.value.filter(function (session) {
+                  return !feedbackTitles.includes(session.title);
+                });
+
+                // Update the model with the relevant sessions
+                var allSessionsModel = new JSONModel(relevantSessions);
+                this.getView().setModel(allSessionsModel, "allSessions");
+              }.bind(this),
+              error: function (xhr, status, error) {
+                MessageToast.show(
+                  this.getView()
+                    .getModel("i18n")
+                    .getProperty("errorFetchFeedbacksessions") + error
+                );
+              },
+            });
+          }.bind(this)
+        );
       },
 
       onAfterRendering: function () {
@@ -131,6 +136,28 @@ sap.ui.define(
           oPopover.close();
         }
       },
+      fetchExistingFeedback: function (callback) {
+        var loggedInUserEmail = localStorage.getItem("email");
+
+        $.ajax({
+          url:
+            "http://localhost:4004/odata/v4/catalog/Feedback?$filter=Username eq '" +
+            loggedInUserEmail +
+            "'",
+          type: "GET",
+          success: function (data) {
+            callback(data.value);
+          },
+          error: function (xhr, status, error) {
+            MessageToast.show(
+              this.getView()
+                .getModel("i18n")
+                .getProperty("errorFetchFeedback") + error
+            );
+          }.bind(this),
+        });
+      },
+
       onLogoutPress: function () {
         var that = this;
         sap.m.MessageBox.confirm(
