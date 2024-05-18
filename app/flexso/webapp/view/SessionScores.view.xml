@@ -65,6 +65,8 @@
                         items="{/Events}"
                         noDataText="{i18n>noData}"
                         width="100%"
+                        growing="true"
+                        growingThreshold="5"
                     >
                         <columns>
                             <Column id="_IDGenColumn1">
