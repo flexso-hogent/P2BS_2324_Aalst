@@ -58,6 +58,8 @@
             class="all-sessions-table"
             mode="{device>/isPhone ? 'SingleSelectMaster' : 'MultiSelect'}"
             inset="{device>/isPhone}"
+            growing="true"
+            growingThreshold="5"
         >
             <columns>
                 <Column

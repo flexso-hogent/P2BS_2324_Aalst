@@ -44,6 +44,8 @@
         }"
                 class="all-sessions-table"
                 selectionChange="onDelete"
+                growing="true"
+                growingThreshold="5"
             >
                 <columns>
                     <Column id="upcomingColumn1">
