@@ -356,7 +356,7 @@
                                     placeholder="{i18n>passwordPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="test123"
+                                    value="Test123!"
                                 />
 
                                 <Button
@@ -383,7 +383,7 @@
                                     placeholder="{i18n>confirmPasswordPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="test123"
+                                    value="Test123!"
                                 />
 
                                 <Button
