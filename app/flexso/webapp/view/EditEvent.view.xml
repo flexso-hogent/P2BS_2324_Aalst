@@ -37,7 +37,7 @@
                 <Input
                     id="_IDGenInput1"
                     value="{eventModel>/title}"
-                    placeholder="{i18n>Title}"
+                    placeholder="{i18n>Titleevent}"
                 />
 
                 <Label
@@ -77,7 +77,7 @@
                 <Input
                     id="_IDGenTextArea1"
                     value="{eventModel>/description}"
-                    placeholder="{i18n>Description}"
+                    placeholder="{i18n>Description1}"
                 />
 
                 <HBox
