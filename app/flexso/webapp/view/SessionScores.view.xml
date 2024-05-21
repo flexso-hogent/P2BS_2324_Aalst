@@ -56,7 +56,14 @@
                         <SearchField
                             id="eventZoekenInput"
                             liveChange="onSearch"
-                            width="100%"
+                            width="45%"
+                            placeholder="{i18n>searchEvent}"
+                        />
+                        <SearchField
+                            id="sessieZoekenInput"
+                            liveChange="onSearchSession"
+                            width="50%"
+                            placeholder="{i18n>searchSession}"
                         />
                     </OverflowToolbar>
 
@@ -145,6 +152,8 @@
                         noDataText="{i18n>noData}"
                         width="100%"
                         visible="false"
+                        growing="true"
+                        growingThreshold="4"
                     >
                         <!-- CustomListItem -->
                         <CustomListItem

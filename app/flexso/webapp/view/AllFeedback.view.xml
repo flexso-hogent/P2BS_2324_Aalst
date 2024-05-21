@@ -48,6 +48,8 @@
                     noDataText="{i18n>noDataText}"
                     class="Nodata"
                     width="{= ${device>/isPhone} ? 'auto' : '100%'}"
+                    growing="true"
+                    growingThreshold="5"
                 >
                     <columns>
                         <Column id="_IDGenColumn1">

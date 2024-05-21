@@ -208,6 +208,42 @@ sap.ui.define(
           },
         });
       },
+      onSearchSession: function (oEvent) {
+        var sQuery = oEvent.getSource().getValue().trim().toLowerCase(); // Get the trimmed, lowercased query from the input field
+        var aFilters = [];
+
+        if (sQuery) {
+          // Assuming you want to filter sessions based on title and possibly other attributes like location
+          var titleFilter = new sap.ui.model.Filter(
+            "title",
+            sap.ui.model.FilterOperator.Contains,
+            sQuery
+          );
+          var locationFilter = new sap.ui.model.Filter(
+            "location",
+            sap.ui.model.FilterOperator.Contains,
+            sQuery
+          );
+
+          // Combine filters: sessions should match the query in either title or location
+          var combinedFilter = new sap.ui.model.Filter({
+            filters: [titleFilter, locationFilter],
+            and: false, // Use OR condition to combine filters
+          });
+          aFilters.push(combinedFilter);
+        }
+
+        // Apply the filter array to the sessions list binding
+        var oList = this.getView().byId("sessionsList");
+        var oBinding = oList.getBinding("items");
+        if (oBinding) {
+          oBinding.filter(aFilters, "Application"); // Apply the filter with control level as 'Application'
+        } else {
+          console.error(
+            "Binding not found for sessions list. Check the list ID and binding setup."
+          );
+        }
+      },
 
       loadSessions: function (eventID) {
         var that = this;
