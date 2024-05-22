@@ -51,7 +51,6 @@
                     <!-- Username Input -->
                     <Input
                         id="usernameInput"
-                        value="Admin.flexso@flexso.com"
                         placeholder="{i18n>emailPlaceholder}"
                         width="100%"
                         class="loginInput"
@@ -67,12 +66,11 @@
                     <HBox
                         id="_IDGenHBox"
                         class="passwordLook"
-                        alignItems="Center" 
+                        alignItems="Center"
                     >
                         <Input
                             id="passwordInput"
                             type="Password"
-                            value="FlexsoAdmin"
                             placeholder="{i18n>passwordPlaceholder}"
                             width="145%"
                             class="loginInput"
@@ -82,10 +80,9 @@
                             id="_IDGenButton4"
                             icon="sap-icon://show"
                             press="togglePasswordVisibility"
-                            class="passwordButton" 
+                            class="passwordButton"
                         />
                     </HBox>
-
 
                     <!-- Stay Logged In Checkbox -->
                     <CheckBox

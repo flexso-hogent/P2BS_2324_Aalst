@@ -74,7 +74,6 @@
                                 placeholder="{i18n>emailPlaceholder}"
                                 class="registerInput"
                                 required="true"
-                                value="test@gmail.com"
                             />
                         </FlexBox>
 
@@ -94,7 +93,6 @@
                                 placeholder="{i18n>firstNamePlaceholder}"
                                 class="registerInput"
                                 required="true"
-                                value="TestNaam"
                             />
                         </FlexBox>
 
@@ -114,7 +112,6 @@
                                 placeholder="{i18n>lastNamePlaceholder}"
                                 class="registerInput"
                                 required="true"
-                                value="TestAchternaam"
                             />
                         </FlexBox>
 
@@ -134,7 +131,6 @@
                                 placeholder="{i18n>companyPlaceholder}"
                                 class="registerInput"
                                 required="true"
-                                value="Flexso"
                             />
                         </FlexBox>
 
@@ -154,7 +150,6 @@
                                 placeholder="{i18n>phonePlaceholder}"
                                 class="registerInput"
                                 required="true"
-                                value="0477777777"
                             />
                         </FlexBox>
 
@@ -192,7 +187,6 @@
                                 id="bdateInput"
                                 class="registerInput"
                                 required="true"
-                                value="1999-01-01"
                                 width="93%"
                             />
                         </FlexBox>
@@ -257,7 +251,6 @@
                                     placeholder="{i18n>streetPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="Hogentstraat"
                                 />
                             </FlexBox>
                             <!-- House Number -->
@@ -276,7 +269,6 @@
                                     placeholder="{i18n>hnumberPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="1"
                                 />
                             </FlexBox>
 
@@ -296,7 +288,6 @@
                                     placeholder="{i18n>cityPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="Gent"
                                 />
                             </FlexBox>
 
@@ -316,7 +307,6 @@
                                     placeholder="{i18n>countryPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="Belgium"
                                 />
                             </FlexBox>
 
@@ -336,7 +326,6 @@
                                     placeholder="{i18n>zipPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="9000"
                                 />
                             </FlexBox>
 
@@ -356,14 +345,13 @@
                                     placeholder="{i18n>passwordPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="Test123!"
                                 />
 
                                 <Button
                                     id="_IDGenButton4"
                                     icon="sap-icon://show"
                                     press="togglePasswordVisibility"
-                                    class="passwordButton" 
+                                    class="passwordButton"
                                 />
                             </FlexBox>
 
@@ -383,14 +371,13 @@
                                     placeholder="{i18n>confirmPasswordPlaceholder}"
                                     class="registerInput"
                                     required="true"
-                                    value="Test123!"
                                 />
 
                                 <Button
                                     id="_IDGenButton5"
                                     icon="sap-icon://show"
                                     press="togglePasswordVisibility2"
-                                    class="passwordButton" 
+                                    class="passwordButton"
                                 />
                             </FlexBox>
                         </l:VerticalLayout>

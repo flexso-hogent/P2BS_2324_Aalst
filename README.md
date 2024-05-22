@@ -41,6 +41,17 @@ To get a local copy up and running follow these simple steps.
    cds watch
    ```
 
+6. Open the browser and go to the following link and click on webapplication
+   ```sh
+   http://localhost:4004
+   ```
+7. You can now use the application with the following credentials. You can also register a new user.
+   ```sh
+   Email: Admin.flexso@flexso.com
+   Password: FlexsoAdmin
+   ```
+8. Make sure your browser is in English so you can create Events and Sessions with the correct Date and Time format.
+
 ## Languages
 
 - [x] Multi-language Support
