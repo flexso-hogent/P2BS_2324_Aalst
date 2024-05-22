@@ -9,8 +9,6 @@ Get to know the latest SAP technologies and apply them in an application for man
 - ![CAP CDS](https://img.shields.io/badge/CAP_CDS-0FAAFF?style=for-the-badge&logo=sap&logoColor=white)
 - ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## Getting Started
@@ -43,29 +41,26 @@ To get a local copy up and running follow these simple steps.
    cds watch
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Languages
 
 - [x] Multi-language Support
   - [x] Dutch
   - [x] English
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 
 ## Contact our team
 
 - [Kyno Van de Velde](https://www.linkedin.com/in/kyno-van-de-velde-7bb876266/)
-- [Mohamed Seif Eddin](https://www.linkedin.com/in/mohamed-seif-eddin-bb7874266//)
+- [Mohamed Seif Eddin](https://www.linkedin.com/in/mohamed-seif-eddin-bb7874266/)
 - [Killian Neckebroeck](https://www.linkedin.com/in/killian-neckebroeck/)
 - [Renzo Van de Moer](https://www.linkedin.com/in/renzo-van-de-moer/)
 
-For further inquiries, you can send us an email at
-[kyno.vandevelde@student.hogent.be](mailto:kyno.vandevelde@student.hogent.be)
-[mohamed.seifeddin@student.hogent.be](mailto:mohamed.seifeddin@student.hogent.be)
-[killian.neckebroeck@student.hogent.be](mailto:killian.neckebroeck@student.hogent.be)
-[renzo.vandemoer@student.hogent.be](mailto:renzo.vandemoer@student.hogent.be)
+For further inquiries, you can send us an email at:
+
+- [kyno.vandevelde@student.hogent.be](mailto:kyno.vandevelde@student.hogent.be)
+- [mohamed.seifeddin@student.hogent.be](mailto:mohamed.seifeddin@student.hogent.be)
+- [killian.neckebroeck@student.hogent.be](mailto:killian.neckebroeck@student.hogent.be)
+- [renzo.vandemoer@student.hogent.be](mailto:renzo.vandemoer@student.hogent.be)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
