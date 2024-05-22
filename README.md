@@ -62,5 +62,3 @@ For further inquiries, you can send us an email at:
 - [mohamed.seifeddin@student.hogent.be](mailto:mohamed.seifeddin@student.hogent.be)
 - [killian.neckebroeck@student.hogent.be](mailto:killian.neckebroeck@student.hogent.be)
 - [renzo.vandemoer@student.hogent.be](mailto:renzo.vandemoer@student.hogent.be)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
