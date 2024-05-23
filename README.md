@@ -64,7 +64,7 @@ To get a local copy up and running follow these simple steps.
 
 - [Kyno Van de Velde](https://www.linkedin.com/in/kyno-van-de-velde-7bb876266/)
 - [Mohamed Seif Eddin](https://www.linkedin.com/in/mohamed-seif-eddin-bb7874266/)
-- [Killian Neckebroeck](https://www.linkedin.com/in/killian-neckebroeck/)
+- [Killian Neckebroeck](https://www.linkedin.com/in/killian-neckebroeck-43435130b/)
 - [Renzo Van de Moer](https://www.linkedin.com/in/renzo-van-de-moer/)
 
 For further inquiries, you can send us an email at:
